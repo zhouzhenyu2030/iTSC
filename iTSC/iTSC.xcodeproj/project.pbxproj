@@ -3,89 +3,161 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		191947D021EAEBE000F9314B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 191947CF21EAEBE000F9314B /* AppDelegate.m */; };
-		191947D321EAEBE000F9314B /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 191947D221EAEBE000F9314B /* FirstViewController.m */; };
-		191947D621EAEBE000F9314B /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 191947D521EAEBE000F9314B /* SecondViewController.m */; };
-		191947D921EAEBE000F9314B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 191947D721EAEBE000F9314B /* Main.storyboard */; };
-		191947DB21EAEBE100F9314B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 191947DA21EAEBE100F9314B /* Assets.xcassets */; };
-		191947DE21EAEBE100F9314B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 191947DC21EAEBE100F9314B /* LaunchScreen.storyboard */; };
-		191947E121EAEBE100F9314B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 191947E021EAEBE100F9314B /* main.m */; };
+		190210B921E45964009ADE0B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210B821E45964009ADE0B /* AppDelegate.m */; };
+		190210BC21E45964009ADE0B /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210BB21E45964009ADE0B /* FirstViewController.m */; };
+		190210BF21E45964009ADE0B /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210BE21E45964009ADE0B /* SecondViewController.m */; };
+		190210C221E45964009ADE0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 190210C021E45964009ADE0B /* Main.storyboard */; };
+		190210C421E45966009ADE0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 190210C321E45966009ADE0B /* Assets.xcassets */; };
+		190210C721E45966009ADE0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 190210C521E45966009ADE0B /* LaunchScreen.storyboard */; };
+		190210CA21E45966009ADE0B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210C921E45966009ADE0B /* main.m */; };
+		190210D821E48399009ADE0B /* FilePathHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210D721E48399009ADE0B /* FilePathHelper.m */; };
+		190210DA21E48DB2009ADE0B /* OCCodingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210D921E48DB2009ADE0B /* OCCodingHelper.m */; };
+		190210DD21E49649009ADE0B /* 编程-属性 in Resources */ = {isa = PBXBuildFile; fileRef = 190210DC21E49649009ADE0B /* 编程-属性 */; };
+		190210E021E499DE009ADE0B /* 编程-本地数据保存 in Resources */ = {isa = PBXBuildFile; fileRef = 190210DF21E499DE009ADE0B /* 编程-本地数据保存 */; };
+		190210E321E49BC0009ADE0B /* ConfigHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210E221E49BC0009ADE0B /* ConfigHelper.m */; };
+		190210E621E49C27009ADE0B /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210E521E49C27009ADE0B /* DBHelper.m */; };
+		19417D4721E86BA000C1FF2C /* StringHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 19417D4621E86BA000C1FF2C /* StringHelper.m */; };
+		39095AA00E45A5C468762C0F /* libPods-iTSC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F232280A8439452C55EAE29 /* libPods-iTSC.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		191947CB21EAEBE000F9314B /* iTSC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTSC.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		191947CE21EAEBE000F9314B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		191947CF21EAEBE000F9314B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		191947D121EAEBE000F9314B /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		191947D221EAEBE000F9314B /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		191947D421EAEBE000F9314B /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		191947D521EAEBE000F9314B /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		191947D821EAEBE000F9314B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		191947DA21EAEBE100F9314B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		191947DD21EAEBE100F9314B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		191947DF21EAEBE100F9314B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		191947E021EAEBE100F9314B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		190210B421E45964009ADE0B /* iTSC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTSC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		190210B721E45964009ADE0B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		190210B821E45964009ADE0B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		190210BA21E45964009ADE0B /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		190210BB21E45964009ADE0B /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		190210BD21E45964009ADE0B /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		190210BE21E45964009ADE0B /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		190210C121E45964009ADE0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		190210C321E45966009ADE0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		190210C621E45966009ADE0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		190210C821E45966009ADE0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		190210C921E45966009ADE0B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		190210D621E48375009ADE0B /* FilePathHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilePathHelper.h; sourceTree = "<group>"; };
+		190210D721E48399009ADE0B /* FilePathHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilePathHelper.m; sourceTree = "<group>"; };
+		190210D921E48DB2009ADE0B /* OCCodingHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCCodingHelper.m; sourceTree = "<group>"; };
+		190210DB21E49255009ADE0B /* Locker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Locker.h; sourceTree = "<group>"; };
+		190210DC21E49649009ADE0B /* 编程-属性 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "编程-属性"; sourceTree = "<group>"; };
+		190210DF21E499DE009ADE0B /* 编程-本地数据保存 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "编程-本地数据保存"; sourceTree = "<group>"; };
+		190210E121E49BA1009ADE0B /* ConfigHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigHelper.h; sourceTree = "<group>"; };
+		190210E221E49BC0009ADE0B /* ConfigHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfigHelper.m; sourceTree = "<group>"; };
+		190210E421E49C0A009ADE0B /* DBHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBHelper.h; sourceTree = "<group>"; };
+		190210E521E49C27009ADE0B /* DBHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
+		19417D4521E86B8C00C1FF2C /* StringHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringHelper.h; sourceTree = "<group>"; };
+		19417D4621E86BA000C1FF2C /* StringHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringHelper.m; sourceTree = "<group>"; };
+		453C8632866D6234249936D1 /* Pods-iTSC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTSC.release.xcconfig"; path = "Pods/Target Support Files/Pods-iTSC/Pods-iTSC.release.xcconfig"; sourceTree = "<group>"; };
+		6F232280A8439452C55EAE29 /* libPods-iTSC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iTSC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3262C718804A2670A0A4D07 /* Pods-iTSC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTSC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iTSC/Pods-iTSC.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		191947C821EAEBE000F9314B /* Frameworks */ = {
+		190210B121E45964009ADE0B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39095AA00E45A5C468762C0F /* libPods-iTSC.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		191947C221EAEBE000F9314B = {
+		190210AB21E45964009ADE0B = {
 			isa = PBXGroup;
 			children = (
-				191947CD21EAEBE000F9314B /* iTSC */,
-				191947CC21EAEBE000F9314B /* Products */,
+				190210B621E45964009ADE0B /* iTSC */,
+				190210B521E45964009ADE0B /* Products */,
+				BBD61110B7F90F4EE54E03F8 /* Pods */,
+				667701AC65A23EEF211BB78C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		191947CC21EAEBE000F9314B /* Products */ = {
+		190210B521E45964009ADE0B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				191947CB21EAEBE000F9314B /* iTSC.app */,
+				190210B421E45964009ADE0B /* iTSC.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		191947CD21EAEBE000F9314B /* iTSC */ = {
+		190210B621E45964009ADE0B /* iTSC */ = {
 			isa = PBXGroup;
 			children = (
-				191947CE21EAEBE000F9314B /* AppDelegate.h */,
-				191947CF21EAEBE000F9314B /* AppDelegate.m */,
-				191947D121EAEBE000F9314B /* FirstViewController.h */,
-				191947D221EAEBE000F9314B /* FirstViewController.m */,
-				191947D421EAEBE000F9314B /* SecondViewController.h */,
-				191947D521EAEBE000F9314B /* SecondViewController.m */,
-				191947D721EAEBE000F9314B /* Main.storyboard */,
-				191947DA21EAEBE100F9314B /* Assets.xcassets */,
-				191947DC21EAEBE100F9314B /* LaunchScreen.storyboard */,
-				191947DF21EAEBE100F9314B /* Info.plist */,
-				191947E021EAEBE100F9314B /* main.m */,
+				190210D421E4832D009ADE0B /* Helper */,
+				190210B721E45964009ADE0B /* AppDelegate.h */,
+				190210B821E45964009ADE0B /* AppDelegate.m */,
+				190210BA21E45964009ADE0B /* FirstViewController.h */,
+				190210BB21E45964009ADE0B /* FirstViewController.m */,
+				190210BD21E45964009ADE0B /* SecondViewController.h */,
+				190210BE21E45964009ADE0B /* SecondViewController.m */,
+				190210C021E45964009ADE0B /* Main.storyboard */,
+				190210C321E45966009ADE0B /* Assets.xcassets */,
+				190210C521E45966009ADE0B /* LaunchScreen.storyboard */,
+				190210C821E45966009ADE0B /* Info.plist */,
+				190210C921E45966009ADE0B /* main.m */,
 			);
 			path = iTSC;
+			sourceTree = "<group>";
+		};
+		190210D421E4832D009ADE0B /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				190210DE21E49682009ADE0B /* 编程 */,
+				190210D621E48375009ADE0B /* FilePathHelper.h */,
+				190210D721E48399009ADE0B /* FilePathHelper.m */,
+				190210D921E48DB2009ADE0B /* OCCodingHelper.m */,
+				190210DB21E49255009ADE0B /* Locker.h */,
+				190210E121E49BA1009ADE0B /* ConfigHelper.h */,
+				190210E221E49BC0009ADE0B /* ConfigHelper.m */,
+				190210E421E49C0A009ADE0B /* DBHelper.h */,
+				190210E521E49C27009ADE0B /* DBHelper.m */,
+				19417D4521E86B8C00C1FF2C /* StringHelper.h */,
+				19417D4621E86BA000C1FF2C /* StringHelper.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		190210DE21E49682009ADE0B /* 编程 */ = {
+			isa = PBXGroup;
+			children = (
+				190210DC21E49649009ADE0B /* 编程-属性 */,
+				190210DF21E499DE009ADE0B /* 编程-本地数据保存 */,
+			);
+			path = "编程";
+			sourceTree = "<group>";
+		};
+		667701AC65A23EEF211BB78C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6F232280A8439452C55EAE29 /* libPods-iTSC.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BBD61110B7F90F4EE54E03F8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A3262C718804A2670A0A4D07 /* Pods-iTSC.debug.xcconfig */,
+				453C8632866D6234249936D1 /* Pods-iTSC.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		191947CA21EAEBE000F9314B /* iTSC */ = {
+		190210B321E45964009ADE0B /* iTSC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 191947E421EAEBE100F9314B /* Build configuration list for PBXNativeTarget "iTSC" */;
+			buildConfigurationList = 190210CD21E45966009ADE0B /* Build configuration list for PBXNativeTarget "iTSC" */;
 			buildPhases = (
-				191947C721EAEBE000F9314B /* Sources */,
-				191947C821EAEBE000F9314B /* Frameworks */,
-				191947C921EAEBE000F9314B /* Resources */,
+				CDACC5C8D937A6C6785DBDF7 /* [CP] Check Pods Manifest.lock */,
+				190210B021E45964009ADE0B /* Sources */,
+				190210B121E45964009ADE0B /* Frameworks */,
+				190210B221E45964009ADE0B /* Resources */,
 			);
 			buildRules = (
 			);
@@ -93,81 +165,113 @@
 			);
 			name = iTSC;
 			productName = iTSC;
-			productReference = 191947CB21EAEBE000F9314B /* iTSC.app */;
+			productReference = 190210B421E45964009ADE0B /* iTSC.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		191947C321EAEBE000F9314B /* Project object */ = {
+		190210AC21E45964009ADE0B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = tss;
 				TargetAttributes = {
-					191947CA21EAEBE000F9314B = {
+					190210B321E45964009ADE0B = {
 						CreatedOnToolsVersion = 10.1;
 					};
 				};
 			};
-			buildConfigurationList = 191947C621EAEBE000F9314B /* Build configuration list for PBXProject "iTSC" */;
-			compatibilityVersion = "Xcode 9.3";
+			buildConfigurationList = 190210AF21E45964009ADE0B /* Build configuration list for PBXProject "iTSC" */;
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 191947C221EAEBE000F9314B;
-			productRefGroup = 191947CC21EAEBE000F9314B /* Products */;
+			mainGroup = 190210AB21E45964009ADE0B;
+			productRefGroup = 190210B521E45964009ADE0B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				191947CA21EAEBE000F9314B /* iTSC */,
+				190210B321E45964009ADE0B /* iTSC */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		191947C921EAEBE000F9314B /* Resources */ = {
+		190210B221E45964009ADE0B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				191947DE21EAEBE100F9314B /* LaunchScreen.storyboard in Resources */,
-				191947DB21EAEBE100F9314B /* Assets.xcassets in Resources */,
-				191947D921EAEBE000F9314B /* Main.storyboard in Resources */,
+				190210DD21E49649009ADE0B /* 编程-属性 in Resources */,
+				190210C721E45966009ADE0B /* LaunchScreen.storyboard in Resources */,
+				190210E021E499DE009ADE0B /* 编程-本地数据保存 in Resources */,
+				190210C421E45966009ADE0B /* Assets.xcassets in Resources */,
+				190210C221E45964009ADE0B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		CDACC5C8D937A6C6785DBDF7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iTSC-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		191947C721EAEBE000F9314B /* Sources */ = {
+		190210B021E45964009ADE0B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				191947D621EAEBE000F9314B /* SecondViewController.m in Sources */,
-				191947D021EAEBE000F9314B /* AppDelegate.m in Sources */,
-				191947E121EAEBE100F9314B /* main.m in Sources */,
-				191947D321EAEBE000F9314B /* FirstViewController.m in Sources */,
+				190210BF21E45964009ADE0B /* SecondViewController.m in Sources */,
+				190210B921E45964009ADE0B /* AppDelegate.m in Sources */,
+				190210D821E48399009ADE0B /* FilePathHelper.m in Sources */,
+				190210E621E49C27009ADE0B /* DBHelper.m in Sources */,
+				190210E321E49BC0009ADE0B /* ConfigHelper.m in Sources */,
+				190210DA21E48DB2009ADE0B /* OCCodingHelper.m in Sources */,
+				190210CA21E45966009ADE0B /* main.m in Sources */,
+				19417D4721E86BA000C1FF2C /* StringHelper.m in Sources */,
+				190210BC21E45964009ADE0B /* FirstViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		191947D721EAEBE000F9314B /* Main.storyboard */ = {
+		190210C021E45964009ADE0B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				191947D821EAEBE000F9314B /* Base */,
+				190210C121E45964009ADE0B /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		191947DC21EAEBE100F9314B /* LaunchScreen.storyboard */ = {
+		190210C521E45966009ADE0B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				191947DD21EAEBE100F9314B /* Base */,
+				190210C621E45966009ADE0B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -175,7 +279,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		191947E221EAEBE100F9314B /* Debug */ = {
+		190210CB21E45966009ADE0B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -234,7 +338,7 @@
 			};
 			name = Debug;
 		};
-		191947E321EAEBE100F9314B /* Release */ = {
+		190210CC21E45966009ADE0B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -287,8 +391,9 @@
 			};
 			name = Release;
 		};
-		191947E521EAEBE100F9314B /* Debug */ = {
+		190210CE21E45966009ADE0B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3262C718804A2670A0A4D07 /* Pods-iTSC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -298,14 +403,19 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cqg.com.iTSC;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/iTSC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cqg.iTSC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		191947E621EAEBE100F9314B /* Release */ = {
+		190210CF21E45966009ADE0B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 453C8632866D6234249936D1 /* Pods-iTSC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -315,7 +425,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cqg.com.iTSC;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/iTSC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cqg.iTSC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -324,25 +438,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		191947C621EAEBE000F9314B /* Build configuration list for PBXProject "iTSC" */ = {
+		190210AF21E45964009ADE0B /* Build configuration list for PBXProject "iTSC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				191947E221EAEBE100F9314B /* Debug */,
-				191947E321EAEBE100F9314B /* Release */,
+				190210CB21E45966009ADE0B /* Debug */,
+				190210CC21E45966009ADE0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		191947E421EAEBE100F9314B /* Build configuration list for PBXNativeTarget "iTSC" */ = {
+		190210CD21E45966009ADE0B /* Build configuration list for PBXNativeTarget "iTSC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				191947E521EAEBE100F9314B /* Debug */,
-				191947E621EAEBE100F9314B /* Release */,
+				190210CE21E45966009ADE0B /* Debug */,
+				190210CF21E45966009ADE0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 191947C321EAEBE000F9314B /* Project object */;
+	rootObject = 190210AC21E45964009ADE0B /* Project object */;
 }
