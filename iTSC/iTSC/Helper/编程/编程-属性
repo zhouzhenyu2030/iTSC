@@ -1,0 +1,118 @@
+
+【属性】
+
+属性是用来代替声明存取方法的便捷方式。属性不会在你的类声明中创建一个新的实例变量。他们仅仅是定义方法访问已有的实例变量的速记方式而已。暴露实例变量的类，可以使用属性记号代替getter和setter语法。类还可以使用属性暴露一些“虚拟”的实例变量，他们是部分数据动态计算的结果，而不是确实保存在实例变量内的。
+实际上可以说，属性节约了你必须要写的大量多余的代码。因为大多数存取方法都是用类似的方式实现的，属性避免了为类暴露的每个实例变量提供不同的getter和setter的需求。取而代之的是，你用属性声明指定你希望的行为，然后在编译期间合成基于声明的实际的getter和setter方法。
+
+属性声明应该放在类接口的方法声明那里。基本的定义使用@property编译选项，紧跟着类型信息和属性的名字。你还可以用定制选项对属性进行配置，这决定了存取方法的行为。下面的例子展示了一些简单的属性声明：
+
+@interface FilePathHelper:NSObject
+{
+
+@public
+NSString *name;
+
+@private
+int age;
+
+}
+
+
+@property(copy) NSString *name;
+@property(readonly) int age;
+
+-(id)initWithAge:(int)age;
+
+- (void) Test;
+
+
+
+@end
+
+
+属性的访问方法由@synthesize关键字来实现，它由属性的声明自动的产生一对访问方法。另外，也可以选择使用@dynamic关键字表明访问方法会由程序员手工提供。
+@implementation Person
+@synthesize name;
+@dynamic age;
+
+-(id)initWithAge:(int)initAge
+{
+age = initAge; // 注意：直接赋给成员变量，而非属性
+return self;
+}
+
+-(int)age
+{
+return 29; // 注意：并非返回真正的年龄
+}
+@end
+
+
+
+
+/*
+
+@interface Person : NSObject {
+@public
+NSString *name;
+@private
+int age;
+}
+
+@property(copy) NSString *name;
+@property(readonly) int age;
+
+-(id)initWithAge:(int)age;
+@end
+*/
+
+
+/*
+@implementation Person
+@synthesize name;
+@dynamic age;
+
+-(id)initWithAge:(int)initAge
+{
+age = initAge; // 注意：直接赋给成员变量，而非属性
+return self;
+}
+
+-(int)age
+{
+return 29; // 注意：并非返回真正的年龄
+}
+@end
+
+
+
+*/
+
+
+/*
+属性可以利用传统的消息表达式、点表达式或"valueForKey:"/"setValue:forKey:"方法对来访问。
+
+Person *aPerson = [[Person alloc] initWithAge: 53];
+aPerson.name = @"Steve"; // 注意：点表达式，等于[aPerson setName: @"Steve"];
+NSLog(@"Access by message (%@), dot notation(%@), property name(%@) and direct instance variable access (%@)",
+[aPerson name], aPerson.name, [aPerson valueForKey:@"name"], aPerson->name);
+*/
+
+
+
+/*
+类或协议的属性可以被动态的读取。
+
+int i;
+int propertyCount = 0;
+objc_property_t *propertyList = class_copyPropertyList([aPerson class], &propertyCount);
+
+for ( i=0; i < propertyCount; i++ ) {
+objc_property_t *thisProperty = propertyList + i;
+const char* propertyName = property_getName(*thisProperty);
+NSLog(@"Person has a property: '%s'", propertyName);
+}
+*/
+
+
+

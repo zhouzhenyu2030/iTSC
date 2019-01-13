@@ -1,0 +1,661 @@
+=======================================================================================
+【沙盒目录文件分析】
+Documents:保存用户产生的数据，iTunes同步设备的时候会备份该目录。用户产生的数据就是指用户在使用当前app的时候保存的一些数据，比如保存app中的图片、保存下载的文件等。
+Library:这个目录下有2个文件夹，一个是Caches、一个是Preferences,Caches主要保存缓存数据，比如SDWebImage把缓存的图片就存放到该目录下。当程序退出后，改目录保存的文件一直存在。
+Preferences在Xcode6之前保存的是偏好设置，比如NSUserDefaults保存的文件。但是Xcode6以上就保存到/Users/用户名/Library/ Developer/CoreSimulator/Devices/模拟器UDID/data/Library/Preferences/文件夹下。
+tmp:保存程序中的临时数据，当程序退出后系统会自动删除tmp中所有的文件。
+
+
+
+=======================================================================================
+【iOS本地数据保存常用方式】
+NSUserDefaults
+归档(序列化)
+文件
+数据库
+CoreData
+KeyChain
+
+=======================================================================================
+1. NSUserDefaults
+NSUserDefaults 是一个单例对象,在整个应用程序的生命周期中都只有一个实例。
+NSUserDefaults保存的数据类型有：NSNumber, 基本数据类型(int，NSInter,float,double,CGFlat......), NSString, NSData, NSArray, NSDictionary, NSURL。
+NSUserDefaults一般保存配置信息，比如用户名、密码、是否保存用户名和密码、是否离线下载等一些配置条件信息。
+
+基本用法：
+
+NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//保存值(key值同名的时候会覆盖的)
+[defaults setObject:@"用户名" forKey:kUsernameKey];
+//立即保存
+[defaults synchronize];
+//取值
+NSString *username = [defaults objectForKey:kUsernameKey];
+
+
+同样，保存还有一些方法，比如：
+
+//保存NSInteger
+[defaults setInteger:(NSInteger) forKey:(nonnull NSString *)];
+//保存BOOL
+[defaults setBool:(BOOL) forKey:(nonnull NSString *)];
+//保存NSURL
+[defaults setURL:(nullable NSURL *) forKey:(nonnull NSString *)];
+//保存float
+[defaults setFloat:(float) forKey:(nonnull NSString *)];
+//保存double
+[defaults setDouble:(double) forKey:(nonnull NSString *)];
+
+
+取值另外方法：
+
+//取值
+[defaults integerForKey:(nonnull NSString *)];
+[defaults boolForKey:(nonnull NSString *)];
+[defaults URLForKey:(nonnull NSString *)];
+[defaults floatForKey:(nonnull NSString *)];
+[defaults doubleForKey:(nonnull NSString *)];
+
+
+删除方法：
+//删除指定key的数据
+[defaults removeObjectForKey:(nonnull NSString *)];
+
+
+
+synchronize。立即保存，苹果文档这么说：
+
+
+Writes any modifications to the persistent domains to disk and updates all unmodified persistent domains to what is on disk.
+Return Value  YES if the data was saved successfully to disk, otherwise NO.
+
+2. 归档(序列化)
+
+一般保存自定义的对象，但是只有遵守NSCoding的类才能只用归档。
+准守NSCoding协议必须要实现两个require方法
+(void)encodeWithCoder:(NSCoder *)aCoder //归档会触发
+- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder //解归档会触发
+Coding类具体实现：
+
+@interface Coding : NSObject<NSCoding>
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign) NSInteger age;
+
+#import "Coding.h"
+#import <objc/runtime.h>
+
+@implementation Coding
+/**
+*  根据类动画获取类的所有属性,不要忘记导入#import <objc/runtime.h>
+*
+*  @param cls <#cls description#>
+*
+*  @return <#return value description#>
+*/
+- (NSArray *)perperiesWithClass:(Class)cls
+{
+
+NSMutableArray *perperies = [NSMutableArray array];
+
+unsigned int outCount;
+//动态获取属性
+objc_property_t *properties = class_copyPropertyList(cls, &outCount);
+
+//遍历person类的所有属性
+for (int i = 0; i < outCount; i++)
+{
+objc_property_t property = properties[i];
+const char *name = property_getName(property);
+
+NSString *s = [[NSString alloc] initWithUTF8String:name];
+
+[perperies addObject:s];
+
+}
+
+return perperies;
+}
+
+/**
+*  归档会触发
+*
+*  @param aCoder <#aCoder description#>
+*/
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+for (NSString *perperty in [self perperiesWithClass:[self class]])
+{
+[aCoder encodeObject:perperty forKey:perperty];
+}
+}
+
+/**
+*  解归档会触发
+*
+*  @param aDecoder <#aDecoder description#>
+*
+*  @return <#return value description#>
+*/
+- (nullable instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+if (self = [super init])
+{
+for (NSString *perperty in [self perperiesWithClass:[self class]])
+{
+[self setValue:[aDecoder decodeObjectForKey:perperty] forKey:perperty];;
+}
+
+}
+
+return self;
+}
+
+@end
+
+
+归档具体使用：
+
+Coding *coding1 = [[Coding alloc] init];
+coding1.name = @"小明";
+coding1.age = 12;
+
+Coding *coding2 = [[Coding alloc] init];
+coding1.name = @"小王";
+coding1.age = 20;
+
+NSArray *array = @[coding1, coding2];
+
+//保存对象转化为二进制数据（一定是可变对象）
+NSMutableData *data = [NSMutableData data];
+
+//1.初始化
+NSKeyedArchiver *archivier = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+//2.归档
+[archivier encodeObject:array forKey:@"key"];
+
+//3.完成归档
+[archivier finishEncoding];
+
+//4.保存
+[[NSUserDefaults standardUserDefaults] setObject:data forKey:@"data"];
+
+
+解归档的具体使用：
+
+//1.获取保存的数据
+NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"data"];
+
+//2.初始化解归档对象
+NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+
+//3.解归档
+NSArray *persons = [unarchiver decodeObjectForKey:@"key"];
+
+//4.完成解归档
+[unarchiver finishDecoding];
+
+3. plist文件保存
+
+一般在iOS用plist保存,plist本身就是XML文件，名字后缀为.plist。
+
+plist主要保存的数据类型为NSString、NSNumber、NSData、NSArray、NSDictionary。
+具体实现：
+
+//把字典写入到plist文件，比如文件path为：~/Documents/data.plist
+[dictionary writeToFile:path atomically:YES];
+//把数组写入到plist文件中
+[array writeToFile:path atomically:YES];
+
+
+读取数据
+
+NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfURL:[NSURL fileURLWithPath:(nonnull NSString *)]];
+NSDictionary *dictionary =  [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:(nullable NSString *) ofType:(nullable NSString *)]];
+
+NSArray *array = [NSArray arrayWithContentsOfURL:[NSURL fileURLWithPath:(nonnull NSString *)]];
+NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:(nullable NSString *) ofType:(nullable NSString *)]];
+
+4. 数据库
+
+
+iOS用的sqlite3, 使用sqlite3需要配置库文件libsqlite3.tbd或者导入libsqlite3.0.tbd,这两个库导入任何一个都可以,如图所示。
+
+
+
+
+
+
+导入库
+
+
+
+保存大量数据可以优先考虑用数据库，sql语句对查询操作有优化作用，所以从查询速度或者插入效率都是很高的。
+首先需要对常用的sql语句了解。这里就不在介绍了，可以看下这个教程：<a>http://www.w3school.com.cn/sql/</a>
+
+sqlite使用步骤：
+
+指定数据库路径。
+创建sqlite3对象并且打开数据库。
+创建表。
+对数据库操作，包括增删改查。
+关闭数据库。
+
+
+具体实现：
+
+
+数据库路径
+
+//返回数据库路径，保存到Cache目录下
+-(NSString *)databasePath
+{
+NSString *path = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
+
+return [path stringByAppendingPathComponent:@"contacts.db"];
+}
+
+
+创建sqlite3对象并且打开数据库，如果数据库打开成功，就创建表。
+
+//数据库对象
+sqlite3 *contactDB;
+const char *path = [[self databasePath] UTF8String];
+
+if (sqlite3_open(path, &contactDB) == SQLITE_OK)
+{
+char *errMsg;
+const char *sql_stmt = "CREATE TABLE IF NOT EXISTS CONTACTS(ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, ADDRESS TEXT,PHONE TEXT)";
+//执行语句
+if (sqlite3_exec(contactDB, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
+{
+//创建表失败
+}
+}
+else
+{
+//打开数据库失败
+}
+sqlite3_close(contactDB);
+
+
+代码解释：
+
+sqlite3_open：打开指定路径的数据库，如果数据库不存在，就会创建一个新的数据库。
+
+SQLITE_OK 是一个常量，表示打开数据库成功。下面是苹果的定义：
+
+> \#define SQLITE_OK           0   /* Successful result */
+
+
+contactDB 就是数据库对象。
+sqlite3_exec就是执行sql语句方法。
+sqlite3_close关闭数据库，一般暂时不用数据库的时候手动关闭，防止资源浪费。
+保存数据到数据库
+
+//是一个抽象类型,是一个句柄,在使用过程中一般以它的指针进行操作
+sqlite3_stmt *statement;
+
+//数据库路径
+const char *path = [[self databasePath] UTF8String];
+
+//使用的时候打开数据库
+if (sqlite3_open(path, &contactDB) == SQLITE_OK)
+{
+NSString *insertSQL = [NSString stringWithFormat:@"INSERT INTO CONTACTS (name,address,phone) VALUES(\"%@\",\"%@\",\"%@\")",name.text,address.text,phone.text];
+
+const char *insert_stmt = [insertSQL UTF8String];
+// 这个函数将sql文本转换成一个准备语句（prepared statement）对象，同时返回这个对象的指针。这个接口需要一个数据库连接指针以及一个要准备的包含SQL语句的文本。它实际上并不执行这个SQL语句，它仅仅为执行准备这个sql语句
+sqlite3_prepare_v2(contactDB, insert_stmt, -1, &statement, NULL);
+//执行这个sql
+if (sqlite3_step(statement) == SQLITE_DONE)
+{
+//TODO:已存储到数据库;
+}
+else
+{
+//TODO:保存失败
+}
+//销毁statement对象
+sqlite3_finalize(statement);
+//关闭数据库
+sqlite3_close(contactDB);
+}
+
+
+查询操作
+
+//数据库路径
+const char *path = [[self databasePath] UTF8String];
+//查询结果集对象句柄
+sqlite3_stmt *statement;
+
+//打开数据库
+if (sqlite3_open(path, &contactDB) == SQLITE_OK)
+{
+//查询的sql语句
+NSString *querySQL = [NSString stringWithFormat:@"SELECT address,phone from contacts where name=\"%@\"",name.text];
+const char *query_stmt = [querySQL UTF8String];
+
+//执行查询sql语句
+if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &statement, NULL) == SQLITE_OK)
+{
+//遍历每条数据
+if (sqlite3_step(statement) == SQLITE_ROW)
+{
+//获取每条数据的字段。
+NSString *addressField = [[NSString alloc] initWithUTF8String:(const char *)sqlite3_column_text(statement, 0)];
+address.text = addressField;
+
+NSString *phoneField = [[NSString alloc] initWithUTF8String:(const char *)sqlite3_column_text(statement, 1    )];
+phone.text = phoneField;
+
+//TODO:已查到结果
+}
+else
+{
+//TODO:未查到结果
+}
+sqlite3_finalize(statement);
+}
+
+sqlite3_close(contactDB);
+}
+
+5. CoreData
+
+CoreData提供了一种“对象-关系映射”的功能，能将OC对象转化成数据，保存Sqlite中。
+CoreData的好处就是能够合理管理内存，避免sql语句的麻烦(不用写sql语句)。
+
+CoreData构成
+
+
+NSManagedObjectContext:被管理的数据上下文，主要作用：插入、查询、删除。
+
+NSManagedObjectModel:数据库所有的表结构和数据结构，包含各个实体的定义的信息。主要作用就是添加实体、实体属性，建立属性之间的关系。
+
+NSPersistentStoreCoordinator持久化存储助理对象，相当于数据库的连接器。主要作用就是设置存储的名字、位置、存储方式。
+
+NSFetchRequest相当于select语句。查询封装对象。
+
+NSEntityDescription实体结构对象，相当于表格结构。
+后缀为xxx.xcdatamodeld文件,编译后为xxx.momd的文件。
+
+
+创建工程的时候，勾上Use Core Data。如图所示：
+
+
+
+
+
+
+创建项目
+
+
+创建完后，其实AppDelegate里面已经生成好了CoreData代码。
+
+#import <CoreData/CoreData.h>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
+//上下文
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
+//管理数据模型
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+
+//持久化的数据的对象
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+/**
+*  保存上下文
+*/
+- (void)saveContext;
+
+/**
+*  获取documents路径
+*
+*  @return <#return value description#>
+*/
+- (NSURL *)applicationDocumentsDirectory;
+
+@end
+
+
+创建实体对象，并添加属性。
+
+
+
+
+
+
+创建实体
+
+
+创建完成结构如下：
+
+
+
+
+
+
+实体结构
+
+
+创建模型。选择项目->右击->New File...->iOS 下面的Core Data->NSManagedObject subclass->选择CoreData文件点击Next->选择要生成的对象模型，点击Next->Create。具体操作如下截图：
+
+
+
+
+
+
+创建模型
+
+
+
+
+
+
+创建类
+
+
+
+
+
+
+选择要生成的CoreData文件
+
+
+
+
+
+
+选择要生成的对象
+
+
+
+
+
+
+生成好的模型
+
+具体实现代码如下：
+
+保存数据
+
+- (NSManagedObjectContext *)context
+{
+AppDelegate *app = [UIApplication sharedApplication].delegate;
+
+return app.managedObjectContext;
+}
+
+//创建Person对象
+/*
+insertNewObjectForEntityForName:就是创建的实体名字。
+inManagedObjectContext：上下文，appDelegate里面已经创建完成。
+*/
+Person *person = [NSEntityDescription
+insertNewObjectForEntityForName:@"Person"
+inManagedObjectContext:[self context]];
+
+//赋值
+[person setValue:@"小王" forKey:@"name"];
+[person setValue:@(35) forKey:@"age"];
+
+//保存
+if (![[self context] save:nil])
+{
+//TODO:保存失败
+}
+
+
+查询
+
+//创建查询对象
+NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Person"];
+
+#if 0
+//条件查询
+//NSPredicate *predicate = [NSPredicate predicateWithFormat:@"age<=35"];
+//查询名字带有王的
+NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name like[cd]'*王*'"];
+//设置查询条件
+request.predicate = predicate;
+#endif
+
+//排序
+NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"age" ascending:NO];
+//设置排序条件
+request.sortDescriptors = @[sort];
+
+//执行查询
+NSArray *objectArray = [[self context] executeFetchRequest:request error:nil];
+
+//遍历查询结果
+for (Person *p in objectArray)
+{
+NSLog(@"%@ - %@",[p valueForKey:@"name"],[p valueForKey:@"age"]);
+}
+
+
+修改
+
+//先查询要修改的对象
+NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Person"];
+
+//设置查询条件
+NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name='小王' and age = 35"];
+request.predicate = predicate;
+
+//执行查询
+NSArray *objectArray = [[self context] executeFetchRequest:request error:nil];
+
+//遍历要修改的对象
+for (Person *p in objectArray)
+{
+//修改(修改内存数据，没有同步数据库)
+[p setValue:@(45) forKey:@"age"];
+}
+//同步数据库
+[[self context] save:nil];
+
+
+删除
+
+//查询要删除的数据
+NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Person"];
+
+//设置查询条件
+NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name='小王'"];
+request.predicate = predicate;
+
+//执行查询
+NSArray *objectArray = [[self context] executeFetchRequest:request error:nil];
+
+//遍历删除
+for (Person *p in objectArray)
+{
+//删除内存中的数据
+[[self context] deleteObject:p];
+}
+
+//同步数据库
+[[self context] save:nil];
+
+
+当app更新版本，并且表结构有修改，需要版本升级和数据迁移操作，否则app就是崩掉。具体操作情况我的简书：http://www.jianshu.com/p/49872694e0b3
+CoreData最重要的是关系，由于时间关系，先不整理，后续再补上哈，请继续关注。
+
+6. KeyChain
+
+钥匙串(英文: KeyChain)是苹果公司Mac OS中的密码管理系统。
+一个钥匙串可以包含多种类型的数据：密码（包括网站，FTP服务器，SSH帐户，网络共享，无线网络，群组软件，加密磁盘镜像等），私钥，电子证书和加密笔记等。
+iOS的KeyChain服务提供了一种安全的保存私密信息（密码，序列号，证书等）的方式。每个iOS程序都有一个独立的KeyChain存储。从iOS 3.0开始，跨程序分享KeyChain变得可行。
+当应用程序被删除后，保存到KeyChain里面的数据不会被删除，所以KeyChain是保存到沙盒范围以外的地方。
+KeyChain的所有数据也都是以key-value的形式存储的，这和NSDictionary的存储方式一样。
+相比于NSUserDefaults来说，KeyChain保存更为安全，而且KeyChain里面保存的数据不会因为app删除而丢失。
+
+基本使用
+为了使用方便，我们使用github上封装好的类KeychainItemWrapper和SFHFKeychainUtils
+
+
+KeychainItemWrapper是苹果封装的类，封装了操作KeyChain的基本操作，下载地址：https://github.com/baptistefetet/KeychainItemWrapper
+
+
+// 初始化一个保存用户帐号的KeychainItemWrapper
+KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"Your Apple ID" accessGroup:@"YOUR_APP_ID.com.yourcompany.AppIdentifier"];
+//保存帐号
+[wrapper setObject:@"<帐号>" forKey:(id)kSecAttrAccount];
+//保存密码
+[wrapper setObject:@"<帐号密码>" forKey:(id)kSecValueData];
+
+//从keychain里取出帐号密码
+NSString *password = [wrapper objectForKey:(id)kSecValueData];
+
+//清空设置
+[wrapper resetKeychainItem];
+
+
+上面代码的setObject: forKey: 里参数forKey的值应该是Security.framework里头文件SecItem.h里定义好的key。
+SFHFKeychainUtils是另外一个第三方库，这个类比KeychainItemWrapper要简单很多，提供了更简单的方法保存密码到KeyChain，下载地址：https://github.com/ldandersen/scifihifi-iphone/tree/master/security。 这个库是mrc，导入后可能会因为mrc会报错。
+SFHFKeychainUtils就3个方法：
+
+//获取密码密码
++(NSString *) getPasswordForUsername: (NSString *) username andServiceName: (NSString *) serviceName error: (NSError **) error;
+//存储密码
++(BOOL) storeUsername: (NSString *) username andPassword: (NSString *) password forServiceName: (NSString *) serviceName updateExisting: (BOOL) updateExisting error: (NSError **) error;
+//删除密码
++(BOOL) deleteItemForUsername: (NSString *) username andServiceName: (NSString *) serviceName error: (NSError **) error;
+
+
+
+参数说明
+
+
+username：因为KeyChain保存也是以键值对存在，所以这个可以看作key，根据key取value.
+
+forServiceName :这个就是组的名字，可以理解为KeyChain保存是分组保存。一般要唯一哦，命名可以使用YOUR_APP_ID.com.yourcompany.AppIdentifier。
+
+
+如果两个应用的username、serviceName参数一样，那么这两个app会共用KeyChain里面的数据，也就是可以共享密码。
+KeyChain还有一个用途，就是替代UDID。UDID已经被废除了，所以只能用UUID代替，所以我们可以把UUID用KeyChain保存。
+
+//创建一个uuid
+NSString *uuidString = [self uuidString];
+//31C75924-1D2E-4AF0-9C67-96D6929B1BD3
+
+[SFHFKeychainUtils storeUsername:kKeyChainKey andPassword:uuidString forServiceName:kKeyChainGroupKey updateExisting:NO error:nil];
+
+-(NSString *)uuidString
+{
+//创建一个uuid
+CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+CFStringRef stringRef = CFUUIDCreateString(kCFAllocatorDefault, uuidRef);
+
+NSString *uuidString = (__bridge NSString *)(stringRef);
+
+CFRelease(uuidRef);
+
+return uuidString;
+}
+
