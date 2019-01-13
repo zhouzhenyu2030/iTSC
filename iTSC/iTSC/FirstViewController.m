@@ -7,7 +7,7 @@
 //
 
 #import "FirstViewController.h"
-#import "OHMySQL.h"
+#import "DBHelper.h"
 #import "StringHelper.h"
 
 @implementation FirstViewController
@@ -47,28 +47,26 @@
 
 
 - (IBAction)MyButtonClick:(UIButton *)sender
-    {
+{
 
-    //connect
-    OHMySQLUser *user = [[OHMySQLUser alloc] initWithUserName:@"opt"
-                                                     password:@"Hr@2017yy"
-                                                   serverName:@"101.226.255.148"
-                                                       dbName:@"tss"
-                                                         port:30003
-                                                       socket:nil];
-    OHMySQLStoreCoordinator *coordinator = [[OHMySQLStoreCoordinator alloc] initWithUser:user];
-    [coordinator connect];
+    NSLog(@"FirstViewController: start!");
     
-        
-    //Query Context
-    OHMySQLQueryContext *queryContext = [OHMySQLQueryContext new];
-    queryContext.storeCoordinator = coordinator;
     
+    [DBHelper Init];
+    
+    OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
+    if(_queryContext==nil)
+    {
+        NSLog(@"FirstViewController: Init: queryContext==nil!");
+        return;
+    }
+    
+    NSLog(@"FirstViewController: SELECT: start!");
     
     //SELECT
-    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"hisasset" condition:@"AccountID=0"];
+    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"hisasset" condition:@"AccountID=1202"];
     NSError *error = nil;
-    NSArray *tasks = [queryContext executeQueryRequestAndFetchResult:query error:&error];
+    NSArray *tasks = [_queryContext executeQueryRequestAndFetchResult:query error:&error];
         
         
         NSUInteger count = tasks.count;//减少调用次数
@@ -109,17 +107,15 @@
     Label_OrderInsertQty.text = [StringHelper sPositiveFormat:_field[@"OrderInsertQty"] pointNumber:0];
     Label_OrderInsertCnt.text = [StringHelper sPositiveFormat:_field[@"OrderInsertCnt"] pointNumber:0];
         
-    Label_RiskLevel.text = [StringHelper sPositiveFormat:_field[@"RiskLevel"] pointNumber:2];
+    Label_RiskLevel.text = [NSString stringWithFormat:@"%0.2f", [_field[@"RiskLevel"] floatValue]*100];
+        //StringHelper sPositiveFormat:_field[@"RiskLevel"] pointNumber:2];
     Label_TotalCash.text = [StringHelper sPositiveFormat:_field[@"TotalCash"] pointNumber:2];
     Label_CurrMargin.text =[StringHelper sPositiveFormat:_field[@"CurrMargin"] pointNumber:2];
 
 
         
-    //disconnect
-    [coordinator disconnect];
-        
 
-    }
+}
     
     
     

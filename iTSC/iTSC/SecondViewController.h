@@ -10,6 +10,19 @@
 
 @interface SecondViewController : UIViewController
 
+//property
+@property (weak, nonatomic) IBOutlet UILabel *Label_DBGloabalStart;
+
+@property (weak, nonatomic) IBOutlet UIButton *Button_AT;
+@property (weak, nonatomic) IBOutlet UIButton *Button_AH;
+
+
+//action
+- (IBAction)Button_CheckGlobalStart:(UIButton *)sender;
+- (IBAction)Button_SetAT:(UIButton *)sender;
+- (IBAction)Button_SetAH:(UIButton *)sender;
+- (void)GenParaValue;
+
 
 @end
 

@@ -9,7 +9,98 @@
 #import <Foundation/Foundation.h>
 #import "DBHelper.h"
 
+
+
+//static
+static Boolean _isConnected = false;
+static OHMySQLUser *_user;
+static OHMySQLStoreCoordinator *_coordinator;
+static OHMySQLQueryContext *_queryContext;
+
+
+
 @implementation DBHelper
+
+
+/////////////////////////// property /////////////////////////
+//@synthesize user;
+//@synthesize coordinator;
+//@synthesize queryContext;
+
+
+///////////////////////// function /////////////////////////
++(void)Init
+{
+    NSLog(@"DBHelper: Init: start.");
+    
+    
+    if(_isConnected==true)
+    {
+        NSLog(@"DBHelper: Init: isConnected == true!");
+        return;
+    }
+    
+    
+    //user
+    _user = [[OHMySQLUser alloc] initWithUserName:@"opt"
+                                        password:@"Hr@2017yy"
+                                      serverName:@"101.226.255.148"
+                                          dbName:@"tss"
+                                            port:30003
+                                          socket:nil];
+    if(_user==nil)
+    {
+        NSLog(@"DBHelper: Init: _user==nil!");
+        return;
+    }
+    
+
+    //coordinator
+    _coordinator = [[OHMySQLStoreCoordinator alloc] initWithUser:_user];
+    if(_coordinator==nil)
+    {
+        NSLog(@"DBHelper: Init: _user==nil!");
+        return;
+    }
+    [_coordinator connect];
+    
+    NSLog(@"DBHelper: Init: connected.");
+    
+    
+    //Query Context
+    _queryContext = [OHMySQLQueryContext new];
+    _queryContext.storeCoordinator = _coordinator;
+    
+    NSLog(@"DBHelper: Init: Context is created.");
+    
+    if(_queryContext==nil)
+    {
+        NSLog(@"DBHelper: Init: queryContext==nil!");
+        return;
+    }
+    
+    
+    //isConnected
+    _isConnected=true;
+    
+}
+
+
+
+//GetContext
++(OHMySQLQueryContext *)GetContext
+{
+    return _queryContext;
+}
+
+
+//Disconnect
++(void)Disconnect
+{
+    [_coordinator disconnect];
+    NSLog(@"DBHelper: Init: Disconnected.");
+}
+
 
 
 
@@ -22,6 +113,7 @@
     
     return [path stringByAppendingPathComponent:@"contacts.db"];
 }
+
 
 -(void)getdata
 {
