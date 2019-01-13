@@ -39,13 +39,16 @@
     @synthesize Label_CurrMargin;
 
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (IBAction)MyButtonClick:(UIButton *)sender
 {
 
@@ -90,17 +93,14 @@
     Label_AssetTheo.text = [StringHelper sPositiveFormat:_field[@"AssetTheo"] pointNumber:2];
     Label_AssetLastPrice.text = [StringHelper sPositiveFormat:_field[@"AssetLastPrice"] pointNumber:2];
 
-    Label_TradeMktPNL.text = [StringHelper sPositiveFormat:_field[@"TradeMktPNL"] pointNumber:2];
-    Label_YdMktPNL.text = [StringHelper sPositiveFormat:_field[@"YdMktPNL"] pointNumber:2];
-    Label_TotalMktPNL.text = [StringHelper sPositiveFormat:_field[@"TotalMktPNL"] pointNumber:2];
 
-    Label_YdMktPNL.text = [StringHelper sPositiveFormat:_field[@"YdMktPNL"] pointNumber:2];
-    Label_TradeMktPNL.text = [StringHelper sPositiveFormat:_field[@"TradeMktPNL"] pointNumber:2];
-    Label_TotalMktPNL.text = [StringHelper sPositiveFormat:_field[@"TotalMktPNL"] pointNumber:2];
+    [self SetPNLLabel:Label_TradeMktPNL Field:_field FieldName:@"TradeMktPNL"];
+    [self SetPNLLabel:Label_YdMktPNL Field:_field FieldName:@"YdMktPNL"];
+    [self SetPNLLabel:Label_TotalMktPNL Field:_field FieldName:@"TotalMktPNL"];
 
-    Label_YdTheoPNL.text = [StringHelper sPositiveFormat:_field[@"YdTheoPNL"] pointNumber:2];
-    Label_TradeTheoPNL.text = [StringHelper sPositiveFormat:_field[@"TradeTheoPNL"] pointNumber:2];
-    Label_TotalTheoPNL.text = [StringHelper sPositiveFormat:_field[@"TotalTheoPNL"] pointNumber:2];
+    [self SetPNLLabel:Label_TradeTheoPNL Field:_field FieldName:@"TradeTheoPNL"];
+    [self SetPNLLabel:Label_YdTheoPNL Field:_field FieldName:@"YdTheoPNL"];
+    [self SetPNLLabel:Label_TotalTheoPNL Field:_field FieldName:@"TotalTheoPNL"];
 
         
     Label_TradeQty.text = [StringHelper sPositiveFormat:_field[@"TradeQty"] pointNumber:0];
@@ -113,10 +113,28 @@
     Label_CurrMargin.text =[StringHelper sPositiveFormat:_field[@"CurrMargin"] pointNumber:2];
 
 
-        
 
 }
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-(void) SetPNLLabel:(UILabel*)vLabel Field:(NSDictionary*)vField FieldName:(NSString*) vFieldName
+{
     
+   vLabel.text = [StringHelper sPositiveFormat:vField[vFieldName] pointNumber:2];
     
+    if([vField[vFieldName] floatValue]==0)
+    {
+        vLabel.textColor=UIColor.blackColor;
+    }
+    else
+    {
+        if([vField[vFieldName] floatValue]>0)
+            vLabel.textColor=UIColor.blueColor;
+        else
+            vLabel.textColor=UIColor.redColor;
+    }
+}
     
 @end
