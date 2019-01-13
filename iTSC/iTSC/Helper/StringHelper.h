@@ -12,7 +12,7 @@
 @interface StringHelper:NSObject
     
     
-    -(NSString *)sPositiveFormat:(NSString*)text pointNumber:(NSInteger) pointNumber;
+    +(NSString *)sPositiveFormat:(NSString*)text pointNumber:(NSInteger) pointNumber;
 
 @end
 

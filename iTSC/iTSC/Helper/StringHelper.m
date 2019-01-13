@@ -13,7 +13,7 @@
 @implementation StringHelper
     
 
-    -(NSString *)sPositiveFormat:(NSString*)text pointNumber:(NSInteger) pointNumber
+    +(NSString *)sPositiveFormat:(NSString*)text pointNumber:(NSInteger) pointNumber
     {
         switch (pointNumber)
         {
