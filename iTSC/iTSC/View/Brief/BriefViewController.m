@@ -6,11 +6,13 @@
 //  Copyright © 2019年 tss. All rights reserved.
 //
 
-#import "FirstViewController.h"
+#import "BriefViewController.h"
 #import "DBHelper.h"
 #import "StringHelper.h"
 
-@implementation FirstViewController
+
+
+@implementation BriefViewController
 
     @synthesize Label_AccountID;
     
@@ -20,7 +22,10 @@
     @synthesize Label_AssetTheo;
     @synthesize Label_Asset;
     @synthesize Label_AssetLastPrice;
-    
+    @synthesize Label_RiskLevel;
+    @synthesize Label_TotalCash;
+    @synthesize Label_CurrMargin;
+
     @synthesize Label_TradeMktPNL;
     @synthesize Label_YdMktPNL;
     @synthesize Label_TotalMktPNL;
@@ -29,14 +34,11 @@
     @synthesize Label_TradeTheoPNL;
     @synthesize Label_TotalTheoPNL;
  
+    @synthesize Label_TOR;
     @synthesize Label_TradeQty;
     @synthesize Label_OrderInsertQty;
     @synthesize Label_OrderInsertCnt;
-    
-    @synthesize Label_RiskLevel;
-    
-    @synthesize Label_TotalCash;
-    @synthesize Label_CurrMargin;
+    @synthesize Label_QtyPerOrder;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -102,13 +104,30 @@
     [self SetPNLLabel:Label_YdTheoPNL Field:_field FieldName:@"YdTheoPNL"];
     [self SetPNLLabel:Label_TotalTheoPNL Field:_field FieldName:@"TotalTheoPNL"];
 
-        
+
     Label_TradeQty.text = [StringHelper sPositiveFormat:_field[@"TradeQty"] pointNumber:0];
     Label_OrderInsertQty.text = [StringHelper sPositiveFormat:_field[@"OrderInsertQty"] pointNumber:0];
     Label_OrderInsertCnt.text = [StringHelper sPositiveFormat:_field[@"OrderInsertCnt"] pointNumber:0];
-        
+    
+    double _Value=0;
+    int _TradeQty=[_field[@"TradeQty"] intValue];
+    int _OrderInsertQty=[_field[@"OrderInsertQty"] intValue];
+    
+    if(_OrderInsertQty!=0)
+        _Value=1.0*_TradeQty/_OrderInsertQty*100;
+    Label_TOR.text = [NSString stringWithFormat:@"%0.2f", _Value];
+
+    
+    int _OrderInsertCnt=[_field[@"OrderInsertCnt"] intValue];
+    if(_OrderInsertCnt!=0)
+        _Value=1.0*_OrderInsertQty/_OrderInsertCnt;
+    Label_QtyPerOrder.text = [NSString stringWithFormat:@"%0.2f", _Value];
+
+    
+    
+    
     Label_RiskLevel.text = [NSString stringWithFormat:@"%0.2f", [_field[@"RiskLevel"] floatValue]*100];
-        //StringHelper sPositiveFormat:_field[@"RiskLevel"] pointNumber:2];
+    
     Label_TotalCash.text = [StringHelper sPositiveFormat:_field[@"TotalCash"] pointNumber:2];
     Label_CurrMargin.text =[StringHelper sPositiveFormat:_field[@"CurrMargin"] pointNumber:2];
 

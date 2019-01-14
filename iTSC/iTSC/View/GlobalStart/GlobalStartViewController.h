@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController
+@interface GlobalStartViewController : UIViewController
 
 //property
 @property (weak, nonatomic) IBOutlet UILabel *Label_DBGloabalStart;

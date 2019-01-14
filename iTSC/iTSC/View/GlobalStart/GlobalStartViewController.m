@@ -6,12 +6,12 @@
 //  Copyright © 2019年 tss. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "GlobalStartViewController.h"
 #import "DBHelper.h"
 
 
 
-@implementation SecondViewController
+@implementation GlobalStartViewController
 
 
 /////////////////////////// property /////////////////////////

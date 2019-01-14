@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		190210B921E45964009ADE0B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210B821E45964009ADE0B /* AppDelegate.m */; };
-		190210BC21E45964009ADE0B /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210BB21E45964009ADE0B /* FirstViewController.m */; };
-		190210BF21E45964009ADE0B /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210BE21E45964009ADE0B /* SecondViewController.m */; };
+		190210BC21E45964009ADE0B /* BriefViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210BB21E45964009ADE0B /* BriefViewController.m */; };
+		190210BF21E45964009ADE0B /* GlobalStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210BE21E45964009ADE0B /* GlobalStartViewController.m */; };
 		190210C221E45964009ADE0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 190210C021E45964009ADE0B /* Main.storyboard */; };
 		190210C421E45966009ADE0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 190210C321E45966009ADE0B /* Assets.xcassets */; };
-		190210C721E45966009ADE0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 190210C521E45966009ADE0B /* LaunchScreen.storyboard */; };
+		190210C721E45966009ADE0B /* LaunchScreen111.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 190210C521E45966009ADE0B /* LaunchScreen111.storyboard */; };
 		190210CA21E45966009ADE0B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210C921E45966009ADE0B /* main.m */; };
 		190210D821E48399009ADE0B /* FilePathHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210D721E48399009ADE0B /* FilePathHelper.m */; };
 		190210DA21E48DB2009ADE0B /* OCCodingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210D921E48DB2009ADE0B /* OCCodingHelper.m */; };
@@ -21,6 +21,7 @@
 		190210E321E49BC0009ADE0B /* ConfigHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210E221E49BC0009ADE0B /* ConfigHelper.m */; };
 		190210E621E49C27009ADE0B /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210E521E49C27009ADE0B /* DBHelper.m */; };
 		19417D4721E86BA000C1FF2C /* StringHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 19417D4621E86BA000C1FF2C /* StringHelper.m */; };
+		194FF95321EC2A3400CAB449 /* GreeksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194FF95221EC2A3400CAB449 /* GreeksViewController.m */; };
 		39095AA00E45A5C468762C0F /* libPods-iTSC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F232280A8439452C55EAE29 /* libPods-iTSC.a */; };
 /* End PBXBuildFile section */
 
@@ -28,13 +29,13 @@
 		190210B421E45964009ADE0B /* iTSC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTSC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		190210B721E45964009ADE0B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		190210B821E45964009ADE0B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		190210BA21E45964009ADE0B /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		190210BB21E45964009ADE0B /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		190210BD21E45964009ADE0B /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		190210BE21E45964009ADE0B /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		190210BA21E45964009ADE0B /* BriefViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BriefViewController.h; sourceTree = "<group>"; };
+		190210BB21E45964009ADE0B /* BriefViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BriefViewController.m; sourceTree = "<group>"; };
+		190210BD21E45964009ADE0B /* GlobalStartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalStartViewController.h; sourceTree = "<group>"; };
+		190210BE21E45964009ADE0B /* GlobalStartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalStartViewController.m; sourceTree = "<group>"; };
 		190210C121E45964009ADE0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		190210C321E45966009ADE0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		190210C621E45966009ADE0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		190210C621E45966009ADE0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen111.storyboard; sourceTree = "<group>"; };
 		190210C821E45966009ADE0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		190210C921E45966009ADE0B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		190210D621E48375009ADE0B /* FilePathHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilePathHelper.h; sourceTree = "<group>"; };
@@ -49,6 +50,8 @@
 		190210E521E49C27009ADE0B /* DBHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
 		19417D4521E86B8C00C1FF2C /* StringHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringHelper.h; sourceTree = "<group>"; };
 		19417D4621E86BA000C1FF2C /* StringHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringHelper.m; sourceTree = "<group>"; };
+		194FF95121EC2A1A00CAB449 /* GreeksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GreeksViewController.h; sourceTree = "<group>"; };
+		194FF95221EC2A3400CAB449 /* GreeksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GreeksViewController.m; sourceTree = "<group>"; };
 		453C8632866D6234249936D1 /* Pods-iTSC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTSC.release.xcconfig"; path = "Pods/Target Support Files/Pods-iTSC/Pods-iTSC.release.xcconfig"; sourceTree = "<group>"; };
 		6F232280A8439452C55EAE29 /* libPods-iTSC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iTSC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3262C718804A2670A0A4D07 /* Pods-iTSC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTSC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iTSC/Pods-iTSC.debug.xcconfig"; sourceTree = "<group>"; };
@@ -87,18 +90,12 @@
 		190210B621E45964009ADE0B /* iTSC */ = {
 			isa = PBXGroup;
 			children = (
+				194FF95021EC231D00CAB449 /* 000 */,
+				194FF95421EC2B6B00CAB449 /* Main */,
+				194FF94F21EC22BD00CAB449 /* View */,
 				190210D421E4832D009ADE0B /* Helper */,
-				190210B721E45964009ADE0B /* AppDelegate.h */,
-				190210B821E45964009ADE0B /* AppDelegate.m */,
-				190210BA21E45964009ADE0B /* FirstViewController.h */,
-				190210BB21E45964009ADE0B /* FirstViewController.m */,
-				190210BD21E45964009ADE0B /* SecondViewController.h */,
-				190210BE21E45964009ADE0B /* SecondViewController.m */,
 				190210C021E45964009ADE0B /* Main.storyboard */,
-				190210C321E45966009ADE0B /* Assets.xcassets */,
-				190210C521E45966009ADE0B /* LaunchScreen.storyboard */,
 				190210C821E45966009ADE0B /* Info.plist */,
-				190210C921E45966009ADE0B /* main.m */,
 			);
 			path = iTSC;
 			sourceTree = "<group>";
@@ -128,6 +125,70 @@
 				190210DF21E499DE009ADE0B /* 编程-本地数据保存 */,
 			);
 			path = "编程";
+			sourceTree = "<group>";
+		};
+		194FF94F21EC22BD00CAB449 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				194FF95821EC333800CAB449 /* Chart */,
+				194FF95721EC2C1A00CAB449 /* Greeks */,
+				194FF95621EC2BFF00CAB449 /* GlobalStart */,
+				194FF95521EC2BEA00CAB449 /* Brief */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		194FF95021EC231D00CAB449 /* 000 */ = {
+			isa = PBXGroup;
+			children = (
+				190210C521E45966009ADE0B /* LaunchScreen111.storyboard */,
+			);
+			path = 000;
+			sourceTree = "<group>";
+		};
+		194FF95421EC2B6B00CAB449 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				190210C321E45966009ADE0B /* Assets.xcassets */,
+				190210B721E45964009ADE0B /* AppDelegate.h */,
+				190210B821E45964009ADE0B /* AppDelegate.m */,
+				190210C921E45966009ADE0B /* main.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		194FF95521EC2BEA00CAB449 /* Brief */ = {
+			isa = PBXGroup;
+			children = (
+				190210BA21E45964009ADE0B /* BriefViewController.h */,
+				190210BB21E45964009ADE0B /* BriefViewController.m */,
+			);
+			path = Brief;
+			sourceTree = "<group>";
+		};
+		194FF95621EC2BFF00CAB449 /* GlobalStart */ = {
+			isa = PBXGroup;
+			children = (
+				190210BE21E45964009ADE0B /* GlobalStartViewController.m */,
+				190210BD21E45964009ADE0B /* GlobalStartViewController.h */,
+			);
+			path = GlobalStart;
+			sourceTree = "<group>";
+		};
+		194FF95721EC2C1A00CAB449 /* Greeks */ = {
+			isa = PBXGroup;
+			children = (
+				194FF95121EC2A1A00CAB449 /* GreeksViewController.h */,
+				194FF95221EC2A3400CAB449 /* GreeksViewController.m */,
+			);
+			path = Greeks;
+			sourceTree = "<group>";
+		};
+		194FF95821EC333800CAB449 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Chart;
 			sourceTree = "<group>";
 		};
 		667701AC65A23EEF211BB78C /* Frameworks */ = {
@@ -206,7 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				190210DD21E49649009ADE0B /* 编程-属性 in Resources */,
-				190210C721E45966009ADE0B /* LaunchScreen.storyboard in Resources */,
+				190210C721E45966009ADE0B /* LaunchScreen111.storyboard in Resources */,
 				190210E021E499DE009ADE0B /* 编程-本地数据保存 in Resources */,
 				190210C421E45966009ADE0B /* Assets.xcassets in Resources */,
 				190210C221E45964009ADE0B /* Main.storyboard in Resources */,
@@ -245,15 +306,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				190210BF21E45964009ADE0B /* SecondViewController.m in Sources */,
+				190210BF21E45964009ADE0B /* GlobalStartViewController.m in Sources */,
 				190210B921E45964009ADE0B /* AppDelegate.m in Sources */,
 				190210D821E48399009ADE0B /* FilePathHelper.m in Sources */,
+				194FF95321EC2A3400CAB449 /* GreeksViewController.m in Sources */,
 				190210E621E49C27009ADE0B /* DBHelper.m in Sources */,
 				190210E321E49BC0009ADE0B /* ConfigHelper.m in Sources */,
 				190210DA21E48DB2009ADE0B /* OCCodingHelper.m in Sources */,
 				190210CA21E45966009ADE0B /* main.m in Sources */,
 				19417D4721E86BA000C1FF2C /* StringHelper.m in Sources */,
-				190210BC21E45964009ADE0B /* FirstViewController.m in Sources */,
+				190210BC21E45964009ADE0B /* BriefViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,12 +330,12 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		190210C521E45966009ADE0B /* LaunchScreen.storyboard */ = {
+		190210C521E45966009ADE0B /* LaunchScreen111.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				190210C621E45966009ADE0B /* Base */,
 			);
-			name = LaunchScreen.storyboard;
+			name = LaunchScreen111.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
