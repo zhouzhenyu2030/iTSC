@@ -331,6 +331,31 @@
                     <view key="view" contentMode="scaleToFill" id="H80-Ox-LKj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TyK-Ci-cPB">
+                                <rect key="frame" x="37" y="111" width="333" height="557"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <mutableString key="text">【二阶导数】
+Vanna，也被称为DvegaDspot 和DdeltaDvol，是期权价值的二阶导数,第一次对标的价格，第二次对波动性求导。 
+Vomma，Volga，Vega convexity，Vega Gamma 或者d Tao/d Vol 测量的都是对于波动性的二阶导数。
+ Charm 或者Delta衰减，衡量的是Delta相对于相对于时间流逝的即使变化率，也被称作DdeltaDtime。
+ Veta， 或者DvegaDtime，测量的是Vega相对于时间的变化率。
+Vera, 或者DvegaDtime, 测量的是Rho相对于波动性的变化率。
+ Tata;   测量的是Theta相对于时间的变化率 //自定义
+
+
+【三阶导数】
+Color， Gamma衰减或者DgammaDtime，是测量对Gamma对时间的变化率。
+ Speed测量的是Gamma相对于标的价格的变化率。
+ Ultima测量的是期权的Vomma相对于波动性变化的敏感度。是期权价值对波动性的三阶导数。
+ Zomma测量的是Gamma相对于波动率变化的变化率。
+
+</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="vJf-q2-B95"/>
                     </view>
@@ -339,7 +364,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="riQ-hK-voq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="841" y="274"/>
+            <point key="canvasLocation" x="840.57971014492762" y="273.88392857142856"/>
         </scene>
         <!--GlobalStart-->
         <scene sceneID="wg7-f3-ORb">
