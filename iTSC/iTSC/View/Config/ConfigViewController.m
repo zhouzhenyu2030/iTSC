@@ -27,8 +27,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    Switch_GlobalAutoRefresh.on = [TscConfig isGlobalAutoRefresh];
     Switch_ShowAllTime.on = [TscConfig isShowAllTime];
+    Switch_GlobalAutoRefresh.on = [TscConfig isGlobalAutoRefresh];
+
 }
 
 
