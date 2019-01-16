@@ -10,6 +10,8 @@
 #define GreeksViewController_h
 
 #import <UIKit/UIKit.h>
+#import "TscConfig.h"
+
 
 @interface GreeksViewController : UIViewController
 
@@ -43,9 +45,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *Label_TotalCCR;
 
 
+@property (weak, nonatomic) IBOutlet UISwitch *Switch_AutoRefresh;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *Label_RefreshCount;
+
 //action
 - (IBAction)Button_Risk_Query_Click:(UIButton *)sender;
-
+- (IBAction)AutoRefresh:(id)sender;
 
 
 @end

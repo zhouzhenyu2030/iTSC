@@ -11,7 +11,7 @@
 #import "GreeksViewController.h"
 #import "DBHelper.h"
 #import "StringHelper.h"
-
+#import "TscConfig.h"
 
 
 @implementation GreeksViewController
@@ -40,19 +40,120 @@
 @synthesize Label_TotalPCR;
 @synthesize Label_TotalCCR;
 
+@synthesize Switch_AutoRefresh;
+
+
+@synthesize Label_RefreshCount;
+
+
+NSTimer* myTimer_Greek=nil;
+
+int i;
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    i=0;
+    
+    Switch_AutoRefresh.on = [TscConfig isGreekAutoRefresh];
+    
+    if(myTimer_Greek==nil)
+    {
+        myTimer_Greek  =  [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
+    }
 }
 
 
 
+//定时器处理函数
+bool isTimerProcessing1=false;
+-(void)timerFired
+{
+    if([TscConfig isInBackground] == true) return;
+    if([TscConfig isGlobalAutoRefresh] == false) return;
+    
+    if(isTimerProcessing1) return;
+    
+    isTimerProcessing1=true;
+    [self QueryAndDisplay];
+    isTimerProcessing1=false;
+    
+    i=i+1;
+    Label_RefreshCount.text=[NSString stringWithFormat:@"%d", i];
+}
+
+
+//开启定时器
+-(void) StartTimer
+{
+    if(myTimer_Greek!=nil)
+    {
+        [myTimer_Greek setFireDate:[NSDate distantPast]];
+    }
+}
+
+//关闭定时器
+-(void) StopTimer
+{
+    if(myTimer_Greek!=nil)
+    {
+        [myTimer_Greek setFireDate:[NSDate distantFuture]];
+    }
+}
+
+
+//页面将要进入前台，开启定时器
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self SetTimerState];
+}
+
+
+//页面消失，进入后台不显示该页面，关闭定时器
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [self StopTimer];
+}
+
+
+//根据switch设定Timer启停
+-(void) SetTimerState
+{
+    if ([Switch_AutoRefresh isOn])
+        [self StartTimer];
+    else
+        [self StopTimer];
+}
+
+
+//switch状态改变
+-(IBAction)AutoRefresh:(id)sender
+{
+    [self SetTimerState];
+    [TscConfig setGreekAutoRefresh:([Switch_AutoRefresh isOn])];
+}
+
+
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//查询按钮
 - (IBAction)Button_Risk_Query_Click:(UIButton *)sender
 {
-    
+    [self QueryAndDisplay];
+}
+
+
+//查询
+- (void)QueryAndDisplay
+{
+ 
     //
     Label_RecordTime.text = @"-:-:-";
     Label_TotalDelta.text = @"-";

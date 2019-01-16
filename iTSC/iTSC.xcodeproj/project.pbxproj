@@ -22,6 +22,9 @@
 		190210E621E49C27009ADE0B /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210E521E49C27009ADE0B /* DBHelper.m */; };
 		19417D4721E86BA000C1FF2C /* StringHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 19417D4621E86BA000C1FF2C /* StringHelper.m */; };
 		194FF95321EC2A3400CAB449 /* GreeksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194FF95221EC2A3400CAB449 /* GreeksViewController.m */; };
+		196B41D121EED13800105D44 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196B41D021EED13800105D44 /* ConfigViewController.m */; };
+		1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980DBD521EF0291008C9FF0 /* TscConfig.m */; };
+		1980DBD821EF1141008C9FF0 /* TscConfig_AutoRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980DBD721EF1141008C9FF0 /* TscConfig_AutoRefresh.m */; };
 		39095AA00E45A5C468762C0F /* libPods-iTSC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F232280A8439452C55EAE29 /* libPods-iTSC.a */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +55,11 @@
 		19417D4621E86BA000C1FF2C /* StringHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringHelper.m; sourceTree = "<group>"; };
 		194FF95121EC2A1A00CAB449 /* GreeksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GreeksViewController.h; sourceTree = "<group>"; };
 		194FF95221EC2A3400CAB449 /* GreeksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GreeksViewController.m; sourceTree = "<group>"; };
+		196B41CF21EED11F00105D44 /* ConfigViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
+		196B41D021EED13800105D44 /* ConfigViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
+		1980DBD421EF0275008C9FF0 /* TscConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TscConfig.h; sourceTree = "<group>"; };
+		1980DBD521EF0291008C9FF0 /* TscConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TscConfig.m; sourceTree = "<group>"; };
+		1980DBD721EF1141008C9FF0 /* TscConfig_AutoRefresh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TscConfig_AutoRefresh.m; sourceTree = "<group>"; };
 		453C8632866D6234249936D1 /* Pods-iTSC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTSC.release.xcconfig"; path = "Pods/Target Support Files/Pods-iTSC/Pods-iTSC.release.xcconfig"; sourceTree = "<group>"; };
 		6F232280A8439452C55EAE29 /* libPods-iTSC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iTSC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3262C718804A2670A0A4D07 /* Pods-iTSC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTSC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iTSC/Pods-iTSC.debug.xcconfig"; sourceTree = "<group>"; };
@@ -90,6 +98,7 @@
 		190210B621E45964009ADE0B /* iTSC */ = {
 			isa = PBXGroup;
 			children = (
+				1980DBD321EF025E008C9FF0 /* Config */,
 				194FF95021EC231D00CAB449 /* 000 */,
 				194FF95421EC2B6B00CAB449 /* Main */,
 				194FF94F21EC22BD00CAB449 /* View */,
@@ -130,6 +139,7 @@
 		194FF94F21EC22BD00CAB449 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				196B41CE21EED10800105D44 /* Config */,
 				194FF95821EC333800CAB449 /* Chart */,
 				194FF95721EC2C1A00CAB449 /* Greeks */,
 				194FF95621EC2BFF00CAB449 /* GlobalStart */,
@@ -189,6 +199,25 @@
 			children = (
 			);
 			path = Chart;
+			sourceTree = "<group>";
+		};
+		196B41CE21EED10800105D44 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				196B41CF21EED11F00105D44 /* ConfigViewController.h */,
+				196B41D021EED13800105D44 /* ConfigViewController.m */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		1980DBD321EF025E008C9FF0 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				1980DBD421EF0275008C9FF0 /* TscConfig.h */,
+				1980DBD521EF0291008C9FF0 /* TscConfig.m */,
+				1980DBD721EF1141008C9FF0 /* TscConfig_AutoRefresh.m */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		667701AC65A23EEF211BB78C /* Frameworks */ = {
@@ -312,10 +341,13 @@
 				194FF95321EC2A3400CAB449 /* GreeksViewController.m in Sources */,
 				190210E621E49C27009ADE0B /* DBHelper.m in Sources */,
 				190210E321E49BC0009ADE0B /* ConfigHelper.m in Sources */,
+				1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */,
 				190210DA21E48DB2009ADE0B /* OCCodingHelper.m in Sources */,
 				190210CA21E45966009ADE0B /* main.m in Sources */,
 				19417D4721E86BA000C1FF2C /* StringHelper.m in Sources */,
 				190210BC21E45964009ADE0B /* BriefViewController.m in Sources */,
+				1980DBD821EF1141008C9FF0 /* TscConfig_AutoRefresh.m in Sources */,
+				196B41D121EED13800105D44 /* ConfigViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

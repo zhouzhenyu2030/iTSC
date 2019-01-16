@@ -12,6 +12,7 @@
 
 
 
+
 @implementation BriefViewController
 
     @synthesize Label_AccountID;
@@ -40,18 +41,116 @@
     @synthesize Label_OrderInsertCnt;
     @synthesize Label_QtyPerOrder;
 
+    @synthesize Switch_AutoRefresh;
+
+    @synthesize Label_RefreshCount;
+
+
+
+    NSTimer* myTimer=nil;
+
+    int ibrief;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    ibrief=0;
+    Switch_AutoRefresh.on = [TscConfig isBriefAutoRefresh];
+    
+    if(myTimer==nil)
+    {
+        myTimer  =  [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
+    }
+}
+
+
+
+//定时器处理函数
+bool isTimerProcessing=false;
+-(void)timerFired
+{
+    if([TscConfig isInBackground] == true) return;
+    if([TscConfig isGlobalAutoRefresh] == false) return;
+    
+    if(isTimerProcessing)        return;
+    
+    isTimerProcessing=true;
+    [self QueryAndDisplay];
+    isTimerProcessing=false;
+    
+    ibrief=ibrief+1;
+    Label_RefreshCount.text=[NSString stringWithFormat:@"%d", ibrief];
+}
+
+
+//开启定时器
+-(void) StartTimer
+{
+    if(myTimer!=nil)
+    {
+        
+        [myTimer setFireDate:[NSDate distantPast]];
+    }
+}
+
+//关闭定时器
+-(void) StopTimer
+{
+    if(myTimer!=nil)
+    {
+        [myTimer setFireDate:[NSDate distantFuture]];
+    }
+}
+
+
+//页面将要进入前台，开启定时器
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self SetTimerState];
+}
+
+
+//页面消失，进入后台不显示该页面，关闭定时器
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [self StopTimer];
+}
+
+
+//根据switch设定Timer启停
+-(void) SetTimerState
+{
+    if ([Switch_AutoRefresh isOn])
+        [self StartTimer];
+    else
+        [self StopTimer];
+}
+
+
+//switch状态改变
+-(IBAction)AutoRefresh:(id)sender
+{
+    [self SetTimerState];
+    [TscConfig setBriefAutoRefresh:([Switch_AutoRefresh isOn])];
 }
 
 
 
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//查询按钮
 - (IBAction)MyButtonClick:(UIButton *)sender
+{
+    [self QueryAndDisplay];
+}
+
+
+//查询
+- (void)QueryAndDisplay
 {
 
     NSLog(@"FirstViewController: start!");
@@ -134,6 +233,7 @@
 
 
 }
+
 
 
 

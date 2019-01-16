@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "TscConfig.h"
 
 
 @interface BriefViewController: UIViewController
@@ -45,13 +45,14 @@
     @property (weak, nonatomic) IBOutlet UILabel *Label_OrderInsertCnt;
     @property (weak, nonatomic) IBOutlet UILabel *Label_QtyPerOrder;
 
+    @property (weak, nonatomic) IBOutlet UISwitch *Switch_AutoRefresh;
 
-    
-    
+    @property (weak, nonatomic) IBOutlet UILabel *Label_RefreshCount;
 
     
 //action
 - (IBAction)MyButtonClick:(UIButton *)sender;
+- (IBAction)AutoRefresh:(id)sender;
 
 
 @end
