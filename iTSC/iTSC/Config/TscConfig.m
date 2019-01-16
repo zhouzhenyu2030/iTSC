@@ -30,16 +30,19 @@ NSUserDefaults *_UserDefaults;
     _UserDefaults = [NSUserDefaults standardUserDefaults];
     
     _isShowAllTime=[_UserDefaults boolForKey:@"isShowAllTime"];
-
+    [[UIApplication sharedApplication] setIdleTimerDisabled:_isShowAllTime];
+    
     _isGlobalAutoRefresh=[_UserDefaults boolForKey:@"isGlobalAutoRefresh"];
     _isBriefAutoRefresh=[_UserDefaults boolForKey:@"isBriefAutoRefresh"];
     _isGreekAutoRefresh=[_UserDefaults boolForKey:@"isGreekAutoRefresh"];
+    
 }
 
 
 //setDefault
 +(void) setDefault
 {
+    _isInBackground=false;
     _isShowAllTime = true;
     _isGlobalAutoRefresh = false;
     _isBriefAutoRefresh = false;
@@ -50,7 +53,7 @@ NSUserDefaults *_UserDefaults;
 static Boolean _isInBackground;
 +(Boolean) isInBackground
 {
-    return _isShowAllTime;
+    return _isInBackground;
 }
 +(void) setInBackground:(Boolean) vValue
 {
@@ -68,6 +71,7 @@ static Boolean _isShowAllTime;
 {
     _isShowAllTime=vValue;
     [_UserDefaults setBool:(vValue) forKey:(@"isShowAllTime")];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:vValue];
 }
 
 
@@ -80,7 +84,6 @@ static Boolean _isGlobalAutoRefresh;
 +(void) setGlobalAutoRefresh:(Boolean) vValue
 {
     _isGlobalAutoRefresh=vValue;
-    [[UIApplication sharedApplication] setIdleTimerDisabled:vValue];
     [_UserDefaults setBool:(vValue) forKey:(@"isGlobalAutoRefresh")];
 }
 
