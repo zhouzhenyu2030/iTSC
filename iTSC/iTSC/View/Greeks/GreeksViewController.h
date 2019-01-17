@@ -14,7 +14,10 @@
 
 
 @interface GreeksViewController : UIViewController
-
+{
+    int i;
+    NSTimer* myTimer;
+}
 
 //property
 @property (weak, nonatomic) IBOutlet UILabel *Label_RecordTime;

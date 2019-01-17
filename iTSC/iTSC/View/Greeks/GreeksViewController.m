@@ -46,9 +46,7 @@
 @synthesize Label_RefreshCount;
 
 
-NSTimer* myTimer_Greek=nil;
 
-int i;
 
 
 
@@ -61,9 +59,9 @@ int i;
     
     Switch_AutoRefresh.on = [TscConfig isGreekAutoRefresh];
     
-    if(myTimer_Greek==nil)
+    if(myTimer==nil)
     {
-        myTimer_Greek  =  [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
+        myTimer  =  [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
     }
 }
 
@@ -90,18 +88,18 @@ bool isTimerProcessing1=false;
 //开启定时器
 -(void) StartTimer
 {
-    if(myTimer_Greek!=nil)
+    if(myTimer!=nil)
     {
-        [myTimer_Greek setFireDate:[NSDate distantPast]];
+        [myTimer setFireDate:[NSDate distantPast]];
     }
 }
 
 //关闭定时器
 -(void) StopTimer
 {
-    if(myTimer_Greek!=nil)
+    if(myTimer=nil)
     {
-        [myTimer_Greek setFireDate:[NSDate distantFuture]];
+        [myTimer setFireDate:[NSDate distantFuture]];
     }
 }
 
@@ -146,6 +144,7 @@ bool isTimerProcessing1=false;
 //查询按钮
 - (IBAction)Button_Risk_Query_Click:(UIButton *)sender
 {
+    i = 0;
     [self QueryAndDisplay];
 }
 

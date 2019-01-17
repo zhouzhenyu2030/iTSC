@@ -25,6 +25,7 @@
 		196B41D121EED13800105D44 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196B41D021EED13800105D44 /* ConfigViewController.m */; };
 		1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980DBD521EF0291008C9FF0 /* TscConfig.m */; };
 		1980DBD821EF1141008C9FF0 /* TscConfig_AutoRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980DBD721EF1141008C9FF0 /* TscConfig_AutoRefresh.m */; };
+		1980DBDA21F0083E008C9FF0 /* Brief.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1980DBD921F0083E008C9FF0 /* Brief.storyboard */; };
 		39095AA00E45A5C468762C0F /* libPods-iTSC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F232280A8439452C55EAE29 /* libPods-iTSC.a */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		1980DBD421EF0275008C9FF0 /* TscConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TscConfig.h; sourceTree = "<group>"; };
 		1980DBD521EF0291008C9FF0 /* TscConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TscConfig.m; sourceTree = "<group>"; };
 		1980DBD721EF1141008C9FF0 /* TscConfig_AutoRefresh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TscConfig_AutoRefresh.m; sourceTree = "<group>"; };
+		1980DBD921F0083E008C9FF0 /* Brief.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Brief.storyboard; sourceTree = "<group>"; };
 		453C8632866D6234249936D1 /* Pods-iTSC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTSC.release.xcconfig"; path = "Pods/Target Support Files/Pods-iTSC/Pods-iTSC.release.xcconfig"; sourceTree = "<group>"; };
 		6F232280A8439452C55EAE29 /* libPods-iTSC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iTSC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3262C718804A2670A0A4D07 /* Pods-iTSC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTSC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iTSC/Pods-iTSC.debug.xcconfig"; sourceTree = "<group>"; };
@@ -98,13 +100,14 @@
 		190210B621E45964009ADE0B /* iTSC */ = {
 			isa = PBXGroup;
 			children = (
-				1980DBD321EF025E008C9FF0 /* Config */,
 				194FF95021EC231D00CAB449 /* 000 */,
+				1980DBD321EF025E008C9FF0 /* Config */,
 				194FF95421EC2B6B00CAB449 /* Main */,
 				194FF94F21EC22BD00CAB449 /* View */,
 				190210D421E4832D009ADE0B /* Helper */,
 				190210C021E45964009ADE0B /* Main.storyboard */,
 				190210C821E45966009ADE0B /* Info.plist */,
+				1980DBD921F0083E008C9FF0 /* Brief.storyboard */,
 			);
 			path = iTSC;
 			sourceTree = "<group>";
@@ -139,11 +142,11 @@
 		194FF94F21EC22BD00CAB449 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				196B41CE21EED10800105D44 /* Config */,
-				194FF95821EC333800CAB449 /* Chart */,
+				194FF95521EC2BEA00CAB449 /* Brief */,
 				194FF95721EC2C1A00CAB449 /* Greeks */,
 				194FF95621EC2BFF00CAB449 /* GlobalStart */,
-				194FF95521EC2BEA00CAB449 /* Brief */,
+				196B41CE21EED10800105D44 /* Config */,
+				194FF95821EC333800CAB449 /* Chart */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				190210E021E499DE009ADE0B /* 编程-本地数据保存 in Resources */,
 				190210C421E45966009ADE0B /* Assets.xcassets in Resources */,
 				190210C221E45964009ADE0B /* Main.storyboard in Resources */,
+				1980DBDA21F0083E008C9FF0 /* Brief.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

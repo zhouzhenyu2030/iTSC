@@ -47,16 +47,16 @@
 
 
 
-    NSTimer* myTimer=nil;
+ 
 
-    int ibrief;
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    ibrief=0;
+    i = 0;
     Switch_AutoRefresh.on = [TscConfig isBriefAutoRefresh];
     
     if(myTimer==nil)
@@ -80,8 +80,8 @@ bool isTimerProcessing=false;
     [self QueryAndDisplay];
     isTimerProcessing=false;
     
-    ibrief=ibrief+1;
-    Label_RefreshCount.text=[NSString stringWithFormat:@"%d", ibrief];
+    i+=1;
+    Label_RefreshCount.text=[NSString stringWithFormat:@"%d", i];
 }
 
 
@@ -145,6 +145,7 @@ bool isTimerProcessing=false;
 //查询按钮
 - (IBAction)MyButtonClick:(UIButton *)sender
 {
+    i = 0;
     [self QueryAndDisplay];
 }
 

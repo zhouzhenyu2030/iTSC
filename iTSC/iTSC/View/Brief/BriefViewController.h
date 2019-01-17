@@ -11,6 +11,10 @@
 
 
 @interface BriefViewController: UIViewController
+{
+    int i;
+    NSTimer* myTimer;
+}
 
     
     
