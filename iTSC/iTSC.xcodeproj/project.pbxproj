@@ -31,7 +31,6 @@
 		19FFB2A821F191D700C02A53 /* Control.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19FFB2A721F191D700C02A53 /* Control.storyboard */; };
 		19FFB2AA21F194BD00C02A53 /* Brief.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19FFB2A921F194BD00C02A53 /* Brief.storyboard */; };
 		19FFB2BC21F19A8E00C02A53 /* PageContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB2AD21F19A8D00C02A53 /* PageContainerViewController.m */; };
-		19FFB2BD21F19A8E00C02A53 /* SamplePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB2AF21F19A8D00C02A53 /* SamplePageViewController.m */; };
 		19FFB2BE21F19A8E00C02A53 /* SampleTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB2B121F19A8E00C02A53 /* SampleTitleCell.m */; };
 		19FFB2BF21F19A8E00C02A53 /* SampleTitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB2B321F19A8E00C02A53 /* SampleTitleViewController.m */; };
 		19FFB2C021F19A8E00C02A53 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB2B521F19A8E00C02A53 /* TableViewController.m */; };
@@ -82,8 +81,6 @@
 		19FFB2A921F194BD00C02A53 /* Brief.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Brief.storyboard; sourceTree = "<group>"; };
 		19FFB2AC21F19A8D00C02A53 /* PageContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContainerViewController.h; sourceTree = "<group>"; };
 		19FFB2AD21F19A8D00C02A53 /* PageContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContainerViewController.m; sourceTree = "<group>"; };
-		19FFB2AE21F19A8D00C02A53 /* SamplePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SamplePageViewController.h; sourceTree = "<group>"; };
-		19FFB2AF21F19A8D00C02A53 /* SamplePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SamplePageViewController.m; sourceTree = "<group>"; };
 		19FFB2B021F19A8E00C02A53 /* SampleTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleTitleCell.h; sourceTree = "<group>"; };
 		19FFB2B121F19A8E00C02A53 /* SampleTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleTitleCell.m; sourceTree = "<group>"; };
 		19FFB2B221F19A8E00C02A53 /* SampleTitleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleTitleViewController.h; sourceTree = "<group>"; };
@@ -243,22 +240,14 @@
 			isa = PBXGroup;
 			children = (
 				19FFB2C821F1B9D600C02A53 /* Other */,
-				19FFB2A521F1917F00C02A53 /* Main */,
 				19FFB2AB21F19A8D00C02A53 /* Brief */,
 				19FFB2A621F191B700C02A53 /* Control */,
 				196B41CE21EED10800105D44 /* Config */,
 				19FFB2C621F1B5B100C02A53 /* Main.storyboard */,
-			);
-			path = StroyBoard;
-			sourceTree = "<group>";
-		};
-		19FFB2A521F1917F00C02A53 /* Main */ = {
-			isa = PBXGroup;
-			children = (
 				19FFB29321F17B6900C02A53 /* TabBarController.h */,
 				19FFB29421F17B7D00C02A53 /* TabBarController.m */,
 			);
-			path = Main;
+			path = StroyBoard;
 			sourceTree = "<group>";
 		};
 		19FFB2A621F191B700C02A53 /* Control */ = {
@@ -276,15 +265,10 @@
 			children = (
 				19FFB2A921F194BD00C02A53 /* Brief.storyboard */,
 				190210C021E45964009ADE0B /* BriefDetail.storyboard */,
-				19FFB2C521F1A70D00C02A53 /* Title */,
 				19FFB2AC21F19A8D00C02A53 /* PageContainerViewController.h */,
 				19FFB2AD21F19A8D00C02A53 /* PageContainerViewController.m */,
-				19FFB2AE21F19A8D00C02A53 /* SamplePageViewController.h */,
-				19FFB2AF21F19A8D00C02A53 /* SamplePageViewController.m */,
-				19FFB2B421F19A8E00C02A53 /* TableViewController.h */,
-				19FFB2B521F19A8E00C02A53 /* TableViewController.m */,
-				19FFB2BA21F19A8E00C02A53 /* ViewController.h */,
-				19FFB2BB21F19A8E00C02A53 /* ViewController.m */,
+				19FFB2C521F1A70D00C02A53 /* Title */,
+				19FFB2C921F1BAF600C02A53 /* Page */,
 			);
 			path = Brief;
 			sourceTree = "<group>";
@@ -318,6 +302,17 @@
 				1980DBD921F0083E008C9FF0 /* Test.storyboard */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		19FFB2C921F1BAF600C02A53 /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				19FFB2B421F19A8E00C02A53 /* TableViewController.h */,
+				19FFB2B521F19A8E00C02A53 /* TableViewController.m */,
+				19FFB2BA21F19A8E00C02A53 /* ViewController.h */,
+				19FFB2BB21F19A8E00C02A53 /* ViewController.m */,
+			);
+			path = Page;
 			sourceTree = "<group>";
 		};
 		667701AC65A23EEF211BB78C /* Frameworks */ = {
@@ -443,7 +438,6 @@
 				190210BF21E45964009ADE0B /* GlobalStartViewController.m in Sources */,
 				190210B921E45964009ADE0B /* AppDelegate.m in Sources */,
 				190210D821E48399009ADE0B /* FilePathHelper.m in Sources */,
-				19FFB2BD21F19A8E00C02A53 /* SamplePageViewController.m in Sources */,
 				194FF95321EC2A3400CAB449 /* GreeksViewController.m in Sources */,
 				190210E621E49C27009ADE0B /* DBHelper.m in Sources */,
 				190210E321E49BC0009ADE0B /* ConfigHelper.m in Sources */,

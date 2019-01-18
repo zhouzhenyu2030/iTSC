@@ -11,7 +11,6 @@
 #import "TWPageTitleViewController.h"
 #import "TableViewController.h"
 #import "SampleTitleCell.h"
-#import "SamplePageViewController.h"
 
 @interface PageContainerViewController ()<TWPageViewControllerDelegate,TWPageViewControllerDataSource,TWPageTitleViewControllerDelegate,TWPageTitleViewControllerDataSource>
 
@@ -71,6 +70,7 @@
     UIViewController *ctrl = nil;
     switch(index)
     {
+            
         case 0:
         {
 
@@ -78,24 +78,38 @@
         }
             break;
   
-   
-        default:
+        case 1:
+        {
+            
+            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"Greeks"];
+        }
+            break;
+            
+        case 2:
+        {
+            
+            ctrl = [[UIStoryboard storyboardWithName:@"Help" bundle:nil] instantiateViewControllerWithIdentifier:@"HelpMain"];
+        }
+            break;
+    
+    }
+    
+    
+    
+    if(ctrl==nil)
     {
         TableViewController *ctrl = [pageViewController dequeueReusableControllerWithClassName:@"TableViewController" atIndex:index];
-        
-        if(!ctrl) {
-            
+        if(!ctrl)
+        {
             ctrl = [[UIStoryboard storyboardWithName:@"Brief" bundle:nil] instantiateViewControllerWithIdentifier:@"TableViewController"];
         }
-        
         ctrl.text = [NSString stringWithFormat:@"inner index:%ld",(long)index];
-        
         ctrl.view.backgroundColor = [UIColor colorWithRed:(float)(random() %  10)/10.f green:(float)(random() %  10)/10.f blue:(float)(random() %  10)/10.f alpha:1.0];
         
         return ctrl;
     }
-            break;
-    }
+    
+ 
     
     return ctrl;
 }
@@ -116,10 +130,13 @@
     return 10;
 }
 
+//
 - (CGSize)pageTitleViewController:(TWPageTitleViewController *)controller sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(100, self.pageTitleViewController.view.bounds.size.height);
 }
 
+
+//
 - (UICollectionViewCell *)pageTitleViewController:(TWPageTitleViewController *)controller cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
      SampleTitleCell*cell = [controller.collectionView dequeueReusableCellWithReuseIdentifier:@"SampleTitleCell" forIndexPath:indexPath];
@@ -131,10 +148,14 @@
     return cell;
 }
 
+
+//
 - (void)pageTitleViewController:(TWPageTitleViewController *)controller didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self.pageViewController gotoPageWithIndex:indexPath.row animated:YES];
 }
 
+
+//
 - (void)pageTitleViewController:(TWPageTitleViewController *)controller willHilightItemAtIndexPath:(NSIndexPath *)indexPath {
     
     dispatch_async(dispatch_get_main_queue(), ^{
