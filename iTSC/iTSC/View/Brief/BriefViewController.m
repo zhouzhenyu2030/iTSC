@@ -57,6 +57,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     i = 0;
+    isTimerProcessing = false;
     Switch_AutoRefresh.on = [TscConfig isBriefAutoRefresh];
     
     if(myTimer==nil)
@@ -68,13 +69,14 @@
 
 
 //定时器处理函数
-bool isTimerProcessing=false;
+
 -(void)timerFired
 {
     if([TscConfig isInBackground] == true) return;
     if([TscConfig isGlobalAutoRefresh] == false) return;
+    if([TscConfig isBriefAutoRefresh] == false) return;
     
-    if(isTimerProcessing)        return;
+    if(isTimerProcessing) return;
     
     isTimerProcessing=true;
     [self QueryAndDisplay];
@@ -130,7 +132,7 @@ bool isTimerProcessing=false;
 
 
 //switch状态改变
--(IBAction)AutoRefresh:(id)sender
+-(IBAction)SwitchChanged:(id)sender
 {
     [self SetTimerState];
     [TscConfig setBriefAutoRefresh:([Switch_AutoRefresh isOn])];

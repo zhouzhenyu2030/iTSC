@@ -297,7 +297,7 @@
                                 <rect key="frame" x="251" y="607" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="AutoRefresh:" destination="9pv-A4-QxB" eventType="valueChanged" id="0L5-ul-MaO"/>
+                                    <action selector="SwitchChanged:" destination="9pv-A4-QxB" eventType="valueChanged" id="x99-6e-6cQ"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label_RefreshCount" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afu-AF-wZA">
@@ -771,7 +771,7 @@ Color， Gamma衰减或者DgammaDtime，是测量对Gamma对时间的变化率�
                                 <rect key="frame" x="234" y="627" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="AutoRefresh:" destination="Dv3-1P-oCq" eventType="valueChanged" id="nfF-eI-GUO"/>
+                                    <action selector="SwitchChanged:" destination="Dv3-1P-oCq" eventType="valueChanged" id="p8U-xr-4ul"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label_RefreshCount" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwm-kd-OrB">
@@ -820,7 +820,7 @@ Color， Gamma衰减或者DgammaDtime，是测量对Gamma对时间的变化率�
                         <outlet property="Label_TotalVeta" destination="0ks-S6-oz9" id="ClC-Mh-WFr"/>
                         <outlet property="Label_TotalVolga" destination="hZN-Hr-qu1" id="g0Y-EX-6Ye"/>
                         <outlet property="Label_TotalZomma" destination="bb2-i3-enx" id="X4B-VI-tgw"/>
-                        <outlet property="Switch_AutoRefresh" destination="PZ9-W7-dqs" id="Lzd-4g-5NG"/>
+                        <outlet property="Switch_AutoRefresh" destination="PZ9-W7-dqs" id="6Qk-KZ-ktE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kXU-R8-Qsn" userLabel="First Responder" sceneMemberID="firstResponder"/>

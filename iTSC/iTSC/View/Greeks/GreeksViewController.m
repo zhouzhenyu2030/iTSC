@@ -55,9 +55,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    i=0;
-    
+    i=0;    
     Switch_AutoRefresh.on = [TscConfig isGreekAutoRefresh];
+    isTimerProcessing = false;
     
     if(myTimer==nil)
     {
@@ -68,17 +68,17 @@
 
 
 //定时器处理函数
-bool isTimerProcessing1=false;
 -(void)timerFired
 {
     if([TscConfig isInBackground] == true) return;
     if([TscConfig isGlobalAutoRefresh] == false) return;
+    if([TscConfig isGreekAutoRefresh] == false) return;
     
-    if(isTimerProcessing1) return;
+    if(isTimerProcessing) return;
     
-    isTimerProcessing1=true;
+    isTimerProcessing=true;
     [self QueryAndDisplay];
-    isTimerProcessing1=false;
+    isTimerProcessing=false;
     
     i=i+1;
     Label_RefreshCount.text=[NSString stringWithFormat:@"%d", i];
@@ -88,7 +88,7 @@ bool isTimerProcessing1=false;
 //开启定时器
 -(void) StartTimer
 {
-    if(myTimer!=nil)
+    if(myTimer != nil)
     {
         [myTimer setFireDate:[NSDate distantPast]];
     }
@@ -97,7 +97,7 @@ bool isTimerProcessing1=false;
 //关闭定时器
 -(void) StopTimer
 {
-    if(myTimer=nil)
+    if(myTimer != nil)
     {
         [myTimer setFireDate:[NSDate distantFuture]];
     }
@@ -129,7 +129,7 @@ bool isTimerProcessing1=false;
 
 
 //switch状态改变
--(IBAction)AutoRefresh:(id)sender
+-(IBAction)SwitchChanged:(id)sender
 {
     [self SetTimerState];
     [TscConfig setGreekAutoRefresh:([Switch_AutoRefresh isOn])];

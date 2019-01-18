@@ -17,6 +17,7 @@
 {
     int i;
     NSTimer* myTimer;
+    bool isTimerProcessing;
 }
 
 //property
@@ -55,7 +56,7 @@
 
 //action
 - (IBAction)Button_Risk_Query_Click:(UIButton *)sender;
-- (IBAction)AutoRefresh:(id)sender;
+- (IBAction)SwitchChanged:(id)sender;
 
 
 @end
