@@ -87,6 +87,12 @@
             ctrl = [[UIStoryboard storyboardWithName:@"Help" bundle:nil] instantiateViewControllerWithIdentifier:@"HelpMain"];
         }
             break;
+            
+        case 3:
+        {
+            ctrl = [[UIStoryboard storyboardWithName:@"Test" bundle:nil] instantiateViewControllerWithIdentifier:@"TableView"];
+        }
+            break;
     }
     
     
