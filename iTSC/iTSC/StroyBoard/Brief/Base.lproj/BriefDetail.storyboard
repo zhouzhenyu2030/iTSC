@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,7 @@
         <!--Brief-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="BriefViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Asset" id="9pv-A4-QxB" customClass="BriefViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -338,170 +338,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="842" y="-562"/>
-        </scene>
-        <!--HisAsset-->
-        <scene sceneID="4CS-Jd-Gg7">
-            <objects>
-                <viewController id="1uI-1P-pBd" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="H80-Ox-LKj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TyK-Ci-cPB">
-                                <rect key="frame" x="36" y="86" width="326" height="570"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">【二阶导数】
-Vanna，也被称为DvegaDspot 和DdeltaDvol，是期权价值的二阶导数,第一次对标的价格，第二次对波动性求导。 
-Vomma，Volga，Vega convexity，Vega Gamma 或者d Tao/d Vol 测量的都是对于波动性的二阶导数。
- Charm 或者Delta衰减，衡量的是Delta相对于相对于时间流逝的即使变化率，也被称作DdeltaDtime。
- Veta， 或者DvegaDtime，测量的是Vega相对于时间的变化率。
-Vera, 或者DvegaDtime, 测量的是Rho相对于波动性的变化率。
- Tata;   测量的是Theta相对于时间的变化率 //自定义
-
-
-【三阶导数】
-Color， Gamma衰减或者DgammaDtime，是测量对Gamma对时间的变化率。
- Speed测量的是Gamma相对于标的价格的变化率。
- Ultima测量的是期权的Vomma相对于波动性变化的敏感度。是期权价值对波动性的三阶导数。
- Zomma测量的是Gamma相对于波动率变化的变化率。
-
-</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="vJf-q2-B95"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="HisAsset" image="first" id="P8S-ym-SDt" userLabel="HisAsset"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="riQ-hK-voq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="840.57971014492762" y="273.88392857142856"/>
-        </scene>
-        <!--GlobalStart-->
-        <scene sceneID="wg7-f3-ORb">
-            <objects>
-                <viewController id="8rJ-Kc-sve" customClass="GlobalStartViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XA4-AY-tVw">
-                                <rect key="frame" x="32" y="579" width="144" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.93308775909999997" green="0.93308775909999997" blue="0.93308775909999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="查询"/>
-                                <connections>
-                                    <action selector="Button_CheckGlobalStart:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="S2d-aF-rza"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Asz-xf-uPb">
-                                <rect key="frame" x="67" y="630" width="75" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ef-DL-CBP">
-                                <rect key="frame" x="106" y="469" width="100" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.93308775909999997" green="0.93308775909999997" blue="0.93308775909999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="AH"/>
-                                <connections>
-                                    <action selector="Button_SetAH:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="UQY-YX-iza"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Rf-0N-Jmy">
-                                <rect key="frame" x="106" y="394" width="100" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.93308775909999997" green="0.93308775909999997" blue="0.93308775909999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="AT"/>
-                                <connections>
-                                    <action selector="Button_SetAT:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="sYn-sO-rBL"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="GlobalStart" image="second" id="cPa-gy-q4n" userLabel="GlobalStart"/>
-                    <connections>
-                        <outlet property="Button_AH" destination="8ef-DL-CBP" id="FVi-Ff-aHQ"/>
-                        <outlet property="Button_AT" destination="3Rf-0N-Jmy" id="wrj-U4-4mQ"/>
-                        <outlet property="Label_DBGloabalStart" destination="Asz-xf-uPb" id="bFH-t1-LuJ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1664" y="274"/>
-        </scene>
-        <!--Page View Controller-->
-        <scene sceneID="xDe-h6-pkL">
-            <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="j6U-1a-2m0" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gSv-dN-AD1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2758" y="-532"/>
-        </scene>
-        <!--Config-->
-        <scene sceneID="HGS-9g-H4S">
-            <objects>
-                <viewController id="3Oa-tl-0Ob" customClass="ConfigViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Vbl-0e-cNj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="屏幕常亮:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5x-Kg-GhE">
-                                <rect key="frame" x="78" y="180" width="92" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YYR-0N-4gm">
-                                <rect key="frame" x="212" y="187" width="49" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="Switch_ShowAllTime_ValueChanged:" destination="3Oa-tl-0Ob" eventType="valueChanged" id="XAp-Go-tNU"/>
-                                </connections>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="自动刷新:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVr-19-Gpj">
-                                <rect key="frame" x="71" y="260" width="92" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <switch opaque="NO" contentMode="right" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QbR-lq-GsQ">
-                                <rect key="frame" x="212" y="267" width="49" height="31"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <connections>
-                                    <action selector="Switch_GlobalAutoRefresh_ValueChanged:" destination="3Oa-tl-0Ob" eventType="valueChanged" id="w1z-fM-ixk"/>
-                                </connections>
-                            </switch>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="wj7-dB-woa"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Config" image="second" id="jNs-fh-hSq"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="Switch_GlobalAutoRefresh" destination="QbR-lq-GsQ" id="WQB-LI-frr"/>
-                        <outlet property="Switch_ShowAllTime" destination="YYR-0N-4gm" id="cZP-50-uJY"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7cF-AU-14U" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-906" y="0.0"/>
+            <point key="canvasLocation" x="783" y="0.0"/>
         </scene>
         <!--Greeks-->
         <scene sceneID="7GA-wa-HuT">
             <objects>
-                <viewController id="Dv3-1P-oCq" customClass="GreeksViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Greeks" id="Dv3-1P-oCq" customClass="GreeksViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DPt-h0-YAl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -825,32 +667,10 @@ Color， Gamma衰减或者DgammaDtime，是测量对Gamma对时间的变化率�
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kXU-R8-Qsn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1663.7681159420292" y="-563.16964285714278"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="yl2-sM-qoP">
-            <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
-                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
-                        <segue destination="Dv3-1P-oCq" kind="relationship" relationship="viewControllers" id="6hx-23-SuS"/>
-                        <segue destination="1uI-1P-pBd" kind="relationship" relationship="viewControllers" id="JrK-xp-umk"/>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="zDl-A1-7Vp"/>
-                        <segue destination="3Oa-tl-0Ob" kind="relationship" relationship="viewControllers" id="YS1-bf-yW1"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="1472" y="0.0"/>
         </scene>
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
     </resources>
 </document>

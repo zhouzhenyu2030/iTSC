@@ -10,9 +10,8 @@
 		190210B921E45964009ADE0B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210B821E45964009ADE0B /* AppDelegate.m */; };
 		190210BC21E45964009ADE0B /* BriefViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210BB21E45964009ADE0B /* BriefViewController.m */; };
 		190210BF21E45964009ADE0B /* GlobalStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210BE21E45964009ADE0B /* GlobalStartViewController.m */; };
-		190210C221E45964009ADE0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 190210C021E45964009ADE0B /* Main.storyboard */; };
+		190210C221E45964009ADE0B /* BriefDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 190210C021E45964009ADE0B /* BriefDetail.storyboard */; };
 		190210C421E45966009ADE0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 190210C321E45966009ADE0B /* Assets.xcassets */; };
-		190210C721E45966009ADE0B /* LaunchScreen111.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 190210C521E45966009ADE0B /* LaunchScreen111.storyboard */; };
 		190210CA21E45966009ADE0B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210C921E45966009ADE0B /* main.m */; };
 		190210D821E48399009ADE0B /* FilePathHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210D721E48399009ADE0B /* FilePathHelper.m */; };
 		190210DA21E48DB2009ADE0B /* OCCodingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210D921E48DB2009ADE0B /* OCCodingHelper.m */; };
@@ -25,7 +24,21 @@
 		196B41D121EED13800105D44 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196B41D021EED13800105D44 /* ConfigViewController.m */; };
 		1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980DBD521EF0291008C9FF0 /* TscConfig.m */; };
 		1980DBD821EF1141008C9FF0 /* TscConfig_AutoRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980DBD721EF1141008C9FF0 /* TscConfig_AutoRefresh.m */; };
-		1980DBDA21F0083E008C9FF0 /* Brief.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1980DBD921F0083E008C9FF0 /* Brief.storyboard */; };
+		1980DBDA21F0083E008C9FF0 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1980DBD921F0083E008C9FF0 /* Test.storyboard */; };
+		19FFB29221F1706900C02A53 /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19FFB29121F1706900C02A53 /* Help.storyboard */; };
+		19FFB29521F17B7D00C02A53 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB29421F17B7D00C02A53 /* TabBarController.m */; };
+		19FFB2A421F18EEE00C02A53 /* Config.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19FFB2A321F18EEE00C02A53 /* Config.storyboard */; };
+		19FFB2A821F191D700C02A53 /* Control.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19FFB2A721F191D700C02A53 /* Control.storyboard */; };
+		19FFB2AA21F194BD00C02A53 /* Brief.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19FFB2A921F194BD00C02A53 /* Brief.storyboard */; };
+		19FFB2BC21F19A8E00C02A53 /* PageContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB2AD21F19A8D00C02A53 /* PageContainerViewController.m */; };
+		19FFB2BD21F19A8E00C02A53 /* SamplePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB2AF21F19A8D00C02A53 /* SamplePageViewController.m */; };
+		19FFB2BE21F19A8E00C02A53 /* SampleTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB2B121F19A8E00C02A53 /* SampleTitleCell.m */; };
+		19FFB2BF21F19A8E00C02A53 /* SampleTitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB2B321F19A8E00C02A53 /* SampleTitleViewController.m */; };
+		19FFB2C021F19A8E00C02A53 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB2B521F19A8E00C02A53 /* TableViewController.m */; };
+		19FFB2C121F19A8E00C02A53 /* TWPageTitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB2B721F19A8E00C02A53 /* TWPageTitleViewController.m */; };
+		19FFB2C221F19A8E00C02A53 /* TWPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB2B921F19A8E00C02A53 /* TWPageViewController.m */; };
+		19FFB2C321F19A8E00C02A53 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB2BB21F19A8E00C02A53 /* ViewController.m */; };
+		19FFB2C721F1B5B100C02A53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19FFB2C621F1B5B100C02A53 /* Main.storyboard */; };
 		39095AA00E45A5C468762C0F /* libPods-iTSC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F232280A8439452C55EAE29 /* libPods-iTSC.a */; };
 /* End PBXBuildFile section */
 
@@ -37,9 +50,8 @@
 		190210BB21E45964009ADE0B /* BriefViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BriefViewController.m; sourceTree = "<group>"; };
 		190210BD21E45964009ADE0B /* GlobalStartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalStartViewController.h; sourceTree = "<group>"; };
 		190210BE21E45964009ADE0B /* GlobalStartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalStartViewController.m; sourceTree = "<group>"; };
-		190210C121E45964009ADE0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		190210C121E45964009ADE0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/BriefDetail.storyboard; sourceTree = "<group>"; };
 		190210C321E45966009ADE0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		190210C621E45966009ADE0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen111.storyboard; sourceTree = "<group>"; };
 		190210C821E45966009ADE0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		190210C921E45966009ADE0B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		190210D621E48375009ADE0B /* FilePathHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilePathHelper.h; sourceTree = "<group>"; };
@@ -61,7 +73,30 @@
 		1980DBD421EF0275008C9FF0 /* TscConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TscConfig.h; sourceTree = "<group>"; };
 		1980DBD521EF0291008C9FF0 /* TscConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TscConfig.m; sourceTree = "<group>"; };
 		1980DBD721EF1141008C9FF0 /* TscConfig_AutoRefresh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TscConfig_AutoRefresh.m; sourceTree = "<group>"; };
-		1980DBD921F0083E008C9FF0 /* Brief.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Brief.storyboard; sourceTree = "<group>"; };
+		1980DBD921F0083E008C9FF0 /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
+		19FFB29121F1706900C02A53 /* Help.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
+		19FFB29321F17B6900C02A53 /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		19FFB29421F17B7D00C02A53 /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
+		19FFB2A321F18EEE00C02A53 /* Config.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Config.storyboard; sourceTree = "<group>"; };
+		19FFB2A721F191D700C02A53 /* Control.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Control.storyboard; sourceTree = "<group>"; };
+		19FFB2A921F194BD00C02A53 /* Brief.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Brief.storyboard; sourceTree = "<group>"; };
+		19FFB2AC21F19A8D00C02A53 /* PageContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContainerViewController.h; sourceTree = "<group>"; };
+		19FFB2AD21F19A8D00C02A53 /* PageContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContainerViewController.m; sourceTree = "<group>"; };
+		19FFB2AE21F19A8D00C02A53 /* SamplePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SamplePageViewController.h; sourceTree = "<group>"; };
+		19FFB2AF21F19A8D00C02A53 /* SamplePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SamplePageViewController.m; sourceTree = "<group>"; };
+		19FFB2B021F19A8E00C02A53 /* SampleTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleTitleCell.h; sourceTree = "<group>"; };
+		19FFB2B121F19A8E00C02A53 /* SampleTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleTitleCell.m; sourceTree = "<group>"; };
+		19FFB2B221F19A8E00C02A53 /* SampleTitleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleTitleViewController.h; sourceTree = "<group>"; };
+		19FFB2B321F19A8E00C02A53 /* SampleTitleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleTitleViewController.m; sourceTree = "<group>"; };
+		19FFB2B421F19A8E00C02A53 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		19FFB2B521F19A8E00C02A53 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		19FFB2B621F19A8E00C02A53 /* TWPageTitleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWPageTitleViewController.h; sourceTree = "<group>"; };
+		19FFB2B721F19A8E00C02A53 /* TWPageTitleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWPageTitleViewController.m; sourceTree = "<group>"; };
+		19FFB2B821F19A8E00C02A53 /* TWPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWPageViewController.h; sourceTree = "<group>"; };
+		19FFB2B921F19A8E00C02A53 /* TWPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWPageViewController.m; sourceTree = "<group>"; };
+		19FFB2BA21F19A8E00C02A53 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		19FFB2BB21F19A8E00C02A53 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		19FFB2C621F1B5B100C02A53 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		453C8632866D6234249936D1 /* Pods-iTSC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTSC.release.xcconfig"; path = "Pods/Target Support Files/Pods-iTSC/Pods-iTSC.release.xcconfig"; sourceTree = "<group>"; };
 		6F232280A8439452C55EAE29 /* libPods-iTSC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iTSC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3262C718804A2670A0A4D07 /* Pods-iTSC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTSC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iTSC/Pods-iTSC.debug.xcconfig"; sourceTree = "<group>"; };
@@ -100,14 +135,12 @@
 		190210B621E45964009ADE0B /* iTSC */ = {
 			isa = PBXGroup;
 			children = (
-				194FF95021EC231D00CAB449 /* 000 */,
-				1980DBD321EF025E008C9FF0 /* Config */,
+				19FFB29021F1703C00C02A53 /* StroyBoard */,
+				1980DBD321EF025E008C9FF0 /* ConfigFile */,
 				194FF95421EC2B6B00CAB449 /* Main */,
-				194FF94F21EC22BD00CAB449 /* View */,
+				194FF94F21EC22BD00CAB449 /* ViewClass */,
 				190210D421E4832D009ADE0B /* Helper */,
-				190210C021E45964009ADE0B /* Main.storyboard */,
 				190210C821E45966009ADE0B /* Info.plist */,
-				1980DBD921F0083E008C9FF0 /* Brief.storyboard */,
 			);
 			path = iTSC;
 			sourceTree = "<group>";
@@ -116,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				190210DE21E49682009ADE0B /* 编程 */,
+				19FFB2C421F1A1D500C02A53 /* TWPageViewController */,
 				190210D621E48375009ADE0B /* FilePathHelper.h */,
 				190210D721E48399009ADE0B /* FilePathHelper.m */,
 				190210D921E48DB2009ADE0B /* OCCodingHelper.m */,
@@ -139,24 +173,14 @@
 			path = "编程";
 			sourceTree = "<group>";
 		};
-		194FF94F21EC22BD00CAB449 /* View */ = {
+		194FF94F21EC22BD00CAB449 /* ViewClass */ = {
 			isa = PBXGroup;
 			children = (
 				194FF95521EC2BEA00CAB449 /* Brief */,
 				194FF95721EC2C1A00CAB449 /* Greeks */,
-				194FF95621EC2BFF00CAB449 /* GlobalStart */,
-				196B41CE21EED10800105D44 /* Config */,
 				194FF95821EC333800CAB449 /* Chart */,
 			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		194FF95021EC231D00CAB449 /* 000 */ = {
-			isa = PBXGroup;
-			children = (
-				190210C521E45966009ADE0B /* LaunchScreen111.storyboard */,
-			);
-			path = 000;
+			path = ViewClass;
 			sourceTree = "<group>";
 		};
 		194FF95421EC2B6B00CAB449 /* Main */ = {
@@ -179,15 +203,6 @@
 			path = Brief;
 			sourceTree = "<group>";
 		};
-		194FF95621EC2BFF00CAB449 /* GlobalStart */ = {
-			isa = PBXGroup;
-			children = (
-				190210BE21E45964009ADE0B /* GlobalStartViewController.m */,
-				190210BD21E45964009ADE0B /* GlobalStartViewController.h */,
-			);
-			path = GlobalStart;
-			sourceTree = "<group>";
-		};
 		194FF95721EC2C1A00CAB449 /* Greeks */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,20 +222,102 @@
 		196B41CE21EED10800105D44 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				19FFB2A321F18EEE00C02A53 /* Config.storyboard */,
 				196B41CF21EED11F00105D44 /* ConfigViewController.h */,
 				196B41D021EED13800105D44 /* ConfigViewController.m */,
 			);
 			path = Config;
 			sourceTree = "<group>";
 		};
-		1980DBD321EF025E008C9FF0 /* Config */ = {
+		1980DBD321EF025E008C9FF0 /* ConfigFile */ = {
 			isa = PBXGroup;
 			children = (
 				1980DBD421EF0275008C9FF0 /* TscConfig.h */,
 				1980DBD521EF0291008C9FF0 /* TscConfig.m */,
 				1980DBD721EF1141008C9FF0 /* TscConfig_AutoRefresh.m */,
 			);
-			path = Config;
+			path = ConfigFile;
+			sourceTree = "<group>";
+		};
+		19FFB29021F1703C00C02A53 /* StroyBoard */ = {
+			isa = PBXGroup;
+			children = (
+				19FFB2C821F1B9D600C02A53 /* Other */,
+				19FFB2A521F1917F00C02A53 /* Main */,
+				19FFB2AB21F19A8D00C02A53 /* Brief */,
+				19FFB2A621F191B700C02A53 /* Control */,
+				196B41CE21EED10800105D44 /* Config */,
+				19FFB2C621F1B5B100C02A53 /* Main.storyboard */,
+			);
+			path = StroyBoard;
+			sourceTree = "<group>";
+		};
+		19FFB2A521F1917F00C02A53 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				19FFB29321F17B6900C02A53 /* TabBarController.h */,
+				19FFB29421F17B7D00C02A53 /* TabBarController.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		19FFB2A621F191B700C02A53 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				19FFB2A721F191D700C02A53 /* Control.storyboard */,
+				190210BD21E45964009ADE0B /* GlobalStartViewController.h */,
+				190210BE21E45964009ADE0B /* GlobalStartViewController.m */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		19FFB2AB21F19A8D00C02A53 /* Brief */ = {
+			isa = PBXGroup;
+			children = (
+				19FFB2A921F194BD00C02A53 /* Brief.storyboard */,
+				190210C021E45964009ADE0B /* BriefDetail.storyboard */,
+				19FFB2C521F1A70D00C02A53 /* Title */,
+				19FFB2AC21F19A8D00C02A53 /* PageContainerViewController.h */,
+				19FFB2AD21F19A8D00C02A53 /* PageContainerViewController.m */,
+				19FFB2AE21F19A8D00C02A53 /* SamplePageViewController.h */,
+				19FFB2AF21F19A8D00C02A53 /* SamplePageViewController.m */,
+				19FFB2B421F19A8E00C02A53 /* TableViewController.h */,
+				19FFB2B521F19A8E00C02A53 /* TableViewController.m */,
+				19FFB2BA21F19A8E00C02A53 /* ViewController.h */,
+				19FFB2BB21F19A8E00C02A53 /* ViewController.m */,
+			);
+			path = Brief;
+			sourceTree = "<group>";
+		};
+		19FFB2C421F1A1D500C02A53 /* TWPageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				19FFB2B621F19A8E00C02A53 /* TWPageTitleViewController.h */,
+				19FFB2B721F19A8E00C02A53 /* TWPageTitleViewController.m */,
+				19FFB2B821F19A8E00C02A53 /* TWPageViewController.h */,
+				19FFB2B921F19A8E00C02A53 /* TWPageViewController.m */,
+			);
+			path = TWPageViewController;
+			sourceTree = "<group>";
+		};
+		19FFB2C521F1A70D00C02A53 /* Title */ = {
+			isa = PBXGroup;
+			children = (
+				19FFB2B221F19A8E00C02A53 /* SampleTitleViewController.h */,
+				19FFB2B321F19A8E00C02A53 /* SampleTitleViewController.m */,
+				19FFB2B121F19A8E00C02A53 /* SampleTitleCell.m */,
+				19FFB2B021F19A8E00C02A53 /* SampleTitleCell.h */,
+			);
+			path = Title;
+			sourceTree = "<group>";
+		};
+		19FFB2C821F1B9D600C02A53 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				19FFB29121F1706900C02A53 /* Help.storyboard */,
+				1980DBD921F0083E008C9FF0 /* Test.storyboard */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		667701AC65A23EEF211BB78C /* Frameworks */ = {
@@ -299,11 +396,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				190210DD21E49649009ADE0B /* 编程-属性 in Resources */,
-				190210C721E45966009ADE0B /* LaunchScreen111.storyboard in Resources */,
+				19FFB2C721F1B5B100C02A53 /* Main.storyboard in Resources */,
 				190210E021E499DE009ADE0B /* 编程-本地数据保存 in Resources */,
+				19FFB2A821F191D700C02A53 /* Control.storyboard in Resources */,
+				19FFB29221F1706900C02A53 /* Help.storyboard in Resources */,
 				190210C421E45966009ADE0B /* Assets.xcassets in Resources */,
-				190210C221E45964009ADE0B /* Main.storyboard in Resources */,
-				1980DBDA21F0083E008C9FF0 /* Brief.storyboard in Resources */,
+				190210C221E45964009ADE0B /* BriefDetail.storyboard in Resources */,
+				19FFB2AA21F194BD00C02A53 /* Brief.storyboard in Resources */,
+				19FFB2A421F18EEE00C02A53 /* Config.storyboard in Resources */,
+				1980DBDA21F0083E008C9FF0 /* Test.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,15 +443,24 @@
 				190210BF21E45964009ADE0B /* GlobalStartViewController.m in Sources */,
 				190210B921E45964009ADE0B /* AppDelegate.m in Sources */,
 				190210D821E48399009ADE0B /* FilePathHelper.m in Sources */,
+				19FFB2BD21F19A8E00C02A53 /* SamplePageViewController.m in Sources */,
 				194FF95321EC2A3400CAB449 /* GreeksViewController.m in Sources */,
 				190210E621E49C27009ADE0B /* DBHelper.m in Sources */,
 				190210E321E49BC0009ADE0B /* ConfigHelper.m in Sources */,
 				1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */,
+				19FFB29521F17B7D00C02A53 /* TabBarController.m in Sources */,
+				19FFB2BC21F19A8E00C02A53 /* PageContainerViewController.m in Sources */,
 				190210DA21E48DB2009ADE0B /* OCCodingHelper.m in Sources */,
+				19FFB2C121F19A8E00C02A53 /* TWPageTitleViewController.m in Sources */,
+				19FFB2C221F19A8E00C02A53 /* TWPageViewController.m in Sources */,
 				190210CA21E45966009ADE0B /* main.m in Sources */,
 				19417D4721E86BA000C1FF2C /* StringHelper.m in Sources */,
 				190210BC21E45964009ADE0B /* BriefViewController.m in Sources */,
+				19FFB2C321F19A8E00C02A53 /* ViewController.m in Sources */,
 				1980DBD821EF1141008C9FF0 /* TscConfig_AutoRefresh.m in Sources */,
+				19FFB2BF21F19A8E00C02A53 /* SampleTitleViewController.m in Sources */,
+				19FFB2C021F19A8E00C02A53 /* TableViewController.m in Sources */,
+				19FFB2BE21F19A8E00C02A53 /* SampleTitleCell.m in Sources */,
 				196B41D121EED13800105D44 /* ConfigViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,20 +468,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		190210C021E45964009ADE0B /* Main.storyboard */ = {
+		190210C021E45964009ADE0B /* BriefDetail.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				190210C121E45964009ADE0B /* Base */,
 			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		190210C521E45966009ADE0B /* LaunchScreen111.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				190210C621E45966009ADE0B /* Base */,
-			);
-			name = LaunchScreen111.storyboard;
+			name = BriefDetail.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
