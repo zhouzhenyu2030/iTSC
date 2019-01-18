@@ -70,28 +70,23 @@
     UIViewController *ctrl = nil;
     switch(index)
     {
-            
         case 0:
         {
-
             ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"Asset"];
         }
             break;
   
         case 1:
         {
-            
             ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"Greeks"];
         }
             break;
             
         case 2:
         {
-            
             ctrl = [[UIStoryboard storyboardWithName:@"Help" bundle:nil] instantiateViewControllerWithIdentifier:@"HelpMain"];
         }
             break;
-    
     }
     
     
