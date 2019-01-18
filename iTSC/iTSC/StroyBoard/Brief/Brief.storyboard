@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xp-gR-Rr4">
-                                <rect key="frame" x="0.0" y="20" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="30" width="375" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="tQg-6p-DBE"/>
                                 </constraints>
@@ -29,7 +29,7 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hx8-bI-8Q8">
-                                <rect key="frame" x="0.0" y="50" width="375" height="617"/>
+                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
                                 <connections>
                                     <segue destination="eF1-Pa-f6N" kind="embed" id="xvt-e9-6vM"/>
                                 </connections>
@@ -42,7 +42,7 @@
                             <constraint firstAttribute="trailing" secondItem="1xp-gR-Rr4" secondAttribute="trailing" id="kOC-ZR-PZm"/>
                             <constraint firstAttribute="bottom" secondItem="hx8-bI-8Q8" secondAttribute="bottom" id="mVe-MC-4ba"/>
                             <constraint firstAttribute="trailing" secondItem="hx8-bI-8Q8" secondAttribute="trailing" id="mYS-Uh-l47"/>
-                            <constraint firstItem="1xp-gR-Rr4" firstAttribute="top" secondItem="YzP-AR-aD5" secondAttribute="top" constant="20" id="vgz-Ss-5yU"/>
+                            <constraint firstItem="1xp-gR-Rr4" firstAttribute="top" secondItem="YzP-AR-aD5" secondAttribute="top" constant="30" id="vgz-Ss-5yU"/>
                             <constraint firstItem="hx8-bI-8Q8" firstAttribute="leading" secondItem="YzP-AR-aD5" secondAttribute="leading" id="zQm-LR-HS5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2su-db-d60"/>
@@ -113,7 +113,7 @@
             <objects>
                 <viewController storyboardIdentifier="ViewController" id="eF1-Pa-f6N" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1dc-c6-wvf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="607"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="8cL-Ag-pYp"/>
