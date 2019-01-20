@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "UIHelper.h"
+#import "StringHelper.h"
+
 
 @implementation UIHelper
 
@@ -88,6 +90,46 @@
     }
     
     return nil;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//显示Field值
++(void) DisplayCell:(UITableView*) vTableView Field:(NSDictionary*)vField TitleName:(NSString*)vTitleName Value:(NSString*) vValue SetColor:(BOOL) visSetColor
+{
+    UITableViewCell* cell=[UIHelper SetTabelViewCellDetailText:vTableView TitleText: vTitleName DetialText:vValue];
+    
+    if(cell==nil)
+        return;
+    
+    if(visSetColor == false)
+        return;
+    
+    if(vValue.floatValue==0)
+    {
+        cell.detailTextLabel.textColor=UIColor.blackColor;
+    }
+    else
+    {
+        if(vValue.floatValue>0)
+            cell.detailTextLabel.textColor=UIColor.blueColor;
+        else
+            cell.detailTextLabel.textColor=UIColor.redColor;
+    }
+}
+
+
++(void) DisplayCell:(UITableView*) vTableView Field:(NSDictionary*)vField TitleName:(NSString*)vTitleName FieldName:(NSString*) vFieldName SetColor:(BOOL) visSetColor
+{
+    NSString* _value = [StringHelper sPositiveFormat:vField[vFieldName] pointNumber:2];
+    [self DisplayCell:vTableView Field:vField TitleName:vTitleName Value:_value SetColor:visSetColor];
+}
+
++(UITableViewCell*) DisplayIntCell:(UITableView*) vTableView Field:(NSDictionary*)vField TitleName:(NSString*)vTitleName FieldName:(NSString*) vFieldName
+{
+    NSString* value = [StringHelper sPositiveFormat:vField[vFieldName] pointNumber:0];
+    UITableViewCell* cell=[UIHelper SetTabelViewCellDetailText:vTableView TitleText: vTitleName DetialText:value];
+    return cell;
 }
 
 

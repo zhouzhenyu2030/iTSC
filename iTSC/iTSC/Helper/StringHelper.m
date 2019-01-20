@@ -26,7 +26,7 @@
             }
             if (vValue < 1000 && vValue > -1000 )
             {
-                return  [NSString stringWithFormat:@"%f", vValue];
+                return  [NSString stringWithFormat:@"%.0f", vValue];
             };
             
             NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];

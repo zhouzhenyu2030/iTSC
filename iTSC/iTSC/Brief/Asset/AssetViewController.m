@@ -241,10 +241,10 @@
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"AccountID:" DetialText:_sValue];
     
  
-    [self DisplayCell:_field TitleName:@"Asset (Theory):" FieldName:@"AssetTheo" SetColor:false];
-    [self DisplayCell:_field TitleName:@"Asset (Market):" FieldName:@"Asset" SetColor:false];
-    [self DisplayCell:_field TitleName:@"Total Cash:" FieldName:@"TotalCash" SetColor:false];
-    [self DisplayCell:_field TitleName:@"Curr Margin:" FieldName:@"CurrMargin" SetColor:false];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Asset (Theory):" FieldName:@"AssetTheo" SetColor:false];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Asset (Market):" FieldName:@"Asset" SetColor:false];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total Cash:" FieldName:@"TotalCash" SetColor:false];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Curr Margin:" FieldName:@"CurrMargin" SetColor:false];
 
     _fValue=[_field[@"Asset"]  floatValue] - [_field[@"AssetTheo"]  floatValue];
     _sValue = [StringHelper fPositiveFormat:_fValue pointNumber:2];
@@ -257,18 +257,18 @@
 
     
     
-    [self DisplayCell:_field TitleName:@"Trade PNL (Marktet):" FieldName:@"TradeMktPNL" SetColor:true];
-    [self DisplayCell:_field TitleName:@"Yd    PNL (Marktet):" FieldName:@"YdMktPNL" SetColor:true];
-    [self DisplayCell:_field TitleName:@"Total PNL (Marktet):" FieldName:@"TotalMktPNL" SetColor:true];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Trade PNL (Marktet):" FieldName:@"TradeMktPNL" SetColor:true];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Yd    PNL (Marktet):" FieldName:@"YdMktPNL" SetColor:true];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total PNL (Marktet):" FieldName:@"TotalMktPNL" SetColor:true];
 
-    [self DisplayCell:_field TitleName:@"Trade PNL (Theo):" FieldName:@"TradeTheoPNL" SetColor:true];
-    [self DisplayCell:_field TitleName:@"Yd    PNL (Theo):" FieldName:@"YdTheoPNL" SetColor:true];
-    [self DisplayCell:_field TitleName:@"Total PNL (Theo):" FieldName:@"TotalTheoPNL" SetColor:true];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Trade PNL (Theo):" FieldName:@"TradeTheoPNL" SetColor:true];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Yd    PNL (Theo):" FieldName:@"YdTheoPNL" SetColor:true];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total PNL (Theo):" FieldName:@"TotalTheoPNL" SetColor:true];
 
 
-    [self DisplayIntCell:_field TitleName:@"Trade Qty:" FieldName:@"TradeQty"];
-    [self DisplayIntCell:_field TitleName:@"Order Insert Qty:" FieldName:@"OrderInsertQty"];
-    [self DisplayIntCell:_field TitleName:@"Order Insert Cnt:" FieldName:@"OrderInsertCnt"];
+    [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Trade Qty:" FieldName:@"TradeQty"];
+    [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Order Insert Qty:" FieldName:@"OrderInsertQty"];
+    [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Order Insert Cnt:" FieldName:@"OrderInsertCnt"];
 
     int _TradeQty=[_field[@"TradeQty"] intValue];
     int _OrderInsertQty=[_field[@"OrderInsertQty"] intValue];
@@ -304,38 +304,6 @@
 
 
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
--(void) DisplayCell:(NSDictionary*)vField TitleName:(NSString*)vTitleName FieldName:(NSString*) vFieldName SetColor:(BOOL) visSetColor
-{
-    
-    NSString* value = [StringHelper sPositiveFormat:vField[vFieldName] pointNumber:2];
-    UITableViewCell* cell=[UIHelper SetTabelViewCellDetailText:TableView TitleText: vTitleName DetialText:value];
-    
-    if(cell==nil)
-        return;
-    
-    if(visSetColor == false)
-        return;
-    
-    if([vField[vFieldName] floatValue]==0)
-    {
-        cell.detailTextLabel.textColor=UIColor.blackColor;
-    }
-    else
-    {
-        if([vField[vFieldName] floatValue]>0)
-            cell.detailTextLabel.textColor=UIColor.blueColor;
-        else
-            cell.detailTextLabel.textColor=UIColor.redColor;
-    }
-}
--(UITableViewCell*) DisplayIntCell:(NSDictionary*)vField TitleName:(NSString*)vTitleName FieldName:(NSString*) vFieldName
-{
-    NSString* value = [StringHelper sPositiveFormat:vField[vFieldName] pointNumber:0];
-    UITableViewCell* cell=[UIHelper SetTabelViewCellDetailText:TableView TitleText: vTitleName DetialText:value];
-    return cell;
-}
 
 
 @end

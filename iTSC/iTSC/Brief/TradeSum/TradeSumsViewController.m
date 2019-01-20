@@ -160,27 +160,32 @@
     cell = [UIHelper SetTabelViewCellText:TableView Section:0 Row:0 TitleText:@"RecordDate:" DetialText:@"-/-/-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:0 Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"TPR:" DetialText:@"-"];
-    cell.detailTextLabel.textColor=UIColor.magentaColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"Trade Edge:" DetialText:@"-"];
-    cell.detailTextLabel.textColor=UIColor.blueColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Trade Qty:" DetialText:@"-"];
-    cell.detailTextLabel.textColor=UIColor.blueColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:3 TitleText:@"Buy Open Trade:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:4 TitleText:@"Trade Fee:" DetialText:@"-"];
-
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"Order Trade Ratio (%):" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Order Insert Cnt:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Order Insert Qty:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:3 TitleText:@"Order Rsp Cnt:" DetialText:@"-"];
-
-
     
+    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"Order Trade Ratio (%):" DetialText:@"-"];
+    cell.detailTextLabel.textColor=UIColor.blueColor;
+    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"Order Insert Cnt:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Order Insert Qty:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:3 TitleText:@"Order Rsp Cnt:" DetialText:@"-"];
+    
+    
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"TPR:" DetialText:@"-"];
+    cell.detailTextLabel.textColor=UIColor.magentaColor;
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Trade Edge:" DetialText:@"-"];
+    cell.detailTextLabel.textColor=UIColor.blueColor;
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Trade Qty:" DetialText:@"-"];
+    cell.detailTextLabel.textColor=UIColor.blueColor;
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:3 TitleText:@"Edge Per Order:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:4 TitleText:@"Buy Open Trade:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:5 TitleText:@"Trade Fee:" DetialText:@"-"];
+    
+
     cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"Trade Edge (AT):" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:1 TitleText:@"Trade Qty (AT):" DetialText:@"-"];
-    
+    cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:2 TitleText:@"Edge Per Order (AT):" DetialText:@"-"];
+
     cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"Trade Edge (AH):" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"Trade Qty (AH):" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"Edge Per Order (AH):" DetialText:@"-"];
 
 
     cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
@@ -231,57 +236,63 @@
         NSLog(@"%@", _field);
         
         typename=_field[@"ItemType"];
-        typename=[typename stringByAppendingString:@":"];
         
-        if([typename isEqualToString:@"TradePosRatio:"])
-        {
-            value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:2];
-            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"TPR:" DetialText:value];
-        }
-        if([typename isEqualToString:@"TradeQty:"])
-        {
-            value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:0];
-            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Trade Qty:" DetialText:value];
-        }
-        if([typename isEqualToString:@"TradeFee:"])
-        {
-            value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:2];
-            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Trade Fee:" DetialText:value];
-        }
-        if([typename isEqualToString:@"TradeEdge:"])
-        {
-            value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:2];
-            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Trade Edge:" DetialText:value];
-        }
-        if([typename isEqualToString:@"BuyOpenTrade:"])
-        {
-            value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:0];
-            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Buy Open Trade:" DetialText:value];
-        }
-
-
-        if([typename isEqualToString:@"OrderTradeRatio:"])
+        
+        if([typename isEqualToString:@"OrderTradeRatio"])
         {
             value=_field[@"ItemValue"];
             float _fValue=value.floatValue*100;
             value=[StringHelper fPositiveFormat:_fValue pointNumber:2];
             [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Order Trade Ratio (%):" DetialText:value];
         }
-        if([typename isEqualToString:@"OrderInsertCnt:"])
-        {
-            value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:0];
-            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Order Insert Cnt:" DetialText:value];
-        }
-        if([typename isEqualToString:@"OrderInsertQty:"])
-        {
-            value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:0];
-            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Order Insert Qty:" DetialText:value];
-        }
-        if([typename isEqualToString:@"OrderRspCnt:"])
-        {
-            value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:0];
-            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Order Rsp Cnt:" DetialText:value];
-        }
+        if([typename isEqualToString:@"OrderInsertCnt"])
+             [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Order Insert Cnt:" FieldName:@"ItemValue"];
+        if([typename isEqualToString:@"OrderInsertQty"])
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Order Insert Qty:" FieldName:@"ItemValue"];
+        if([typename isEqualToString:@"OrderRspCnt"])
+               [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Order Rsp Cnt:" FieldName:@"ItemValue"];
+        
+
+        //Trade
+        if([typename isEqualToString:@"TradePosRatio"])
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"TPR:" FieldName:@"ItemValue" SetColor:false];
+
+        if([typename isEqualToString:@"TradeQty"])
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Trade Qty:" FieldName:@"ItemValue"];
+
+        if([typename isEqualToString:@"TradeFee"])
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Trade Fee:" FieldName:@"ItemValue" SetColor:false];
+
+        if([typename isEqualToString:@"TradeEdge"])
+            
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Trade Edge:" FieldName:@"ItemValue" SetColor:true];
+        if([typename isEqualToString:@"EPO"])
+            
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Edge Per Order:" FieldName:@"ItemValue" SetColor:false];
+        if([typename isEqualToString:@"BuyOpenTrade"])
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Buy Open Trade:" FieldName:@"ItemValue"];
+
+
+
+        if([typename isEqualToString:@"ATTradeEdge"])
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Trade Edge (AT):" FieldName:@"ItemValue" SetColor:true];
+
+        if([typename isEqualToString:@"ATTradeQty"])
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Trade Qty (AT):" FieldName:@"ItemValue"];
+
+        if([typename isEqualToString:@"ATEPO"])
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Edge Per Order (AT):" FieldName:@"ItemValue" SetColor:false];
+
+
+        
+        if([typename isEqualToString:@"AHTradeEdge"])
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Trade Edge (AH):" FieldName:@"ItemValue" SetColor:true];
+
+        if([typename isEqualToString:@"AHTradeQty"])
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Trade Qty (AH):" FieldName:@"ItemValue"];
+
+        if([typename isEqualToString:@"AHEPO"])
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Edge Per Order (AH):" FieldName:@"ItemValue" SetColor:false];
 
 
     }
@@ -304,37 +315,6 @@
 
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
--(void) DisplayCell:(NSDictionary*)vField TitleName:(NSString*)vTitleName FieldName:(NSString*) vFieldName SetColor:(BOOL) visSetColor
-{
-    
-    NSString* value = [StringHelper sPositiveFormat:vField[vFieldName] pointNumber:2];
-    UITableViewCell* cell=[UIHelper SetTabelViewCellDetailText:TableView TitleText: vTitleName DetialText:value];
-    
-    if(cell==nil)
-        return;
-    
-    if(visSetColor == false)
-        return;
-    
-    if([vField[vFieldName] floatValue]==0)
-    {
-        cell.detailTextLabel.textColor=UIColor.blackColor;
-    }
-    else
-    {
-        if([vField[vFieldName] floatValue]>0)
-            cell.detailTextLabel.textColor=UIColor.blueColor;
-        else
-            cell.detailTextLabel.textColor=UIColor.redColor;
-    }
-}
--(UITableViewCell*) DisplayIntCell:(NSDictionary*)vField TitleName:(NSString*)vTitleName FieldName:(NSString*) vFieldName
-{
-    NSString* value = [StringHelper sPositiveFormat:vField[vFieldName] pointNumber:0];
-    UITableViewCell* cell=[UIHelper SetTabelViewCellDetailText:TableView TitleText: vTitleName DetialText:value];
-    return cell;
-}
 
 
 @end
