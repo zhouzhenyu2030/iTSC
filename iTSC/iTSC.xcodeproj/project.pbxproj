@@ -20,10 +20,12 @@
 		190210E321E49BC0009ADE0B /* ConfigHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210E221E49BC0009ADE0B /* ConfigHelper.m */; };
 		190210E621E49C27009ADE0B /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210E521E49C27009ADE0B /* DBHelper.m */; };
 		19417D4721E86BA000C1FF2C /* StringHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 19417D4621E86BA000C1FF2C /* StringHelper.m */; };
-		194FF95321EC2A3400CAB449 /* GreeksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194FF95221EC2A3400CAB449 /* GreeksViewController.m */; };
+		194D007A21F2824C008918DA /* TscConnections.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D007921F2824C008918DA /* TscConnections.m */; };
+		194D008421F2B52B008918DA /* GreeksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008321F2B52B008918DA /* GreeksViewController.m */; };
+		194D008721F2C714008918DA /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008621F2C714008918DA /* TestViewController.m */; };
+		194D008921F41210008918DA /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008821F41210008918DA /* UIHelper.m */; };
 		196B41D121EED13800105D44 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196B41D021EED13800105D44 /* ConfigViewController.m */; };
 		1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980DBD521EF0291008C9FF0 /* TscConfig.m */; };
-		1980DBD821EF1141008C9FF0 /* TscConfig_AutoRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980DBD721EF1141008C9FF0 /* TscConfig_AutoRefresh.m */; };
 		1980DBDA21F0083E008C9FF0 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1980DBD921F0083E008C9FF0 /* Test.storyboard */; };
 		19FFB29221F1706900C02A53 /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19FFB29121F1706900C02A53 /* Help.storyboard */; };
 		19FFB29521F17B7D00C02A53 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB29421F17B7D00C02A53 /* TabBarController.m */; };
@@ -65,13 +67,18 @@
 		190210E521E49C27009ADE0B /* DBHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
 		19417D4521E86B8C00C1FF2C /* StringHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringHelper.h; sourceTree = "<group>"; };
 		19417D4621E86BA000C1FF2C /* StringHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringHelper.m; sourceTree = "<group>"; };
-		194FF95121EC2A1A00CAB449 /* GreeksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GreeksViewController.h; sourceTree = "<group>"; };
-		194FF95221EC2A3400CAB449 /* GreeksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GreeksViewController.m; sourceTree = "<group>"; };
+		194D007821F280EC008918DA /* TscConnections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TscConnections.h; sourceTree = "<group>"; };
+		194D007921F2824C008918DA /* TscConnections.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TscConnections.m; sourceTree = "<group>"; };
+		194D008221F2B51A008918DA /* GreeksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GreeksViewController.h; sourceTree = "<group>"; };
+		194D008321F2B52B008918DA /* GreeksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GreeksViewController.m; sourceTree = "<group>"; };
+		194D008521F2C707008918DA /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		194D008621F2C714008918DA /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		194D008821F41210008918DA /* UIHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIHelper.m; sourceTree = "<group>"; };
+		194D008A21F4121E008918DA /* UIHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIHelper.h; sourceTree = "<group>"; };
 		196B41CF21EED11F00105D44 /* ConfigViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
 		196B41D021EED13800105D44 /* ConfigViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 		1980DBD421EF0275008C9FF0 /* TscConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TscConfig.h; sourceTree = "<group>"; };
 		1980DBD521EF0291008C9FF0 /* TscConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TscConfig.m; sourceTree = "<group>"; };
-		1980DBD721EF1141008C9FF0 /* TscConfig_AutoRefresh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TscConfig_AutoRefresh.m; sourceTree = "<group>"; };
 		1980DBD921F0083E008C9FF0 /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
 		19FFB29121F1706900C02A53 /* Help.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
 		19FFB29321F17B6900C02A53 /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
@@ -132,6 +139,7 @@
 		190210B621E45964009ADE0B /* iTSC */ = {
 			isa = PBXGroup;
 			children = (
+				194FF95521EC2BEA00CAB449 /* Brief */,
 				19FFB29021F1703C00C02A53 /* StroyBoard */,
 				1980DBD321EF025E008C9FF0 /* ConfigFile */,
 				194FF95421EC2B6B00CAB449 /* Main */,
@@ -145,18 +153,15 @@
 		190210D421E4832D009ADE0B /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				194D008B21F4148C008918DA /* nouse */,
 				190210DE21E49682009ADE0B /* 编程 */,
 				19FFB2C421F1A1D500C02A53 /* TWPageViewController */,
-				190210D621E48375009ADE0B /* FilePathHelper.h */,
-				190210D721E48399009ADE0B /* FilePathHelper.m */,
-				190210D921E48DB2009ADE0B /* OCCodingHelper.m */,
-				190210DB21E49255009ADE0B /* Locker.h */,
-				190210E121E49BA1009ADE0B /* ConfigHelper.h */,
-				190210E221E49BC0009ADE0B /* ConfigHelper.m */,
 				190210E421E49C0A009ADE0B /* DBHelper.h */,
 				190210E521E49C27009ADE0B /* DBHelper.m */,
 				19417D4521E86B8C00C1FF2C /* StringHelper.h */,
 				19417D4621E86BA000C1FF2C /* StringHelper.m */,
+				194D008A21F4121E008918DA /* UIHelper.h */,
+				194D008821F41210008918DA /* UIHelper.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -170,11 +175,49 @@
 			path = "编程";
 			sourceTree = "<group>";
 		};
+		194D007B21F2ADD2008918DA /* StroyBoard */ = {
+			isa = PBXGroup;
+			children = (
+				19FFB2A921F194BD00C02A53 /* Brief.storyboard */,
+				190210C021E45964009ADE0B /* BriefDetail.storyboard */,
+				19FFB2AC21F19A8D00C02A53 /* PageContainerViewController.h */,
+				19FFB2AD21F19A8D00C02A53 /* PageContainerViewController.m */,
+				19FFB2C521F1A70D00C02A53 /* Title */,
+				19FFB2C921F1BAF600C02A53 /* Page */,
+			);
+			path = StroyBoard;
+			sourceTree = "<group>";
+		};
+		194D007C21F2AE4E008918DA /* Pos */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pos;
+			sourceTree = "<group>";
+		};
+		194D007D21F2AE6D008918DA /* TradeSum */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TradeSum;
+			sourceTree = "<group>";
+		};
+		194D008B21F4148C008918DA /* nouse */ = {
+			isa = PBXGroup;
+			children = (
+				190210DB21E49255009ADE0B /* Locker.h */,
+				190210D621E48375009ADE0B /* FilePathHelper.h */,
+				190210D721E48399009ADE0B /* FilePathHelper.m */,
+				190210D921E48DB2009ADE0B /* OCCodingHelper.m */,
+				190210E121E49BA1009ADE0B /* ConfigHelper.h */,
+				190210E221E49BC0009ADE0B /* ConfigHelper.m */,
+			);
+			path = nouse;
+			sourceTree = "<group>";
+		};
 		194FF94F21EC22BD00CAB449 /* ViewClass */ = {
 			isa = PBXGroup;
 			children = (
-				194FF95521EC2BEA00CAB449 /* Brief */,
-				194FF95721EC2C1A00CAB449 /* Greeks */,
 				194FF95821EC333800CAB449 /* Chart */,
 			);
 			path = ViewClass;
@@ -194,8 +237,11 @@
 		194FF95521EC2BEA00CAB449 /* Brief */ = {
 			isa = PBXGroup;
 			children = (
-				190210BA21E45964009ADE0B /* BriefViewController.h */,
-				190210BB21E45964009ADE0B /* BriefViewController.m */,
+				194D007B21F2ADD2008918DA /* StroyBoard */,
+				194D007D21F2AE6D008918DA /* TradeSum */,
+				19FFB2AB21F19A8D00C02A53 /* Asset */,
+				194FF95721EC2C1A00CAB449 /* Greeks */,
+				194D007C21F2AE4E008918DA /* Pos */,
 			);
 			path = Brief;
 			sourceTree = "<group>";
@@ -203,8 +249,8 @@
 		194FF95721EC2C1A00CAB449 /* Greeks */ = {
 			isa = PBXGroup;
 			children = (
-				194FF95121EC2A1A00CAB449 /* GreeksViewController.h */,
-				194FF95221EC2A3400CAB449 /* GreeksViewController.m */,
+				194D008221F2B51A008918DA /* GreeksViewController.h */,
+				194D008321F2B52B008918DA /* GreeksViewController.m */,
 			);
 			path = Greeks;
 			sourceTree = "<group>";
@@ -231,7 +277,8 @@
 			children = (
 				1980DBD421EF0275008C9FF0 /* TscConfig.h */,
 				1980DBD521EF0291008C9FF0 /* TscConfig.m */,
-				1980DBD721EF1141008C9FF0 /* TscConfig_AutoRefresh.m */,
+				194D007821F280EC008918DA /* TscConnections.h */,
+				194D007921F2824C008918DA /* TscConnections.m */,
 			);
 			path = ConfigFile;
 			sourceTree = "<group>";
@@ -240,7 +287,6 @@
 			isa = PBXGroup;
 			children = (
 				19FFB2C821F1B9D600C02A53 /* Other */,
-				19FFB2AB21F19A8D00C02A53 /* Brief */,
 				19FFB2A621F191B700C02A53 /* Control */,
 				196B41CE21EED10800105D44 /* Config */,
 				19FFB2C621F1B5B100C02A53 /* Main.storyboard */,
@@ -260,17 +306,13 @@
 			path = Control;
 			sourceTree = "<group>";
 		};
-		19FFB2AB21F19A8D00C02A53 /* Brief */ = {
+		19FFB2AB21F19A8D00C02A53 /* Asset */ = {
 			isa = PBXGroup;
 			children = (
-				19FFB2A921F194BD00C02A53 /* Brief.storyboard */,
-				190210C021E45964009ADE0B /* BriefDetail.storyboard */,
-				19FFB2AC21F19A8D00C02A53 /* PageContainerViewController.h */,
-				19FFB2AD21F19A8D00C02A53 /* PageContainerViewController.m */,
-				19FFB2C521F1A70D00C02A53 /* Title */,
-				19FFB2C921F1BAF600C02A53 /* Page */,
+				190210BA21E45964009ADE0B /* BriefViewController.h */,
+				190210BB21E45964009ADE0B /* BriefViewController.m */,
 			);
-			path = Brief;
+			path = Asset;
 			sourceTree = "<group>";
 		};
 		19FFB2C421F1A1D500C02A53 /* TWPageViewController */ = {
@@ -300,6 +342,8 @@
 			children = (
 				19FFB29121F1706900C02A53 /* Help.storyboard */,
 				1980DBD921F0083E008C9FF0 /* Test.storyboard */,
+				194D008521F2C707008918DA /* TestViewController.h */,
+				194D008621F2C714008918DA /* TestViewController.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -436,22 +480,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				190210BF21E45964009ADE0B /* GlobalStartViewController.m in Sources */,
+				194D008421F2B52B008918DA /* GreeksViewController.m in Sources */,
 				190210B921E45964009ADE0B /* AppDelegate.m in Sources */,
 				190210D821E48399009ADE0B /* FilePathHelper.m in Sources */,
-				194FF95321EC2A3400CAB449 /* GreeksViewController.m in Sources */,
+				194D007A21F2824C008918DA /* TscConnections.m in Sources */,
 				190210E621E49C27009ADE0B /* DBHelper.m in Sources */,
 				190210E321E49BC0009ADE0B /* ConfigHelper.m in Sources */,
 				1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */,
 				19FFB29521F17B7D00C02A53 /* TabBarController.m in Sources */,
 				19FFB2BC21F19A8E00C02A53 /* PageContainerViewController.m in Sources */,
+				194D008921F41210008918DA /* UIHelper.m in Sources */,
 				190210DA21E48DB2009ADE0B /* OCCodingHelper.m in Sources */,
+				194D008721F2C714008918DA /* TestViewController.m in Sources */,
 				19FFB2C121F19A8E00C02A53 /* TWPageTitleViewController.m in Sources */,
 				19FFB2C221F19A8E00C02A53 /* TWPageViewController.m in Sources */,
 				190210CA21E45966009ADE0B /* main.m in Sources */,
 				19417D4721E86BA000C1FF2C /* StringHelper.m in Sources */,
 				190210BC21E45964009ADE0B /* BriefViewController.m in Sources */,
 				19FFB2C321F19A8E00C02A53 /* ViewController.m in Sources */,
-				1980DBD821EF1141008C9FF0 /* TscConfig_AutoRefresh.m in Sources */,
 				19FFB2BF21F19A8E00C02A53 /* SampleTitleViewController.m in Sources */,
 				19FFB2C021F19A8E00C02A53 /* TableViewController.m in Sources */,
 				19FFB2BE21F19A8E00C02A53 /* SampleTitleCell.m in Sources */,

@@ -9,10 +9,9 @@
 #ifndef TscConfig_h
 #define TscConfig_h
 
+
+
 @interface TscConfig : NSObject
-{
-    
-}
 
 +(void) Init;
 

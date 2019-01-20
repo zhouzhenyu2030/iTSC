@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DBHelper.h"
+#import "TscConnections.h"
 
 
 
@@ -41,13 +42,16 @@ static OHMySQLQueryContext *_queryContext;
     }
     
     
+    TscConnection _con = [TscConnections getConnection:@"148"];
+    
     //user
-    _user = [[OHMySQLUser alloc] initWithUserName:@"opt"
-                                        password:@"Hr@2017yy"
-                                      serverName:@"101.226.255.148"
-                                          dbName:@"tss"
-                                            port:30003
-                                          socket:nil];
+    _user = [[OHMySQLUser alloc] initWithUserName:_con.UserName
+                                         password:_con.UserPassword
+                                       serverName:_con.IP
+                                           dbName:_con.dbName
+                                             port:_con.Port
+                                           socket:nil];
+    
     if(_user==nil)
     {
         NSLog(@"DBHelper: Init: _user==nil!");

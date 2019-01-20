@@ -81,16 +81,22 @@
             ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"Greeks"];
         }
             break;
-            
+
         case 2:
         {
             ctrl = [[UIStoryboard storyboardWithName:@"Help" bundle:nil] instantiateViewControllerWithIdentifier:@"HelpMain"];
         }
             break;
-            
-        case 3:
+
+        case 4:
         {
-            ctrl = [[UIStoryboard storyboardWithName:@"Test" bundle:nil] instantiateViewControllerWithIdentifier:@"TableView"];
+            //
+        }
+            break;
+            
+        case 5:
+        {
+            //ctrl = [[UIStoryboard storyboardWithName:@"Test" bundle:nil] instantiateViewControllerWithIdentifier:@"TableView"];
         }
             break;
     }

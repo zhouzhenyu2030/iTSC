@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////
 NSUserDefaults *_UserDefaults;
 
+//@synthesize Connections;
 
 
 
@@ -35,7 +36,8 @@ NSUserDefaults *_UserDefaults;
     _isGlobalAutoRefresh=[_UserDefaults boolForKey:@"isGlobalAutoRefresh"];
     _isBriefAutoRefresh=[_UserDefaults boolForKey:@"isBriefAutoRefresh"];
     _isGreekAutoRefresh=[_UserDefaults boolForKey:@"isGreekAutoRefresh"];
-    
+
+
 }
 
 

@@ -20,6 +20,8 @@
     
     
     //property
+
+
     @property (weak, nonatomic) IBOutlet UILabel *Label_AccountID;
     
     @property (weak, nonatomic) IBOutlet UILabel *Label_HisDate;
@@ -54,7 +56,8 @@
 
     @property (weak, nonatomic) IBOutlet UILabel *Label_RefreshCount;
 
-    
+    //@property (strong, nonatomic) IBOutlet UIView *View;
+
 //action
 - (IBAction)MyButtonClick:(UIButton *)sender;
 - (IBAction)SwitchChanged:(id)sender;

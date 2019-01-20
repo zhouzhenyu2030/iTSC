@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "TscConfig.h"
+#import "TscConnections.h"
 
 int main(int argc, char * argv[]) {
     
     [TscConfig Init];
+    [TscConnections Init];
     
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));

@@ -15,6 +15,9 @@
 
 @implementation BriefViewController
 
+
+    //@synthesize View;
+
     @synthesize Label_AccountID;
     
     @synthesize Label_HisDate;
@@ -64,7 +67,39 @@
     {
         myTimer  =  [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
     }
+    
+    //[self setupRefresh];
 }
+
+/*
+// 设置下拉刷新
+- (void)setupRefresh
+{
+    NSLog(@"setupRefresh -- 下拉刷新");
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventValueChanged];
+    refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"正在刷新"];
+    //刷新图形时的颜色，即刷新的时候那个菊花的颜色
+    refreshControl.tintColor = [UIColor redColor];
+    [self.View addSubview:refreshControl];
+    [refreshControl beginRefreshing];
+    [self refreshClick:refreshControl];
+ 
+}
+
+
+// 下拉刷新触发
+- (void)refreshClick:(UIRefreshControl *)refreshControl
+{
+    i = 1;
+    [self QueryAndDisplay];
+    Label_RefreshCount.text=[NSString stringWithFormat:@"%d", i];
+
+    [self QueryAndDisplay];
+    NSLog(@"refreshClick: -- 刷新触发");
+    [refreshControl endRefreshing];
+}
+*/
 
 
 
@@ -147,8 +182,9 @@
 //查询按钮
 - (IBAction)MyButtonClick:(UIButton *)sender
 {
-    i = 0;
+    i = 1;
     [self QueryAndDisplay];
+    Label_RefreshCount.text=[NSString stringWithFormat:@"%d", i];
 }
 
 
