@@ -147,7 +147,21 @@
 - (UICollectionViewCell *)pageTitleViewController:(TWPageTitleViewController *)controller cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
      SampleTitleCell*cell = [controller.collectionView dequeueReusableCellWithReuseIdentifier:@"SampleTitleCell" forIndexPath:indexPath];
-    cell.titleLabel.text = [NSString stringWithFormat:@"title:%ld",(long)indexPath.row];
+    switch(indexPath.row)
+    {
+        case 0:
+            cell.titleLabel.text = @"Asset";
+            break;
+        case 1:
+            cell.titleLabel.text = @"Greeks";
+            break;
+        case 2:
+            cell.titleLabel.text = @"TradeSums";
+            break;
+        default:
+            cell.titleLabel.text = [NSString stringWithFormat:@"Title%d", (int)indexPath.row];
+    }
+    
     cell.titleLabel.textColor = [UIColor grayColor];
     
     cell.backgroundColor = [UIColor clearColor];//[UIColor colorWithRed:(float)(random() %  10)/10.f green:(float)(random() %  10)/10.f blue:(float)(random() %  10)/10.f alpha:1.0];
@@ -167,7 +181,7 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        SampleTitleCell*cell = (SampleTitleCell *)[controller.collectionView cellForItemAtIndexPath:indexPath];
+        //SampleTitleCell*cell = (SampleTitleCell *)[controller.collectionView cellForItemAtIndexPath:indexPath];
         
 //        NSLog(@"willHilightItemAtIndexPath : %ld --- %@",indexPath.row,cell);
 
@@ -179,7 +193,7 @@
          //   }
         //];
         
-        cell.titleLabel.textColor = [UIColor greenColor];
+        //cell.titleLabel.textColor = [UIColor greenColor];
 
     });
 }
