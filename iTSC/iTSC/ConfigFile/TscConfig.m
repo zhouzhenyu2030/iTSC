@@ -36,6 +36,7 @@ NSUserDefaults *_UserDefaults;
     _isGlobalAutoRefresh=[_UserDefaults boolForKey:@"isGlobalAutoRefresh"];
     _isAssetAutoRefresh=[_UserDefaults boolForKey:@"isAssetAutoRefresh"];
     _isGreekAutoRefresh=[_UserDefaults boolForKey:@"isGreekAutoRefresh"];
+    _isTradeSumAutoRefresh=[_UserDefaults boolForKey:@"isTradeSumAutoRefresh"];
 
 
 }
@@ -112,6 +113,19 @@ static Boolean _isGreekAutoRefresh;
 {
     _isGreekAutoRefresh = vValue;
     [_UserDefaults setBool:(vValue) forKey:(@"isGreekAutoRefresh")];
+}
+
+
+//TradeSumAutoRefresh
+static Boolean _isTradeSumAutoRefresh;
++(Boolean) isTradeSumAutoRefresh
+{
+    return _isTradeSumAutoRefresh;
+}
++(void) setTradeSumAutoRefresh:(Boolean) vValue
+{
+    _isTradeSumAutoRefresh = vValue;
+    [_UserDefaults setBool:(vValue) forKey:(@"isTradeSumAutoRefresh")];
 }
 
 

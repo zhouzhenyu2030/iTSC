@@ -24,6 +24,7 @@
 		194D008721F2C714008918DA /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008621F2C714008918DA /* TestViewController.m */; };
 		194D008921F41210008918DA /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008821F41210008918DA /* UIHelper.m */; };
 		194D008E21F44057008918DA /* AssetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008D21F44057008918DA /* AssetViewController.m */; };
+		194D009021F46CE5008918DA /* TradeSumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008F21F46CE5008918DA /* TradeSumsViewController.m */; };
 		196B41D121EED13800105D44 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196B41D021EED13800105D44 /* ConfigViewController.m */; };
 		1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980DBD521EF0291008C9FF0 /* TscConfig.m */; };
 		1980DBDA21F0083E008C9FF0 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1980DBD921F0083E008C9FF0 /* Test.storyboard */; };
@@ -75,6 +76,8 @@
 		194D008A21F4121E008918DA /* UIHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIHelper.h; sourceTree = "<group>"; };
 		194D008C21F44049008918DA /* AssetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetViewController.h; sourceTree = "<group>"; };
 		194D008D21F44057008918DA /* AssetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetViewController.m; sourceTree = "<group>"; };
+		194D008F21F46CE5008918DA /* TradeSumsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TradeSumsViewController.m; sourceTree = "<group>"; };
+		194D009121F46CF1008918DA /* TradeSumsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TradeSumsViewController.h; sourceTree = "<group>"; };
 		196B41CF21EED11F00105D44 /* ConfigViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
 		196B41D021EED13800105D44 /* ConfigViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 		1980DBD421EF0275008C9FF0 /* TscConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TscConfig.h; sourceTree = "<group>"; };
@@ -178,10 +181,6 @@
 		194D007B21F2ADD2008918DA /* StroyBoard */ = {
 			isa = PBXGroup;
 			children = (
-				19FFB2A921F194BD00C02A53 /* Brief.storyboard */,
-				190210C021E45964009ADE0B /* BriefDetail.storyboard */,
-				19FFB2AC21F19A8D00C02A53 /* PageContainerViewController.h */,
-				19FFB2AD21F19A8D00C02A53 /* PageContainerViewController.m */,
 				19FFB2C521F1A70D00C02A53 /* Title */,
 				19FFB2C921F1BAF600C02A53 /* Page */,
 			);
@@ -198,6 +197,8 @@
 		194D007D21F2AE6D008918DA /* TradeSum */ = {
 			isa = PBXGroup;
 			children = (
+				194D009121F46CF1008918DA /* TradeSumsViewController.h */,
+				194D008F21F46CE5008918DA /* TradeSumsViewController.m */,
 			);
 			path = TradeSum;
 			sourceTree = "<group>";
@@ -237,6 +238,10 @@
 		194FF95521EC2BEA00CAB449 /* Brief */ = {
 			isa = PBXGroup;
 			children = (
+				19FFB2A921F194BD00C02A53 /* Brief.storyboard */,
+				190210C021E45964009ADE0B /* BriefDetail.storyboard */,
+				19FFB2AC21F19A8D00C02A53 /* PageContainerViewController.h */,
+				19FFB2AD21F19A8D00C02A53 /* PageContainerViewController.m */,
 				194D007B21F2ADD2008918DA /* StroyBoard */,
 				194D007D21F2AE6D008918DA /* TradeSum */,
 				19FFB2AB21F19A8D00C02A53 /* Asset */,
@@ -494,6 +499,7 @@
 				194D008E21F44057008918DA /* AssetViewController.m in Sources */,
 				194D008721F2C714008918DA /* TestViewController.m in Sources */,
 				19FFB2C121F19A8E00C02A53 /* TWPageTitleViewController.m in Sources */,
+				194D009021F46CE5008918DA /* TradeSumsViewController.m in Sources */,
 				19FFB2C221F19A8E00C02A53 /* TWPageViewController.m in Sources */,
 				190210CA21E45966009ADE0B /* main.m in Sources */,
 				19417D4721E86BA000C1FF2C /* StringHelper.m in Sources */,

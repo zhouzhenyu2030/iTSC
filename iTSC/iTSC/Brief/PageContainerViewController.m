@@ -84,7 +84,7 @@
 
         case 2:
         {
-            ctrl = [[UIStoryboard storyboardWithName:@"Help" bundle:nil] instantiateViewControllerWithIdentifier:@"HelpMain"];
+            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"TradeSums"];
         }
             break;
 

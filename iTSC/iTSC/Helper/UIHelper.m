@@ -52,6 +52,8 @@
     if(vDetailText != nil)
         cell.detailTextLabel.text = vDetailText;
     
+    
+    
     return cell;
 }
 
