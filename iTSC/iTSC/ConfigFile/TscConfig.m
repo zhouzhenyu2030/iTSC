@@ -34,7 +34,7 @@ NSUserDefaults *_UserDefaults;
     [[UIApplication sharedApplication] setIdleTimerDisabled:_isShowAllTime];
     
     _isGlobalAutoRefresh=[_UserDefaults boolForKey:@"isGlobalAutoRefresh"];
-    _isBriefAutoRefresh=[_UserDefaults boolForKey:@"isBriefAutoRefresh"];
+    _isAssetAutoRefresh=[_UserDefaults boolForKey:@"isAssetAutoRefresh"];
     _isGreekAutoRefresh=[_UserDefaults boolForKey:@"isGreekAutoRefresh"];
 
 
@@ -47,7 +47,7 @@ NSUserDefaults *_UserDefaults;
     _isInBackground=false;
     _isShowAllTime = true;
     _isGlobalAutoRefresh = false;
-    _isBriefAutoRefresh = false;
+    _isAssetAutoRefresh = false;
     _isGreekAutoRefresh = false;
 }
 
@@ -89,16 +89,16 @@ static Boolean _isGlobalAutoRefresh;
     [_UserDefaults setBool:(vValue) forKey:(@"isGlobalAutoRefresh")];
 }
 
-//BriefAutoRefresh
-static Boolean _isBriefAutoRefresh;
-+(Boolean) isBriefAutoRefresh
+//AssetAutoRefresh
+static Boolean _isAssetAutoRefresh;
++(Boolean) isAssetAutoRefresh
 {
-    return _isBriefAutoRefresh;
+    return _isAssetAutoRefresh;
 }
-+(void) setBriefAutoRefresh:(Boolean) vValue
++(void) setAssetAutoRefresh:(Boolean) vValue
 {
-    _isBriefAutoRefresh = vValue;
-    [_UserDefaults setBool:(vValue) forKey:(@"isBriefAutoRefresh")];
+    _isAssetAutoRefresh = vValue;
+    [_UserDefaults setBool:(vValue) forKey:(@"isAssetAutoRefresh")];
 }
 
 

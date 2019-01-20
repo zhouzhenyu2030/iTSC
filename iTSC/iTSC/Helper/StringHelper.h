@@ -10,9 +10,12 @@
 #define StringHelper_h
 
 @interface StringHelper:NSObject
-    
-    
+
+
+    +(NSString *)fPositiveFormat:(float)vVlue pointNumber:(NSInteger) pointNumber;
+
     +(NSString *)sPositiveFormat:(NSString*)text pointNumber:(NSInteger) pointNumber;
+
 
 @end
 

@@ -44,7 +44,8 @@
 {
     NSIndexPath *indexPath=[NSIndexPath indexPathForRow:vRowIndex inSection:vSectionIndex];
     UITableViewCell *cell = [vTableView cellForRowAtIndexPath:indexPath];
-    //UITableViewCellStyleValue1
+    
+    cell.detailTextLabel.textColor = UIColor.blackColor;
     
     if(vTitleText != nil)
         cell.textLabel.text = vTitleText;
@@ -56,14 +57,14 @@
 
 
 //设置TableViewCellDetailText
-+(void) SetTabelViewCellDetailText:(UITableView*)vTableView TitleText:(NSString*) vTitleText DetialText:(NSString*) vDetailText
++(UITableViewCell*) SetTabelViewCellDetailText:(UITableView*)vTableView TitleText:(NSString*) vTitleText DetialText:(NSString*) vDetailText
 {
     if(vTitleText == nil || vDetailText == nil)
-        return;
+        return nil;
    
     NSInteger sections = vTableView.numberOfSections;
     if(sections<=0)
-        return;
+        return nil;
     
     NSInteger rows;
     NSIndexPath *indexPath;
@@ -79,10 +80,12 @@
             if([cell.textLabel.text isEqualToString:vTitleText])
             {
                 cell.detailTextLabel.text = vDetailText;
-                return;
+                return cell;
             }
         }
     }
+    
+    return nil;
 }
 
 

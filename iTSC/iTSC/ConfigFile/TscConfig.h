@@ -28,8 +28,8 @@
 +(Boolean) isGlobalAutoRefresh;
 +(void) setGlobalAutoRefresh:(Boolean) vValue;
 
-+(Boolean) isBriefAutoRefresh;
-+(void) setBriefAutoRefresh:(Boolean) vValue;
++(Boolean) isAssetAutoRefresh;
++(void) setAssetAutoRefresh:(Boolean) vValue;
 
 +(Boolean) isGreekAutoRefresh;
 +(void) setGreekAutoRefresh:(Boolean) vValue;

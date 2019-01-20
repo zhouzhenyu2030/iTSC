@@ -1,5 +1,5 @@
 //
-//  PosViewController.m
+//  GreeksViewController.m
 //  iTSC
 //
 //  Created by tss on 2019/1/19.
@@ -45,15 +45,14 @@
 // 设置下拉刷新
 - (void)setupRefresh
 {
-    NSLog(@"setupRefresh -- 下拉刷新");
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventValueChanged];
     refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"正在刷新"];
     //刷新图形时的颜色，即刷新的时候那个菊花的颜色
     //refreshControl.tintColor = [UIColor redColor];
     [self.TableView addSubview:refreshControl];
-    [refreshControl beginRefreshing];
-    [self refreshClick:refreshControl];
+    //[refreshControl beginRefreshing];
+    //[self refreshClick:refreshControl];
 }
 
 
@@ -61,6 +60,7 @@
 // 下拉刷新触发
 - (void)refreshClick:(UIRefreshControl *)refreshControl
 {
+    RefreshCountCell.detailTextLabel.text=@"0";
     RefreshCnt = 1;
     [self QueryAndDisplay];
     [refreshControl endRefreshing];
@@ -90,11 +90,9 @@
     if(isTimerProcessing) return;
     
     isTimerProcessing=true;
+    RefreshCnt++;
     [self QueryAndDisplay];
     isTimerProcessing=false;
-    
-    RefreshCnt++;
-    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RefreshCount:" DetialText:[NSString stringWithFormat:@"%d", RefreshCnt]];
 }
 
 
@@ -144,12 +142,6 @@
 //switch状态改变
 -(void)SwitchChanged:(id)sender
 {
-    //获取点击按钮对应的cell
-    //UISwitch *switchInCell = (UISwitch *)sender;
-    //UISwitch的superview就是cell
-    //UITableViewCell * cell = (UITableViewCell*) switchInCell.superview;
-    //NSIndexPath * indexpath = [self.tableView indexPathForCell:cell];
-
     [self SetTimerState];
     [TscConfig setGreekAutoRefresh:([Switch_AutoRefresh isOn])];
 }
@@ -195,8 +187,10 @@
     [UIHelper SetTabelViewCellText:TableView Section:4 Row:3 TitleText:@"CCR:" DetialText:@"-"];
     
     [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
+    RefreshCountCell=
     [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
     
+  
 }
 
 
@@ -258,10 +252,16 @@
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RecordDate:" DetialText:_field[@"RecordDate"]];
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RecordTime:" DetialText:_field[@"RecordTime"]];
     
-    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RefreshCount:" DetialText:[NSString stringWithFormat:@"%d", RefreshCnt]];
-
 
     NSLog(@"GreeksViewController: SELECT: over!");
+
+    //RefreshCountCell.detailTextLabel.text=[NSString stringWithFormat:@"%d", RefreshCnt];
+    RefreshCountCell.detailTextLabel.text=[NSString stringWithFormat:@"%d", RefreshCnt];
+    [TableView reloadData];
+    //[UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RefreshCount:" DetialText:[NSString stringWithFormat:@"%d", RefreshCnt]];
+    
+    NSLog(@"AssetViewController: RefreshCnt=%d", RefreshCnt);
+
 }
 
 

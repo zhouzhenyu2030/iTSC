@@ -1,18 +1,17 @@
 //
-//  GreeksViewController.h
+//  Asset.h
 //  iTSC
 //
-//  Created by tss on 2019/1/19.
+//  Created by tss on 2019/1/20.
 //  Copyright © 2019年 tss. All rights reserved.
 //
 
-#ifndef GreeksViewController_h
-#define GreeksViewController_h
+#ifndef Asset_h
+#define Asset_h
 
 #import <UIKit/UIKit.h>
 
-
-@interface GreeksViewController : UITableViewController
+@interface AssetViewController: UITableViewController
 {
     int RefreshCnt;
     UISwitch *Switch_AutoRefresh;
@@ -22,10 +21,14 @@
     bool isTimerProcessing;
 }
 
+
+
+//property
 @property (strong, nonatomic) IBOutlet UITableView *TableView;
 
+//action
 
 @end
 
 
-#endif /* GreeksViewController_h */
+#endif /* Asset_h */

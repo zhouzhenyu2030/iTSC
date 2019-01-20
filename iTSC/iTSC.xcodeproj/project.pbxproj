@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		190210B921E45964009ADE0B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210B821E45964009ADE0B /* AppDelegate.m */; };
-		190210BC21E45964009ADE0B /* BriefViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210BB21E45964009ADE0B /* BriefViewController.m */; };
 		190210BF21E45964009ADE0B /* GlobalStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210BE21E45964009ADE0B /* GlobalStartViewController.m */; };
 		190210C221E45964009ADE0B /* BriefDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 190210C021E45964009ADE0B /* BriefDetail.storyboard */; };
 		190210C421E45966009ADE0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 190210C321E45966009ADE0B /* Assets.xcassets */; };
@@ -24,6 +23,7 @@
 		194D008421F2B52B008918DA /* GreeksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008321F2B52B008918DA /* GreeksViewController.m */; };
 		194D008721F2C714008918DA /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008621F2C714008918DA /* TestViewController.m */; };
 		194D008921F41210008918DA /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008821F41210008918DA /* UIHelper.m */; };
+		194D008E21F44057008918DA /* AssetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008D21F44057008918DA /* AssetViewController.m */; };
 		196B41D121EED13800105D44 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196B41D021EED13800105D44 /* ConfigViewController.m */; };
 		1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980DBD521EF0291008C9FF0 /* TscConfig.m */; };
 		1980DBDA21F0083E008C9FF0 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1980DBD921F0083E008C9FF0 /* Test.storyboard */; };
@@ -47,8 +47,6 @@
 		190210B421E45964009ADE0B /* iTSC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTSC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		190210B721E45964009ADE0B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		190210B821E45964009ADE0B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		190210BA21E45964009ADE0B /* BriefViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BriefViewController.h; sourceTree = "<group>"; };
-		190210BB21E45964009ADE0B /* BriefViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BriefViewController.m; sourceTree = "<group>"; };
 		190210BD21E45964009ADE0B /* GlobalStartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalStartViewController.h; sourceTree = "<group>"; };
 		190210BE21E45964009ADE0B /* GlobalStartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalStartViewController.m; sourceTree = "<group>"; };
 		190210C121E45964009ADE0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/BriefDetail.storyboard; sourceTree = "<group>"; };
@@ -75,6 +73,8 @@
 		194D008621F2C714008918DA /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		194D008821F41210008918DA /* UIHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIHelper.m; sourceTree = "<group>"; };
 		194D008A21F4121E008918DA /* UIHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIHelper.h; sourceTree = "<group>"; };
+		194D008C21F44049008918DA /* AssetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetViewController.h; sourceTree = "<group>"; };
+		194D008D21F44057008918DA /* AssetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetViewController.m; sourceTree = "<group>"; };
 		196B41CF21EED11F00105D44 /* ConfigViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
 		196B41D021EED13800105D44 /* ConfigViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 		1980DBD421EF0275008C9FF0 /* TscConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TscConfig.h; sourceTree = "<group>"; };
@@ -309,8 +309,8 @@
 		19FFB2AB21F19A8D00C02A53 /* Asset */ = {
 			isa = PBXGroup;
 			children = (
-				190210BA21E45964009ADE0B /* BriefViewController.h */,
-				190210BB21E45964009ADE0B /* BriefViewController.m */,
+				194D008C21F44049008918DA /* AssetViewController.h */,
+				194D008D21F44057008918DA /* AssetViewController.m */,
 			);
 			path = Asset;
 			sourceTree = "<group>";
@@ -491,12 +491,12 @@
 				19FFB2BC21F19A8E00C02A53 /* PageContainerViewController.m in Sources */,
 				194D008921F41210008918DA /* UIHelper.m in Sources */,
 				190210DA21E48DB2009ADE0B /* OCCodingHelper.m in Sources */,
+				194D008E21F44057008918DA /* AssetViewController.m in Sources */,
 				194D008721F2C714008918DA /* TestViewController.m in Sources */,
 				19FFB2C121F19A8E00C02A53 /* TWPageTitleViewController.m in Sources */,
 				19FFB2C221F19A8E00C02A53 /* TWPageViewController.m in Sources */,
 				190210CA21E45966009ADE0B /* main.m in Sources */,
 				19417D4721E86BA000C1FF2C /* StringHelper.m in Sources */,
-				190210BC21E45964009ADE0B /* BriefViewController.m in Sources */,
 				19FFB2C321F19A8E00C02A53 /* ViewController.m in Sources */,
 				19FFB2BF21F19A8E00C02A53 /* SampleTitleViewController.m in Sources */,
 				19FFB2C021F19A8E00C02A53 /* TableViewController.m in Sources */,
