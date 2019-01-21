@@ -59,18 +59,36 @@ static OHMySQLQueryContext *_queryContext;
         return;
     }
     
+    NSLog(@"DBHelper: Connect: _user is Created!");
 
     //coordinator
     _coordinator = [[OHMySQLStoreCoordinator alloc] initWithUser:_user];
     if(_coordinator==nil)
     {
-        NSLog(@"DBHelper: Connect: _user==nil!");
+        NSLog(@"DBHelper: Connect: _coordinator==nil!");
         return;
     }
-    [_coordinator connect];
+    NSLog(@"DBHelper: Connect: _coordinator is Created!");
     
+    
+    //connect
+    [_coordinator connect];
+    NSLog(@"DBHelper: Connect: _coordinator is connecting!");
+    if([_coordinator isConnected] == false)
+    {
+        NSLog(@"DBHelper: Connect: _coordinator isConnected == false!");
+        return;
+    }
     NSLog(@"DBHelper: Connect: connected.");
     
+    
+    //pingMySQL
+    OHResultErrorType _ret = [_coordinator pingMySQL];
+    if(_ret!=OHResultErrorTypeNone)
+    {
+        NSLog(@"DBHelper: Connect: _coordinator pingMySQL error! _ret=%d", (int)_ret);
+        return;
+    }
     
     //Query Context
     _queryContext = [OHMySQLQueryContext new];
@@ -86,7 +104,7 @@ static OHMySQLQueryContext *_queryContext;
     
     
     //isConnected
-    _isConnected=true;
+    _isConnected = true;
     
 }
 
@@ -95,7 +113,8 @@ static OHMySQLQueryContext *_queryContext;
 {
     if(_isConnected)
         [self Disconnect];
-    _isConnected=false;
+    _queryContext = nil;
+    _isConnected = false;
     [self Connect];
 }
 
