@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////
 NSUserDefaults *_UserDefaults;
 
-//@synthesize Connections;
-
 
 
 ////////////////////////////////////////////////////////////
@@ -37,7 +35,6 @@ NSUserDefaults *_UserDefaults;
     _isAssetAutoRefresh=[_UserDefaults boolForKey:@"isAssetAutoRefresh"];
     _isGreekAutoRefresh=[_UserDefaults boolForKey:@"isGreekAutoRefresh"];
     _isTradeSumAutoRefresh=[_UserDefaults boolForKey:@"isTradeSumAutoRefresh"];
-
 
 }
 

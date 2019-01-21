@@ -13,17 +13,21 @@
 
 
 
-@interface ConfigViewController : UIViewController
+@interface ConfigViewController : UITableViewController
+{
+    NSIndexPath *lastIndexPath;
+    NSInteger FirstConnectionRow, LastConnectionRow;
+    
+    UISwitch *Switch_ShowAllTime;
+    UISwitch *Switch_GlobalAutoRefresh;
+
+    UITableViewCell *Cell_Switch_ShowAllTime;
+    UITableViewCell *Cell_Switch_GlobalAutoRefresh;
+}
 
 
 
-@property (weak, nonatomic) IBOutlet UISwitch *Switch_ShowAllTime;
-@property (weak, nonatomic) IBOutlet UISwitch *Switch_GlobalAutoRefresh;
-
-
-//action
-- (IBAction)Switch_ShowAllTime_ValueChanged:(id)sender;
-- (IBAction)Switch_GlobalAutoRefresh_ValueChanged:(id)sender;
+@property (strong, nonatomic) IBOutlet UITableView *TableView;
 
 
 @end

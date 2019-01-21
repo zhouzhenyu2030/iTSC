@@ -38,7 +38,6 @@
 +(void) setTradeSumAutoRefresh:(Boolean) vValue;
 
 
-
 @end
 
 #endif /* TscConfig_h */

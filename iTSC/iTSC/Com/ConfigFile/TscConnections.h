@@ -34,18 +34,25 @@ typedef struct
     NSString* UserName;
     NSString* UserPassword;
     NSString* dbName;
+    NSString* AccountID;
 } TscConnection;
 
 
 
 @interface TscConnections : NSObject
-//{
-    //@public
-    //NSMutableArray* Connections;
-//}
 
 +(void) Init;
+
++(NSInteger) Count;
+
++(NSMutableDictionary*) getConnectionArray;
++(NSArray*) getConnectionKeys;
 +(TscConnection) getConnection:(NSString*) vName;
++(TscConnection) getCurrentConnection;
+
+
++(NSString*) CurrentConnectionKey;
++(NSString*) SetCurrentConnection:(NSString*) ConnectionKey;
 
 @end
 

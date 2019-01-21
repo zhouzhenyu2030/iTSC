@@ -13,7 +13,7 @@
 #import "StringHelper.h"
 #import "TscConfig.h"
 #import "UIHelper.h"
-
+#import "TscConnections.h"
 
 @implementation AssetViewController
 
@@ -207,10 +207,7 @@
 - (void)QueryAndDisplay
 {
     NSLog(@"AssetViewController: start!");
-    
-    
-    [DBHelper Init];
-    
+
     OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
     if(_queryContext==nil)
     {
@@ -221,14 +218,15 @@
     NSLog(@"AssetViewController: SELECT: start!");
     
     //SELECT
-    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"hisasset" condition:@"AccountID=1202"];
+    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"hisasset" condition:[TscConnections getCurrentConnection].AccountID];
     NSError *error = nil;
     NSArray *tasks = [_queryContext executeQueryRequestAndFetchResult:query error:&error];
     
     
     NSUInteger count = tasks.count;
     NSLog(@"%@", [tasks objectAtIndex:count-1]);
-
+    if(count<=0)
+        return;
     
     //显示
     NSDictionary  *_field=[tasks objectAtIndex:count-1];

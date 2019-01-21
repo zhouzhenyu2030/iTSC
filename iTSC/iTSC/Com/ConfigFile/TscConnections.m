@@ -8,25 +8,39 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DBHelper.h"
 #import "TscConnections.h"
 
+
+static NSMutableDictionary *Connections;
+static NSString *_CurrentConnectionKey;
+static NSUserDefaults *_UserDefaults;
 
 
 @implementation TscConnections
 
 
-NSMutableDictionary *Connections;
 NSValue *value = nil;
 
 
 //init
 +(void) Init
 {
-    Connections = [[NSMutableDictionary alloc]init];   
-    [self setDefault];
-    [self save];
+    _UserDefaults = [NSUserDefaults standardUserDefaults];
+    
+    Connections = [[NSMutableDictionary alloc]init];
+    
+    [self initDefault];
+    [self saveConnections];
+    
+    _CurrentConnectionKey = [self SetCurrentConnection:[_UserDefaults stringForKey:@"CurrentConnectionKey"]];
 }
 
+//Count
++(NSInteger) Count
+{
+    return Connections.count;
+}
 
 //get
 +(TscConnection) getConnection:(NSString*) vName
@@ -37,11 +51,28 @@ NSValue *value = nil;
     NSLog(@"key: %@,value: %@",vName,value);
     return _con;
 }
++(TscConnection) getCurrentConnection
+{
+    return [self getConnection:_CurrentConnectionKey];
+}
+
+
+//getConnectionArray
++(NSMutableDictionary*) getConnectionArray
+{
+    return Connections;
+}
+
+//getConnectionKeys
++(NSArray*) getConnectionKeys
+{
+    return [Connections allKeys];
+}
 
 
 
 //default
-+(void) setDefault
++(void) initDefault
 {
     TscConnection _con;
     
@@ -52,6 +83,7 @@ NSValue *value = nil;
     _con.UserName=@"opt";
     _con.UserPassword=@"Hr@2017yy";
     _con.dbName=@"tss";
+    _con.AccountID = @"AccountID=1202";
     value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
     [Connections setObject:value forKey:_con.Name];
     
@@ -61,8 +93,30 @@ NSValue *value = nil;
     _con.UserName=@"root";
     _con.UserPassword=@"z";
     _con.dbName=@"tss";
+    _con.AccountID = @"AccountID=11";
     value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
     [Connections setObject:value forKey:_con.Name];
+    
+    _con.Name=@"138";
+    _con.IP=@"zhouzhenyu.imwork.net";
+    _con.Port=13833;
+    _con.UserName=@"root";
+    _con.UserPassword=@"z";
+    _con.dbName=@"tss";
+    _con.AccountID = @"AccountID=11";
+    value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
+    [Connections setObject:value forKey:_con.Name];
+    
+    _con.Name=@"128";
+    _con.IP=@"192.168.1.128";
+    _con.Port=3306;
+    _con.UserName=@"root";
+    _con.UserPassword=@"z";
+    _con.dbName=@"tss";
+    _con.AccountID = @"AccountID=11";
+    value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
+    [Connections setObject:value forKey:_con.Name];
+    
     
     for(id key in Connections)
     {
@@ -71,12 +125,14 @@ NSValue *value = nil;
         NSLog(@"key: %@,value: %@",key,value);
     }
     
+    
+    _CurrentConnectionKey = @"148";
 }
 
 
 
-//save
-+(void) save
+//saveConnections
++(void) saveConnections
 {
     //把字典写入到plist文件，比如文件path为：~/Documents/data.plist
     NSString* path = @"~/Documents/data.plist";
@@ -92,10 +148,10 @@ NSValue *value = nil;
 
 }
 
-//load
-+(void) load
+//loadConnections
++(void) loadConnections
 {
-
+    //CurrentConnectionKey;
     //NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfURL:[NSURL fileURLWithPath:(nonnull NSString *)]];
     //NSDictionary *dictionary =  [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:(nullable NSString *) ofType:(nullable NSString *)]];
     
@@ -105,41 +161,27 @@ NSValue *value = nil;
 }
 
 
+//CurrentConnection
++(NSString*) CurrentConnectionKey
+{
+    return _CurrentConnectionKey;
+}
++(NSString*) SetCurrentConnection:(NSString*) vConnectionKey
+{
+    if(vConnectionKey != nil)
+    {
+        if([vConnectionKey isEqualToString:_CurrentConnectionKey] == false)
+        {
+            TscConnection _con = [self getConnection:vConnectionKey];
+            _CurrentConnectionKey = _con.Name;
+            [_UserDefaults setValue:_CurrentConnectionKey forKey:(@"CurrentConnectionKey")];
+            [DBHelper Reconnect];
+        }
+    }
+    
+    return _CurrentConnectionKey;
+}
 
-
-
-/*
- +(void) Init
- {
- //Connections  =  [[NSMutableArray alloc]initWithCapacity:1];
- 
- TscConnection aaa; //= [[ClassTscConnection alloc] init]; //[ClassTscConnection new];
- //NSArray *dataList = [NSArray array];
- //[dataList addObject:aaa];
- 
- NSMutableArray *array = [NSMutableArray array];
- NSValue *value = nil;
- 
- 
- aaa.Name=@"111";
- value = [NSValue valueWithBytes:&aaa objCType:@encode(TscConnection)];
- [array addObject:value];
- 
- aaa.Name=@"222";
- value = [NSValue valueWithBytes:&aaa objCType:@encode(TscConnection)];
- [array addObject:value];
- 
- 
- //读取
- for (NSValue *value in array)
- {
- TscConnection s ;
- [value getValue:&s];
- NSLog(@"%@",s.Name);
- }
- 
- }
- */
 
 
 

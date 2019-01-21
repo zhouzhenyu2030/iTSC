@@ -74,15 +74,8 @@
     
     NSLog(@"%@", cell.detailTextLabel.text); //=@"-";
     
-    
-    
-   
-    
     //DB Query
     NSLog(@"PosViewController: start!");
-    
-    
-    [DBHelper Init];
     
     OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
     if(_queryContext==nil)

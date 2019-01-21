@@ -10,11 +10,13 @@
 #import "AppDelegate.h"
 #import "TscConfig.h"
 #import "TscConnections.h"
+#import "DBHelper.h"
 
 int main(int argc, char * argv[]) {
     
     [TscConfig Init];
     [TscConnections Init];
+    [DBHelper Connect];
     
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));

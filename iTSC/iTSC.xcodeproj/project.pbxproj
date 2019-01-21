@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		190210B921E45964009ADE0B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210B821E45964009ADE0B /* AppDelegate.m */; };
-		190210BF21E45964009ADE0B /* GlobalStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210BE21E45964009ADE0B /* GlobalStartViewController.m */; };
+		190210BF21E45964009ADE0B /* ControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210BE21E45964009ADE0B /* ControlViewController.m */; };
 		190210C221E45964009ADE0B /* BriefDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 190210C021E45964009ADE0B /* BriefDetail.storyboard */; };
 		190210C421E45966009ADE0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 190210C321E45966009ADE0B /* Assets.xcassets */; };
 		190210CA21E45966009ADE0B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210C921E45966009ADE0B /* main.m */; };
@@ -48,8 +48,8 @@
 		190210B421E45964009ADE0B /* iTSC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTSC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		190210B721E45964009ADE0B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		190210B821E45964009ADE0B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		190210BD21E45964009ADE0B /* GlobalStartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalStartViewController.h; sourceTree = "<group>"; };
-		190210BE21E45964009ADE0B /* GlobalStartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalStartViewController.m; sourceTree = "<group>"; };
+		190210BD21E45964009ADE0B /* ControlViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ControlViewController.h; sourceTree = "<group>"; };
+		190210BE21E45964009ADE0B /* ControlViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ControlViewController.m; sourceTree = "<group>"; };
 		190210C121E45964009ADE0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/BriefDetail.storyboard; sourceTree = "<group>"; };
 		190210C321E45966009ADE0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		190210C821E45966009ADE0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -142,12 +142,9 @@
 		190210B621E45964009ADE0B /* iTSC */ = {
 			isa = PBXGroup;
 			children = (
-				194FF95521EC2BEA00CAB449 /* Brief */,
+				19703EB621F55C27003D6697 /* Com */,
 				19FFB29021F1703C00C02A53 /* StroyBoard */,
-				1980DBD321EF025E008C9FF0 /* ConfigFile */,
-				194FF95421EC2B6B00CAB449 /* Main */,
-				194FF94F21EC22BD00CAB449 /* ViewClass */,
-				190210D421E4832D009ADE0B /* Helper */,
+				194FF95421EC2B6B00CAB449 /* Init */,
 				190210C821E45966009ADE0B /* Info.plist */,
 			);
 			path = iTSC;
@@ -216,15 +213,7 @@
 			path = nouse;
 			sourceTree = "<group>";
 		};
-		194FF94F21EC22BD00CAB449 /* ViewClass */ = {
-			isa = PBXGroup;
-			children = (
-				194FF95821EC333800CAB449 /* Chart */,
-			);
-			path = ViewClass;
-			sourceTree = "<group>";
-		};
-		194FF95421EC2B6B00CAB449 /* Main */ = {
+		194FF95421EC2B6B00CAB449 /* Init */ = {
 			isa = PBXGroup;
 			children = (
 				190210C321E45966009ADE0B /* Assets.xcassets */,
@@ -232,7 +221,7 @@
 				190210B821E45964009ADE0B /* AppDelegate.m */,
 				190210C921E45966009ADE0B /* main.m */,
 			);
-			path = Main;
+			path = Init;
 			sourceTree = "<group>";
 		};
 		194FF95521EC2BEA00CAB449 /* Brief */ = {
@@ -260,13 +249,6 @@
 			path = Greeks;
 			sourceTree = "<group>";
 		};
-		194FF95821EC333800CAB449 /* Chart */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Chart;
-			sourceTree = "<group>";
-		};
 		196B41CE21EED10800105D44 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +257,15 @@
 				196B41D021EED13800105D44 /* ConfigViewController.m */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		19703EB621F55C27003D6697 /* Com */ = {
+			isa = PBXGroup;
+			children = (
+				190210D421E4832D009ADE0B /* Helper */,
+				1980DBD321EF025E008C9FF0 /* ConfigFile */,
+			);
+			path = Com;
 			sourceTree = "<group>";
 		};
 		1980DBD321EF025E008C9FF0 /* ConfigFile */ = {
@@ -291,6 +282,7 @@
 		19FFB29021F1703C00C02A53 /* StroyBoard */ = {
 			isa = PBXGroup;
 			children = (
+				194FF95521EC2BEA00CAB449 /* Brief */,
 				19FFB2C821F1B9D600C02A53 /* Other */,
 				19FFB2A621F191B700C02A53 /* Control */,
 				196B41CE21EED10800105D44 /* Config */,
@@ -305,8 +297,8 @@
 			isa = PBXGroup;
 			children = (
 				19FFB2A721F191D700C02A53 /* Control.storyboard */,
-				190210BD21E45964009ADE0B /* GlobalStartViewController.h */,
-				190210BE21E45964009ADE0B /* GlobalStartViewController.m */,
+				190210BD21E45964009ADE0B /* ControlViewController.h */,
+				190210BE21E45964009ADE0B /* ControlViewController.m */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -484,7 +476,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				190210BF21E45964009ADE0B /* GlobalStartViewController.m in Sources */,
+				190210BF21E45964009ADE0B /* ControlViewController.m in Sources */,
 				194D008421F2B52B008918DA /* GreeksViewController.m in Sources */,
 				190210B921E45964009ADE0B /* AppDelegate.m in Sources */,
 				190210D821E48399009ADE0B /* FilePathHelper.m in Sources */,

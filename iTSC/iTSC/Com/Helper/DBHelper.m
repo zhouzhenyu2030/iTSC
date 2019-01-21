@@ -30,19 +30,20 @@ static OHMySQLQueryContext *_queryContext;
 
 
 ///////////////////////// function /////////////////////////
-+(void)Init
++(void)Connect
 {
-    NSLog(@"DBHelper: Init: start.");
-    
-    
-    if(_isConnected==true)
+    //NSLog(@"DBHelper: Connect: start.");
+    if(_isConnected == true)
     {
-        NSLog(@"DBHelper: Init: isConnected == true!");
+        NSLog(@"DBHelper: Connect: isConnected == true!");
         return;
     }
     
     
-    TscConnection _con = [TscConnections getConnection:@"148"];
+    TscConnection _con = [TscConnections getCurrentConnection];
+    //TscConnection _con = [TscConnections getConnection:@"148"];
+    NSLog(@"DBHelper: Connect: TscConnection = %@", _con.Name);
+    
     
     //user
     _user = [[OHMySQLUser alloc] initWithUserName:_con.UserName
@@ -54,7 +55,7 @@ static OHMySQLQueryContext *_queryContext;
     
     if(_user==nil)
     {
-        NSLog(@"DBHelper: Init: _user==nil!");
+        NSLog(@"DBHelper: Connect: _user==nil!");
         return;
     }
     
@@ -63,23 +64,23 @@ static OHMySQLQueryContext *_queryContext;
     _coordinator = [[OHMySQLStoreCoordinator alloc] initWithUser:_user];
     if(_coordinator==nil)
     {
-        NSLog(@"DBHelper: Init: _user==nil!");
+        NSLog(@"DBHelper: Connect: _user==nil!");
         return;
     }
     [_coordinator connect];
     
-    NSLog(@"DBHelper: Init: connected.");
+    NSLog(@"DBHelper: Connect: connected.");
     
     
     //Query Context
     _queryContext = [OHMySQLQueryContext new];
     _queryContext.storeCoordinator = _coordinator;
     
-    NSLog(@"DBHelper: Init: Context is created.");
+    NSLog(@"DBHelper: Connect: Context is created.");
     
     if(_queryContext==nil)
     {
-        NSLog(@"DBHelper: Init: queryContext==nil!");
+        NSLog(@"DBHelper: Connect: queryContext==nil!");
         return;
     }
     
@@ -89,12 +90,13 @@ static OHMySQLQueryContext *_queryContext;
     
 }
 
-
-
-//GetContext
-+(OHMySQLQueryContext *)GetContext
+//Reconnect
++(void) Reconnect
 {
-    return _queryContext;
+    if(_isConnected)
+        [self Disconnect];
+    _isConnected=false;
+    [self Connect];
 }
 
 
@@ -105,6 +107,12 @@ static OHMySQLQueryContext *_queryContext;
     NSLog(@"DBHelper: Init: Disconnected.");
 }
 
+
+//GetContext
++(OHMySQLQueryContext *)GetContext
+{
+    return _queryContext;
+}
 
 
 

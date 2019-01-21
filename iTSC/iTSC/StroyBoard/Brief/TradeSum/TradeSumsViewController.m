@@ -203,8 +203,6 @@
     //DB Query
     NSLog(@"TradeSumViewController: start!");
     
-    [DBHelper Init];
-    
     OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
     if(_queryContext==nil)
     {

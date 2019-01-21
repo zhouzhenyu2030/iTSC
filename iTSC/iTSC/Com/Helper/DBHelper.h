@@ -27,10 +27,12 @@
 
 
 //function
-+(void)Init;
-+(OHMySQLQueryContext *)GetContext;
++(void)Connect;
++(void)Reconnect;
 +(void)Disconnect;
 
+
++(OHMySQLQueryContext *)GetContext;
 
 -(NSString *)databasePath;
 -(void)getdata;

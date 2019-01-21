@@ -202,8 +202,6 @@
     //DB Query
     NSLog(@"GreeksViewController: start!");
     
-    [DBHelper Init];
-    
     OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
     if(_queryContext==nil)
     {
