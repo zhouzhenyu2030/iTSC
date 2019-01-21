@@ -199,7 +199,9 @@
 //查询，在此获取数据
 - (void)QueryAndDisplay
 {
- 
+
+    RefreshCountCell.detailTextLabel.text=[NSString stringWithFormat:@"%d", RefreshCnt];
+
     //DB Query
     NSLog(@"TradeSumViewController: start!");
     
@@ -301,9 +303,7 @@
     
     
     NSLog(@"TradeSumViewController: SELECT: over!");
-    
-
-    RefreshCountCell.detailTextLabel.text=[NSString stringWithFormat:@"%d", RefreshCnt];
+ 
     [TableView reloadData];
 
     

@@ -53,7 +53,7 @@
     //[self initzzy];
 }
 
-//init
+//init no use
 -(void)initzzy
 {
     // 1.流水布局
@@ -76,7 +76,7 @@
 }
 
 - (NSInteger) numberOfControllersInPageViewController:( TWPageViewController * _Nonnull)pageViewController {
-    return 10;
+    return 5;
 }
 
 
@@ -151,14 +151,14 @@
 
 #pragma mark TWPageTitleViewControllerDataSource
 - (NSInteger)numberOfItemsInPageTitleViewController:(TWPageTitleViewController *)controller {
-    return 10;
+    return 5;
 }
 
 //zzy
 - (CGSize)pageTitleViewController:(TWPageTitleViewController *)controller sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     //return CGSizeMake(100, 20);
-    return CGSizeMake(100, self.pageTitleViewController.view.bounds.size.height);
+    return CGSizeMake(70, self.pageTitleViewController.view.bounds.size.height);
 }
 
 

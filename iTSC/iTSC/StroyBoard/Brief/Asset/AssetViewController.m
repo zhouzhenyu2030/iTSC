@@ -208,6 +208,8 @@
 {
     NSLog(@"AssetViewController: start!");
 
+    RefreshCountCell.detailTextLabel.text=[NSString stringWithFormat:@"%d", RefreshCnt];
+
     OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
     if(_queryContext==nil)
     {
@@ -293,9 +295,8 @@
  
     NSLog(@"AssetViewController: SELECT: over!");
 
-    RefreshCountCell.detailTextLabel.text=[NSString stringWithFormat:@"%d", RefreshCnt];
     [TableView reloadData];
-    //[UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RefreshCount:" DetialText:[NSString stringWithFormat:@"%d", RefreshCnt]];
+
 
     NSLog(@"AssetViewController: RefreshCnt=%d", RefreshCnt);
 }

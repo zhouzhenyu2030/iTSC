@@ -199,6 +199,8 @@
 - (void)QueryAndDisplay
 {
 
+    RefreshCountCell.detailTextLabel.text=[NSString stringWithFormat:@"%d", RefreshCnt];
+
     //DB Query
     NSLog(@"GreeksViewController: start!");
     
@@ -253,11 +255,8 @@
 
     NSLog(@"GreeksViewController: SELECT: over!");
 
-    //RefreshCountCell.detailTextLabel.text=[NSString stringWithFormat:@"%d", RefreshCnt];
-    RefreshCountCell.detailTextLabel.text=[NSString stringWithFormat:@"%d", RefreshCnt];
     [TableView reloadData];
-    //[UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RefreshCount:" DetialText:[NSString stringWithFormat:@"%d", RefreshCnt]];
-    
+
     NSLog(@"AssetViewController: RefreshCnt=%d", RefreshCnt);
 
 }
