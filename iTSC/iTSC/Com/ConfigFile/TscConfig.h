@@ -37,6 +37,12 @@
 +(Boolean) isTradeSumAutoRefresh;
 +(void) setTradeSumAutoRefresh:(Boolean) vValue;
 
++(Boolean) isPositionAutoRefresh;
++(void) setPositionAutoRefresh:(Boolean) vValue;
+
++(Boolean) isPnlAutoRefresh;
++(void) setPnlAutoRefresh:(Boolean) vValue;
+
 
 @end
 

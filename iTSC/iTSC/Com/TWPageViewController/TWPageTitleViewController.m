@@ -39,6 +39,8 @@
     self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.showsHorizontalScrollIndicator = NO;
     self.collectionView.scrollEnabled = YES;
+    
+    //self.indicatorView
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -107,12 +109,15 @@
         CGRect cellFrame = [cell convertRect:cell.bounds toView:self.view];
         CGRect frame = self.indicatorView.frame;
         
+        
         if(CGRectGetHeight(self.indicatorView.frame) == 0 && CGRectGetWidth(self.indicatorView.frame) == 0) {
             frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) - 4, 0, 4);
         }
         
+        //frame.size.height=35;
         frame.origin.x = cellFrame.origin.x;
         frame.size.width = cellFrame.size.width;
+        //frame.size.height = cellFrame.size.height;
         
         if(animated) {
             [UIView animateWithDuration:0.3f delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -206,5 +211,9 @@
 //}
 
 #pragma mark overwirte super view method
+
+
+
+
 
 @end

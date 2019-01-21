@@ -49,8 +49,25 @@
     
     self.pageTitleViewController.dataSource = self;
     self.pageTitleViewController.delegate = self;
+    
+    //[self initzzy];
 }
 
+//init
+-(void)initzzy
+{
+    // 1.流水布局
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout*)self.pageTitleViewController.collectionViewLayout;
+    // 2.每个cell的尺寸
+    layout.itemSize = CGSizeMake(100, 20);
+    // 3.设置cell之间的水平间距
+    //layout.minimumInteritemSpacing = 0;
+    // 4.设置cell之间的垂直间距
+    //layout.minimumLineSpacing = 10;
+    // 5.设置四周的内边距
+    //layout.sectionInset = UIEdgeInsetsMake(layout.minimumLineSpacing, 0, 0, 0);
+    //return [super initWithCollectionViewLayout:layout];
+}
 
 
 //animated
@@ -84,19 +101,19 @@
 
         case 2:
         {
-            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"TradeSums"];
+            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"PNL"];
         }
             break;
 
-        case 4:
+        case 3:
         {
-            //
+            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"TradeSums"];
         }
             break;
             
-        case 5:
+        case 4:
         {
-            //ctrl = [[UIStoryboard storyboardWithName:@"Test" bundle:nil] instantiateViewControllerWithIdentifier:@"TableView"];
+            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"Position"];
         }
             break;
     }
@@ -137,8 +154,10 @@
     return 10;
 }
 
-//
-- (CGSize)pageTitleViewController:(TWPageTitleViewController *)controller sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+//zzy
+- (CGSize)pageTitleViewController:(TWPageTitleViewController *)controller sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    //return CGSizeMake(100, 20);
     return CGSizeMake(100, self.pageTitleViewController.view.bounds.size.height);
 }
 
@@ -153,17 +172,23 @@
             cell.titleLabel.text = @"Asset";
             break;
         case 1:
-            cell.titleLabel.text = @"Greeks";
+            cell.titleLabel.text = @"Greek";
             break;
         case 2:
-            cell.titleLabel.text = @"TradeSums";
+            cell.titleLabel.text = @"Pnl";
+            break;
+        case 3:
+            cell.titleLabel.text = @"Trade";
+            break;
+        case 4:
+            cell.titleLabel.text = @"Pos";
             break;
         default:
             cell.titleLabel.text = [NSString stringWithFormat:@"Title%d", (int)indexPath.row];
     }
     
     cell.titleLabel.textColor = [UIColor grayColor];
-    
+ 
     cell.backgroundColor = [UIColor clearColor];//[UIColor colorWithRed:(float)(random() %  10)/10.f green:(float)(random() %  10)/10.f blue:(float)(random() %  10)/10.f alpha:1.0];
     
     return cell;

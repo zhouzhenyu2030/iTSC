@@ -13,16 +13,15 @@
         <!--Brief-->
         <scene sceneID="MN6-T0-c2F">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MLF-s7-iZM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="BriefMain" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Pie-ED-F9T" customClass="PageContainerViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YzP-AR-aD5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xp-gR-Rr4">
-                                <rect key="frame" x="0.0" y="30" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="tQg-6p-DBE"/>
+                                    <constraint firstAttribute="height" constant="20" id="tQg-6p-DBE"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="V4Y-6h-eJN" kind="embed" id="1zG-u7-cCP"/>
@@ -42,7 +41,7 @@
                             <constraint firstAttribute="trailing" secondItem="1xp-gR-Rr4" secondAttribute="trailing" id="kOC-ZR-PZm"/>
                             <constraint firstAttribute="bottom" secondItem="hx8-bI-8Q8" secondAttribute="bottom" id="mVe-MC-4ba"/>
                             <constraint firstAttribute="trailing" secondItem="hx8-bI-8Q8" secondAttribute="trailing" id="mYS-Uh-l47"/>
-                            <constraint firstItem="1xp-gR-Rr4" firstAttribute="top" secondItem="YzP-AR-aD5" secondAttribute="top" constant="30" id="vgz-Ss-5yU"/>
+                            <constraint firstItem="1xp-gR-Rr4" firstAttribute="top" secondItem="YzP-AR-aD5" secondAttribute="top" constant="40" id="vgz-Ss-5yU"/>
                             <constraint firstItem="hx8-bI-8Q8" firstAttribute="leading" secondItem="YzP-AR-aD5" secondAttribute="leading" id="zQm-LR-HS5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2su-db-d60"/>
@@ -54,6 +53,7 @@
                         <outlet property="titleView" destination="1xp-gR-Rr4" id="GZO-JR-Bdz"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MLF-s7-iZM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2094" y="-151"/>
         </scene>
@@ -62,25 +62,25 @@
             <objects>
                 <collectionViewController storyboardIdentifier="SampleTitleViewController" id="V4Y-6h-eJN" customClass="SampleTitleViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="x0c-nz-CyF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="W89-Bn-GWm">
-                            <size key="itemSize" width="56" height="56"/>
+                            <size key="itemSize" width="56" height="14"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SampleTitleCell" id="5rk-gn-JXH" customClass="SampleTitleCell">
-                                <rect key="frame" x="0.0" y="-13" width="56" height="56"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="SampleTitleCell" id="5rk-gn-JXH" customClass="SampleTitleCell">
+                                <rect key="frame" x="0.0" y="3" width="56" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="56" height="14"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJm-KT-CV2">
-                                            <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="56" height="0.0"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -106,7 +106,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yF0-i0-Abp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1298" y="-466"/>
+            <point key="canvasLocation" x="-1298.4000000000001" y="-466.86656671664173"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="vnj-Xg-aq1">

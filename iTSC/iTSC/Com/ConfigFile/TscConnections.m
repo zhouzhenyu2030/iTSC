@@ -117,6 +117,16 @@ NSValue *value = nil;
     value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
     [Connections setObject:value forKey:_con.Name];
     
+    _con.Name=@"168";
+    _con.IP=@"zhouzhenyu.imwork.net";
+    _con.Port=16833;
+    _con.UserName=@"root";
+    _con.UserPassword=@"z";
+    _con.dbName=@"tss";
+    _con.AccountID = @"AccountID=11";
+    value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
+    [Connections setObject:value forKey:_con.Name];
+    
     
     for(id key in Connections)
     {

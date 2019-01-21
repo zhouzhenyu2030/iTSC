@@ -26,6 +26,8 @@
 		194D008E21F44057008918DA /* AssetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008D21F44057008918DA /* AssetViewController.m */; };
 		194D009021F46CE5008918DA /* TradeSumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008F21F46CE5008918DA /* TradeSumsViewController.m */; };
 		196B41D121EED13800105D44 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196B41D021EED13800105D44 /* ConfigViewController.m */; };
+		19703EBA21F5B537003D6697 /* PositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19703EB921F5B537003D6697 /* PositionViewController.m */; };
+		19703EBD21F5BD09003D6697 /* PnlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19703EBC21F5BD09003D6697 /* PnlViewController.m */; };
 		1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980DBD521EF0291008C9FF0 /* TscConfig.m */; };
 		1980DBDA21F0083E008C9FF0 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1980DBD921F0083E008C9FF0 /* Test.storyboard */; };
 		19FFB29221F1706900C02A53 /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19FFB29121F1706900C02A53 /* Help.storyboard */; };
@@ -80,6 +82,10 @@
 		194D009121F46CF1008918DA /* TradeSumsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TradeSumsViewController.h; sourceTree = "<group>"; };
 		196B41CF21EED11F00105D44 /* ConfigViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
 		196B41D021EED13800105D44 /* ConfigViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
+		19703EB821F5B528003D6697 /* PositionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PositionViewController.h; sourceTree = "<group>"; };
+		19703EB921F5B537003D6697 /* PositionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PositionViewController.m; sourceTree = "<group>"; };
+		19703EBC21F5BD09003D6697 /* PnlViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PnlViewController.m; sourceTree = "<group>"; };
+		19703EBE21F5BD17003D6697 /* PnlViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PnlViewController.h; sourceTree = "<group>"; };
 		1980DBD421EF0275008C9FF0 /* TscConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TscConfig.h; sourceTree = "<group>"; };
 		1980DBD521EF0291008C9FF0 /* TscConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TscConfig.m; sourceTree = "<group>"; };
 		1980DBD921F0083E008C9FF0 /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
@@ -155,7 +161,6 @@
 			children = (
 				194D008B21F4148C008918DA /* nouse */,
 				190210DE21E49682009ADE0B /* 编程 */,
-				19FFB2C421F1A1D500C02A53 /* TWPageViewController */,
 				190210E421E49C0A009ADE0B /* DBHelper.h */,
 				190210E521E49C27009ADE0B /* DBHelper.m */,
 				19417D4521E86B8C00C1FF2C /* StringHelper.h */,
@@ -182,13 +187,6 @@
 				19FFB2C921F1BAF600C02A53 /* Page */,
 			);
 			path = StroyBoard;
-			sourceTree = "<group>";
-		};
-		194D007C21F2AE4E008918DA /* Pos */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pos;
 			sourceTree = "<group>";
 		};
 		194D007D21F2AE6D008918DA /* TradeSum */ = {
@@ -232,10 +230,11 @@
 				19FFB2AC21F19A8D00C02A53 /* PageContainerViewController.h */,
 				19FFB2AD21F19A8D00C02A53 /* PageContainerViewController.m */,
 				194D007B21F2ADD2008918DA /* StroyBoard */,
-				194D007D21F2AE6D008918DA /* TradeSum */,
 				19FFB2AB21F19A8D00C02A53 /* Asset */,
 				194FF95721EC2C1A00CAB449 /* Greeks */,
-				194D007C21F2AE4E008918DA /* Pos */,
+				194D007D21F2AE6D008918DA /* TradeSum */,
+				19703EBB21F5BCCB003D6697 /* PNL */,
+				19703EB721F5A94F003D6697 /* Position */,
 			);
 			path = Brief;
 			sourceTree = "<group>";
@@ -262,10 +261,29 @@
 		19703EB621F55C27003D6697 /* Com */ = {
 			isa = PBXGroup;
 			children = (
+				19FFB2C421F1A1D500C02A53 /* TWPageViewController */,
 				190210D421E4832D009ADE0B /* Helper */,
 				1980DBD321EF025E008C9FF0 /* ConfigFile */,
 			);
 			path = Com;
+			sourceTree = "<group>";
+		};
+		19703EB721F5A94F003D6697 /* Position */ = {
+			isa = PBXGroup;
+			children = (
+				19703EB821F5B528003D6697 /* PositionViewController.h */,
+				19703EB921F5B537003D6697 /* PositionViewController.m */,
+			);
+			path = Position;
+			sourceTree = "<group>";
+		};
+		19703EBB21F5BCCB003D6697 /* PNL */ = {
+			isa = PBXGroup;
+			children = (
+				19703EBE21F5BD17003D6697 /* PnlViewController.h */,
+				19703EBC21F5BD09003D6697 /* PnlViewController.m */,
+			);
+			path = PNL;
 			sourceTree = "<group>";
 		};
 		1980DBD321EF025E008C9FF0 /* ConfigFile */ = {
@@ -328,8 +346,8 @@
 			children = (
 				19FFB2B221F19A8E00C02A53 /* SampleTitleViewController.h */,
 				19FFB2B321F19A8E00C02A53 /* SampleTitleViewController.m */,
-				19FFB2B121F19A8E00C02A53 /* SampleTitleCell.m */,
 				19FFB2B021F19A8E00C02A53 /* SampleTitleCell.h */,
+				19FFB2B121F19A8E00C02A53 /* SampleTitleCell.m */,
 			);
 			path = Title;
 			sourceTree = "<group>";
@@ -488,6 +506,7 @@
 				19FFB2BC21F19A8E00C02A53 /* PageContainerViewController.m in Sources */,
 				194D008921F41210008918DA /* UIHelper.m in Sources */,
 				190210DA21E48DB2009ADE0B /* OCCodingHelper.m in Sources */,
+				19703EBA21F5B537003D6697 /* PositionViewController.m in Sources */,
 				194D008E21F44057008918DA /* AssetViewController.m in Sources */,
 				194D008721F2C714008918DA /* TestViewController.m in Sources */,
 				19FFB2C121F19A8E00C02A53 /* TWPageTitleViewController.m in Sources */,
@@ -500,6 +519,7 @@
 				19FFB2C021F19A8E00C02A53 /* TableViewController.m in Sources */,
 				19FFB2BE21F19A8E00C02A53 /* SampleTitleCell.m in Sources */,
 				196B41D121EED13800105D44 /* ConfigViewController.m in Sources */,
+				19703EBD21F5BD09003D6697 /* PnlViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

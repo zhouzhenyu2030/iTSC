@@ -31,10 +31,12 @@ NSUserDefaults *_UserDefaults;
     _isShowAllTime=[_UserDefaults boolForKey:@"isShowAllTime"];
     [[UIApplication sharedApplication] setIdleTimerDisabled:_isShowAllTime];
     
-    _isGlobalAutoRefresh=[_UserDefaults boolForKey:@"isGlobalAutoRefresh"];
-    _isAssetAutoRefresh=[_UserDefaults boolForKey:@"isAssetAutoRefresh"];
-    _isGreekAutoRefresh=[_UserDefaults boolForKey:@"isGreekAutoRefresh"];
-    _isTradeSumAutoRefresh=[_UserDefaults boolForKey:@"isTradeSumAutoRefresh"];
+    _isGlobalAutoRefresh = [_UserDefaults boolForKey:@"isGlobalAutoRefresh"];
+    _isAssetAutoRefresh = [_UserDefaults boolForKey:@"isAssetAutoRefresh"];
+    _isGreekAutoRefresh = [_UserDefaults boolForKey:@"isGreekAutoRefresh"];
+    _isTradeSumAutoRefresh = [_UserDefaults boolForKey:@"isTradeSumAutoRefresh"];
+    _isPositionAutoRefresh = [_UserDefaults boolForKey:@"isPositionAutoRefresh"];
+    _isPnlAutoRefresh = [_UserDefaults boolForKey:@"isPnlAutoRefresh"];
 
 }
 
@@ -47,6 +49,9 @@ NSUserDefaults *_UserDefaults;
     _isGlobalAutoRefresh = false;
     _isAssetAutoRefresh = false;
     _isGreekAutoRefresh = false;
+    _isPositionAutoRefresh = false;
+    _isPnlAutoRefresh = false;
+    
 }
 
 //InBackground
@@ -123,6 +128,33 @@ static Boolean _isTradeSumAutoRefresh;
 {
     _isTradeSumAutoRefresh = vValue;
     [_UserDefaults setBool:(vValue) forKey:(@"isTradeSumAutoRefresh")];
+}
+
+
+
+//Position AutoRefresh
+static Boolean _isPositionAutoRefresh;
++(Boolean) isPositionAutoRefresh
+{
+    return _isPositionAutoRefresh;
+}
++(void) setPositionAutoRefresh:(Boolean) vValue
+{
+    _isPositionAutoRefresh = vValue;
+    [_UserDefaults setBool:(vValue) forKey:(@"isPositionAutoRefresh")];
+}
+
+
+//PNL AutoRefresh
+static Boolean _isPnlAutoRefresh;
++(Boolean) isPnlAutoRefresh
+{
+    return _isPnlAutoRefresh;
+}
++(void) setPnlAutoRefresh:(Boolean) vValue
+{
+    _isPnlAutoRefresh = vValue;
+    [_UserDefaults setBool:(vValue) forKey:(@"isPnlAutoRefresh")];
 }
 
 
