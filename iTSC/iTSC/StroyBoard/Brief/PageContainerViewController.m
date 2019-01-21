@@ -231,8 +231,8 @@
     switch (seg.selectedSegmentIndex) {
         case 0: {
          
-            UIView *indicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.pageTitleViewController.view.bounds) - 4, 0, 4)];
-            indicatorView.backgroundColor = [UIColor greenColor];
+            UIView *indicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.pageTitleViewController.view.bounds) - 4, 0, 2)];
+            indicatorView.backgroundColor = [UIColor grayColor];
             
             [self.pageTitleViewController setCustomIndicatorView:indicatorView toFront:NO];
         }
@@ -245,7 +245,7 @@
             indicatorView.layer.cornerRadius = CGRectGetHeight(indicatorView.bounds) / 2;
             indicatorView.layer.masksToBounds = YES;
             indicatorView.layer.borderWidth = 1;
-            indicatorView.layer.borderColor = [UIColor greenColor].CGColor;
+            indicatorView.layer.borderColor = [UIColor grayColor].CGColor;
             
             [self.pageTitleViewController setCustomIndicatorView:indicatorView toFront:NO];
         }

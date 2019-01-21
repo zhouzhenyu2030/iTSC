@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xp-gR-Rr4">
-                                <rect key="frame" x="0.0" y="40" width="375" height="20"/>
+                                <rect key="frame" x="20" y="70" width="335" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="tQg-6p-DBE"/>
                                 </constraints>
@@ -28,7 +28,7 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hx8-bI-8Q8">
-                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="567"/>
                                 <connections>
                                     <segue destination="eF1-Pa-f6N" kind="embed" id="xvt-e9-6vM"/>
                                 </connections>
@@ -36,12 +36,12 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="1xp-gR-Rr4" firstAttribute="leading" secondItem="YzP-AR-aD5" secondAttribute="leading" id="Gb4-zP-z1L"/>
-                            <constraint firstItem="hx8-bI-8Q8" firstAttribute="top" secondItem="1xp-gR-Rr4" secondAttribute="bottom" id="jm9-zx-3gK"/>
-                            <constraint firstAttribute="trailing" secondItem="1xp-gR-Rr4" secondAttribute="trailing" id="kOC-ZR-PZm"/>
+                            <constraint firstItem="1xp-gR-Rr4" firstAttribute="leading" secondItem="YzP-AR-aD5" secondAttribute="leading" constant="20" id="Gb4-zP-z1L"/>
+                            <constraint firstItem="hx8-bI-8Q8" firstAttribute="top" secondItem="1xp-gR-Rr4" secondAttribute="bottom" constant="10" id="jm9-zx-3gK"/>
+                            <constraint firstAttribute="trailing" secondItem="1xp-gR-Rr4" secondAttribute="trailing" constant="20" id="kOC-ZR-PZm"/>
                             <constraint firstAttribute="bottom" secondItem="hx8-bI-8Q8" secondAttribute="bottom" id="mVe-MC-4ba"/>
                             <constraint firstAttribute="trailing" secondItem="hx8-bI-8Q8" secondAttribute="trailing" id="mYS-Uh-l47"/>
-                            <constraint firstItem="1xp-gR-Rr4" firstAttribute="top" secondItem="YzP-AR-aD5" secondAttribute="top" constant="40" id="vgz-Ss-5yU"/>
+                            <constraint firstItem="1xp-gR-Rr4" firstAttribute="top" secondItem="YzP-AR-aD5" secondAttribute="top" constant="70" id="vgz-Ss-5yU"/>
                             <constraint firstItem="hx8-bI-8Q8" firstAttribute="leading" secondItem="YzP-AR-aD5" secondAttribute="leading" id="zQm-LR-HS5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2su-db-d60"/>
@@ -62,7 +62,7 @@
             <objects>
                 <collectionViewController storyboardIdentifier="SampleTitleViewController" id="V4Y-6h-eJN" customClass="SampleTitleViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="x0c-nz-CyF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                        <rect key="frame" x="0.0" y="0.0" width="335" height="20"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="W89-Bn-GWm">
@@ -113,7 +113,7 @@
             <objects>
                 <viewController storyboardIdentifier="ViewController" id="eF1-Pa-f6N" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1dc-c6-wvf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="607"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="567"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="8cL-Ag-pYp"/>

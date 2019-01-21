@@ -25,7 +25,9 @@
     
     if(!self.indicatorView) {
         self.indicatorView = [[UIView alloc] init];
-        self.indicatorView.backgroundColor = [UIColor greenColor];
+        //self.indicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 32, 32, 4)];
+        self.indicatorView.backgroundColor = [UIColor lightGrayColor];
+        //self.indicatorView
     }
     
     self.collectionView.dataSource = self;
@@ -115,9 +117,10 @@
         }
         
         //frame.size.height=35;
-        frame.origin.x = cellFrame.origin.x;
-        frame.size.width = cellFrame.size.width;
-        //frame.size.height = cellFrame.size.height;
+        frame.origin.x = cellFrame.origin.x + 10;
+        frame.origin.y = cellFrame.origin.y + cellFrame.size.height - 1;
+        frame.size.width = cellFrame.size.width - 20;
+        frame.size.height = 0.7;
         
         if(animated) {
             [UIView animateWithDuration:0.3f delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
