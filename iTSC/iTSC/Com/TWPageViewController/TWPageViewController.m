@@ -137,7 +137,8 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
 //初始化容器View
 - (void)initContainerView {
     
-    if(!self.containerView) {
+    if(!self.containerView)
+    {
         self.containerView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
         self.containerView.showsVerticalScrollIndicator = NO;
         self.containerView.showsHorizontalScrollIndicator = NO;
@@ -153,23 +154,27 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
     self.containerView.scrollsToTop = allowScrollsToTop;
 }
 
-- (nullable __kindof UIViewController *)dequeueReusableControllerWithClassName:(NSString * _Nonnull)className atIndex:(NSInteger)index{
+- (nullable __kindof UIViewController *)dequeueReusableControllerWithClassName:(NSString * _Nonnull)className atIndex:(NSInteger)index
+{
     if(!className)
         return nil;
     //如果childController中的相同位置有相同类型的cotroller则返回
     UIViewController *ctrl = [self childControllerForIndex:index];
-    if(ctrl && [NSStringFromClass([ctrl class]) isEqualToString:className]) {
+    if(ctrl && [NSStringFromClass([ctrl class]) isEqualToString:className])
+    {
         return ctrl;
     }
     
-    if(self.cacheControllers[className]) {
+    if(self.cacheControllers[className])
+    {
         return self.cacheControllers[className];
     }
     
     return nil;
 }
 
-- (void)gotoPageWithIndex:(NSInteger)index animated:(BOOL)animated {
+- (void)gotoPageWithIndex:(NSInteger)index animated:(BOOL)animated
+{
     if(index < self.numberOfControllers && index >= 0 && self.currentIndex != index) {
         
         self.preIndex = self.currentIndex;
@@ -210,7 +215,8 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
  */
 - (void)resetSubViewSize {
     
-    if(self.dataSource) {
+    if(self.dataSource)
+    {
         if([self.dataSource respondsToSelector:@selector(numberOfControllersInPageViewController:)]) {
             self.numberOfControllers = [self.dataSource numberOfControllersInPageViewController:self];
         }
@@ -219,27 +225,35 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
         NSAssert((self.dataSource != nil), @"TWPageViewController必须先设置数据源");
     }
     
-    if(self.numberOfControllers > 0) {
+    if(self.numberOfControllers > 0)
+    {
         self.containerView.contentSize = CGSizeMake(CGRectGetWidth(self.view.bounds) * self.numberOfControllers, CGRectGetHeight(self.view.bounds));
     }
     
-//    if([self.view superview].constraints.count > 0) {
-//        [self.view removeConstraints:self.view.constraints];
-//        [self.view mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.edges.equalTo([self.view superview]).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
-//        }];
-//    } else
+    //if([self.view superview].constraints.count > 0)
+    //{
+    //    [self.view removeConstraints:self.view.constraints];
+    //    [self.view mas_makeConstraints:^(MASConstraintMaker *make) {
+    //       make.edges.equalTo([self.view superview]).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+    //    }];
+    //}
+    //else
     {
         self.containerView.frame = self.view.bounds;
         //重新设置子controller的位置
-        for (UIViewController *controller in self.childViewControllers) {
+        for (UIViewController *controller in self.childViewControllers)
+        {
             
             CGRect frame = controller.view.frame;
-            if(index > 0) {
+            if(index > 0)
+            {
                 frame.origin.x = controller.pageIndex * CGRectGetWidth(self.view.bounds);
-            } else {
+            }
+            else
+            {
                 frame.origin.x = 0;
             }
+            frame.origin.y = -24; //zzy
             frame.size.width = self.view.bounds.size.width;
             frame.size.height = self.view.bounds.size.height;
             controller.view.frame = frame;
@@ -458,15 +472,16 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
 
 /**
  *  index位置的controller将要消失
- *
  *  @param index 索引
  */
-- (void)controllerWillDisappearAtIndex:(NSInteger)index {
+- (void)controllerWillDisappearAtIndex:(NSInteger)index
+{
     UIViewController *controller = [self childControllerForIndex:index];
     
     if(!controller) return;
     
-    if(controller.appearanceStatus == appearanceWillDisappear || controller.appearanceStatus == appearanceDidDisappear) {
+    if(controller.appearanceStatus == appearanceWillDisappear || controller.appearanceStatus == appearanceDidDisappear)
+    {
         return;
     }
     
@@ -479,19 +494,21 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
 
 /**
  *  index位置的controller已经消失
- *
  *  @param index 索引
  */
-- (void)controllerDidDisappearAtIndex:(NSInteger)index {
+- (void)controllerDidDisappearAtIndex:(NSInteger)index
+{
     UIViewController *controller = [self childControllerForIndex:index];
     
     if(!controller) return;
     
-    if(controller.appearanceStatus == appearanceDidDisappear) {
+    if(controller.appearanceStatus == appearanceDidDisappear)
+    {
         return;
     }
     
-    if([self.delegate respondsToSelector:@selector(pageViewController:didDisappearController:atIndex:)]) {
+    if([self.delegate respondsToSelector:@selector(pageViewController:didDisappearController:atIndex:)])
+    {
         [self.delegate pageViewController:self didDisappearController:controller atIndex:index];
     }
     
@@ -500,11 +517,11 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
 
 /**
  *  如果self.childViewControllers不包含在controller，则在指定的index插入一个controller
- *
  *  @param controller 需要插入的子controller
  *  @param index 位置
  */
-- (void)replaceWithController:(UIViewController *)controller atIndex:(NSInteger) index {
+- (void)replaceWithController:(UIViewController *)controller atIndex:(NSInteger) index
+{
     
     if(!controller || index < 0 || index >= self.numberOfControllers)
         return;
@@ -524,9 +541,11 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
     controller.pageIndex = index;
     
     //如果childControllers里面包含有同样的pageIndex的Controller，先将其移除
-    for(UIViewController *childController in self.childViewControllers) {
+    for(UIViewController *childController in self.childViewControllers)
+    {
         
-        if(childController.pageIndex == index) {
+        if(childController.pageIndex == index)
+        {
             [self removeChildController:childController];
         }
     }
@@ -567,10 +586,12 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
 
 /**
  *  移除一个子controller
- *
  *  @param childController 子controller
  */
-- (void)removeChildController:(UIViewController *)childController {
+- (void)removeChildController:(UIViewController *)childController
+{
+    return;
+    //zzy
     
     //如果缓存中没有该类型的controller，则加入到缓存中
     NSString* className = NSStringFromClass([childController class]);
@@ -596,10 +617,11 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
 
 /**
  *  移除除去当前位置、前一个、后一个controller之外的所有controller
- *
  */
-- (void)removeOtherControllers{
-    
+- (void)removeOtherControllers
+{
+    return;
+    //zzy
     NSInteger index = self.currentIndex;
     
     for(UIViewController *childController in self.childViewControllers) {
@@ -612,10 +634,12 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
 
 /**
  *  如果controller被缓存，则从缓存中移除，否则，不做任何操作
- *
  *  @param controller
  */
-- (void)removeFromCacheIfNeedWithController:(UIViewController *)controller {
+- (void)removeFromCacheIfNeedWithController:(UIViewController *)controller
+{
+    return;
+    //zzy
     NSArray *keys = [self.cacheControllers allKeys];
     
     for (id key in keys) {
