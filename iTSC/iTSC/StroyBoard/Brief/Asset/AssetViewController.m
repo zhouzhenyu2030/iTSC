@@ -202,11 +202,13 @@
     cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"AH Trade Edge:" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:3 TitleText:@"AH Trade Qty:" DetialText:@"-"];
 
+    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Excersize PNL:" DetialText:@"-"];
+
     
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
     RefreshSwitchCell = cell;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
     RefreshCountCell = cell;
 
 }
@@ -240,7 +242,9 @@
     NSLog(@"AssetViewController: SELECT: start!");
     
     //SELECT
-    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"hisasset" condition:[TscConnections getCurrentConnection].AccountID];
+    NSString* _condstr = [TscConnections getCurrentConnection].AccountID;
+    _condstr = [_condstr stringByAppendingString:@" order by HisDate DESC limit 1"];
+    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"hisasset" condition:_condstr];
     NSError *error = nil;
     NSArray *tasks = [_queryContext executeQueryRequestAndFetchResult:query error:&error];
     
@@ -331,6 +335,7 @@
     _condstr=[_condstr stringByAppendingString:@" or (ItemKey='TradeSum' and (ItemType='TradePosRatio' or ItemType='OrderTradeRatio'))"];
     _condstr=[_condstr stringByAppendingString:@" or (ItemKey='TradeSum' and (ItemType='ATTradeEdge' or ItemType='ATTradeQty' or ItemType='AHTradeEdge' or ItemType='AHTradeQty'))"];
     _condstr=[_condstr stringByAppendingString:@" ) and EntityType='A'"];
+    _condstr=[_condstr stringByAppendingString:@" or (ItemKey='PNL' and ItemType='ExecPNL')"];
     
     OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"runtimeinfo" condition:_condstr];
     NSError *error = nil;
@@ -377,12 +382,17 @@
         }
         if([_field[@"ItemType"] isEqualToString:@"ATTradeEdge"])
         {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"AT Trade Edge:" FieldName:@"ItemValue" SetColor:false];
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"AT Trade Edge:" FieldName:@"ItemValue" SetColor:true];
             continue;
         }
         if([_field[@"ItemType"] isEqualToString:@"AHTradeEdge"])
         {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"AH Trade Edge:" FieldName:@"ItemValue" SetColor:false];
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"AH Trade Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([_field[@"ItemType"] isEqualToString:@"ExecPNL"])
+        {
+           [UIHelper DisplayCell:TableView Field:_field TitleName:@"Excersize PNL:" FieldName:@"ItemValue" SetColor:true];
             continue;
         }
     }
