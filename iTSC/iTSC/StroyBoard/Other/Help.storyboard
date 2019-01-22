@@ -18,9 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TzP-8V-w2v">
-                                <rect key="frame" x="24" y="20" width="335" height="527"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TzP-8V-w2v">
+                                <rect key="frame" x="36" y="36" width="303" height="553"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">【二阶导数】
 Vanna，也被称为DvegaDspot 和DdeltaDvol，是期权价值的二阶导数,第一次对标的价格，第二次对波动性求导。 
@@ -43,6 +42,12 @@ Color， Gamma衰减或者DgammaDtime，是测量对Gamma对时间的变化率�
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="TzP-8V-w2v" firstAttribute="top" secondItem="Kwo-2l-Gbg" secondAttribute="top" constant="30" id="FfF-jP-Ggh"/>
+                            <constraint firstItem="TzP-8V-w2v" firstAttribute="trailing" secondItem="Wy5-eI-QAP" secondAttribute="trailingMargin" constant="-20" id="IX1-YK-Sf8"/>
+                            <constraint firstItem="TzP-8V-w2v" firstAttribute="leading" secondItem="Kwo-2l-Gbg" secondAttribute="leading" constant="30" id="N6D-jX-APL"/>
+                            <constraint firstItem="Kwo-2l-Gbg" firstAttribute="bottom" secondItem="TzP-8V-w2v" secondAttribute="bottom" constant="30" id="uXv-cm-i0I"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Kwo-2l-Gbg"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Help" image="first" id="CG8-OX-VCn"/>
