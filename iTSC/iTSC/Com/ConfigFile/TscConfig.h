@@ -22,7 +22,7 @@
 
 +(Boolean) isShowAllTime;
 +(void) setShowAllTime:(Boolean) vValue;
-
++(void) RefreshCurrentShowAllTime;
 
 
 +(Boolean) isGlobalAutoRefresh;

@@ -18,12 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hx8-bI-8Q8">
-                                <rect key="frame" x="0.0" y="91" width="375" height="487"/>
-                                <connections>
-                                    <segue destination="eF1-Pa-f6N" kind="embed" id="xvt-e9-6vM"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1xp-gR-Rr4">
                                 <rect key="frame" x="20" y="43" width="335" height="23"/>
                                 <constraints>
@@ -33,11 +27,17 @@
                                     <segue destination="V4Y-6h-eJN" kind="embed" id="1zG-u7-cCP"/>
                                 </connections>
                             </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hx8-bI-8Q8">
+                                <rect key="frame" x="0.0" y="74" width="375" height="544"/>
+                                <connections>
+                                    <segue destination="eF1-Pa-f6N" kind="embed" id="xvt-e9-6vM"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="1xp-gR-Rr4" firstAttribute="leading" secondItem="YzP-AR-aD5" secondAttribute="leading" constant="20" id="Gb4-zP-z1L"/>
-                            <constraint firstItem="hx8-bI-8Q8" firstAttribute="top" secondItem="1xp-gR-Rr4" secondAttribute="bottom" constant="20" id="jm9-zx-3gK"/>
+                            <constraint firstItem="hx8-bI-8Q8" firstAttribute="top" secondItem="1xp-gR-Rr4" secondAttribute="bottom" id="jm9-zx-3gK"/>
                             <constraint firstAttribute="trailing" secondItem="1xp-gR-Rr4" secondAttribute="trailing" constant="20" id="kOC-ZR-PZm"/>
                             <constraint firstAttribute="bottom" secondItem="hx8-bI-8Q8" secondAttribute="bottom" id="mVe-MC-4ba"/>
                             <constraint firstAttribute="trailing" secondItem="hx8-bI-8Q8" secondAttribute="trailing" id="mYS-Uh-l47"/>
@@ -113,7 +113,7 @@
             <objects>
                 <viewController storyboardIdentifier="ViewController" id="eF1-Pa-f6N" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1dc-c6-wvf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="487"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="544"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="8cL-Ag-pYp"/>

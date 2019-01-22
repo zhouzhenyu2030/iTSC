@@ -80,6 +80,10 @@ static Boolean _isShowAllTime;
     [_UserDefaults setBool:(vValue) forKey:(@"isShowAllTime")];
     [[UIApplication sharedApplication] setIdleTimerDisabled:vValue];
 }
++(void) RefreshCurrentShowAllTime
+{
+    [[UIApplication sharedApplication] setIdleTimerDisabled:_isShowAllTime];
+}
 
 
 //AutoRefresh
