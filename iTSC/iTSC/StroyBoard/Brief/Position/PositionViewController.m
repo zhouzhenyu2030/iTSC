@@ -169,8 +169,7 @@
 
     cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"Frozen:" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:1 TitleText:@"Available:" DetialText:@"-"];
- 
-    
+   
     cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
     RefreshSwitchCell = cell;
     cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];

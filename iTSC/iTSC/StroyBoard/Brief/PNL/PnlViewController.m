@@ -170,12 +170,13 @@
     cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"Excersize PNL:" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:1 TitleText:@"Close PNL (Theo):" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:2 TitleText:@"Close PNL (Market):" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:3 TitleText:@"Market Value:" DetialText:@"-"];
+    
+    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"Market Value:" DetialText:@"-"];
     
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
     RefreshSwitchCell = cell;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
     RefreshCountCell = cell;
 }
 

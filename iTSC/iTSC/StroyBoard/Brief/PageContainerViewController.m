@@ -49,8 +49,6 @@
     
     self.pageTitleViewController.dataSource = self;
     self.pageTitleViewController.delegate = self;
-    
-    //[self initzzy];
 }
 
 //init no use
@@ -226,7 +224,7 @@
 
 
 - (IBAction)segChanged:(id)sender {
-    
+    /*
     UISegmentedControl *seg = (UISegmentedControl *)sender;
     switch (seg.selectedSegmentIndex) {
         case 0: {
@@ -253,6 +251,7 @@
         default:
             break;
     }
+    */
 }
 
 

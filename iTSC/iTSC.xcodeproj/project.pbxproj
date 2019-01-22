@@ -225,6 +225,7 @@
 		194FF95521EC2BEA00CAB449 /* Brief */ = {
 			isa = PBXGroup;
 			children = (
+				19703EC121F6A2A5003D6697 /* == */,
 				19FFB2A921F194BD00C02A53 /* Brief.storyboard */,
 				190210C021E45964009ADE0B /* BriefDetail.storyboard */,
 				19FFB2AC21F19A8D00C02A53 /* PageContainerViewController.h */,
@@ -284,6 +285,13 @@
 				19703EBC21F5BD09003D6697 /* PnlViewController.m */,
 			);
 			path = PNL;
+			sourceTree = "<group>";
+		};
+		19703EC121F6A2A5003D6697 /* == */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "==";
 			sourceTree = "<group>";
 		};
 		1980DBD321EF025E008C9FF0 /* ConfigFile */ = {

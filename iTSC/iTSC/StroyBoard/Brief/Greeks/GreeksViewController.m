@@ -73,9 +73,9 @@
 {
     UISwitch *_switch = [[UISwitch alloc] init];
     [_switch addTarget:self action:@selector(SwitchChanged:) forControlEvents:UIControlEventValueChanged];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:5];
-    UITableViewCell *cell = [TableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryView = _switch;
+    //NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:5];
+    //UITableViewCell *cell = [TableView cellForRowAtIndexPath:indexPath];
+    RefreshSwitchCell.accessoryView = _switch;
     return _switch;
 }
 
@@ -183,13 +183,17 @@
     cell.detailTextLabel.textColor= UIColor.blueColor;
     cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"SLR:" DetialText:@"-"];
     cell.detailTextLabel.textColor= UIColor.blueColor;
-    [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"PCR:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:4 Row:3 TitleText:@"CCR:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"PCR:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:3 TitleText:@"CCR:" DetialText:@"-"];
     
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
-    RefreshCountCell=
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
     
+    cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"Position:" DetialText:@"-"];
+    cell.detailTextLabel.textColor= UIColor.blueColor;
+    
+    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
+    RefreshSwitchCell = cell;
+    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
+    RefreshCountCell = cell;
   
 }
 
@@ -215,7 +219,7 @@
     
     
     //SELECT
-    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"runtimeinfo" condition:@"ItemKey='Risk' and EntityType='A'"];
+    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"runtimeinfo" condition:@"(ItemKey='Risk' and EntityType='A') or (ItemKey='Position' and ItemType='Position' and EntityType='A')"];
     NSError *error = nil;
     NSArray *tasks = [_queryContext executeQueryRequestAndFetchResult:query error:&error];
     
@@ -235,8 +239,15 @@
         NSLog(@"%@", _field);
         
 
+        typename=_field[@"ItemType"];
+        if([_field[@"ItemType"] isEqualToString:@"Position"])
+        {
+            value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:0];
+            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Position:" DetialText:value];
+            continue;
+        }
         
-        typename=[_field[@"ItemType"] substringFromIndex:5];
+        typename=[typename substringFromIndex:5];
         typename=[typename stringByAppendingString:@":"];
         value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:2];
         [UIHelper SetTabelViewCellDetailText:TableView TitleText: typename DetialText:value];
