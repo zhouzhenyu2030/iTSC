@@ -183,8 +183,12 @@
 		194D007B21F2ADD2008918DA /* StroyBoard */ = {
 			isa = PBXGroup;
 			children = (
+				19FFB2A921F194BD00C02A53 /* Brief.storyboard */,
+				190210C021E45964009ADE0B /* BriefDetail.storyboard */,
 				19FFB2C521F1A70D00C02A53 /* Title */,
 				19FFB2C921F1BAF600C02A53 /* Page */,
+				19FFB2AC21F19A8D00C02A53 /* PageContainerViewController.h */,
+				19FFB2AD21F19A8D00C02A53 /* PageContainerViewController.m */,
 			);
 			path = StroyBoard;
 			sourceTree = "<group>";
@@ -226,15 +230,11 @@
 			isa = PBXGroup;
 			children = (
 				19703EC121F6A2A5003D6697 /* == */,
-				19FFB2A921F194BD00C02A53 /* Brief.storyboard */,
-				190210C021E45964009ADE0B /* BriefDetail.storyboard */,
-				19FFB2AC21F19A8D00C02A53 /* PageContainerViewController.h */,
-				19FFB2AD21F19A8D00C02A53 /* PageContainerViewController.m */,
 				194D007B21F2ADD2008918DA /* StroyBoard */,
 				19FFB2AB21F19A8D00C02A53 /* Asset */,
 				194FF95721EC2C1A00CAB449 /* Greeks */,
-				194D007D21F2AE6D008918DA /* TradeSum */,
 				19703EBB21F5BCCB003D6697 /* PNL */,
+				194D007D21F2AE6D008918DA /* TradeSum */,
 				19703EB721F5A94F003D6697 /* Position */,
 			);
 			path = Brief;

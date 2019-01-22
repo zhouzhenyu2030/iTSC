@@ -16,6 +16,7 @@
     int RefreshCnt;
     UISwitch *Switch_AutoRefresh;
     UITableViewCell *RefreshCountCell;
+    UITableViewCell *RefreshSwitchCell;
     UIRefreshControl *refreshControl;
     NSTimer* myTimer;
     bool isTimerProcessing;

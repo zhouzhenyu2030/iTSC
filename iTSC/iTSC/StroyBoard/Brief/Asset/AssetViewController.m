@@ -74,9 +74,7 @@
 {
     UISwitch *_switch = [[UISwitch alloc] init];
     [_switch addTarget:self action:@selector(SwitchChanged:) forControlEvents:UIControlEventValueChanged];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:5];
-    UITableViewCell *cell = [TableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryView = _switch;
+    RefreshSwitchCell.accessoryView = _switch;
     return _switch;
 }
 
@@ -183,22 +181,33 @@
     
     
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"TOR(%):" DetialText:@"-"];
+
+    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"TPR:" DetialText:@"-"];
+    cell.detailTextLabel.textColor = UIColor.redColor;
+    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"Position:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"TOR(%):" DetialText:@"-"];
     cell.detailTextLabel.textColor = UIColor.purpleColor;
-    
-    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"Trade Qty:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:3 TitleText:@"Trade Qty:" DetialText:@"-"];
     cell.detailTextLabel.textColor = UIColor.blueColor;
+    //cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"Order Insert Qty:" DetialText:@"-"];
+    //cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:3 TitleText:@"Order Insert Cnt:" DetialText:@"-"];
+    //cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:4 TitleText:@"Qty Per Order:" DetialText:@"-"];
+    //cell.detailTextLabel.textColor = UIColor.blueColor;
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"Order Insert Qty:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:3 TitleText:@"Order Insert Cnt:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:4 TitleText:@"Qty Per Order:" DetialText:@"-"];
-    cell.detailTextLabel.textColor = UIColor.blueColor;
+
+
+    cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"AT Trade Edge:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"AT Trade Qty:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"AH Trade Edge:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:3 TitleText:@"AH Trade Qty:" DetialText:@"-"];
 
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
     
+    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
+    RefreshSwitchCell = cell;
+    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
     RefreshCountCell = cell;
+
 }
 
 
@@ -207,9 +216,19 @@
 - (void)QueryAndDisplay
 {
     NSLog(@"AssetViewController: start!");
-
+    
     RefreshCountCell.detailTextLabel.text=[NSString stringWithFormat:@"%d", RefreshCnt];
+    NSLog(@"AssetViewController: RefreshCnt=%d", RefreshCnt);
+    
+    [self _DisplayHisAsset];
+    [self _DisplayRuntimeInfo];
 
+    [TableView reloadData];
+}
+
+//_DisplayHisAsset
+-(void) _DisplayHisAsset
+{
     OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
     if(_queryContext==nil)
     {
@@ -234,18 +253,18 @@
     NSDictionary  *_field=[tasks objectAtIndex:count-1];
     NSString* _sValue;
     float _fValue;
-
+    
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"HisDate:" DetialText:_field[@"HisDate"]];
-    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RecordTime:" DetialText:_field[@"RecordTime"]];
+    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RecordTime:" DetialText:[_field[@"RecordTime"] substringToIndex:8]];
     _sValue = [NSString stringWithFormat:@"%d", [_field[@"AccountID"] intValue]];
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"AccountID:" DetialText:_sValue];
     
- 
+    
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Asset (Theory):" FieldName:@"AssetTheo" SetColor:false];
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Asset (Market):" FieldName:@"Asset" SetColor:false];
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total Cash:" FieldName:@"TotalCash" SetColor:false];
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Curr Margin:" FieldName:@"CurrMargin" SetColor:false];
-
+    
     _fValue=[_field[@"Asset"]  floatValue] - [_field[@"AssetTheo"]  floatValue];
     _sValue = [StringHelper fPositiveFormat:_fValue pointNumber:2];
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Asset Dif (Market-Theory):" DetialText:_sValue];
@@ -254,27 +273,27 @@
     _sValue = [StringHelper fPositiveFormat:_fValue pointNumber:2];
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Risk Level (%):" DetialText:_sValue];
     
-
+    
     
     
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Trade PNL (Marktet):" FieldName:@"TradeMktPNL" SetColor:true];
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Yd    PNL (Marktet):" FieldName:@"YdMktPNL" SetColor:true];
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total PNL (Marktet):" FieldName:@"TotalMktPNL" SetColor:true];
-
+    
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Trade PNL (Theo):" FieldName:@"TradeTheoPNL" SetColor:true];
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Yd    PNL (Theo):" FieldName:@"YdTheoPNL" SetColor:true];
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total PNL (Theo):" FieldName:@"TotalTheoPNL" SetColor:true];
-
-
+    
+    
     [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Trade Qty:" FieldName:@"TradeQty"];
-    [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Order Insert Qty:" FieldName:@"OrderInsertQty"];
-    [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Order Insert Cnt:" FieldName:@"OrderInsertCnt"];
-
-    int _TradeQty=[_field[@"TradeQty"] intValue];
-    int _OrderInsertQty=[_field[@"OrderInsertQty"] intValue];
-    int _OrderInsertCnt = [_field[@"OrderInsertCnt"] intValue];
-
-
+    //[UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Order Insert Qty:" FieldName:@"OrderInsertQty"];
+    //[UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Order Insert Cnt:" FieldName:@"OrderInsertCnt"];
+    
+    //int _TradeQty=[_field[@"TradeQty"] intValue];
+    //int _OrderInsertQty=[_field[@"OrderInsertQty"] intValue];
+    //int _OrderInsertCnt = [_field[@"OrderInsertCnt"] intValue];
+    
+    /*
     //计算TOR
     if(_OrderInsertQty!=0)
     {
@@ -291,18 +310,82 @@
         _sValue = [NSString stringWithFormat:@"%0.2f", _fValue];
         [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Qty Per Order:" DetialText:_sValue];
     }
-    
- 
+    */
     NSLog(@"AssetViewController: SELECT: over!");
-
-    [TableView reloadData];
-
-
-    NSLog(@"AssetViewController: RefreshCnt=%d", RefreshCnt);
 }
 
 
-
+//_DisplayRuntimeInfo
+-(void) _DisplayRuntimeInfo
+{
+    //SELECT
+    OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
+    if(_queryContext==nil)
+    {
+        NSLog(@"AssetViewController: Init: queryContext==nil!");
+        return;
+    }
+    
+    NSString* _condstr = @"( (ItemKey='Position' and ItemType='Position')";
+    _condstr=[_condstr stringByAppendingString:@" or (ItemKey='TradeSum' and (ItemType='TradePosRatio' or ItemType='OrderTradeRatio'))"];
+    _condstr=[_condstr stringByAppendingString:@" or (ItemKey='TradeSum' and (ItemType='ATTradeEdge' or ItemType='ATTradeQty' or ItemType='AHTradeEdge' or ItemType='AHTradeQty'))"];
+    _condstr=[_condstr stringByAppendingString:@" ) and EntityType='A'"];
+    
+    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"runtimeinfo" condition:_condstr];
+    NSError *error = nil;
+    NSArray *tasks = [_queryContext executeQueryRequestAndFetchResult:query error:&error];
+    
+    
+    NSInteger count = tasks.count;
+    if(count <= 0)
+        return;
+    
+    NSDictionary  *_field;
+    NSString* value;
+    for( int i=0; i<count; i++)
+    {
+        _field=[tasks objectAtIndex:i];
+        NSLog(@"%@", _field);
+        
+        if([_field[@"ItemType"] isEqualToString:@"OrderTradeRatio"])
+        {
+            float _fValue=[_field[@"ItemValue"] floatValue]*100;
+            value=[StringHelper fPositiveFormat:_fValue pointNumber:2];
+            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"TOR(%):" DetialText:value];
+            continue;
+        }
+        if([_field[@"ItemType"] isEqualToString:@"TradePosRatio"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"TPR:" FieldName:@"ItemValue" SetColor:false];
+            continue;
+        }
+        if([_field[@"ItemType"] isEqualToString:@"Position"])
+        {
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Position:" FieldName:@"ItemValue"];
+            continue;
+        }
+        if([_field[@"ItemType"] isEqualToString:@"ATTradeQty"])
+        {
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"AT Trade Qty:" FieldName:@"ItemValue"];
+            continue;
+        }
+        if([_field[@"ItemType"] isEqualToString:@"AHTradeQty"])
+        {
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"AH Trade Qty:" FieldName:@"ItemValue"];
+            continue;
+        }
+        if([_field[@"ItemType"] isEqualToString:@"ATTradeEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"AT Trade Edge:" FieldName:@"ItemValue" SetColor:false];
+            continue;
+        }
+        if([_field[@"ItemType"] isEqualToString:@"AHTradeEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"AH Trade Edge:" FieldName:@"ItemValue" SetColor:false];
+            continue;
+        }
+    }
+}
 
 
 @end

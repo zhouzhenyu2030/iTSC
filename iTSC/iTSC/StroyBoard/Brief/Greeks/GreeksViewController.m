@@ -189,6 +189,8 @@
     
     cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"Position:" DetialText:@"-"];
     cell.detailTextLabel.textColor= UIColor.blueColor;
+    cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"AT Trade Qty:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"AH Trade Qty:" DetialText:@"-"];
     
     cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
     RefreshSwitchCell = cell;
@@ -219,7 +221,7 @@
     
     
     //SELECT
-    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"runtimeinfo" condition:@"(ItemKey='Risk' and EntityType='A') or (ItemKey='Position' and ItemType='Position' and EntityType='A')"];
+    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"runtimeinfo" condition:@"(ItemKey='Risk' and EntityType='A') or (ItemKey='Position' and ItemType='Position' and EntityType='A') or (ItemKey='TradeSum' and (ItemType='ATTradeQty' or ItemType='AHTradeQty') and EntityType='A')"];
     NSError *error = nil;
     NSArray *tasks = [_queryContext executeQueryRequestAndFetchResult:query error:&error];
     
@@ -246,6 +248,18 @@
             [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Position:" DetialText:value];
             continue;
         }
+        if([_field[@"ItemType"] isEqualToString:@"ATTradeQty"])
+        {
+            value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:0];
+            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"AT Trade Qty:" DetialText:value];
+            continue;
+        }
+        if([_field[@"ItemType"] isEqualToString:@"AHTradeQty"])
+        {
+            value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:0];
+            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"AH Trade Qty:" DetialText:value];
+            continue;
+        }
         
         typename=[typename substringFromIndex:5];
         typename=[typename stringByAppendingString:@":"];
@@ -261,7 +275,7 @@
     
     _field=[tasks objectAtIndex:0];
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RecordDate:" DetialText:_field[@"RecordDate"]];
-    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RecordTime:" DetialText:_field[@"RecordTime"]];
+    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RecordTime:" DetialText:[_field[@"RecordTime"] substringToIndex:8]];
     
 
     NSLog(@"GreeksViewController: SELECT: over!");
