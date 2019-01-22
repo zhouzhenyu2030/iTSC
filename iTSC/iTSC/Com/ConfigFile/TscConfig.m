@@ -28,9 +28,9 @@ NSUserDefaults *_UserDefaults;
     
     _UserDefaults = [NSUserDefaults standardUserDefaults];
     
-    _isShowAllTime=[_UserDefaults boolForKey:@"isShowAllTime"];
+    _isShowAllTime = [_UserDefaults boolForKey:@"isShowAllTime"];
     [[UIApplication sharedApplication] setIdleTimerDisabled:_isShowAllTime];
-    
+ 
     _isGlobalAutoRefresh = [_UserDefaults boolForKey:@"isGlobalAutoRefresh"];
     _isAssetAutoRefresh = [_UserDefaults boolForKey:@"isAssetAutoRefresh"];
     _isGreekAutoRefresh = [_UserDefaults boolForKey:@"isGreekAutoRefresh"];
