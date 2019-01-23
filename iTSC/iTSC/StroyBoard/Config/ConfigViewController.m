@@ -179,8 +179,8 @@
 -(void) SetRefreshSeconds
 {
     // 1.创建UIAlertController
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Alert Title"
-                                                                             message:@"The message is ..."
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Refresh Seconds"
+                                                                             message:@"Input Refresh Seconds:"
                                                                       preferredStyle:UIAlertControllerStyleAlert];
     
     //TextField
