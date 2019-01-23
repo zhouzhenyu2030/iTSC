@@ -190,11 +190,6 @@
     cell.detailTextLabel.textColor = UIColor.purpleColor;
     cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:3 TitleText:@"Trade Qty:" DetialText:@"-"];
     cell.detailTextLabel.textColor = UIColor.blueColor;
-    //cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"Order Insert Qty:" DetialText:@"-"];
-    //cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:3 TitleText:@"Order Insert Cnt:" DetialText:@"-"];
-    //cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:4 TitleText:@"Qty Per Order:" DetialText:@"-"];
-    //cell.detailTextLabel.textColor = UIColor.blueColor;
-    
 
 
     cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"AT Trade Edge:" DetialText:@"-"];
@@ -204,8 +199,8 @@
 
     
     cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Excersize PNL:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Theo Close PNL:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Market Close PNL:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"Theo Close PNL:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:2 TitleText:@"Market Close PNL:" DetialText:@"-"];
 
     
     cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
@@ -281,8 +276,6 @@
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Risk Level (%):" DetialText:_sValue];
     
     
-    
-    
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Trade PNL (Marktet):" FieldName:@"TradeMktPNL" SetColor:true];
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Yd    PNL (Marktet):" FieldName:@"YdMktPNL" SetColor:true];
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total PNL (Marktet):" FieldName:@"TotalMktPNL" SetColor:true];
@@ -293,31 +286,7 @@
     
     
     [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Trade Qty:" FieldName:@"TradeQty"];
-    //[UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Order Insert Qty:" FieldName:@"OrderInsertQty"];
-    //[UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Order Insert Cnt:" FieldName:@"OrderInsertCnt"];
-    
-    //int _TradeQty=[_field[@"TradeQty"] intValue];
-    //int _OrderInsertQty=[_field[@"OrderInsertQty"] intValue];
-    //int _OrderInsertCnt = [_field[@"OrderInsertCnt"] intValue];
-    
-    /*
-    //计算TOR
-    if(_OrderInsertQty!=0)
-    {
-        _fValue=1.0*_TradeQty/_OrderInsertQty*100;
-        _sValue = [NSString stringWithFormat:@"%0.2f", _fValue];
-        [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"TOR(%):" DetialText:_sValue];
-    }
-    
-    
-    //计算Qty Per Order
-    if(_OrderInsertCnt != 0)
-    {
-        _fValue=1.0*_OrderInsertQty/_OrderInsertCnt;
-        _sValue = [NSString stringWithFormat:@"%0.2f", _fValue];
-        [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Qty Per Order:" DetialText:_sValue];
-    }
-    */
+
     NSLog(@"AssetViewController: SELECT: over!");
 }
 
