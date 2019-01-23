@@ -244,7 +244,7 @@
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"Close PNL (Market):" FieldName:@"ItemValue" SetColor:true];
 
         if([typename isEqualToString:@"MarketValue_Mkt"])
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Market Value:" FieldName:@"ItemValue" SetColor:true];
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Market Value:" FieldName:@"ItemValue" SetColor:false];
 
     }
     

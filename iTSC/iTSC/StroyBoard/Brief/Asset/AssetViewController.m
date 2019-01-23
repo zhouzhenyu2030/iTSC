@@ -202,9 +202,11 @@
     cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"AH Trade Edge:" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:3 TitleText:@"AH Trade Qty:" DetialText:@"-"];
 
-    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Excersize PNL:" DetialText:@"-"];
-
     
+    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Excersize PNL:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Theo Close PNL:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Market Close PNL:" DetialText:@"-"];
+
     
     cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
     RefreshSwitchCell = cell;
@@ -332,10 +334,11 @@
     }
     
     NSString* _condstr = @"( (ItemKey='Position' and ItemType='Position')";
-    _condstr=[_condstr stringByAppendingString:@" or (ItemKey='TradeSum' and (ItemType='TradePosRatio' or ItemType='OrderTradeRatio'))"];
-    _condstr=[_condstr stringByAppendingString:@" or (ItemKey='TradeSum' and (ItemType='ATTradeEdge' or ItemType='ATTradeQty' or ItemType='AHTradeEdge' or ItemType='AHTradeQty'))"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='TradeSum' and (ItemType='TradePosRatio' or ItemType='OrderTradeRatio') )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='TradeSum' and (ItemType='ATTradeEdge' or ItemType='ATTradeQty' or ItemType='AHTradeEdge' or ItemType='AHTradeQty') )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='PNL' and (ItemType='ExecPNL' or ItemType='CloseTheoryPNL' or ItemType='CloseMarketPNL' ) )"];
     _condstr=[_condstr stringByAppendingString:@" ) and EntityType='A'"];
-    _condstr=[_condstr stringByAppendingString:@" or (ItemKey='PNL' and ItemType='ExecPNL')"];
+
     
     OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"runtimeinfo" condition:_condstr];
     NSError *error = nil;
@@ -393,6 +396,16 @@
         if([_field[@"ItemType"] isEqualToString:@"ExecPNL"])
         {
            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Excersize PNL:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([_field[@"ItemType"] isEqualToString:@"CloseTheoryPNL"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Close  PNL:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([_field[@"ItemType"] isEqualToString:@"CloseMarketPNL"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Market Close  PNL:" FieldName:@"ItemValue" SetColor:true];
             continue;
         }
     }
