@@ -14,6 +14,7 @@
 
 @interface GreeksViewController : UITableViewController
 {
+    NSInteger RefreshTimerElpasedSeconds;
     int RefreshCnt;
     UISwitch *Switch_AutoRefresh;
     UITableViewCell *RefreshSwitchCell;

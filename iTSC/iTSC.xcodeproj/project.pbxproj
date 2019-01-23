@@ -229,7 +229,6 @@
 		194FF95521EC2BEA00CAB449 /* Brief */ = {
 			isa = PBXGroup;
 			children = (
-				19703EC121F6A2A5003D6697 /* == */,
 				194D007B21F2ADD2008918DA /* StroyBoard */,
 				19FFB2AB21F19A8D00C02A53 /* Asset */,
 				194FF95721EC2C1A00CAB449 /* Greeks */,
@@ -285,13 +284,6 @@
 				19703EBC21F5BD09003D6697 /* PnlViewController.m */,
 			);
 			path = PNL;
-			sourceTree = "<group>";
-		};
-		19703EC121F6A2A5003D6697 /* == */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "==";
 			sourceTree = "<group>";
 		};
 		1980DBD321EF025E008C9FF0 /* ConfigFile */ = {

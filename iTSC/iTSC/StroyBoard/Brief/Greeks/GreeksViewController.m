@@ -33,10 +33,10 @@
     Switch_AutoRefresh = [self AppendSwitch];
     Switch_AutoRefresh.on = [TscConfig isGreekAutoRefresh];
     
+    RefreshTimerElpasedSeconds = 0;
     if(myTimer==nil)
-    {
-        myTimer  =  [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
-    }
+        myTimer  =  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
+
     
     [self setupRefresh];
     TableView.rowHeight = 18; //UITableViewAutomaticDimension;
@@ -48,23 +48,17 @@
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventValueChanged];
     refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"正在刷新"];
-    //刷新图形时的颜色，即刷新的时候那个菊花的颜色
-    //refreshControl.tintColor = [UIColor redColor];
-    [self.TableView addSubview:refreshControl];
-    //[refreshControl beginRefreshing];
-    //[self refreshClick:refreshControl];
+    TableView.refreshControl = refreshControl;
 }
-
-
-
 // 下拉刷新触发
 - (void)refreshClick:(UIRefreshControl *)refreshControl
 {
+    [self InitTableViewCells];
     RefreshCountCell.detailTextLabel.text=@"0";
     RefreshCnt = 1;
     [self QueryAndDisplay];
+    [self.TableView reloadData];
     [refreshControl endRefreshing];
-    [self.TableView reloadData];// 刷新tableView即可
 }
 
 
@@ -73,8 +67,6 @@
 {
     UISwitch *_switch = [[UISwitch alloc] init];
     [_switch addTarget:self action:@selector(SwitchChanged:) forControlEvents:UIControlEventValueChanged];
-    //NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:5];
-    //UITableViewCell *cell = [TableView cellForRowAtIndexPath:indexPath];
     RefreshSwitchCell.accessoryView = _switch;
     return _switch;
 }
@@ -89,10 +81,15 @@
     
     if(isTimerProcessing) return;
     
+    RefreshTimerElpasedSeconds++;
+    if(RefreshTimerElpasedSeconds<TscConfig.RefreshSeconds) return;
+    
     isTimerProcessing=true;
     RefreshCnt++;
     [self QueryAndDisplay];
     isTimerProcessing=false;
+    
+    RefreshTimerElpasedSeconds=0;
 }
 
 
@@ -165,13 +162,13 @@
     cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Theta:" DetialText:@"-"];
     cell.detailTextLabel.textColor= UIColor.blueColor;
     
-    [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"Gamma:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"Gamma:" DetialText:@"-"];
     cell.detailTextLabel.textColor= UIColor.blueColor;
-    [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Charm:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Vanna:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Charm:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Vanna:" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:3 TitleText:@"Volga:" DetialText:@"-"];
     cell.detailTextLabel.textColor= UIColor.blueColor;
-    [UIHelper SetTabelViewCellText:TableView Section:2 Row:4 TitleText:@"Veta:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:4 TitleText:@"Veta:" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:5 TitleText:@"Thema:" DetialText:@"-"];
     cell.detailTextLabel.textColor= UIColor.blueColor;
     

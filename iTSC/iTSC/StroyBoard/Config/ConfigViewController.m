@@ -51,42 +51,53 @@
     Cell_Switch_GlobalAutoRefresh = cell;
     
     
-    //////////////////////////////////////// Connection ////////////////////////////////////////
-    _SectionIndex=1;
+    //////////////////////////////////////// Connection Confit ////////////////////////////////////////
+    ConnectionConfigSection=1;
     NSArray *ConnectionKeys = [TscConnections getConnectionKeys];
     int i = 0;
     //显示Connection
-    FirstConnectionRow = [NSIndexPath indexPathForRow:0 inSection:_SectionIndex].row;
+    FirstConnectionRow = [NSIndexPath indexPathForRow:0 inSection:ConnectionConfigSection].row;
     for (NSString *c in ConnectionKeys)
     {
         NSLog(@"%@",c);
-        cell = [UIHelper SetTabelViewCellText:TableView Section:_SectionIndex Row:i TitleText:c DetialText:@""];
+        cell = [UIHelper SetTabelViewCellText:TableView Section:(int)ConnectionConfigSection Row:i TitleText:c DetialText:@""];
         if([c isEqualToString:[TscConnections CurrentConnectionKey]])
         {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            lastIndexPath = [NSIndexPath indexPathForRow:i inSection:_SectionIndex];
+            lastIndexPath = [NSIndexPath indexPathForRow:i inSection:ConnectionConfigSection];
         }
         else
             cell.accessoryType = UITableViewCellAccessoryNone;
         i++;
     }
-    LastConnectionRow = [NSIndexPath indexPathForRow:i-1 inSection:_SectionIndex].row;
+    LastConnectionRow = [NSIndexPath indexPathForRow:i-1 inSection:ConnectionConfigSection].row;
 
+    
     //添加Connection
-    cell = [UIHelper SetTabelViewCellText:TableView Section:_SectionIndex Row:i TitleText:@"添加 Connection" DetialText:@""];
-    //cell.accessoryType = UITableViewCellAccessoryNone;
+    [UIHelper SetTabelViewCellText:TableView Section:(int)ConnectionConfigSection Row:i TitleText:@"添加 Connection" DetialText:@""];
     
     //隐藏多余行
     NSIndexPath *indexPath;
-    NSInteger rows = [TableView numberOfRowsInSection:_SectionIndex];
+    NSInteger rows = [TableView numberOfRowsInSection:ConnectionConfigSection];
     for(int j=i+1; j<(int)rows; j++)
     {
-        indexPath=[NSIndexPath indexPathForRow:j inSection:_SectionIndex];
+        indexPath=[NSIndexPath indexPathForRow:j inSection:ConnectionConfigSection];
         cell = [TableView cellForRowAtIndexPath:indexPath];
         [cell setHidden:true];
     }
-
-
+    
+    
+    
+    
+    //////////////////////////////////////// Connection Confit ////////////////////////////////////////
+    RefreshSecondsSection=2; RefreshSecondsRow=0;
+    [UIHelper SetTabelViewCellText:TableView Section:(int)RefreshSecondsSection Row:(int)RefreshSecondsRow TitleText:@"Refresh Seconds:" DetialText:[NSString stringWithFormat:@"%d", (int)[TscConfig RefreshSeconds]]];
+    
+    ReconnectDBSection=2; ReconnectDBRow=1;
+    cell=[UIHelper SetTabelViewCellText:TableView Section:(int)ReconnectDBSection Row:(int)ReconnectDBRow TitleText:@"Reconnect DB" DetialText:@""];
+    cell.textLabel.textColor = UIColor.blueColor;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    
 }
 
 
@@ -128,23 +139,79 @@
 //didSelectRowAtIndexPath
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //connection
-    if([indexPath row]>=FirstConnectionRow && [indexPath row]<=LastConnectionRow)
+    //RefreshSeconds
+    if([indexPath section] == RefreshSecondsSection && [indexPath row] == RefreshSecondsRow)
     {
-        if (indexPath != lastIndexPath)
-        {
-            [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
-            [tableView cellForRowAtIndexPath:lastIndexPath].accessoryType = UITableViewCellAccessoryNone;
-        }
-        [TscConnections SetCurrentConnection:[TableView cellForRowAtIndexPath:indexPath].textLabel.text];
-        lastIndexPath = indexPath;
+        [self SetRefreshSeconds];
+        [UIHelper SetTabelViewCellText:TableView Section:(int)RefreshSecondsSection Row:(int)RefreshSecondsRow TitleText:@"Refresh Seconds:" DetialText:[NSString stringWithFormat:@"%d", (int)[TscConfig RefreshSeconds]]];
+    }
+ 
+    //ReconnectDB
+    if([indexPath section] == ReconnectDBSection && [indexPath row] == ReconnectDBRow)
+    {
+        [DBHelper Reconnect];
+        UIAlertController * alertController=[UIHelper ShowMessage:@"Reconnect DB" Message:@"Reconnect DB is over."];
+        [self presentViewController:alertController animated:YES completion:nil];
     }
     
+    //connection set
+    if([indexPath section] == ConnectionConfigSection)
+    {
+        if([indexPath row]>=FirstConnectionRow && [indexPath row]<=LastConnectionRow)
+        {
+            if (indexPath != lastIndexPath)
+            {
+                [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
+                [tableView cellForRowAtIndexPath:lastIndexPath].accessoryType = UITableViewCellAccessoryNone;
+            }
+            [TscConnections SetCurrentConnection:[TableView cellForRowAtIndexPath:indexPath].textLabel.text];
+            lastIndexPath = indexPath;
+        }
+    }
+    
+    //
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
 
 
- 
- 
+//SetRefreshSeconds
+-(void) SetRefreshSeconds
+{
+    // 1.创建UIAlertController
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Alert Title"
+                                                                             message:@"The message is ..."
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    
+    //TextField
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull myTextField) {
+    }];
+    UITextField *_TextField = alertController.textFields.firstObject;
+    _TextField.text=[NSString stringWithFormat:@"%d", (int)[TscConfig RefreshSeconds]];
+    
+    // 2.创建并添加按钮
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
+                               {
+                                   NSLog(@"OK Action:%@", _TextField.text);
+                                   NSInteger _value=_TextField.text.integerValue;
+                                   if(_value<=0) _value=2;
+                                   [TscConfig setRefreshSeconds:_value];
+                               }];
+
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"Cancel Action");
+    }];
+    
+    
+    [alertController addAction:okAction];
+    [alertController addAction:cancelAction];
+
+    
+    // 3.呈现UIAlertContorller
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+}
+
+
+
 @end

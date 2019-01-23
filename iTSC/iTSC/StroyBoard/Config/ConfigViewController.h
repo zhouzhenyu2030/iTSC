@@ -16,7 +16,9 @@
 @interface ConfigViewController : UITableViewController
 {
     NSIndexPath *lastIndexPath;
-    NSInteger FirstConnectionRow, LastConnectionRow;
+    
+    NSInteger ConnectionConfigSection, FirstConnectionRow, LastConnectionRow;
+    NSInteger RefreshSecondsSection, RefreshSecondsRow, ReconnectDBSection, ReconnectDBRow;
     
     UISwitch *Switch_ShowAllTime;
     UISwitch *Switch_GlobalAutoRefresh;

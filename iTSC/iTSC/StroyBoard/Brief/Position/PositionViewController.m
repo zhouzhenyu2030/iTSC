@@ -34,10 +34,10 @@
     Switch_AutoRefresh = [self AppendSwitch];
     Switch_AutoRefresh.on = [TscConfig isPositionAutoRefresh];
     
+    RefreshTimerElpasedSeconds = 0;
     if(myTimer==nil)
-    {
-        myTimer  =  [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
-    }
+        myTimer  =  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
+
     
     [self setupRefresh];
     TableView.rowHeight = 18;
@@ -49,23 +49,17 @@
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventValueChanged];
     refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"正在刷新"];
-    //刷新图形时的颜色，即刷新的时候那个菊花的颜色
-    //refreshControl.tintColor = [UIColor redColor];
-    [self.TableView addSubview:refreshControl];
-    //[refreshControl beginRefreshing];
-    //[self refreshClick:refreshControl];
+    TableView.refreshControl = refreshControl;
 }
-
-
 // 下拉刷新触发
 - (void)refreshClick:(UIRefreshControl *)refreshControl
 {
     [self InitTableViewCells];
-    RefreshCountCell.detailTextLabel.text = @"0";
+    RefreshCountCell.detailTextLabel.text=@"0";
     RefreshCnt = 1;
     [self QueryAndDisplay];
+    [self.TableView reloadData];
     [refreshControl endRefreshing];
-    [self.TableView reloadData];// 刷新tableView即可
 }
 
 
@@ -88,10 +82,15 @@
     
     if(isTimerProcessing) return;
     
+    RefreshTimerElpasedSeconds++;
+    if(RefreshTimerElpasedSeconds<TscConfig.RefreshSeconds) return;
+    
     isTimerProcessing=true;
     RefreshCnt++;
     [self QueryAndDisplay];
     isTimerProcessing=false;
+    
+    RefreshTimerElpasedSeconds=0;
 }
 
 

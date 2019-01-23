@@ -28,6 +28,10 @@
 +(Boolean) isGlobalAutoRefresh;
 +(void) setGlobalAutoRefresh:(Boolean) vValue;
 
++(NSInteger) RefreshSeconds;
++(void) setRefreshSeconds:(NSInteger) vValue;
+
+
 +(Boolean) isAssetAutoRefresh;
 +(void) setAssetAutoRefresh:(Boolean) vValue;
 

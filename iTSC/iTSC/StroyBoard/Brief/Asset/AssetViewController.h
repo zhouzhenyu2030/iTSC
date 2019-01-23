@@ -13,6 +13,7 @@
 
 @interface AssetViewController: UITableViewController
 {
+    NSInteger RefreshTimerElpasedSeconds;
     int RefreshCnt;
     UISwitch *Switch_AutoRefresh;
     UITableViewCell *RefreshCountCell;

@@ -34,10 +34,9 @@
     Switch_AutoRefresh = [self AppendSwitch];
     Switch_AutoRefresh.on = [TscConfig isAssetAutoRefresh];
     
+    RefreshTimerElpasedSeconds = 0;
     if(myTimer==nil)
-    {
-        myTimer  =  [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
-    }
+        myTimer  =  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
     
     [self setupRefresh];
     TableView.rowHeight = 18;
@@ -49,23 +48,24 @@
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventValueChanged];
     refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"正在刷新"];
-    //刷新图形时的颜色，即刷新的时候那个菊花的颜色
-    //refreshControl.tintColor = [UIColor redColor];
-    [self.TableView addSubview:refreshControl];
-    //[refreshControl beginRefreshing];
-    //[self refreshClick:refreshControl];
+    TableView.refreshControl = refreshControl;
 }
-
-
 // 下拉刷新触发
 - (void)refreshClick:(UIRefreshControl *)refreshControl
 {
     [self InitTableViewCells];
-    RefreshCountCell.detailTextLabel.text = @"0";
+    RefreshCountCell.detailTextLabel.text=@"0";
     RefreshCnt = 1;
     [self QueryAndDisplay];
+    [self.TableView reloadData];
     [refreshControl endRefreshing];
-    [self.TableView reloadData];// 刷新tableView即可
+    /*
+     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+     [self.TableView reloadData];
+     if ([self.TableView.refreshControl isRefreshing])
+     [self.TableView.refreshControl endRefreshing];
+     });
+    */
 }
 
 
@@ -88,10 +88,15 @@
     
     if(isTimerProcessing) return;
     
+    RefreshTimerElpasedSeconds++;
+    if(RefreshTimerElpasedSeconds<TscConfig.RefreshSeconds) return;
+    
     isTimerProcessing=true;
     RefreshCnt++;
     [self QueryAndDisplay];
     isTimerProcessing=false;
+    
+    RefreshTimerElpasedSeconds=0;
  }
 
 
@@ -162,8 +167,8 @@
 
     cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"Risk Level (%):" DetialText:@"-"];
     cell.detailTextLabel.textColor = UIColor.magentaColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"Asset (Theory):" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Asset (Market):" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"Asset (Theory):" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:3 TitleText:@"Asset Dif (Market-Theory):" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:4 TitleText:@"Total Cash:" DetialText:@"-"];
     cell.detailTextLabel.textColor = UIColor.brownColor;
@@ -171,19 +176,19 @@
 
     
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"Trade PNL (Marktet):" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Yd    PNL (Marktet):" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Total PNL (Marktet):" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"Marktet Trade PNL:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Marktet Yd PNL:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Marktet Total PNL:" DetialText:@"-"];
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"Trade PNL (Theo):" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:1 TitleText:@"Yd    PNL (Theo):" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:2 TitleText:@"Total PNL (Theo):" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"Theo Trade PNL:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:1 TitleText:@"Theo Yd PNL:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:2 TitleText:@"Theo Total PNL:" DetialText:@"-"];
     
     
     
 
     cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"TPR:" DetialText:@"-"];
-    cell.detailTextLabel.textColor = UIColor.redColor;
+    cell.detailTextLabel.textColor = UIColor.magentaColor;
     cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"Position:" DetialText:@"-"];
     cell.detailTextLabel.textColor = UIColor.blueColor;
     cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"TOR(%):" DetialText:@"-"];
@@ -271,18 +276,18 @@
     _sValue = [StringHelper fPositiveFormat:_fValue pointNumber:2];
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Asset Dif (Market-Theory):" DetialText:_sValue];
     
-    _fValue=[_field[@"RiskLevel"]  floatValue] *100;
-    _sValue = [StringHelper fPositiveFormat:_fValue pointNumber:2];
+    _fValue = [_field[@"RiskLevel"]  floatValue] *100;
+    _sValue = [StringHelper fPositiveFormat:_fValue pointNumber:2]; _sValue = [_sValue stringByAppendingString:@"%"];
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Risk Level (%):" DetialText:_sValue];
     
     
-    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Trade PNL (Marktet):" FieldName:@"TradeMktPNL" SetColor:true];
-    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Yd    PNL (Marktet):" FieldName:@"YdMktPNL" SetColor:true];
-    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total PNL (Marktet):" FieldName:@"TotalMktPNL" SetColor:true];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Trade PNL:" FieldName:@"TradeMktPNL" SetColor:true];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Yd PNL:" FieldName:@"YdMktPNL" SetColor:true];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Total PNL:" FieldName:@"TotalMktPNL" SetColor:true];
     
-    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Trade PNL (Theo):" FieldName:@"TradeTheoPNL" SetColor:true];
-    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Yd    PNL (Theo):" FieldName:@"YdTheoPNL" SetColor:true];
-    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total PNL (Theo):" FieldName:@"TotalTheoPNL" SetColor:true];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Trade PNL:" FieldName:@"TradeTheoPNL" SetColor:true];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Yd PNL:" FieldName:@"YdTheoPNL" SetColor:true];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Total PNL:" FieldName:@"TotalTheoPNL" SetColor:true];
     
     
     [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Trade Qty:" FieldName:@"TradeQty"];
@@ -303,9 +308,9 @@
     }
     
     NSString* _condstr = @"( (ItemKey='Position' and ItemType='Position')";
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='TradeSum' and (ItemType='TradePosRatio' or ItemType='OrderTradeRatio') )"];
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='TradeSum' and (ItemType='ATTradeEdge' or ItemType='ATTradeQty' or ItemType='AHTradeEdge' or ItemType='AHTradeQty') )"];
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='PNL' and (ItemType='ExecPNL' or ItemType='CloseTheoryPNL' or ItemType='CloseMarketPNL' ) )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradePosRatio' or ItemType='OrderTradeRatio' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ATTradeEdge' or ItemType='ATTradeQty' or ItemType='AHTradeEdge' or ItemType='AHTradeQty' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ExecPNL' or ItemType='CloseTheoryPNL' or ItemType='CloseMarketPNL' )"];
     _condstr=[_condstr stringByAppendingString:@" ) and EntityType='A'"];
 
     
@@ -328,7 +333,7 @@
         if([_field[@"ItemType"] isEqualToString:@"OrderTradeRatio"])
         {
             float _fValue=[_field[@"ItemValue"] floatValue]*100;
-            value=[StringHelper fPositiveFormat:_fValue pointNumber:2];
+            value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
             [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"TOR(%):" DetialText:value];
             continue;
         }
@@ -369,12 +374,12 @@
         }
         if([_field[@"ItemType"] isEqualToString:@"CloseTheoryPNL"])
         {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Close  PNL:" FieldName:@"ItemValue" SetColor:true];
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Close PNL:" FieldName:@"ItemValue" SetColor:true];
             continue;
         }
         if([_field[@"ItemType"] isEqualToString:@"CloseMarketPNL"])
         {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Market Close  PNL:" FieldName:@"ItemValue" SetColor:true];
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Market Close PNL:" FieldName:@"ItemValue" SetColor:true];
             continue;
         }
     }

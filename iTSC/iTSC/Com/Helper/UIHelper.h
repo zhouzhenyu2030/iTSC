@@ -24,6 +24,9 @@
 +(void) DisplayCell:(UITableView*) vTableView Field:(NSDictionary*)vField TitleName:(NSString*)vTitleName FieldName:(NSString*) vFieldName SetColor:(BOOL) visSetColor;
 +(UITableViewCell*) DisplayIntCell:(UITableView*) vTableView Field:(NSDictionary*)vField TitleName:(NSString*)vTitleName FieldName:(NSString*) vFieldName;
 
++(UIAlertController *) ShowMessage:(NSString*) vTitle Message:(NSString*)vMessage;
++(UIAlertController *) ShowAlert:(NSString*) vTitle Message:(NSString*)vMessage;
+
 @end
 
 #endif /* UIHelper_h */

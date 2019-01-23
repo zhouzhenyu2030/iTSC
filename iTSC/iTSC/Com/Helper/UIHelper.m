@@ -133,4 +133,145 @@
 }
 
 
+
+
+
+
+
+///////////////////////////////////////////////////  Alert ///////////////////////////////////////////////////
++(UIAlertController *) ShowMessage:(NSString*) vTitle Message:(NSString*)vMessage
+{
+
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:vTitle message:vMessage preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"OK Action");
+    }];
+    [alertController addAction:okAction];
+    return alertController;
+}
+
++(UIAlertController *) ShowAlert:(NSString*) vTitle Message:(NSString*)vMessage
+{
+    //(UITableViewController*) vViewontroller Title:
+    // 1.创建UIAlertController
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:vTitle
+                                                                             message:vMessage
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    //这里的preferredStyle:参数有UIAlertControllerStyleAlert和UIAlertControllerStyleActionSheet两种
+    
+    // 2.创建并添加按钮
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"OK Action");
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"Cancel Action");
+    }];
+    
+    [alertController addAction:okAction];           // A
+    [alertController addAction:cancelAction];       // B
+    
+    // 3.呈现UIAlertContorller
+    //[vViewontroller presentViewController:alertController animated:YES completion:nil];
+    
+    return alertController;
+}
+
+
+
+
+/*
+ //Alert
+ UITextField *myTextField;
+ UIPickerView *myPickerView;
+ NSArray *pickerArray;
+ -(void) SetRefreshSeconds
+ {
+ // 1.创建UIAlertController
+ UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Alert Title"
+ message:@"The message is ..."
+ preferredStyle:UIAlertControllerStyleAlert];
+ //这里的preferredStyle:参数有UIAlertControllerStyleAlert和UIAlertControllerStyleActionSheet两种
+ 
+ // 2.1 添加文本框
+ [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+ textField.placeholder = @"username";
+ }];
+ [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+ textField.placeholder = @"password";
+ textField.secureTextEntry = YES;
+ }];
+ 
+ // 2.创建并添加按钮
+ UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+ NSLog(@"OK Action");
+ }];
+ UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+ NSLog(@"Cancel Action");
+ }];
+ 
+ [alertController addAction:okAction];           // A
+ [alertController addAction:cancelAction];       // B
+ 
+ // 3.呈现UIAlertContorller
+ //[self presentViewController:alertController animated:YES completion:nil];
+ 
+ pickerArray = [[NSArray alloc]initWithObjects:@"Chess",
+ @"Cricket",@"Football",@"Tennis",@"Volleyball", nil];
+ 
+ myTextField = [[UITextField alloc]initWithFrame:
+ CGRectMake(10, 100, 300, 30)];
+ 
+ myTextField.borderStyle = UITextBorderStyleRoundedRect;
+ myTextField.textAlignment = UITextAlignmentCenter;
+ myTextField.delegate = self;
+ [self.view addSubview:myTextField];
+ [myTextField setPlaceholder:@"Pick a Sport"];
+ 
+ 
+ myPickerView = [[UIPickerView alloc]init];
+ myPickerView.dataSource = self;
+ myPickerView.delegate = self;
+ myPickerView.showsSelectionIndicator = YES;
+ UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
+ initWithTitle:@"Done" style:UIBarButtonItemStyleDone
+ target:self action:@selector(done:)];
+ UIToolbar *toolBar = [[UIToolbar alloc]initWithFrame:
+ CGRectMake(0, self.view.frame.size.height-
+ myPickerView.frame.size.height-50, 320, 50)];
+ [toolBar setBarStyle:UIBarStyleBlackOpaque];
+ NSArray *toolbarItems = [NSArray arrayWithObjects:
+ doneButton, nil];
+ [toolBar setItems:toolbarItems];
+ myTextField.inputView = myPickerView;
+ myTextField.inputAccessoryView = toolBar;
+ }
+ #pragma mark - Text field delegates
+ 
+ -(void)textFieldDidBeginEditing:(UITextField *)textField{
+ if ([textField.text isEqualToString:@""]) {
+ [self dateChanged:nil];
+ }
+ }
+ #pragma mark - Picker View Data source
+ -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+ return 1;
+ }
+ -(NSInteger)pickerView:(UIPickerView *)pickerView
+ numberOfRowsInComponent:(NSInteger)component{
+ return [pickerArray count];
+ }
+ 
+ #pragma mark- Picker View Delegate
+ 
+ -(void)pickerView:(UIPickerView *)pickerView didSelectRow:
+ (NSInteger)row inComponent:(NSInteger)component{
+ [myTextField setText:[pickerArray objectAtIndex:row]];
+ }
+ - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:
+ (NSInteger)row forComponent:(NSInteger)component{
+ return [pickerArray objectAtIndex:row];
+ }
+
+ */
+
 @end

@@ -32,6 +32,10 @@ NSUserDefaults *_UserDefaults;
     [[UIApplication sharedApplication] setIdleTimerDisabled:_isShowAllTime];
  
     _isGlobalAutoRefresh = [_UserDefaults boolForKey:@"isGlobalAutoRefresh"];
+    
+    _RefreshSeconds = [_UserDefaults integerForKey:@"RefreshSeconds"];
+    if(_RefreshSeconds<1) _RefreshSeconds=2;
+        
     _isAssetAutoRefresh = [_UserDefaults boolForKey:@"isAssetAutoRefresh"];
     _isGreekAutoRefresh = [_UserDefaults boolForKey:@"isGreekAutoRefresh"];
     _isTradeSumAutoRefresh = [_UserDefaults boolForKey:@"isTradeSumAutoRefresh"];
@@ -49,6 +53,8 @@ NSUserDefaults *_UserDefaults;
     _isShowAllTime = true;
 
     _isGlobalAutoRefresh = false;
+    _RefreshSeconds = 2;
+    
     _isAssetAutoRefresh = false;
     _isGreekAutoRefresh = false;
     _isPnlAutoRefresh = false;
@@ -97,6 +103,19 @@ static Boolean _isGlobalAutoRefresh;
     _isGlobalAutoRefresh=vValue;
     [_UserDefaults setBool:(vValue) forKey:(@"isGlobalAutoRefresh")];
 }
+
+//RefreshSeconds
+static NSInteger _RefreshSeconds;
++(NSInteger) RefreshSeconds
+{
+    return _RefreshSeconds;
+}
++(void) setRefreshSeconds:(NSInteger) vValue
+{
+    _RefreshSeconds = vValue;
+    [_UserDefaults setInteger:(vValue) forKey:(@"RefreshSeconds")];
+}
+
 
 //AssetAutoRefresh
 static Boolean _isAssetAutoRefresh;
