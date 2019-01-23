@@ -180,15 +180,23 @@
 			path = "编程";
 			sourceTree = "<group>";
 		};
+		1904662F21F89F0F00FF09C0 /* PageContainer */ = {
+			isa = PBXGroup;
+			children = (
+				19FFB2AC21F19A8D00C02A53 /* PageContainerViewController.h */,
+				19FFB2AD21F19A8D00C02A53 /* PageContainerViewController.m */,
+			);
+			path = PageContainer;
+			sourceTree = "<group>";
+		};
 		194D007B21F2ADD2008918DA /* StroyBoard */ = {
 			isa = PBXGroup;
 			children = (
 				19FFB2A921F194BD00C02A53 /* Brief.storyboard */,
 				190210C021E45964009ADE0B /* BriefDetail.storyboard */,
+				1904662F21F89F0F00FF09C0 /* PageContainer */,
 				19FFB2C521F1A70D00C02A53 /* Title */,
 				19FFB2C921F1BAF600C02A53 /* Page */,
-				19FFB2AC21F19A8D00C02A53 /* PageContainerViewController.h */,
-				19FFB2AD21F19A8D00C02A53 /* PageContainerViewController.m */,
 			);
 			path = StroyBoard;
 			sourceTree = "<group>";

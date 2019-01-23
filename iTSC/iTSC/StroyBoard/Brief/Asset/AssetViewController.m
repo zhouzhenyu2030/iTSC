@@ -206,6 +206,7 @@
     cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Excersize PNL:" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"Theo Close PNL:" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:2 TitleText:@"Market Close PNL:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:3 TitleText:@"Avg Edge:" DetialText:@"-"];
 
     
     cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
@@ -311,6 +312,7 @@
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradePosRatio' or ItemType='OrderTradeRatio' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ATTradeEdge' or ItemType='ATTradeQty' or ItemType='AHTradeEdge' or ItemType='AHTradeQty' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ExecPNL' or ItemType='CloseTheoryPNL' or ItemType='CloseMarketPNL' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='Edge' or ItemType='AvgEdge' )"];
     _condstr=[_condstr stringByAppendingString:@" ) and EntityType='A'"];
 
     
@@ -380,6 +382,11 @@
         if([_field[@"ItemType"] isEqualToString:@"CloseMarketPNL"])
         {
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"Market Close PNL:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([_field[@"ItemType"] isEqualToString:@"AvgEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Avg Edge:" FieldName:@"ItemValue" SetColor:false];
             continue;
         }
     }
