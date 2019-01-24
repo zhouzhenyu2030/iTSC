@@ -190,9 +190,18 @@
     cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"AT Trade Qty:" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"AH Trade Qty:" DetialText:@"-"];
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
+    
+    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Avg Edge:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"Smoothed Basis:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:2 TitleText:@"Smoothed Vol:" DetialText:@"-"];
+    cell.detailTextLabel.textColor = UIColor.blueColor;
+    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:3 TitleText:@"U LP:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:4 TitleText:@"U %:" DetialText:@"-"];
+
+    
+    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
     RefreshSwitchCell = cell;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
     RefreshCountCell = cell;
   
 }
@@ -219,7 +228,21 @@
     
     
     //SELECT
-    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"runtimeinfo" condition:@"(ItemKey='Risk' and EntityType='A') or (ItemKey='Position' and ItemType='Position' and EntityType='A') or (ItemKey='TradeSum' and (ItemType='ATTradeQty' or ItemType='AHTradeQty') and EntityType='A')"];
+    NSString* _condstr = @"(";
+    
+    _condstr=[_condstr stringByAppendingString:@" (ItemKey='Risk')"];
+    
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Position' and ItemType='Position' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='TradeSum' and (ItemType='ATTradeQty' or ItemType='AHTradeQty') )"];
+    
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='AvgEdge' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='U' and (ItemType='LP' or ItemType='ChangePercentage') )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='SmoothedWingPara' and (ItemType='Vol') )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='SmoothedBasis' ) "];
+    
+    _condstr=[_condstr stringByAppendingString:@" ) and EntityType='A'"];
+    
+    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"runtimeinfo" condition:_condstr];
     NSError *error = nil;
     NSArray *tasks = [_queryContext executeQueryRequestAndFetchResult:query error:&error];
     
@@ -232,7 +255,10 @@
     //显示
     NSDictionary  *_field;
     NSString* typename;
+    float _fValue;
     NSString* value;
+    UITableViewCell *cell;
+    
     for( int i=0; i<count; i++)
     {
         _field=[tasks objectAtIndex:i];
@@ -259,6 +285,56 @@
             continue;
         }
         
+        
+        if([_field[@"ItemType"] isEqualToString:@"AvgEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Avg Edge:" FieldName:@"ItemValue" SetColor:false];
+            continue;
+        }
+        
+        if([_field[@"ItemKey"] isEqualToString:@"U"])
+        {
+            if([_field[@"ItemType"] isEqualToString:@"LP"])
+            {
+                _fValue=[_field[@"ItemValue"] floatValue];
+                value = [StringHelper fPositiveFormat:_fValue pointNumber:4];
+                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"U LP:" DetialText:value];
+                continue;
+            }
+            if([_field[@"ItemType"] isEqualToString:@"ChangePercentage"])
+            {
+                _fValue=[_field[@"ItemValue"] floatValue];
+                value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
+                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"U %:" DetialText:value];
+                if(_fValue>0)
+                    cell.detailTextLabel.textColor=UIColor.redColor;
+                else
+                    cell.detailTextLabel.textColor=UIColor.greenColor;
+                continue;
+            }
+        }
+        
+        if([_field[@"ItemType"] isEqualToString:@"SmoothedBasis"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Smoothed Basis:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        
+        if([_field[@"ItemKey"] isEqualToString:@"SmoothedWingPara"])
+        {
+            if([_field[@"ItemType"] isEqualToString:@"Vol"])
+            {
+                _fValue=[_field[@"ItemValue"] floatValue]*100;
+                value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
+                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Smoothed Vol:" DetialText:value];
+                continue;
+            }
+        }
+        
+        
+        
+        
+        //Risk Field
         typename=[typename substringFromIndex:5];
         typename=[typename stringByAppendingString:@":"];
         value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:2];
@@ -269,6 +345,7 @@
             [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Thema:" DetialText:value];
         }
         
+   
     }
     
     _field=[tasks objectAtIndex:0];

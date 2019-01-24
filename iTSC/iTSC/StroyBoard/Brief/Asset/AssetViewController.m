@@ -163,7 +163,6 @@
     
     cell = [UIHelper SetTabelViewCellText:TableView Section:0 Row:0 TitleText:@"HisDate:" DetialText:@"-/-/-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:0 Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:0 Row:2 TitleText:@"AccountID:" DetialText:@"-"];
 
     cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"Risk Level (%):" DetialText:@"-"];
     cell.detailTextLabel.textColor = UIColor.magentaColor;
@@ -206,13 +205,22 @@
     cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Excersize PNL:" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"Theo Close PNL:" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:2 TitleText:@"Market Close PNL:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:3 TitleText:@"Avg Edge:" DetialText:@"-"];
+    
+    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:0 TitleText:@"Avg Edge:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:1 TitleText:@"Smoothed Basis:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:2 TitleText:@"Smoothed Vol:" DetialText:@"-"];
+    cell.detailTextLabel.textColor = UIColor.blueColor;
+    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:3 TitleText:@"U LP:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:4 TitleText:@"U %:" DetialText:@"-"];
 
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:8 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
     RefreshSwitchCell = cell;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:8 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
     RefreshCountCell = cell;
+
+    
+    cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:0 TitleText:@"AccountID:" DetialText:@"-"];
 
 }
 
@@ -300,6 +308,7 @@
 //_DisplayRuntimeInfo
 -(void) _DisplayRuntimeInfo
 {
+    //return;
     //SELECT
     OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
     if(_queryContext==nil)
@@ -308,14 +317,22 @@
         return;
     }
     
-    NSString* _condstr = @"( (ItemKey='Position' and ItemType='Position')";
+    NSString* _condstr = @"( ";
+
+    _condstr=[_condstr stringByAppendingString:@" (ItemKey='Position' and ItemType='Position')"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradePosRatio' or ItemType='OrderTradeRatio' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ATTradeEdge' or ItemType='ATTradeQty' or ItemType='AHTradeEdge' or ItemType='AHTradeQty' )"];
+
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ExecPNL' or ItemType='CloseTheoryPNL' or ItemType='CloseMarketPNL' )"];
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='Edge' or ItemType='AvgEdge' )"];
+
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='AvgEdge' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='U' and (ItemType='LP' or ItemType='ChangePercentage') )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='SmoothedWingPara' and (ItemType='Vol') )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='SmoothedBasis' ) "];
+    
     _condstr=[_condstr stringByAppendingString:@" ) and EntityType='A'"];
 
-    
+
     OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"runtimeinfo" condition:_condstr];
     NSError *error = nil;
     NSArray *tasks = [_queryContext executeQueryRequestAndFetchResult:query error:&error];
@@ -326,7 +343,10 @@
         return;
     
     NSDictionary  *_field;
+    float _fValue;
     NSString* value;
+    UITableViewCell *cell;
+    
     for( int i=0; i<count; i++)
     {
         _field=[tasks objectAtIndex:i];
@@ -334,7 +354,7 @@
         
         if([_field[@"ItemType"] isEqualToString:@"OrderTradeRatio"])
         {
-            float _fValue=[_field[@"ItemValue"] floatValue]*100;
+            _fValue=[_field[@"ItemValue"] floatValue]*100;
             value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
             [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"TOR(%):" DetialText:value];
             continue;
@@ -384,11 +404,52 @@
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"Market Close PNL:" FieldName:@"ItemValue" SetColor:true];
             continue;
         }
+        
         if([_field[@"ItemType"] isEqualToString:@"AvgEdge"])
         {
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"Avg Edge:" FieldName:@"ItemValue" SetColor:false];
             continue;
         }
+        
+        if([_field[@"ItemKey"] isEqualToString:@"U"])
+        {
+            if([_field[@"ItemType"] isEqualToString:@"LP"])
+            {
+                _fValue=[_field[@"ItemValue"] floatValue];
+                value = [StringHelper fPositiveFormat:_fValue pointNumber:4];
+                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"U LP:" DetialText:value];
+                continue;
+            }
+            if([_field[@"ItemType"] isEqualToString:@"ChangePercentage"])
+            {
+                _fValue=[_field[@"ItemValue"] floatValue];
+                value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
+                cell=[UIHelper SetTabelViewCellDetailText:TableView TitleText: @"U %:" DetialText:value];
+                if(_fValue>0)
+                    cell.detailTextLabel.textColor=UIColor.redColor;
+                else
+                    cell.detailTextLabel.textColor=UIColor.greenColor;
+                continue;
+            }
+        }
+ 
+        if([_field[@"ItemType"] isEqualToString:@"SmoothedBasis"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Smoothed Basis:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        
+        if([_field[@"ItemKey"] isEqualToString:@"SmoothedWingPara"])
+        {
+            if([_field[@"ItemType"] isEqualToString:@"Vol"])
+            {
+                _fValue=[_field[@"ItemValue"] floatValue]*100;
+                value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
+                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Smoothed Vol:" DetialText:value];
+                continue;
+            }
+        }
+
     }
 }
 
