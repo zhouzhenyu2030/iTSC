@@ -98,6 +98,11 @@
     cell.textLabel.textColor = UIColor.blueColor;
     cell.accessoryType = UITableViewCellAccessoryNone;
     
+    ClearRunTimeInfoTalbeSection=2; ClearRunTimeInfoTalbeRow=2;
+    cell=[UIHelper SetTabelViewCellText:TableView Section:(int)ClearRunTimeInfoTalbeSection Row:(int)ClearRunTimeInfoTalbeRow TitleText:@"Clear RunTimeInfo Table" DetialText:@""];
+    cell.textLabel.textColor = UIColor.blueColor;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    
 }
 
 
@@ -169,6 +174,19 @@
         }
     }
     
+    //ClearRunTimeInfoTalbeRow
+    if([indexPath section] == ClearRunTimeInfoTalbeSection && [indexPath row] == ClearRunTimeInfoTalbeRow)
+    {
+        NSString* _msg;
+        if([self ClearRunTimeInfoTalbe] == true)
+            _msg=@"Clear RunTimeInfo Talbe is ok.";
+        else
+            _msg=@"Clear RunTimeInfo Talbe is failed.";
+        UIAlertController * alertController=[UIHelper ShowMessage:@"Cleart Table" Message:_msg];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+
+    
     //
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
@@ -213,5 +231,28 @@
 }
 
 
+
+//ClearRunTimeInfoTalbe
+-(bool) ClearRunTimeInfoTalbe
+{
+    OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
+    if(_queryContext==nil)
+    {
+        NSLog(@"ClearRunTimeInfoTalbe: Init: queryContext==nil!");
+        return false;
+    }
+    
+    NSLog(@"ClearRunTimeInfoTalbe: DELETE: start!");
+    
+    //DELETE
+    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory DELETE:@"runtimeinfo" condition:@""];
+    NSError *error = nil;
+    //NSArray *tasks = [_queryContext executeQueryRequestAndFetchResult:query error:&error];
+    [_queryContext executeQueryRequestAndFetchResult:query error:&error];
+    
+    if(error!=nil)
+        return false;
+    return true;
+}
 
 @end

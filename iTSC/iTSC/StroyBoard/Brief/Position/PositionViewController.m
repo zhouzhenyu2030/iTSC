@@ -29,7 +29,7 @@
     RefreshCnt = 0;
     isTimerProcessing = false;
     
-    [self InitTableViewCells];
+    [self InitTableViewCells:true];
     
     Switch_AutoRefresh = [self AppendSwitch];
     Switch_AutoRefresh.on = [TscConfig isPositionAutoRefresh];
@@ -54,7 +54,7 @@
 // 下拉刷新触发
 - (void)refreshClick:(UIRefreshControl *)refreshControl
 {
-    [self InitTableViewCells];
+    [self InitTableViewCells:true];
     RefreshCountCell.detailTextLabel.text=@"0";
     RefreshCnt = 1;
     [self QueryAndDisplay];
@@ -147,10 +147,11 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////////
--(void) InitTableViewCells
+-(void) InitTableViewCells:(BOOL)vInitAll
 {
-    [UIHelper ClearTabelViewCellText:TableView];
-    
+    if(vInitAll)
+        [UIHelper ClearTabelViewCellText:TableView];
+
     UITableViewCell *cell;
 
     cell = [UIHelper SetTabelViewCellText:TableView Section:0 Row:0 TitleText:@"RecordDate:" DetialText:@"-/-/-"];
@@ -169,10 +170,14 @@
     cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"Frozen:" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:1 TitleText:@"Available:" DetialText:@"-"];
    
-    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
-    RefreshSwitchCell = cell;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
-    RefreshCountCell = cell;
+    if(vInitAll)
+    {
+        cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
+        RefreshSwitchCell = cell;
+        cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
+        RefreshCountCell = cell;
+    }
+    
 }
 
 
@@ -201,12 +206,16 @@
     NSError *error = nil;
     NSArray *tasks = [_queryContext executeQueryRequestAndFetchResult:query error:&error];
     
+ 
+    //清除原显示
+    [self InitTableViewCells:false];
+    
     
     NSUInteger count = tasks.count;
     if(count <= 0)
         return;
     
-    
+   
     //显示
     NSDictionary  *_field;
     NSString* typename;

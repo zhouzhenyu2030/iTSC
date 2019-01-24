@@ -18,7 +18,10 @@
     NSIndexPath *lastIndexPath;
     
     NSInteger ConnectionConfigSection, FirstConnectionRow, LastConnectionRow;
-    NSInteger RefreshSecondsSection, RefreshSecondsRow, ReconnectDBSection, ReconnectDBRow;
+    NSInteger RefreshSecondsSection, RefreshSecondsRow;
+    NSInteger ReconnectDBSection, ReconnectDBRow;
+    NSInteger ClearRunTimeInfoTalbeSection, ClearRunTimeInfoTalbeRow;
+    
     
     UISwitch *Switch_ShowAllTime;
     UISwitch *Switch_GlobalAutoRefresh;
