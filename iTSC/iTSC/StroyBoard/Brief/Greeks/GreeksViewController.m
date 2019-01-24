@@ -191,20 +191,22 @@
     cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"AT Trade Qty:" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"AH Trade Qty:" DetialText:@"-"];
     
-    
-    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Avg Edge:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"Smoothed Basis:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:2 TitleText:@"Smoothed Vol:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Marktet Total PNL:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"Theo Total PNL:" DetialText:@"-"];
+
+    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:0 TitleText:@"Avg Edge:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:1 TitleText:@"Smoothed Basis:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:2 TitleText:@"Smoothed Vol:" DetialText:@"-"];
     cell.detailTextLabel.textColor = UIColor.blueColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:3 TitleText:@"U LP:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:4 TitleText:@"U %:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:3 TitleText:@"U LP:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:4 TitleText:@"U %:" DetialText:@"-"];
 
     
     if(vInitAll)
     {
-        cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
+        cell = [UIHelper SetTabelViewCellText:TableView Section:8 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
         RefreshSwitchCell = cell;
-        cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
+        cell = [UIHelper SetTabelViewCellText:TableView Section:8 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
         RefreshCountCell = cell;
     }
     
@@ -239,6 +241,8 @@
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Position' and ItemType='Position' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='TradeSum' and (ItemType='ATTradeQty' or ItemType='AHTradeQty') )"];
+    
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='PNL' and (ItemType='TotalPNL_Mkt' or ItemType='TotalPNL_Theo') )"];
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='AvgEdge' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='U' and (ItemType='LP' or ItemType='ChangePercentage') )"];
@@ -275,19 +279,20 @@
         
 
         typename=_field[@"ItemType"];
-        if([_field[@"ItemType"] isEqualToString:@"Position"])
+        
+        if([typename isEqualToString:@"Position"])
         {
             value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:0];
             [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Position:" DetialText:value];
             continue;
         }
-        if([_field[@"ItemType"] isEqualToString:@"ATTradeQty"])
+        if([typename isEqualToString:@"ATTradeQty"])
         {
             value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:0];
             [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"AT Trade Qty:" DetialText:value];
             continue;
         }
-        if([_field[@"ItemType"] isEqualToString:@"AHTradeQty"])
+        if([typename isEqualToString:@"AHTradeQty"])
         {
             value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:0];
             [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"AH Trade Qty:" DetialText:value];
@@ -295,7 +300,24 @@
         }
         
         
-        if([_field[@"ItemType"] isEqualToString:@"AvgEdge"])
+        //PNL
+        if([_field[@"ItemKey"] isEqualToString:@"PNL"])
+        {
+            if([typename isEqualToString:@"TotalPNL_Mkt"])
+            {
+                [UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Total PNL:" FieldName:@"ItemValue" SetColor:true];
+                continue;
+            }
+            if([typename isEqualToString:@"TotalPNL_Theo"])
+            {
+                [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Total PNL:" FieldName:@"ItemValue" SetColor:true];
+                continue;
+            }
+        }
+        
+        
+        //U
+        if([typename isEqualToString:@"AvgEdge"])
         {
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"Avg Edge:" FieldName:@"ItemValue" SetColor:false];
             continue;
@@ -303,14 +325,14 @@
         
         if([_field[@"ItemKey"] isEqualToString:@"U"])
         {
-            if([_field[@"ItemType"] isEqualToString:@"LP"])
+            if([typename isEqualToString:@"LP"])
             {
                 _fValue=[_field[@"ItemValue"] floatValue];
                 value = [StringHelper fPositiveFormat:_fValue pointNumber:4];
                 [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"U LP:" DetialText:value];
                 continue;
             }
-            if([_field[@"ItemType"] isEqualToString:@"ChangePercentage"])
+            if([typename isEqualToString:@"ChangePercentage"])
             {
                 _fValue=[_field[@"ItemValue"] floatValue];
                 value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
@@ -323,13 +345,13 @@
             }
         }
         
-        if([_field[@"ItemType"] isEqualToString:@"SmoothedBasis"])
+        if([typename isEqualToString:@"SmoothedBasis"])
         {
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"Smoothed Basis:" FieldName:@"ItemValue" SetColor:true];
             continue;
         }
         
-        if([_field[@"ItemKey"] isEqualToString:@"SmoothedWingPara"])
+        if([typename isEqualToString:@"SmoothedWingPara"])
         {
             if([_field[@"ItemType"] isEqualToString:@"Vol"])
             {

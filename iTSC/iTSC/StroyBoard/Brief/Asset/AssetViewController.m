@@ -224,9 +224,10 @@
         RefreshSwitchCell = cell;
         cell = [UIHelper SetTabelViewCellText:TableView Section:8 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
         RefreshCountCell = cell;
+
+        cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:0 TitleText:@"AccountID:" DetialText:@"-"];
     }
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:0 TitleText:@"AccountID:" DetialText:@"-"];
 
 }
 
@@ -305,7 +306,6 @@
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Total PNL:" FieldName:@"TotalTheoPNL" SetColor:true];
     
     
-    [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Trade Qty:" FieldName:@"TradeQty"];
 
     NSLog(@"AssetViewController: SELECT: over!");
 }
@@ -327,7 +327,10 @@
     NSString* _condstr = @"( ";
 
     _condstr=[_condstr stringByAppendingString:@" (ItemKey='Position' and ItemType='Position')"];
+    
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradePosRatio' or ItemType='OrderTradeRatio' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='TradeSum' and ItemType='TradeQty' )"];
+    
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ATTradeEdge' or ItemType='ATTradeQty' or ItemType='AHTradeEdge' or ItemType='AHTradeQty' )"];
 
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ExecPNL' or ItemType='CloseTheoryPNL' or ItemType='CloseMarketPNL' )"];
@@ -362,6 +365,12 @@
     {
         _field=[tasks objectAtIndex:i];
         NSLog(@"%@", _field);
+        
+        if([_field[@"ItemType"] isEqualToString:@"TradeQty"])
+        {
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Trade Qty:" FieldName:@"ItemValue"];
+          continue;
+        }
         
         if([_field[@"ItemType"] isEqualToString:@"OrderTradeRatio"])
         {
