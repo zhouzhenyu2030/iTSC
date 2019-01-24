@@ -446,9 +446,9 @@
                 value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
                 cell=[UIHelper SetTabelViewCellDetailText:TableView TitleText: @"U %:" DetialText:value];
                 if(_fValue>0)
-                    cell.detailTextLabel.textColor=UIColor.redColor;
+                    cell.detailTextLabel.textColor=UIColor.purpleColor;
                 else
-                    cell.detailTextLabel.textColor=UIColor.greenColor;
+                    cell.detailTextLabel.textColor=UIColor.darkGrayColor;
                 continue;
             }
         }
