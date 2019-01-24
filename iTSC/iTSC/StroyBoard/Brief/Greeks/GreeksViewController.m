@@ -336,7 +336,7 @@
             {
                 _fValue=[_field[@"ItemValue"] floatValue];
                 value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
-                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"U %:" DetialText:value];
+                cell=[UIHelper SetTabelViewCellDetailText:TableView TitleText: @"U %:" DetialText:value];
                 if(_fValue>0)
                     cell.detailTextLabel.textColor=UIColor.redColor;
                 else
@@ -351,7 +351,7 @@
             continue;
         }
         
-        if([typename isEqualToString:@"SmoothedWingPara"])
+        if([_field[@"ItemKey"] isEqualToString:@"SmoothedWingPara"])
         {
             if([_field[@"ItemType"] isEqualToString:@"Vol"])
             {

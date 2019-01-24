@@ -99,13 +99,13 @@
 
         case 2:
         {
-            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"PNL"];
+            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"TradeSums"];
         }
             break;
 
         case 3:
         {
-            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"TradeSums"];
+            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"PNL"];
         }
             break;
             
@@ -173,10 +173,10 @@
             cell.titleLabel.text = @"Greek";
             break;
         case 2:
-            cell.titleLabel.text = @"Pnl";
+            cell.titleLabel.text = @"Trade";
             break;
         case 3:
-            cell.titleLabel.text = @"Trade";
+            cell.titleLabel.text = @"Pnl";
             break;
         case 4:
             cell.titleLabel.text = @"Pos";
