@@ -366,16 +366,18 @@
         
         
         //Risk Field
-        typename=[typename substringFromIndex:5];
-        typename=[typename stringByAppendingString:@":"];
-        value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:2];
-        [UIHelper SetTabelViewCellDetailText:TableView TitleText: typename DetialText:value];
-        
-        if([typename isEqualToString:@"Tata:"])
+        if([typename length]>5)
         {
-            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Thema:" DetialText:value];
+            typename=[typename substringFromIndex:5];
+            typename=[typename stringByAppendingString:@":"];
+            value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:2];
+            [UIHelper SetTabelViewCellDetailText:TableView TitleText: typename DetialText:value];
+            
+            if([typename isEqualToString:@"Tata:"])
+            {
+                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Thema:" DetialText:value];
+            }
         }
-        
    
     }
     
