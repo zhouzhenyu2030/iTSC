@@ -161,32 +161,35 @@
     UITableViewCell *cell;
 
 
+    //hisAsset
+    if(vInitAll)
+    {
+        cell = [UIHelper SetTabelViewCellText:TableView Section:0 Row:0 TitleText:@"HisDate:" DetialText:@"-/-/-"];
+        cell = [UIHelper SetTabelViewCellText:TableView Section:0 Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
+        
+        cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"Risk Level (%):" DetialText:@"-"];
+        cell.detailTextLabel.textColor = UIColor.magentaColor;
+        cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Asset (Market):" DetialText:@"-"];
+        cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"Asset (Theory):" DetialText:@"-"];
+        cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:3 TitleText:@"Asset Dif (Market-Theory):" DetialText:@"-"];
+        cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:4 TitleText:@"Total Cash:" DetialText:@"-"];
+        cell.detailTextLabel.textColor = UIColor.brownColor;
+        cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:5 TitleText:@"Curr Margin:" DetialText:@"-"];
+        
+        
+        cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"Marktet Trade PNL:" DetialText:@"-"];
+        cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Marktet Yd PNL:" DetialText:@"-"];
+        cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Marktet Total PNL:" DetialText:@"-"];
+        
+        cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"Theo Trade PNL:" DetialText:@"-"];
+        cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:1 TitleText:@"Theo Yd PNL:" DetialText:@"-"];
+        cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:2 TitleText:@"Theo Total PNL:" DetialText:@"-"];
+        
+    }
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:0 Row:0 TitleText:@"HisDate:" DetialText:@"-/-/-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:0 Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
 
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"Risk Level (%):" DetialText:@"-"];
-    cell.detailTextLabel.textColor = UIColor.magentaColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Asset (Market):" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"Asset (Theory):" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:3 TitleText:@"Asset Dif (Market-Theory):" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:4 TitleText:@"Total Cash:" DetialText:@"-"];
-    cell.detailTextLabel.textColor = UIColor.brownColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:5 TitleText:@"Curr Margin:" DetialText:@"-"];
-
     
-    
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"Marktet Trade PNL:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Marktet Yd PNL:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Marktet Total PNL:" DetialText:@"-"];
-    
-    cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"Theo Trade PNL:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:1 TitleText:@"Theo Yd PNL:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:2 TitleText:@"Theo Total PNL:" DetialText:@"-"];
-    
-    
-    
-
+    //Runtimeinfo
     cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"TPR:" DetialText:@"-"];
     cell.detailTextLabel.textColor = UIColor.magentaColor;
     cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"Position:" DetialText:@"-"];
