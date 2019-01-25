@@ -190,12 +190,10 @@
 
     
     //Runtimeinfo
-    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"TPR:" DetialText:@"-"];
-    cell.detailTextLabel.textColor = UIColor.magentaColor;
+    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"TPR:" DetialText:@"-" Color:UIColor.magentaColor];
     cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"Position:" DetialText:@"-"];
     cell.detailTextLabel.textColor = UIColor.blueColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"TOR(%):" DetialText:@"-"];
-    cell.detailTextLabel.textColor = UIColor.purpleColor;
+    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"TOR(%):" DetialText:@"-" Color:UIColor.purpleColor];
     cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:3 TitleText:@"Trade Qty:" DetialText:@"-"];
     cell.detailTextLabel.textColor = UIColor.blueColor;
 

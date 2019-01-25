@@ -155,38 +155,28 @@
 
     UITableViewCell *cell;
     
+    [UIHelper SetTabelViewCellText:TableView Section:0 Row:0 TitleText:@"RecordDate:" DetialText:@"-/-/-"];
+    [UIHelper SetTabelViewCellText:TableView Section:0 Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
     
+    [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"Order Trade Ratio (%):" DetialText:@"-" Color:UIColor.purpleColor];
+    [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"Order Insert Cnt:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Order Insert Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:1 Row:3 TitleText:@"Order Rsp Cnt:" DetialText:@"-"];
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:0 Row:0 TitleText:@"RecordDate:" DetialText:@"-/-/-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:0 Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
+    [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"TPR:" DetialText:@"-" Color:UIColor.magentaColor];
+    [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Trade Edge:" DetialText:@"-" Color:UIColor.blueColor];
+    [UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Trade Qty:" DetialText:@"-" Color:UIColor.blueColor];
+    [UIHelper SetTabelViewCellText:TableView Section:2 Row:3 TitleText:@"Edge Per Order:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:2 Row:4 TitleText:@"Buy Open Trade:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:2 Row:5 TitleText:@"Trade Fee:" DetialText:@"-"];
     
-    
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"Order Trade Ratio (%):" DetialText:@"-"];
-    cell.detailTextLabel.textColor=UIColor.blueColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"Order Insert Cnt:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Order Insert Qty:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:3 TitleText:@"Order Rsp Cnt:" DetialText:@"-"];
-    
-    
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"TPR:" DetialText:@"-"];
-    cell.detailTextLabel.textColor=UIColor.magentaColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Trade Edge:" DetialText:@"-"];
-    cell.detailTextLabel.textColor=UIColor.blueColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Trade Qty:" DetialText:@"-"];
-    cell.detailTextLabel.textColor=UIColor.blueColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:3 TitleText:@"Edge Per Order:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:4 TitleText:@"Buy Open Trade:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:5 TitleText:@"Trade Fee:" DetialText:@"-"];
-    
+    [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"Trade Edge (AT):" DetialText:@"-" Color:UIColor.blueColor];
+    [UIHelper SetTabelViewCellText:TableView Section:3 Row:1 TitleText:@"Trade Qty (AT):" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:3 Row:2 TitleText:@"Edge Per Order (AT):" DetialText:@"-"];
 
-    cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"Trade Edge (AT):" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:1 TitleText:@"Trade Qty (AT):" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:2 TitleText:@"Edge Per Order (AT):" DetialText:@"-"];
-
-    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"Trade Edge (AH):" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"Trade Qty (AH):" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"Edge Per Order (AH):" DetialText:@"-"];
-
+    [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"Trade Edge (AH):" DetialText:@"-" Color:UIColor.blueColor];
+    [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"Trade Qty (AH):" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"Edge Per Order (AH):" DetialText:@"-"];
 
     if(vInitAll)
     {
