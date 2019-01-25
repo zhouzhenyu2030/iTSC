@@ -21,7 +21,6 @@
 @synthesize TableView;
 
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -39,7 +38,7 @@
 
     
     [self setupRefresh];
-    TableView.rowHeight = 18; //UITableViewAutomaticDimension;
+    TableView.rowHeight = 18;
 }
 
 // 设置下拉刷新
@@ -153,53 +152,48 @@
     
     UITableViewCell *cell;
     
+    UIFont* _font = [UIFont boldSystemFontOfSize:12];
+    
     [UIHelper SetTabelViewCellText:TableView Section:0 Row:0 TitleText:@"RecordDate:" DetialText:@"-/-/-"];
     [UIHelper SetTabelViewCellText:TableView Section:0 Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"Delta:" DetialText:@"-"];
-    cell.detailTextLabel.textColor= UIColor.blueColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"Vega:" DetialText:@"-"];
-    cell.detailTextLabel.textColor= UIColor.blueColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Theta:" DetialText:@"-"];
-    cell.detailTextLabel.textColor= UIColor.blueColor;
+
+
+    [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"Delta:" DetialText:@"-" Font:_font];
+    [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"Vega:" DetialText:@"-" Font:_font];
+    [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Theta:" DetialText:@"-" Font:_font];
+
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"Gamma:" DetialText:@"-"];
-    cell.detailTextLabel.textColor= UIColor.blueColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Charm:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Vanna:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:3 TitleText:@"Volga:" DetialText:@"-"];
-    cell.detailTextLabel.textColor= UIColor.blueColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:4 TitleText:@"Veta:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:5 TitleText:@"Thema:" DetialText:@"-"];
-    cell.detailTextLabel.textColor= UIColor.blueColor;
+    [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"Gamma:" DetialText:@"-" Font:_font];
+    [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Charm:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Vanna:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:2 Row:3 TitleText:@"Volga:" DetialText:@"-" Font:_font];
+    [UIHelper SetTabelViewCellText:TableView Section:2 Row:4 TitleText:@"Veta:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:2 Row:5 TitleText:@"Thema:" DetialText:@"-" Font:_font];
     
     [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"Color:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:3 Row:1 TitleText:@"Speed:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:3 Row:2 TitleText:@"Zomma:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:3 Row:3 TitleText:@"Ultima:" DetialText:@"-"];
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"SRR:" DetialText:@"-"];
-    cell.detailTextLabel.textColor= UIColor.blueColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"SLR:" DetialText:@"-"];
-    cell.detailTextLabel.textColor= UIColor.blueColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"PCR:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:3 TitleText:@"CCR:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"SRR:" DetialText:@"-" Font:_font];
+    [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"SLR:" DetialText:@"-" Font:_font];
+    [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"PCR:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:4 Row:3 TitleText:@"CCR:" DetialText:@"-"];
     
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"Position:" DetialText:@"-"];
-    cell.detailTextLabel.textColor= UIColor.blueColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"AT Trade Qty:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"AH Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blueColor];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"AT Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"AH Trade Qty:" DetialText:@"-"];
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Marktet Total PNL:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"Theo Total PNL:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Marktet Total PNL:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"Theo Total PNL:" DetialText:@"-"];
 
-    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:0 TitleText:@"Avg Edge:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:1 TitleText:@"Smoothed Basis:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:2 TitleText:@"Smoothed Vol:" DetialText:@"-"];
-    cell.detailTextLabel.textColor = UIColor.blueColor;
-    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:3 TitleText:@"U LP:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:7 Row:4 TitleText:@"U %:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:0 TitleText:@"Avg Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:1 TitleText:@"Smoothed Basis:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:2 TitleText:@"Smoothed Vol:" DetialText:@"-" Color:UIColor.blueColor];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:3 TitleText:@"U LP:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:4 TitleText:@"U %:" DetialText:@"-"];
 
     
     if(vInitAll)
@@ -366,22 +360,19 @@
         
         
         //Risk Field
-        if([typename length]>5)
+        if([_field[@"ItemKey"] isEqualToString:@"Risk"])
         {
-            typename=[typename substringFromIndex:5];
-            typename=[typename stringByAppendingString:@":"];
-            value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:2];
-            [UIHelper SetTabelViewCellDetailText:TableView TitleText: typename DetialText:value];
+            NSString* titlename = [typename substringFromIndex:5]; titlename = [titlename stringByAppendingString:@":"];
+            if([titlename isEqualToString:@"Tata:"]) titlename = @"Thema:";
             
-            if([typename isEqualToString:@"Tata:"])
-            {
-                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Thema:" DetialText:value];
-            }
+            [UIHelper DisplayCell:TableView Field:_field TitleName:titlename FieldName:@"ItemValue" SetColor:true];
         }
    
-    }
+    } //for over
     
-    _field=[tasks objectAtIndex:0];
+    
+    
+    _field = [tasks objectAtIndex:0];
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RecordDate:" DetialText:_field[@"RecordDate"]];
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RecordTime:" DetialText:[_field[@"RecordTime"] substringToIndex:8]];
     

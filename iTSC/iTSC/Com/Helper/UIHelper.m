@@ -54,11 +54,20 @@
     if(vDetailText != nil)
         cell.detailTextLabel.text = vDetailText;
     
-    
-    
     return cell;
 }
-
++(UITableViewCell*) SetTabelViewCellText:(UITableView*)vTableView Section:(int)vSectionIndex Row:(int)vRowIndex TitleText:(NSString*) vTitleText DetialText:(NSString*) vDetailText Font:(UIFont*) vFont
+{
+    UITableViewCell *cell = [self SetTabelViewCellText:vTableView Section:vSectionIndex Row:vRowIndex TitleText:vTitleText DetialText:vDetailText];
+    cell.detailTextLabel.font = vFont;
+    return cell;
+}
++(UITableViewCell*) SetTabelViewCellText:(UITableView*)vTableView Section:(int)vSectionIndex Row:(int)vRowIndex TitleText:(NSString*) vTitleText DetialText:(NSString*) vDetailText Color:(UIColor*) vColor
+{
+    UITableViewCell *cell = [self SetTabelViewCellText:vTableView Section:vSectionIndex Row:vRowIndex TitleText:vTitleText DetialText:vDetailText];
+    cell.detailTextLabel.textColor = vColor;
+    return cell;
+}
 
 //设置TableViewCellDetailText
 +(UITableViewCell*) SetTabelViewCellDetailText:(UITableView*)vTableView TitleText:(NSString*) vTitleText DetialText:(NSString*) vDetailText
