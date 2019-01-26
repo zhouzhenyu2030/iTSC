@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TzP-8V-w2v">
-                                <rect key="frame" x="36" y="36" width="303" height="553"/>
+                                <rect key="frame" x="24" y="50" width="335" height="560"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">【二阶导数】
 Vanna，也被称为DvegaDspot 和DdeltaDvol，是期权价值的二阶导数,第一次对标的价格，第二次对波动性求导。 
