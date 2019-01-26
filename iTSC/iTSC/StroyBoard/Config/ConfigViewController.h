@@ -21,7 +21,8 @@
     NSInteger RefreshSecondsSection, RefreshSecondsRow;
     NSInteger ReconnectDBSection, ReconnectDBRow;
     NSInteger ClearRunTimeInfoTalbeSection, ClearRunTimeInfoTalbeRow;
-    
+    NSInteger HelpSection, HelpRow;
+
     
     UISwitch *Switch_ShowAllTime;
     UISwitch *Switch_GlobalAutoRefresh;

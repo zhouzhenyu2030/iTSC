@@ -52,7 +52,8 @@
     
     
     //////////////////////////////////////// Connection Confit ////////////////////////////////////////
-    ConnectionConfigSection=1;
+    _SectionIndex++;
+    ConnectionConfigSection=_SectionIndex;
     NSArray *ConnectionKeys = [TscConnections getConnectionKeys];
     int i = 0;
     //显示Connection
@@ -90,10 +91,11 @@
     
     
     //////////////////////////////////////// Connection Confit ////////////////////////////////////////
-    RefreshSecondsSection=2; RefreshSecondsRow=0;
+    _SectionIndex++;
+    RefreshSecondsSection=_SectionIndex; RefreshSecondsRow=0;
     [UIHelper SetTabelViewCellText:TableView Section:(int)RefreshSecondsSection Row:(int)RefreshSecondsRow TitleText:@"Refresh Seconds:" DetialText:[NSString stringWithFormat:@"%d", (int)[TscConfig RefreshSeconds]]];
     
-    ReconnectDBSection=2; ReconnectDBRow=1;
+    ReconnectDBSection=_SectionIndex; ReconnectDBRow=1;
     cell=[UIHelper SetTabelViewCellText:TableView Section:(int)ReconnectDBSection Row:(int)ReconnectDBRow TitleText:@"Reconnect DB" DetialText:@""];
     cell.textLabel.textColor = UIColor.blueColor;
     cell.accessoryType = UITableViewCellAccessoryNone;
@@ -102,6 +104,12 @@
     cell=[UIHelper SetTabelViewCellText:TableView Section:(int)ClearRunTimeInfoTalbeSection Row:(int)ClearRunTimeInfoTalbeRow TitleText:@"Clear RunTimeInfo Table" DetialText:@""];
     cell.textLabel.textColor = UIColor.blueColor;
     cell.accessoryType = UITableViewCellAccessoryNone;
+ 
+    
+     //////////////////////////////////////// Connection Confit ////////////////////////////////////////
+    _SectionIndex++;
+    HelpSection=_SectionIndex; HelpRow=0;
+    [UIHelper SetTabelViewCellText:TableView Section:(int)HelpSection Row:(int)HelpRow TitleText:@"Help" DetialText:@""];
     
 }
 
@@ -141,9 +149,10 @@
 
 
 
-//didSelectRowAtIndexPath
+////////////////////////////////////////// didSelectRowAtIndexPath //////////////////////////////////////////
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     //RefreshSeconds
     if([indexPath section] == RefreshSecondsSection && [indexPath row] == RefreshSecondsRow)
     {
@@ -186,12 +195,18 @@
         [self presentViewController:alertController animated:YES completion:nil];
     }
 
-    
+    //help
+    if([indexPath section] == HelpSection && [indexPath row] == HelpRow)
+    {
+        UIViewController *_helpvc =[[UIStoryboard storyboardWithName:@"Help" bundle:nil]  instantiateViewControllerWithIdentifier:@"HelpMain"]; //设置跳转页面
+        [self.navigationController pushViewController:_helpvc animated:YES]; //设置跳转方式
+    }
+
     //
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //SetRefreshSeconds
 -(void) SetRefreshSeconds

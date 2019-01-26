@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Help-->
+        <!--Greeks-->
         <scene sceneID="sok-iI-w5s">
             <objects>
                 <viewController storyboardIdentifier="HelpMain" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QBT-Ll-vwW" sceneMemberID="viewController">
@@ -50,7 +50,7 @@ Color， Gamma衰减或者DgammaDtime，是测量对Gamma对时间的变化率�
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Kwo-2l-Gbg"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Help" image="first" id="CG8-OX-VCn"/>
+                    <navigationItem key="navigationItem" title="Greeks" id="Reu-RO-dZr"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u0G-ay-25B" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -58,7 +58,4 @@ Color， Gamma衰减或者DgammaDtime，是测量对Gamma对时间的变化率�
             <point key="canvasLocation" x="-119.2" y="90.404797601199405"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="first" width="30" height="30"/>
-    </resources>
 </document>
