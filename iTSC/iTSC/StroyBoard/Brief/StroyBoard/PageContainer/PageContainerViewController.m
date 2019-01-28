@@ -87,7 +87,7 @@
     {
         case 0:
         {
-            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"Asset"];
+            ctrl = [[UIStoryboard storyboardWithName:@"Asset" bundle:nil] instantiateViewControllerWithIdentifier:@"Asset"];
         }
             break;
   

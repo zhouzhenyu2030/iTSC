@@ -18,8 +18,12 @@
 		190210E021E499DE009ADE0B /* 编程-本地数据保存 in Resources */ = {isa = PBXBuildFile; fileRef = 190210DF21E499DE009ADE0B /* 编程-本地数据保存 */; };
 		190210E321E49BC0009ADE0B /* ConfigHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210E221E49BC0009ADE0B /* ConfigHelper.m */; };
 		190210E621E49C27009ADE0B /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210E521E49C27009ADE0B /* DBHelper.m */; };
+		1911DFAB21FF11160079304C /* Asset.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1911DFA921FF11160079304C /* Asset.storyboard */; };
+		1911DFAF21FF294E0079304C /* HisAssetChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1911DFAE21FF294E0079304C /* HisAssetChartViewController.m */; };
+		1911DFB121FF29EB0079304C /* HisAssetChart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1911DFB021FF29EB0079304C /* HisAssetChart.storyboard */; };
+		1911DFBA21FF307D0079304C /* Chart-Bridging-Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1911DFB921FF307D0079304C /* Chart-Bridging-Header.swift */; };
+		1911DFBD21FF31AA0079304C /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1911DFBC21FF31AA0079304C /* Charts.framework */; };
 		19417D4721E86BA000C1FF2C /* StringHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 19417D4621E86BA000C1FF2C /* StringHelper.m */; };
-		194B2B5B21FEFFD9008F8A9D /* Chart-Bridging-Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B2B5A21FEFFD9008F8A9D /* Chart-Bridging-Header.swift */; };
 		194D007A21F2824C008918DA /* TscConnections.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D007921F2824C008918DA /* TscConnections.m */; };
 		194D008421F2B52B008918DA /* GreeksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008321F2B52B008918DA /* GreeksViewController.m */; };
 		194D008721F2C714008918DA /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008621F2C714008918DA /* TestViewController.m */; };
@@ -44,7 +48,7 @@
 		19FFB2C221F19A8E00C02A53 /* TWPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB2B921F19A8E00C02A53 /* TWPageViewController.m */; };
 		19FFB2C321F19A8E00C02A53 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB2BB21F19A8E00C02A53 /* ViewController.m */; };
 		19FFB2C721F1B5B100C02A53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19FFB2C621F1B5B100C02A53 /* Main.storyboard */; };
-		39095AA00E45A5C468762C0F /* libPods-iTSC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F232280A8439452C55EAE29 /* libPods-iTSC.a */; };
+		296D8A2E5C638D84C7C708DE /* Pods_iTSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29AD58FE58AA4674B20F18F /* Pods_iTSC.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,10 +71,15 @@
 		190210E221E49BC0009ADE0B /* ConfigHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfigHelper.m; sourceTree = "<group>"; };
 		190210E421E49C0A009ADE0B /* DBHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBHelper.h; sourceTree = "<group>"; };
 		190210E521E49C27009ADE0B /* DBHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
+		1911DFAA21FF11160079304C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Asset.storyboard; sourceTree = "<group>"; };
+		1911DFAD21FF29330079304C /* HisAssetChartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HisAssetChartViewController.h; sourceTree = "<group>"; };
+		1911DFAE21FF294E0079304C /* HisAssetChartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HisAssetChartViewController.m; sourceTree = "<group>"; };
+		1911DFB021FF29EB0079304C /* HisAssetChart.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HisAssetChart.storyboard; sourceTree = "<group>"; };
+		1911DFB921FF307D0079304C /* Chart-Bridging-Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chart-Bridging-Header.swift"; sourceTree = "<group>"; };
+		1911DFBB21FF30A50079304C /* iTSC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iTSC-Bridging-Header.h"; sourceTree = "<group>"; };
+		1911DFBC21FF31AA0079304C /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		19417D4521E86B8C00C1FF2C /* StringHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringHelper.h; sourceTree = "<group>"; };
 		19417D4621E86BA000C1FF2C /* StringHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringHelper.m; sourceTree = "<group>"; };
-		194B2B5921FEFFD8008F8A9D /* iTSC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iTSC-Bridging-Header.h"; sourceTree = "<group>"; };
-		194B2B5A21FEFFD9008F8A9D /* Chart-Bridging-Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chart-Bridging-Header.swift"; sourceTree = "<group>"; };
 		194D007821F280EC008918DA /* TscConnections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TscConnections.h; sourceTree = "<group>"; };
 		194D007921F2824C008918DA /* TscConnections.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TscConnections.m; sourceTree = "<group>"; };
 		194D008221F2B51A008918DA /* GreeksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GreeksViewController.h; sourceTree = "<group>"; };
@@ -114,8 +123,8 @@
 		19FFB2BB21F19A8E00C02A53 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		19FFB2C621F1B5B100C02A53 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		453C8632866D6234249936D1 /* Pods-iTSC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTSC.release.xcconfig"; path = "Pods/Target Support Files/Pods-iTSC/Pods-iTSC.release.xcconfig"; sourceTree = "<group>"; };
-		6F232280A8439452C55EAE29 /* libPods-iTSC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iTSC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3262C718804A2670A0A4D07 /* Pods-iTSC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTSC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iTSC/Pods-iTSC.debug.xcconfig"; sourceTree = "<group>"; };
+		D29AD58FE58AA4674B20F18F /* Pods_iTSC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTSC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +132,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39095AA00E45A5C468762C0F /* libPods-iTSC.a in Frameworks */,
+				1911DFBD21FF31AA0079304C /* Charts.framework in Frameworks */,
+				296D8A2E5C638D84C7C708DE /* Pods_iTSC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,11 +202,22 @@
 			path = PageContainer;
 			sourceTree = "<group>";
 		};
+		1911DFAC21FF28E00079304C /* HisAsset */ = {
+			isa = PBXGroup;
+			children = (
+				1911DFB021FF29EB0079304C /* HisAssetChart.storyboard */,
+				1911DFAD21FF29330079304C /* HisAssetChartViewController.h */,
+				1911DFAE21FF294E0079304C /* HisAssetChartViewController.m */,
+			);
+			path = HisAsset;
+			sourceTree = "<group>";
+		};
 		194D007B21F2ADD2008918DA /* StroyBoard */ = {
 			isa = PBXGroup;
 			children = (
 				19FFB2A921F194BD00C02A53 /* Brief.storyboard */,
 				190210C021E45964009ADE0B /* BriefDetail.storyboard */,
+				1911DFA921FF11160079304C /* Asset.storyboard */,
 				1904662F21F89F0F00FF09C0 /* PageContainer */,
 				19FFB2C521F1A70D00C02A53 /* Title */,
 				19FFB2C921F1BAF600C02A53 /* Page */,
@@ -240,6 +261,7 @@
 		194FF95521EC2BEA00CAB449 /* Brief */ = {
 			isa = PBXGroup;
 			children = (
+				1911DFAC21FF28E00079304C /* HisAsset */,
 				194D007B21F2ADD2008918DA /* StroyBoard */,
 				19FFB2AB21F19A8D00C02A53 /* Asset */,
 				194FF95721EC2C1A00CAB449 /* Greeks */,
@@ -275,8 +297,8 @@
 				19FFB2C421F1A1D500C02A53 /* TWPageViewController */,
 				190210D421E4832D009ADE0B /* Helper */,
 				1980DBD321EF025E008C9FF0 /* ConfigFile */,
-				194B2B5A21FEFFD9008F8A9D /* Chart-Bridging-Header.swift */,
-				194B2B5921FEFFD8008F8A9D /* iTSC-Bridging-Header.h */,
+				1911DFB921FF307D0079304C /* Chart-Bridging-Header.swift */,
+				1911DFBB21FF30A50079304C /* iTSC-Bridging-Header.h */,
 			);
 			path = Com;
 			sourceTree = "<group>";
@@ -390,7 +412,8 @@
 		667701AC65A23EEF211BB78C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6F232280A8439452C55EAE29 /* libPods-iTSC.a */,
+				1911DFBC21FF31AA0079304C /* Charts.framework */,
+				D29AD58FE58AA4674B20F18F /* Pods_iTSC.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -415,6 +438,7 @@
 				190210B021E45964009ADE0B /* Sources */,
 				190210B121E45964009ADE0B /* Frameworks */,
 				190210B221E45964009ADE0B /* Resources */,
+				B86E53A2B0E80A253C46B9EC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -467,6 +491,8 @@
 				19FFB2C721F1B5B100C02A53 /* Main.storyboard in Resources */,
 				190210E021E499DE009ADE0B /* 编程-本地数据保存 in Resources */,
 				19FFB2A821F191D700C02A53 /* Control.storyboard in Resources */,
+				1911DFAB21FF11160079304C /* Asset.storyboard in Resources */,
+				1911DFB121FF29EB0079304C /* HisAssetChart.storyboard in Resources */,
 				19FFB29221F1706900C02A53 /* Help.storyboard in Resources */,
 				190210C421E45966009ADE0B /* Assets.xcassets in Resources */,
 				190210C221E45964009ADE0B /* BriefDetail.storyboard in Resources */,
@@ -479,6 +505,30 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		B86E53A2B0E80A253C46B9EC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-iTSC/Pods-iTSC-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/OHMySQL/OHMySQL.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHMySQL.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iTSC/Pods-iTSC-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		CDACC5C8D937A6C6785DBDF7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -509,10 +559,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				190210BF21E45964009ADE0B /* ControlViewController.m in Sources */,
+				1911DFBA21FF307D0079304C /* Chart-Bridging-Header.swift in Sources */,
 				194D008421F2B52B008918DA /* GreeksViewController.m in Sources */,
 				190210B921E45964009ADE0B /* AppDelegate.m in Sources */,
 				190210D821E48399009ADE0B /* FilePathHelper.m in Sources */,
 				194D007A21F2824C008918DA /* TscConnections.m in Sources */,
+				1911DFAF21FF294E0079304C /* HisAssetChartViewController.m in Sources */,
 				190210E621E49C27009ADE0B /* DBHelper.m in Sources */,
 				190210E321E49BC0009ADE0B /* ConfigHelper.m in Sources */,
 				1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */,
@@ -525,7 +577,6 @@
 				194D008721F2C714008918DA /* TestViewController.m in Sources */,
 				19FFB2C121F19A8E00C02A53 /* TWPageTitleViewController.m in Sources */,
 				194D009021F46CE5008918DA /* TradeSumsViewController.m in Sources */,
-				194B2B5B21FEFFD9008F8A9D /* Chart-Bridging-Header.swift in Sources */,
 				19FFB2C221F19A8E00C02A53 /* TWPageViewController.m in Sources */,
 				190210CA21E45966009ADE0B /* main.m in Sources */,
 				19417D4721E86BA000C1FF2C /* StringHelper.m in Sources */,
@@ -547,6 +598,14 @@
 				190210C121E45964009ADE0B /* Base */,
 			);
 			name = BriefDetail.storyboard;
+			sourceTree = "<group>";
+		};
+		1911DFA921FF11160079304C /* Asset.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1911DFAA21FF11160079304C /* Base */,
+			);
+			name = Asset.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

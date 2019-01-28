@@ -19,8 +19,8 @@
     [super viewDidLoad];
     
     [self _AddViewController:@"Brief" ViewControllerName:@"BriefMain"];
+    [self _AddViewController:@"HisAssetChart" ViewControllerName:@"HisAssetChart"];
     [self _AddViewController:@"Control" ViewControllerName:@"ControlMain"];
-    //[self _AddViewController:@"Help" ViewControllerName:@"HelpMain"];
     [self _AddViewController:@"Config" ViewControllerName:@"ConfigNav"];
 
 }
