@@ -10,6 +10,16 @@
 
 @interface ControlViewController : UITableViewController
 {
+    NSInteger RefreshTimerElpasedSeconds;
+    UIRefreshControl *refreshControl;
+    NSTimer* myTimer;
+    bool isTimerProcessing;
+    NSInteger RefreshCnt;
+    UITableViewCell *RefreshCountCell;
+    
+    
+    
+    //GlobalStart
     UISwitch *Switch_AT_DBStart;
     UISwitch *Switch_AH_DBStart;
 
@@ -20,6 +30,19 @@
     NSInteger ParaValue;
     Boolean isATStarted;
     Boolean isAHStarted;
+
+    
+    //AClose
+    UISwitch *Switch_AC_Start;
+    UISwitch *Switch_AC_StartConfirm;
+    UITableViewCell *Cell_AC_Start;
+    UITableViewCell *Cell_AC_StartConfirm;
+
+    
+
+
+
+
 }
 
 
