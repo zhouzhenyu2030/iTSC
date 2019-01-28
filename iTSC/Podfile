@@ -8,5 +8,6 @@ target 'iTSC' do
   # Pods for iTSC
 
 pod 'OHMySQL'
+pod 'Charts'
 
 end

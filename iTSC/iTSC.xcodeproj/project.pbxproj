@@ -661,6 +661,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A3262C718804A2670A0A4D07 /* Pods-iTSC.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K5BBWE8GXB;
@@ -683,6 +684,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 453C8632866D6234249936D1 /* Pods-iTSC.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K5BBWE8GXB;
