@@ -19,6 +19,7 @@
 		190210E321E49BC0009ADE0B /* ConfigHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210E221E49BC0009ADE0B /* ConfigHelper.m */; };
 		190210E621E49C27009ADE0B /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210E521E49C27009ADE0B /* DBHelper.m */; };
 		19417D4721E86BA000C1FF2C /* StringHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 19417D4621E86BA000C1FF2C /* StringHelper.m */; };
+		194B2B5B21FEFFD9008F8A9D /* Chart-Bridging-Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194B2B5A21FEFFD9008F8A9D /* Chart-Bridging-Header.swift */; };
 		194D007A21F2824C008918DA /* TscConnections.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D007921F2824C008918DA /* TscConnections.m */; };
 		194D008421F2B52B008918DA /* GreeksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008321F2B52B008918DA /* GreeksViewController.m */; };
 		194D008721F2C714008918DA /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008621F2C714008918DA /* TestViewController.m */; };
@@ -68,6 +69,8 @@
 		190210E521E49C27009ADE0B /* DBHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
 		19417D4521E86B8C00C1FF2C /* StringHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringHelper.h; sourceTree = "<group>"; };
 		19417D4621E86BA000C1FF2C /* StringHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringHelper.m; sourceTree = "<group>"; };
+		194B2B5921FEFFD8008F8A9D /* iTSC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iTSC-Bridging-Header.h"; sourceTree = "<group>"; };
+		194B2B5A21FEFFD9008F8A9D /* Chart-Bridging-Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chart-Bridging-Header.swift"; sourceTree = "<group>"; };
 		194D007821F280EC008918DA /* TscConnections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TscConnections.h; sourceTree = "<group>"; };
 		194D007921F2824C008918DA /* TscConnections.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TscConnections.m; sourceTree = "<group>"; };
 		194D008221F2B51A008918DA /* GreeksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GreeksViewController.h; sourceTree = "<group>"; };
@@ -272,6 +275,8 @@
 				19FFB2C421F1A1D500C02A53 /* TWPageViewController */,
 				190210D421E4832D009ADE0B /* Helper */,
 				1980DBD321EF025E008C9FF0 /* ConfigFile */,
+				194B2B5A21FEFFD9008F8A9D /* Chart-Bridging-Header.swift */,
+				194B2B5921FEFFD8008F8A9D /* iTSC-Bridging-Header.h */,
 			);
 			path = Com;
 			sourceTree = "<group>";
@@ -431,6 +436,7 @@
 				TargetAttributes = {
 					190210B321E45964009ADE0B = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -519,6 +525,7 @@
 				194D008721F2C714008918DA /* TestViewController.m in Sources */,
 				19FFB2C121F19A8E00C02A53 /* TWPageTitleViewController.m in Sources */,
 				194D009021F46CE5008918DA /* TradeSumsViewController.m in Sources */,
+				194B2B5B21FEFFD9008F8A9D /* Chart-Bridging-Header.swift in Sources */,
 				19FFB2C221F19A8E00C02A53 /* TWPageViewController.m in Sources */,
 				190210CA21E45966009ADE0B /* main.m in Sources */,
 				19417D4721E86BA000C1FF2C /* StringHelper.m in Sources */,
@@ -663,6 +670,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K5BBWE8GXB;
 				INFOPLIST_FILE = iTSC/Info.plist;
@@ -676,6 +684,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cqg.iTSC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "iTSC/Com/iTSC-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -686,6 +697,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K5BBWE8GXB;
 				INFOPLIST_FILE = iTSC/Info.plist;
@@ -699,6 +711,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cqg.iTSC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "iTSC/Com/iTSC-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
