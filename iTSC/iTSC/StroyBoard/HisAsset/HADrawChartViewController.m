@@ -54,7 +54,7 @@
     //_linechartView.frame = self.view.frame; //CGRectMake(10, 60, ScreenWidth - 20, 460);
     CGRect frame = self.view.frame;
     //frame.origin.y = -24; //zzy
-    frame.size.width = self.view.safeAreaLayoutGuide.wid.size.width-50;      //-=100;//
+    frame.size.width = self.view.frame.size.width-50;      //-=100;//
     frame.size.height = self.view.frame.size.height-300;   // -=300;//
     _linechartView.frame = frame;
     
