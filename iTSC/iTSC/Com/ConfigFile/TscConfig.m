@@ -42,6 +42,7 @@ NSUserDefaults *_UserDefaults;
     _isPositionAutoRefresh = [_UserDefaults boolForKey:@"isPositionAutoRefresh"];
     _isPnlAutoRefresh = [_UserDefaults boolForKey:@"isPnlAutoRefresh"];
 
+    [self InitHisAssetStartDate];
 }
 
 
@@ -182,6 +183,41 @@ static Boolean _isPositionAutoRefresh;
     [_UserDefaults setBool:(vValue) forKey:(@"isPositionAutoRefresh")];
 }
 
+
+
+//HisAssetStartDate
+static NSDate* _HisAssetStartDate;
+NSDateFormatter *_dateFormatter;
+NSString *_strDate;
++(void)InitHisAssetStartDate
+{
+    //dateFormatter
+    _dateFormatter = [[NSDateFormatter alloc] init];
+    [_dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    //读取日期
+    _strDate=[_UserDefaults stringForKey:@"HisAssetStartDate"];
+    _HisAssetStartDate=[_dateFormatter dateFromString:_strDate];
+    if(_HisAssetStartDate==nil)
+        _HisAssetStartDate=[NSDate date];
+    
+    //设置_strDate
+    _strDate = [_dateFormatter stringFromDate:_HisAssetStartDate];
+}
++(NSDate*) HisAssetStartDate
+{
+    return _HisAssetStartDate;
+}
++(NSString*) strHisAssetStartDate
+{
+    return _strDate;
+}
++(void) setHisAssetStartDate:(NSDate*) vValue
+{
+    _HisAssetStartDate = vValue;
+    _strDate = [_dateFormatter stringFromDate:_HisAssetStartDate];
+    [_UserDefaults setObject:_strDate forKey:(@"HisAssetStartDate")];
+}
 
 
 @end

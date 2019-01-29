@@ -7,127 +7,57 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HisAssetChartViewController.h"
+
 #import "DBHelper.h"
 #import "StringHelper.h"
 #import "TscConfig.h"
 #import "UIHelper.h"
 #import "TscConnections.h"
+#import "TscConst.h"
 
+#import "HADrawChartViewController.h"
 
-@implementation HisAssetChartViewController
+@implementation HADrawChartViewController
 
-@synthesize DatePicker;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+     //Do any additional setup after loading the view, typically from a nib.
     
-    dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    [self Init];
+}
+
+-(void)Init
+{
+    //[TscConst setHADrawChartView:self.view];
+    //return;
+    NSLog(@"HADrawChartViewController: viewDidLoad: start.");
     
+    //保存ViewController
+    [TscConst setHADrawChartViewController:self];
     
-    _UserDefaults = [NSUserDefaults standardUserDefaults];
-    strDate=[_UserDefaults stringForKey:@"HisAssetStartDate"];
-    NSDate* _date=[dateFormatter dateFromString:strDate];
-    if(_date!=nil)
-        [DatePicker setDate:_date animated:YES];
-    [DatePicker setMaximumDate:[NSDate date]];
-    
+    //初始化图表
     ScreenWidth=self.view.frame.size.width;
-    ScreenHeight==self.view.frame.size.height;
+    ScreenHeight=self.view.frame.size.height;
+    
+    _linechartView=nil;
     [self initLineChartView];
-    xValueArr =  [[NSMutableArray alloc]init];
-    yValueArr=  [[NSMutableArray alloc]init];
-    
-
-    //[self QueryAndDisplay];    
-    //[self setupRefresh];
 }
 
-- (IBAction)ButtonClick:(id)sender
-{
-    strDate = [dateFormatter stringFromDate:DatePicker.date];
-    [_UserDefaults setObject:strDate forKey:(@"HisAssetStartDate")];
-    [self QueryAndDisplay];
-}
-
-// 设置下拉刷新
-- (void)setupRefresh
-{
-    return;
-    refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventValueChanged];
-    refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"正在刷新"];
-    [self.view addSubview:refreshControl];
-}
-// 下拉刷新触发
-- (void)refreshClick:(UIRefreshControl *)refreshControl
-{
-    [self QueryAndDisplay];
-    //[self.TableView reloadData];
-    [refreshControl endRefreshing];
-}
-
--(void)QueryAndDisplay
-{
-    [_linechartView clear];
-    
-    [xValueArr removeAllObjects];
-    [yValueArr removeAllObjects];
-    
-    OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
-    if(_queryContext==nil)
-    {
-        NSLog(@"HisAssetChartViewController: Init: queryContext==nil!");
-        return;
-    }
-    //SELECT
-    NSString* _condstr = [TscConnections getCurrentConnection].AccountID;
-    //_condstr = [_condstr stringByAppendingString:@" order by HisDate ASC"];
-    //_condstr = [_condstr stringByAppendingString:@" and HisDate>'2019-01-10'"];
-    _condstr = [_condstr stringByAppendingFormat:@" and HisDate>'%@'", strDate];
-    NSLog(@"HisAssetChartViewController: Query: %@", _condstr);
-    
-    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"hisasset" condition:_condstr];
-    NSError *error = nil;
-    NSArray *tasks = [_queryContext executeQueryRequestAndFetchResult:query error:&error];
-    
-    
-    NSUInteger count = tasks.count;
-    if(count<=0)
-        return;
-    
-    //显示
-    NSDictionary  *_field=[tasks objectAtIndex:count-1];
-    
-    for( int i=0; i<count; i++)
-    {
-        _field=[tasks objectAtIndex:i];
-        NSLog(@"%@", _field);
-        
-        [xValueArr addObject:[_field[@"HisDate"] substringFromIndex:5]];
-        float _value=[_field[@"Asset"] doubleValue];
-        _value=_value/100/100;
-        [yValueArr addObject:[NSString stringWithFormat:(@"%.2f"), _value]];
-        //[yValueArr addObject:_field[@"Asset"]];
-    }
-    /*
-     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Asset (Theory):" FieldName:@"AssetTheo" SetColor:false];
-     */
-    
-    
-    [self initLineChartDataWithXvalueArr:xValueArr YvalueArr:yValueArr];
-}
-
-
-
-
+////////////////////////////////////////////initLineChartView
 - (void)initLineChartView
 {
+    NSLog(@"HisAssetChartViewController: initLineChartView: start.");
     _linechartView = [[LineChartView alloc]init];
-    _linechartView.frame = CGRectMake(10, 60, ScreenWidth - 20, 460);
+    //CGRect _frame=self.view.frame;
+    //_linechartView.frame = self.view.frame; //CGRectMake(10, 60, ScreenWidth - 20, 460);
+    CGRect frame = self.view.frame;
+    //frame.origin.y = -24; //zzy
+    frame.size.width = self.view.frame.size.width-50;      //-=100;//
+    frame.size.height = self.view.frame.size.height-300;   // -=300;//
+    _linechartView.frame = frame;
+    
     _linechartView.legend.form = ChartLegendFormNone; //说明图标
     _linechartView.dragEnabled = NO;//拖动手势
     _linechartView.pinchZoomEnabled = NO;//捏合手势
@@ -138,10 +68,11 @@
     _linechartView.dragEnabled = YES;///拖动气泡
     [_linechartView animateWithXAxisDuration:2.20 easingOption:ChartEasingOptionEaseOutBack];//加载动画时长
     [self.view addSubview:_linechartView];
+    NSLog(@"HisAssetChartViewController: initLineChartView: over.");
 }
 
 
-
+////////////////////////////////////////////initLineChartViewWithLeftaxisMaxValue
 - (void)initLineChartViewWithLeftaxisMaxValue:(double)vmaxValue MinValue:(double)vminValue
 {
     //气泡
@@ -179,27 +110,34 @@
 }
 
 
-- (void)initLineChartDataWithXvalueArr:(NSArray*)xValueArr YvalueArr:(NSArray*)yValueArr
+//initLineChartDataWithXvalueArr
+- (void)initLineChartDataWithXvalueArr:(NSMutableArray*)xValueArr YvalueArr:(NSMutableArray*)yValueArr
 {
+    NSLog(@"HisAssetChartViewController: initLineChartDataWithXvalueArr: start.");
     
+    if(_linechartView==nil)
+    {
+        NSLog(@"HisAssetChartViewController: initLineChartDataWithXvalueArr: _linechartView==nil.");
+        [self initLineChartView];
+    }
+    
+    //清除原图数据
+    [_linechartView clear];
+    
+    //最大最小值
     NSArray* _xValueArr = xValueArr;// 设置x轴折线数据 （模拟数据）
     NSArray* _yValueArr = yValueArr;// 设置y轴折线数据 （模拟数据）
     double _chart_YmaxValue = [[_yValueArr valueForKeyPath:@"@max.doubleValue"] doubleValue];   //最大值
     double _chart_YminValue = [[_yValueArr valueForKeyPath:@"@min.doubleValue"] doubleValue];  //最小值
     if(_chart_YmaxValue<0.03&& (_chart_YminValue==_chart_YmaxValue))
-    {
         _scale = 10;
-    }
     else
+    {
         if(_chart_YminValue==_chart_YmaxValue)
-        {
             _scale = 2;
-        }
         else
-        {
             _scale = 1;
-        }
-    
+    }
     [self initLineChartViewWithLeftaxisMaxValue:_chart_YmaxValue MinValue:_chart_YminValue]; //引入
      
     //chartView设置X轴数据（日期）
@@ -209,15 +147,19 @@
         _linechartView.xAxis.valueFormatter = [[ChartIndexAxisValueFormatter alloc]initWithValues:xValueArr];
     }
    
-    // 创建数据集数组
+    // 创建数据集数组 //画线
     NSMutableArray* dataSets = [[NSMutableArray alloc]init];
     LineChartDataSet*set = [self drawLineWithArr:yValueArr title:nil color:[UIColor orangeColor]];
     if(set)
     {
         [dataSets addObject:set];// 赋值数据集数组
     }
-    LineChartData*data = [[LineChartData alloc]initWithDataSets:dataSets];
+    LineChartData* data = [[LineChartData alloc]initWithDataSets:dataSets];
     _linechartView.data = data;
+    
+    [self loadViewIfNeeded];
+    
+    NSLog(@"HisAssetChartViewController: initLineChartDataWithXvalueArr: over.");
 }
 
 

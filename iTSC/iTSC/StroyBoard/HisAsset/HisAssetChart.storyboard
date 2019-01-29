@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--HisAsset-->
+        <scene sceneID="BXe-hB-rPP">
+            <objects>
+                <viewController storyboardIdentifier="HisAssetChart" id="WqA-5h-Ig2" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ovg-Xf-Cih">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbh-Bd-dQA" userLabel="QueryContainer View">
+                                <rect key="frame" x="10" y="650" width="394" height="163"/>
+                                <connections>
+                                    <segue destination="RNW-HX-TJv" kind="embed" id="ARd-RV-FAC"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XkA-HN-jHc" userLabel="Chart Container View">
+                                <rect key="frame" x="10" y="72" width="394" height="568"/>
+                                <connections>
+                                    <segue destination="kAK-lL-9Wd" kind="embed" identifier="ChartViewContainerSegue" id="Xvl-pz-9LK"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jbh-Bd-dQA" firstAttribute="leading" secondItem="XkA-HN-jHc" secondAttribute="leading" id="6DC-Qh-LFw"/>
+                            <constraint firstItem="lWy-bW-tWw" firstAttribute="bottom" secondItem="jbh-Bd-dQA" secondAttribute="bottom" id="7Is-pG-J1w"/>
+                            <constraint firstItem="XkA-HN-jHc" firstAttribute="trailing" secondItem="lWy-bW-tWw" secondAttribute="trailing" constant="-10" id="7od-V2-J2I"/>
+                            <constraint firstItem="XkA-HN-jHc" firstAttribute="leading" secondItem="lWy-bW-tWw" secondAttribute="leading" constant="10" id="HCB-um-hzf"/>
+                            <constraint firstItem="jbh-Bd-dQA" firstAttribute="top" secondItem="ovg-Xf-Cih" secondAttribute="top" constant="650" id="OWg-Wa-PEx"/>
+                            <constraint firstItem="jbh-Bd-dQA" firstAttribute="centerX" secondItem="ovg-Xf-Cih" secondAttribute="centerX" id="T6z-dK-FtB"/>
+                            <constraint firstItem="lWy-bW-tWw" firstAttribute="top" secondItem="XkA-HN-jHc" secondAttribute="top" constant="-28" id="Vh4-CT-8BU"/>
+                            <constraint firstItem="XkA-HN-jHc" firstAttribute="bottom" secondItem="jbh-Bd-dQA" secondAttribute="top" constant="-10" id="kpg-DH-DkX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lWy-bW-tWw"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Chart" image="first" id="zpH-Y2-nmw"/>
+                    <navigationItem key="navigationItem" title="HisAsset" id="KOG-oO-281"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Owi-db-6OC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2134.7826086956525" y="5.3571428571428568"/>
+        </scene>
+        <!--QeuryMain View Controller-->
+        <scene sceneID="mc3-Vj-qx3">
+            <objects>
+                <viewController id="RNW-HX-TJv" userLabel="QeuryMain View Controller" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Uke-4A-SNQ">
+                        <rect key="frame" x="0.0" y="0.0" width="394" height="163"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="22f-qQ-6gC" userLabel="QeuryButtonContainer">
+                                <rect key="frame" x="0.0" y="0.0" width="94" height="105"/>
+                                <connections>
+                                    <segue destination="HlH-id-AkM" kind="embed" id="GXQ-y4-Yhh"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I3w-bs-3n8" userLabel="DatePickerContainer">
+                                <rect key="frame" x="102" y="0.0" width="292" height="163"/>
+                                <connections>
+                                    <segue destination="Wzb-GT-zjf" kind="embed" id="Qm6-6g-uYp"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="I3w-bs-3n8" firstAttribute="leading" secondItem="22f-qQ-6gC" secondAttribute="trailing" constant="4" id="3Og-vs-6fb"/>
+                            <constraint firstAttribute="bottom" secondItem="22f-qQ-6gC" secondAttribute="bottom" id="4Mr-0v-2z7"/>
+                            <constraint firstItem="22f-qQ-6gC" firstAttribute="top" secondItem="I3w-bs-3n8" secondAttribute="top" id="7m5-jz-4JA"/>
+                            <constraint firstItem="22f-qQ-6gC" firstAttribute="leading" secondItem="Uke-4A-SNQ" secondAttribute="leading" id="A3j-Jc-dmJ"/>
+                            <constraint firstItem="22f-qQ-6gC" firstAttribute="top" secondItem="Uke-4A-SNQ" secondAttribute="top" id="Atl-Ry-gLA"/>
+                            <constraint firstItem="22f-qQ-6gC" firstAttribute="bottom" secondItem="I3w-bs-3n8" secondAttribute="bottom" id="Fsq-fV-Hxz"/>
+                            <constraint firstAttribute="trailing" secondItem="I3w-bs-3n8" secondAttribute="trailing" id="ZmT-pp-DCC"/>
+                            <constraint firstItem="I3w-bs-3n8" firstAttribute="leading" secondItem="Uke-4A-SNQ" secondAttribute="leading" constant="102" id="lSt-fM-OB4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9a2-Nw-I1P"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="opq-5U-Dxz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2774" y="204"/>
+        </scene>
+        <!--QueryButton ViewController-->
+        <scene sceneID="Wsy-7H-OTd">
+            <objects>
+                <viewController storyboardIdentifier="HisAssetQueryViewController" title="QueryButton" id="HlH-id-AkM" userLabel="QueryButton ViewController" customClass="HisAssetQueryViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ui6-3w-jCj">
+                        <rect key="frame" x="0.0" y="0.0" width="94" height="105"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="77O-tB-B5c">
+                                <rect key="frame" x="0.0" y="24" width="93" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="查询">
+                                    <color key="titleShadowColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="ButtonClick:" destination="HlH-id-AkM" eventType="touchUpInside" id="q22-3q-wuC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ckC-AJ-g7t"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JbP-lz-Elu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3306" y="204"/>
+        </scene>
+        <!--DatePicker ViewController-->
+        <scene sceneID="Ksz-3f-m4t">
+            <objects>
+                <viewController id="Wzb-GT-zjf" userLabel="DatePicker ViewController" customClass="HADatePickerViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="o2Q-mh-2iC">
+                        <rect key="frame" x="0.0" y="0.0" width="292" height="163"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="0CJ-gE-SsN">
+                                <rect key="frame" x="0.0" y="0.0" width="292" height="98"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <viewLayoutGuide key="safeArea" id="MEY-pP-Qhz"/>
+                                <date key="date" timeIntervalSinceReferenceDate="570370157.12859905">
+                                    <!--2019-01-28 12:09:17 +0000-->
+                                </date>
+                                <locale key="locale" localeIdentifier="zh_CN"/>
+                                <connections>
+                                    <action selector="ValueChanged:" destination="Wzb-GT-zjf" eventType="valueChanged" id="5wO-Oa-yub"/>
+                                </connections>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="tUh-Xg-y9v"/>
+                    </view>
+                    <connections>
+                        <outlet property="DatePicker" destination="0CJ-gE-SsN" id="98s-PB-U8w"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dp9-ok-AJt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3651" y="204"/>
+        </scene>
+        <!--Draw Chart View Controller-->
+        <scene sceneID="sMu-Nz-C6l">
+            <objects>
+                <viewController id="kAK-lL-9Wd" customClass="HADrawChartViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kka-zP-adf">
+                        <rect key="frame" x="0.0" y="0.0" width="394" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gDi-aU-NDT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3043" y="-74"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="first" width="30" height="30"/>
+    </resources>
+</document>

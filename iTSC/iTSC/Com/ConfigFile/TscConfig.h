@@ -48,6 +48,15 @@
 +(void) setPnlAutoRefresh:(Boolean) vValue;
 
 
+
+//HisAssetStartDate
++(NSString*) strHisAssetStartDate;
++(NSDate*) HisAssetStartDate;
++(void) setHisAssetStartDate:(NSDate*) vValue;
+
+
+
+
 @end
 
 #endif /* TscConfig_h */

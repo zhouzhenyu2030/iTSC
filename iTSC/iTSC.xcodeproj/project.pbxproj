@@ -19,11 +19,15 @@
 		190210E321E49BC0009ADE0B /* ConfigHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210E221E49BC0009ADE0B /* ConfigHelper.m */; };
 		190210E621E49C27009ADE0B /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210E521E49C27009ADE0B /* DBHelper.m */; };
 		1911DFAB21FF11160079304C /* Asset.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1911DFA921FF11160079304C /* Asset.storyboard */; };
-		1911DFAF21FF294E0079304C /* HisAssetChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1911DFAE21FF294E0079304C /* HisAssetChartViewController.m */; };
+		1911DFAF21FF294E0079304C /* HADrawChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1911DFAE21FF294E0079304C /* HADrawChartViewController.m */; };
 		1911DFB121FF29EB0079304C /* HisAssetChart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1911DFB021FF29EB0079304C /* HisAssetChart.storyboard */; };
 		1911DFBA21FF307D0079304C /* Chart-Bridging-Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1911DFB921FF307D0079304C /* Chart-Bridging-Header.swift */; };
 		1911DFBD21FF31AA0079304C /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1911DFBC21FF31AA0079304C /* Charts.framework */; };
 		19417D4721E86BA000C1FF2C /* StringHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 19417D4621E86BA000C1FF2C /* StringHelper.m */; };
+		194B2B5F21FFF2CE008F8A9D /* HisAssetQueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194B2B5E21FFF2CE008F8A9D /* HisAssetQueryViewController.m */; };
+		194B2B6322001775008F8A9D /* TscConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 194B2B6222001775008F8A9D /* TscConst.m */; };
+		194B2B66220024F4008F8A9D /* HADrawChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 194B2B65220024F4008F8A9D /* HADrawChartView.m */; };
+		194B2B6822002DC6008F8A9D /* HADatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194B2B6722002DC6008F8A9D /* HADatePickerViewController.m */; };
 		194D007A21F2824C008918DA /* TscConnections.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D007921F2824C008918DA /* TscConnections.m */; };
 		194D008421F2B52B008918DA /* GreeksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008321F2B52B008918DA /* GreeksViewController.m */; };
 		194D008721F2C714008918DA /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008621F2C714008918DA /* TestViewController.m */; };
@@ -72,14 +76,23 @@
 		190210E421E49C0A009ADE0B /* DBHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBHelper.h; sourceTree = "<group>"; };
 		190210E521E49C27009ADE0B /* DBHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
 		1911DFAA21FF11160079304C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Asset.storyboard; sourceTree = "<group>"; };
-		1911DFAD21FF29330079304C /* HisAssetChartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HisAssetChartViewController.h; sourceTree = "<group>"; };
-		1911DFAE21FF294E0079304C /* HisAssetChartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HisAssetChartViewController.m; sourceTree = "<group>"; };
+		1911DFAD21FF29330079304C /* HADrawChartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HADrawChartViewController.h; sourceTree = "<group>"; };
+		1911DFAE21FF294E0079304C /* HADrawChartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HADrawChartViewController.m; sourceTree = "<group>"; };
 		1911DFB021FF29EB0079304C /* HisAssetChart.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HisAssetChart.storyboard; sourceTree = "<group>"; };
 		1911DFB921FF307D0079304C /* Chart-Bridging-Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chart-Bridging-Header.swift"; sourceTree = "<group>"; };
 		1911DFBB21FF30A50079304C /* iTSC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iTSC-Bridging-Header.h"; sourceTree = "<group>"; };
 		1911DFBC21FF31AA0079304C /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		19417D4521E86B8C00C1FF2C /* StringHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringHelper.h; sourceTree = "<group>"; };
 		19417D4621E86BA000C1FF2C /* StringHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringHelper.m; sourceTree = "<group>"; };
+		194B2B5C21FFEEE4008F8A9D /* HisAssetChartDrawDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HisAssetChartDrawDelegate.h; sourceTree = "<group>"; };
+		194B2B5D21FFF2BC008F8A9D /* HisAssetQueryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HisAssetQueryViewController.h; sourceTree = "<group>"; };
+		194B2B5E21FFF2CE008F8A9D /* HisAssetQueryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HisAssetQueryViewController.m; sourceTree = "<group>"; };
+		194B2B6122001775008F8A9D /* TscConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TscConst.h; sourceTree = "<group>"; };
+		194B2B6222001775008F8A9D /* TscConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TscConst.m; sourceTree = "<group>"; };
+		194B2B64220024E8008F8A9D /* HADrawChartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HADrawChartView.h; sourceTree = "<group>"; };
+		194B2B65220024F4008F8A9D /* HADrawChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HADrawChartView.m; sourceTree = "<group>"; };
+		194B2B6722002DC6008F8A9D /* HADatePickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HADatePickerViewController.m; sourceTree = "<group>"; };
+		194B2B6922002DD6008F8A9D /* HADatePickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HADatePickerViewController.h; sourceTree = "<group>"; };
 		194D007821F280EC008918DA /* TscConnections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TscConnections.h; sourceTree = "<group>"; };
 		194D007921F2824C008918DA /* TscConnections.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TscConnections.m; sourceTree = "<group>"; };
 		194D008221F2B51A008918DA /* GreeksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GreeksViewController.h; sourceTree = "<group>"; };
@@ -206,10 +219,26 @@
 			isa = PBXGroup;
 			children = (
 				1911DFB021FF29EB0079304C /* HisAssetChart.storyboard */,
-				1911DFAD21FF29330079304C /* HisAssetChartViewController.h */,
-				1911DFAE21FF294E0079304C /* HisAssetChartViewController.m */,
+				194B2B64220024E8008F8A9D /* HADrawChartView.h */,
+				194B2B65220024F4008F8A9D /* HADrawChartView.m */,
+				1911DFAD21FF29330079304C /* HADrawChartViewController.h */,
+				1911DFAE21FF294E0079304C /* HADrawChartViewController.m */,
+				194B2B5C21FFEEE4008F8A9D /* HisAssetChartDrawDelegate.h */,
+				194B2B5D21FFF2BC008F8A9D /* HisAssetQueryViewController.h */,
+				194B2B5E21FFF2CE008F8A9D /* HisAssetQueryViewController.m */,
+				194B2B6922002DD6008F8A9D /* HADatePickerViewController.h */,
+				194B2B6722002DC6008F8A9D /* HADatePickerViewController.m */,
 			);
 			path = HisAsset;
+			sourceTree = "<group>";
+		};
+		194B2B602200173E008F8A9D /* Const */ = {
+			isa = PBXGroup;
+			children = (
+				194B2B6122001775008F8A9D /* TscConst.h */,
+				194B2B6222001775008F8A9D /* TscConst.m */,
+			);
+			path = Const;
 			sourceTree = "<group>";
 		};
 		194D007B21F2ADD2008918DA /* StroyBoard */ = {
@@ -218,7 +247,6 @@
 				19FFB2A921F194BD00C02A53 /* Brief.storyboard */,
 				190210C021E45964009ADE0B /* BriefDetail.storyboard */,
 				1911DFA921FF11160079304C /* Asset.storyboard */,
-				1904662F21F89F0F00FF09C0 /* PageContainer */,
 				19FFB2C521F1A70D00C02A53 /* Title */,
 				19FFB2C921F1BAF600C02A53 /* Page */,
 			);
@@ -261,7 +289,7 @@
 		194FF95521EC2BEA00CAB449 /* Brief */ = {
 			isa = PBXGroup;
 			children = (
-				1911DFAC21FF28E00079304C /* HisAsset */,
+				1904662F21F89F0F00FF09C0 /* PageContainer */,
 				194D007B21F2ADD2008918DA /* StroyBoard */,
 				19FFB2AB21F19A8D00C02A53 /* Asset */,
 				194FF95721EC2C1A00CAB449 /* Greeks */,
@@ -294,6 +322,7 @@
 		19703EB621F55C27003D6697 /* Com */ = {
 			isa = PBXGroup;
 			children = (
+				194B2B602200173E008F8A9D /* Const */,
 				19FFB2C421F1A1D500C02A53 /* TWPageViewController */,
 				190210D421E4832D009ADE0B /* Helper */,
 				1980DBD321EF025E008C9FF0 /* ConfigFile */,
@@ -336,9 +365,10 @@
 			isa = PBXGroup;
 			children = (
 				194FF95521EC2BEA00CAB449 /* Brief */,
-				19FFB2C821F1B9D600C02A53 /* Other */,
+				1911DFAC21FF28E00079304C /* HisAsset */,
 				19FFB2A621F191B700C02A53 /* Control */,
 				196B41CE21EED10800105D44 /* Config */,
+				19FFB2C821F1B9D600C02A53 /* Other */,
 				19FFB2C621F1B5B100C02A53 /* Main.storyboard */,
 				19FFB29321F17B6900C02A53 /* TabBarController.h */,
 				19FFB29421F17B7D00C02A53 /* TabBarController.m */,
@@ -564,7 +594,7 @@
 				190210B921E45964009ADE0B /* AppDelegate.m in Sources */,
 				190210D821E48399009ADE0B /* FilePathHelper.m in Sources */,
 				194D007A21F2824C008918DA /* TscConnections.m in Sources */,
-				1911DFAF21FF294E0079304C /* HisAssetChartViewController.m in Sources */,
+				1911DFAF21FF294E0079304C /* HADrawChartViewController.m in Sources */,
 				190210E621E49C27009ADE0B /* DBHelper.m in Sources */,
 				190210E321E49BC0009ADE0B /* ConfigHelper.m in Sources */,
 				1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */,
@@ -572,6 +602,7 @@
 				19FFB2BC21F19A8E00C02A53 /* PageContainerViewController.m in Sources */,
 				194D008921F41210008918DA /* UIHelper.m in Sources */,
 				190210DA21E48DB2009ADE0B /* OCCodingHelper.m in Sources */,
+				194B2B66220024F4008F8A9D /* HADrawChartView.m in Sources */,
 				19703EBA21F5B537003D6697 /* PositionViewController.m in Sources */,
 				194D008E21F44057008918DA /* AssetViewController.m in Sources */,
 				194D008721F2C714008918DA /* TestViewController.m in Sources */,
@@ -582,8 +613,11 @@
 				19417D4721E86BA000C1FF2C /* StringHelper.m in Sources */,
 				19FFB2C321F19A8E00C02A53 /* ViewController.m in Sources */,
 				19FFB2BF21F19A8E00C02A53 /* SampleTitleViewController.m in Sources */,
+				194B2B6322001775008F8A9D /* TscConst.m in Sources */,
 				19FFB2C021F19A8E00C02A53 /* TableViewController.m in Sources */,
+				194B2B6822002DC6008F8A9D /* HADatePickerViewController.m in Sources */,
 				19FFB2BE21F19A8E00C02A53 /* SampleTitleCell.m in Sources */,
+				194B2B5F21FFF2CE008F8A9D /* HisAssetQueryViewController.m in Sources */,
 				196B41D121EED13800105D44 /* ConfigViewController.m in Sources */,
 				19703EBD21F5BD09003D6697 /* PnlViewController.m in Sources */,
 			);
