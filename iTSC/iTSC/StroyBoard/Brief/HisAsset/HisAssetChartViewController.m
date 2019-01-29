@@ -80,7 +80,7 @@
     OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
     if(_queryContext==nil)
     {
-        NSLog(@"AssetViewController: Init: queryContext==nil!");
+        NSLog(@"HisAssetChartViewController: Init: queryContext==nil!");
         return;
     }
     //SELECT
@@ -88,7 +88,7 @@
     //_condstr = [_condstr stringByAppendingString:@" order by HisDate ASC"];
     //_condstr = [_condstr stringByAppendingString:@" and HisDate>'2019-01-10'"];
     _condstr = [_condstr stringByAppendingFormat:@" and HisDate>'%@'", strDate];
-    NSLog(@"AssetViewController: Query: %@", _condstr);
+    NSLog(@"HisAssetChartViewController: Query: %@", _condstr);
     
     OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"hisasset" condition:_condstr];
     NSError *error = nil;
@@ -114,16 +114,7 @@
         //[yValueArr addObject:_field[@"Asset"]];
     }
     /*
-     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"HisDate:" DetialText:];
-     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RecordTime:" DetialText:[_field[@"RecordTime"] substringToIndex:8]];
-     _sValue = [NSString stringWithFormat:@"%d", [_field[@"AccountID"] intValue]];
-     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"AccountID:" DetialText:_sValue];
-     
-     
      [UIHelper DisplayCell:TableView Field:_field TitleName:@"Asset (Theory):" FieldName:@"AssetTheo" SetColor:false];
-     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Asset (Market):" FieldName:@"Asset" SetColor:false];
-     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total Cash:" FieldName:@"TotalCash" SetColor:false];
-     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Curr Margin:" FieldName:@"CurrMargin" SetColor:false];
      */
     
     
@@ -212,7 +203,8 @@
     [self initLineChartViewWithLeftaxisMaxValue:_chart_YmaxValue MinValue:_chart_YminValue]; //引入
      
     //chartView设置X轴数据（日期）
-    if(_xValueArr.count>0) {
+    if(_xValueArr.count>0)
+    {
         _linechartView.xAxis.axisMaximum = (double)xValueArr.count-1+0.3;
         _linechartView.xAxis.valueFormatter = [[ChartIndexAxisValueFormatter alloc]initWithValues:xValueArr];
     }
@@ -220,9 +212,10 @@
     // 创建数据集数组
     NSMutableArray* dataSets = [[NSMutableArray alloc]init];
     LineChartDataSet*set = [self drawLineWithArr:yValueArr title:nil color:[UIColor orangeColor]];
-    if(set) {
+    if(set)
+    {
         [dataSets addObject:set];// 赋值数据集数组
-        }
+    }
     LineChartData*data = [[LineChartData alloc]initWithDataSets:dataSets];
     _linechartView.data = data;
 }
@@ -230,7 +223,7 @@
 
 
 
-//
+//drawLineWithArr
 - (LineChartDataSet *)drawLineWithArr:(NSArray *)arr title:(NSString *)title color:(UIColor *)color
 {
     if (arr.count == 0)
@@ -265,15 +258,13 @@
         _linechartView.leftAxis.axisMaximum = topNum*_scale;
     }
     
-    
-    
     if (leftAxisMin < 0)
     {
         CGFloat minNum = leftAxisMin * (5.0/4.0);
         _linechartView.leftAxis.axisMaximum = minNum ;
     }
-    
     */
+    
     
     /// 设置Y轴数据
     //_linechartView.leftAxis.valueFormatter = [[ChartIndexAxisValueFormatter alloc] initWithValues:statistics];//self; //需要遵IChartAxisValueFormatter协议
@@ -284,29 +275,23 @@
     [chartDataSet setColor:color]; //折线颜色
     chartDataSet.valueFont = [UIFont systemFontOfSize:12];   //折线字体大小
     //chartDataSet.valueFormatter =  [[ChartIndexAxisValueFormatter alloc] initWithValues:statistics];//self; //需要遵循IChartValueFormatter协议
-    
-       chartDataSet.lineWidth = 1.0f;//折线宽度
-    
-     chartDataSet.valueColors = @[color]; //折线拐点处显示数据的颜色
-    
-       chartDataSet.drawCirclesEnabled = NO;//是否绘制拐点
-    
-       chartDataSet.axisDependency = AxisDependencyLeft; //轴线方向
-    
-     chartDataSet.highlightColor = [UIColor clearColor];//选中线条颜色
+    chartDataSet.lineWidth = 1.0f;//折线宽度
+    chartDataSet.valueColors = @[color]; //折线拐点处显示数据的颜色
+    chartDataSet.drawCirclesEnabled = NO;//是否绘制拐点
+    chartDataSet.axisDependency = AxisDependencyLeft; //轴线方向
+    chartDataSet.highlightColor = [UIColor clearColor];//选中线条颜色
     chartDataSet.highlightLineWidth = 1.00f;
     chartDataSet.drawCircleHoleEnabled = YES;//是否绘制中间的空心
-    // chartDataSet.circleHoleRadius = 2.0f; //空心的半径
-    // chartDataSet.circleHoleColor = WKOrangeColor; //空心的颜色
+    chartDataSet.circleHoleRadius = 2.0f; //空心的半径
+    //chartDataSet.circleHoleColor = WKOrangeColor; //空心的颜色
     chartDataSet.drawFilledEnabled = YES;//是否填充颜色
     NSArray *gradientColors = @[(id)[ChartColorTemplates colorFromString:@"#ffffff"].CGColor,
                                                      (id)[ChartColorTemplates colorFromString:@"#f9511e"].CGColor];
     CGGradientRef gradientRef = CGGradientCreateWithColors(nil, (CFArrayRef)gradientColors, nil);
-      chartDataSet.fillAlpha = 0.7f;//透明度
-      chartDataSet.fill = [ChartFill fillWithLinearGradient:gradientRef angle:90.0f]; //赋值填充颜色对象
-      CGGradientRelease(gradientRef);
+    chartDataSet.fillAlpha = 0.7f;//透明度
+    chartDataSet.fill = [ChartFill fillWithLinearGradient:gradientRef angle:90.0f]; //赋值填充颜色对象
+    CGGradientRelease(gradientRef);
     return chartDataSet;
-    
 }
 
 #pragma mark - IChartValueFormatter delegate (折线值)
@@ -326,6 +311,10 @@
     }
     return [NSString stringWithFormat:@"%0.2f", value];
 }
+
+
+
+
 
 
 /*
