@@ -19,13 +19,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbh-Bd-dQA" userLabel="QueryContainer View">
-                                <rect key="frame" x="10" y="650" width="394" height="163"/>
+                                <rect key="frame" x="10" y="663" width="394" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="IPu-mt-bLI"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="qfk-Rq-rRZ"/>
                                 <connections>
                                     <segue destination="RNW-HX-TJv" kind="embed" id="ARd-RV-FAC"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XkA-HN-jHc" userLabel="Chart Container View">
-                                <rect key="frame" x="10" y="72" width="394" height="568"/>
+                                <rect key="frame" x="10" y="72" width="394" height="581"/>
+                                <viewLayoutGuide key="safeArea" id="nob-mr-ZkI"/>
                                 <connections>
                                     <segue destination="kAK-lL-9Wd" kind="embed" identifier="ChartViewContainerSegue" id="Xvl-pz-9LK"/>
                                 </connections>
@@ -37,7 +42,6 @@
                             <constraint firstItem="lWy-bW-tWw" firstAttribute="bottom" secondItem="jbh-Bd-dQA" secondAttribute="bottom" id="7Is-pG-J1w"/>
                             <constraint firstItem="XkA-HN-jHc" firstAttribute="trailing" secondItem="lWy-bW-tWw" secondAttribute="trailing" constant="-10" id="7od-V2-J2I"/>
                             <constraint firstItem="XkA-HN-jHc" firstAttribute="leading" secondItem="lWy-bW-tWw" secondAttribute="leading" constant="10" id="HCB-um-hzf"/>
-                            <constraint firstItem="jbh-Bd-dQA" firstAttribute="top" secondItem="ovg-Xf-Cih" secondAttribute="top" constant="650" id="OWg-Wa-PEx"/>
                             <constraint firstItem="jbh-Bd-dQA" firstAttribute="centerX" secondItem="ovg-Xf-Cih" secondAttribute="centerX" id="T6z-dK-FtB"/>
                             <constraint firstItem="lWy-bW-tWw" firstAttribute="top" secondItem="XkA-HN-jHc" secondAttribute="top" constant="-28" id="Vh4-CT-8BU"/>
                             <constraint firstItem="XkA-HN-jHc" firstAttribute="bottom" secondItem="jbh-Bd-dQA" secondAttribute="top" constant="-10" id="kpg-DH-DkX"/>
@@ -57,17 +61,17 @@
             <objects>
                 <viewController id="RNW-HX-TJv" userLabel="QeuryMain View Controller" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Uke-4A-SNQ">
-                        <rect key="frame" x="0.0" y="0.0" width="394" height="163"/>
+                        <rect key="frame" x="0.0" y="0.0" width="394" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="22f-qQ-6gC" userLabel="QeuryButtonContainer">
-                                <rect key="frame" x="0.0" y="0.0" width="94" height="105"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="22f-qQ-6gC" userLabel="QeuryButtonContainer">
+                                <rect key="frame" x="0.0" y="0.0" width="98" height="150"/>
                                 <connections>
                                     <segue destination="HlH-id-AkM" kind="embed" id="GXQ-y4-Yhh"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I3w-bs-3n8" userLabel="DatePickerContainer">
-                                <rect key="frame" x="102" y="0.0" width="292" height="163"/>
+                                <rect key="frame" x="102" y="0.0" width="292" height="150"/>
                                 <connections>
                                     <segue destination="Wzb-GT-zjf" kind="embed" id="Qm6-6g-uYp"/>
                                 </connections>
@@ -89,14 +93,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="opq-5U-Dxz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2774" y="204"/>
+            <point key="canvasLocation" x="2773.913043478261" y="203.57142857142856"/>
         </scene>
         <!--QueryButton ViewController-->
         <scene sceneID="Wsy-7H-OTd">
             <objects>
                 <viewController storyboardIdentifier="HisAssetQueryViewController" title="QueryButton" id="HlH-id-AkM" userLabel="QueryButton ViewController" customClass="HisAssetQueryViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ui6-3w-jCj">
-                        <rect key="frame" x="0.0" y="0.0" width="94" height="105"/>
+                        <rect key="frame" x="0.0" y="0.0" width="98" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="77O-tB-B5c">
@@ -124,7 +128,7 @@
             <objects>
                 <viewController id="Wzb-GT-zjf" userLabel="DatePicker ViewController" customClass="HADatePickerViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o2Q-mh-2iC">
-                        <rect key="frame" x="0.0" y="0.0" width="292" height="163"/>
+                        <rect key="frame" x="0.0" y="0.0" width="292" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="0CJ-gE-SsN">
@@ -156,7 +160,7 @@
             <objects>
                 <viewController id="kAK-lL-9Wd" customClass="HADrawChartViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kka-zP-adf">
-                        <rect key="frame" x="0.0" y="0.0" width="394" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="394" height="581"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
