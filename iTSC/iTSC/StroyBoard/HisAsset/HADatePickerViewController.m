@@ -22,13 +22,13 @@
 
 @synthesize DatePicker;
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
     [DatePicker setDate:[TscConfig HisAssetStartDate] animated:YES];
     [DatePicker setMaximumDate:[NSDate date]];
-    
 }
 
 
