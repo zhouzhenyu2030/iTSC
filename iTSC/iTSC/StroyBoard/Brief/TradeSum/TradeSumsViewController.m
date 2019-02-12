@@ -161,8 +161,9 @@
     [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"Order Trade Ratio (%):" DetialText:@"-" Color:UIColor.purpleColor];
     [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"Order Insert Cnt:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Order Insert Qty:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:1 Row:3 TitleText:@"Order Rsp Cnt:" DetialText:@"-"];
-    
+    [UIHelper SetTabelViewCellText:TableView Section:1 Row:3 TitleText:@"Order Delete Cnt:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:1 Row:4 TitleText:@"Order Rsp Cnt:" DetialText:@"-"];
+
     [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"TPR:" DetialText:@"-" Color:UIColor.magentaColor];
     [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Trade Edge:" DetialText:@"-" Color:UIColor.blueColor];
     [UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Trade Qty:" DetialText:@"-" Color:UIColor.blueColor];
@@ -248,9 +249,11 @@
              [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Order Insert Cnt:" FieldName:@"ItemValue"];
         if([typename isEqualToString:@"OrderInsertQty"])
             [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Order Insert Qty:" FieldName:@"ItemValue"];
+        if([typename isEqualToString:@"OrderDeleteCnt"])
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Order Delete Cnt:" FieldName:@"ItemValue"];
         if([typename isEqualToString:@"OrderRspCnt"])
                [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Order Rsp Cnt:" FieldName:@"ItemValue"];
-        
+
 
         //Trade
         if([typename isEqualToString:@"TradePosRatio"])
