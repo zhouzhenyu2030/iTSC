@@ -183,8 +183,9 @@
     
     
     [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blueColor];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"AT Trade Qty:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"AH Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"Trade Qty:" DetialText:@"-" Color:UIColor.blueColor];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"AT Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:3 TitleText:@"AH Trade Qty:" DetialText:@"-"];
     
     [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Marktet Total PNL:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"Theo Total PNL:" DetialText:@"-"];
@@ -234,7 +235,7 @@
     _condstr=[_condstr stringByAppendingString:@" (ItemKey='Risk')"];
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Position' and ItemType='Position' )"];
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='TradeSum' and (ItemType='ATTradeQty' or ItemType='AHTradeQty') )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='TradeSum' and (ItemType='TradeQty' or ItemType='ATTradeQty' or ItemType='AHTradeQty') )"];
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='PNL' and (ItemType='TotalPNL_Mkt' or ItemType='TotalPNL_Theo') )"];
     
@@ -280,6 +281,14 @@
             [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Position:" DetialText:value];
             continue;
         }
+        if([typename isEqualToString:@"TradeQty"])
+        {
+            //value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:0];
+            //[UIHelper SetTabelViewCellDetailText:TableView TitleText: @"AT Trade Qty:" DetialText:value];
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Trade Qty:" FieldName:@"ItemValue"];
+            continue;
+        }
+
         if([typename isEqualToString:@"ATTradeQty"])
         {
             value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:0];
