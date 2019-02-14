@@ -183,8 +183,8 @@
     
     
     [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blueColor];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"Trade Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"Trade Qty:" DetialText:@"-" Color:UIColor.blueColor];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"Trade Edge:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:5 Row:3 TitleText:@"AT Trade Qty:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:5 Row:4 TitleText:@"AH Trade Qty:" DetialText:@"-"];
 
