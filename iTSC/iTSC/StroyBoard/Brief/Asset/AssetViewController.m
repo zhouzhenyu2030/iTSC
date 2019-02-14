@@ -321,9 +321,9 @@
     
     NSString* _condstr = @"( ";
 
-    _condstr=[_condstr stringByAppendingString:@" (ItemKey='Position' and ItemType='Position')"];
+    _condstr=[_condstr stringByAppendingString:@" ( ItemKey='Position' and ItemType='Position' )"];
     
-    _condstr=[_condstr stringByAppendingString:@" (ItemKey='Capital' and ItemType='TotalMargin')"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Capital' and ItemType='TotalMargin' )"];
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradePosRatio' or ItemType='OrderTradeRatio' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='TradeSum' and ItemType='TradeQty' )"];
