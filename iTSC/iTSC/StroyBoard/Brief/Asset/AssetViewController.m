@@ -188,6 +188,8 @@
 
     
     //Runtimeinfo
+    [UIHelper SetTabelViewCellText:TableView Section:1 Row:6 TitleText:@"Total Margin:" DetialText:@"-"];
+    
     [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"TPR:" DetialText:@"-" Color:UIColor.magentaColor];
     [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blueColor];
     [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"TOR(%):" DetialText:@"-" Color:UIColor.purpleColor];
@@ -321,6 +323,8 @@
 
     _condstr=[_condstr stringByAppendingString:@" (ItemKey='Position' and ItemType='Position')"];
     
+    _condstr=[_condstr stringByAppendingString:@" (ItemKey='Capital' and ItemType='TotalMargin')"];
+    
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradePosRatio' or ItemType='OrderTradeRatio' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='TradeSum' and ItemType='TradeQty' )"];
     
@@ -358,6 +362,12 @@
     {
         _field=[tasks objectAtIndex:i];
         NSLog(@"%@", _field);
+        
+        if([_field[@"ItemType"] isEqualToString:@"TotalMargin"])
+        {
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Total Margin:" FieldName:@"ItemValue"];
+            continue;
+        }
         
         if([_field[@"ItemType"] isEqualToString:@"TradeQty"])
         {
