@@ -365,7 +365,7 @@
         
         if([_field[@"ItemType"] isEqualToString:@"TotalMargin"])
         {
-            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Total Margin:" FieldName:@"ItemValue"];
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total Margin:" FieldName:@"ItemValue" SetColor:false];
             continue;
         }
         
