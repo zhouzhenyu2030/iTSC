@@ -21,6 +21,7 @@
     NSInteger RefreshSecondsSection, RefreshSecondsRow;
     NSInteger ReconnectDBSection, ReconnectDBRow;
     NSInteger ClearRunTimeInfoTalbeSection, ClearRunTimeInfoTalbeRow;
+    NSInteger SetTimeSection, SetTimeRow;
     NSInteger HelpSection, HelpRow;
 
     

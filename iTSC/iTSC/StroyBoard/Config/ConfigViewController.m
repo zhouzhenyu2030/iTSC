@@ -90,7 +90,7 @@
     
     
     
-    //////////////////////////////////////// Connection Confit ////////////////////////////////////////
+    //////////////////////////////////////// Connection Config ////////////////////////////////////////
     _SectionIndex++;
     RefreshSecondsSection=_SectionIndex; RefreshSecondsRow=0;
     [UIHelper SetTabelViewCellText:TableView Section:(int)RefreshSecondsSection Row:(int)RefreshSecondsRow TitleText:@"Refresh Seconds:" DetialText:[NSString stringWithFormat:@"%d", (int)[TscConfig RefreshSeconds]]];
@@ -106,7 +106,15 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
  
     
-     //////////////////////////////////////// Connection Confit ////////////////////////////////////////
+    //////////////////////////////////////// SetTime ////////////////////////////////////////
+    _SectionIndex++;
+    SetTimeSection=_SectionIndex; SetTimeRow=0;
+    cell=[UIHelper SetTabelViewCellText:TableView Section:(int)SetTimeSection Row:(int)SetTimeRow TitleText:@"Set Tss Server Time to Now" DetialText:@""];
+    cell.textLabel.textColor = UIColor.blueColor;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    
+    
+    //////////////////////////////////////// Help ////////////////////////////////////////
     _SectionIndex++;
     HelpSection=_SectionIndex; HelpRow=0;
     [UIHelper SetTabelViewCellText:TableView Section:(int)HelpSection Row:(int)HelpRow TitleText:@"Help" DetialText:@""];
@@ -183,7 +191,7 @@
         }
     }
     
-    //ClearRunTimeInfoTalbeRow
+    //ClearRunTimeInfoTable
     if([indexPath section] == ClearRunTimeInfoTalbeSection && [indexPath row] == ClearRunTimeInfoTalbeRow)
     {
         NSString* _msg;
@@ -195,6 +203,20 @@
         [self presentViewController:alertController animated:YES completion:nil];
     }
 
+    //SetTime
+    if([indexPath section] == SetTimeSection && [indexPath row] == SetTimeRow)
+    {
+        NSString* _ret = [self Function_SetTime];
+        NSString* _msg;
+        if([_ret length ] != 0)
+            _msg=[@"SetTime is ok." stringByAppendingString:_ret];
+        else
+            _msg=[@"SetTime is failed." stringByAppendingString:_ret];
+        UIAlertController * alertController=[UIHelper ShowMessage:@"SetTime" Message:_msg];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+
+    
     //help
     if([indexPath section] == HelpSection && [indexPath row] == HelpRow)
     {
@@ -268,6 +290,44 @@
     if(error!=nil)
         return false;
     return true;
+}
+
+
+//ClearRunTimeInfoTalbe
+-(NSString*) Function_SetTime
+{
+    OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
+    if(_queryContext==nil)
+    {
+        NSLog(@"Function_SetTime: Init: queryContext==nil!");
+        return @"";
+    }
+    
+    NSLog(@"Function_SetTime: UPDATE: start!");
+    
+    //读取系统时间
+    NSDateFormatter *_dateFormatter;
+    NSString *_strTime;
+
+    _dateFormatter = [[NSDateFormatter alloc] init];
+    [_dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    _strTime=[_dateFormatter stringFromDate:[NSDate date]];
+    _strTime=[_strTime substringFromIndex:11];
+    NSLog(@"time=%@", _strTime);
+    
+    
+    //Set Dictionary
+    NSDictionary<NSString *,id>* dicSet = [NSDictionary dictionaryWithObject:_strTime forKey:@"ParaValue"];
+
+    
+    //Update
+    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory UPDATE:@"globalpara" set:dicSet condition:@"ParaID0='SYS' and ParaID1='SetTime'"];
+    NSError *error = nil;
+    [_queryContext executeQueryRequestAndFetchResult:query error:&error];
+    
+    if(error!=nil)
+        return @"";
+    return _strTime;
 }
 
 @end
