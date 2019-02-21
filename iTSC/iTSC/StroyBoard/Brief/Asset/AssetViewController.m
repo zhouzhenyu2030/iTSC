@@ -191,15 +191,16 @@
     [UIHelper SetTabelViewCellText:TableView Section:1 Row:6 TitleText:@"Total Margin:" DetialText:@"-"];
     
     [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"TPR:" DetialText:@"-" Color:UIColor.magentaColor];
-    [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blueColor];
-    [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"TOR(%):" DetialText:@"-" Color:UIColor.purpleColor];
-    [UIHelper SetTabelViewCellText:TableView Section:4 Row:3 TitleText:@"Trade Qty:" DetialText:@"-" Color:UIColor.blueColor];
+    [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"TOR(%):" DetialText:@"-" Color:UIColor.purpleColor];
+    [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blueColor];
 
 
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"AT Trade Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"AT Trade Qty:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"AH Trade Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:3 TitleText:@"AH Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"Trade Edge:" DetialText:@"-" Color:UIColor.blueColor];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"AT Trade Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:3 TitleText:@"AT Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:4 TitleText:@"AH Trade Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:5 TitleText:@"AH Trade Qty:" DetialText:@"-"];
 
     
     [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Excersize PNL:" DetialText:@"-"];
@@ -215,10 +216,10 @@
     
     if(vInitAll)
     {
-        cell = [UIHelper SetTabelViewCellText:TableView Section:8 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
-        RefreshSwitchCell = cell;
-        cell = [UIHelper SetTabelViewCellText:TableView Section:8 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
+        cell = [UIHelper SetTabelViewCellText:TableView Section:8 Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
         RefreshCountCell = cell;
+        cell = [UIHelper SetTabelViewCellText:TableView Section:8 Row:1 TitleText:@"AutoRefresh:" DetialText:@""];
+        RefreshSwitchCell = cell;
 
         cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:0 TitleText:@"AccountID:" DetialText:@"-"];
     }
@@ -326,7 +327,7 @@
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Capital' and ItemType='TotalMargin' )"];
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradePosRatio' or ItemType='OrderTradeRatio' )"];
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='TradeSum' and ItemType='TradeQty' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradeEdge' or ItemType='TradeQty' )"];
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ATTradeEdge' or ItemType='ATTradeQty' or ItemType='AHTradeEdge' or ItemType='AHTradeQty' )"];
 
@@ -369,12 +370,7 @@
             continue;
         }
         
-        if([_field[@"ItemType"] isEqualToString:@"TradeQty"])
-        {
-            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Trade Qty:" FieldName:@"ItemValue"];
-          continue;
-        }
-        
+
         if([_field[@"ItemType"] isEqualToString:@"OrderTradeRatio"])
         {
             _fValue=[_field[@"ItemValue"] floatValue]*100;
@@ -392,9 +388,32 @@
             [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Position:" FieldName:@"ItemValue"];
             continue;
         }
-        if([_field[@"ItemType"] isEqualToString:@"ATTradeQty"])
+        
+        
+        if([_field[@"ItemType"] isEqualToString:@"TradeEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Trade Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([_field[@"ItemType"] isEqualToString:@"TradeQty"])
+        {
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Trade Qty:" FieldName:@"ItemValue"];
+            continue;
+        }
+        
+        if([_field[@"ItemType"] isEqualToString:@"ATTradeEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"AT Trade Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }        if([_field[@"ItemType"] isEqualToString:@"ATTradeQty"])
         {
             [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"AT Trade Qty:" FieldName:@"ItemValue"];
+            continue;
+        }
+        
+        if([_field[@"ItemType"] isEqualToString:@"AHTradeEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"AH Trade Edge:" FieldName:@"ItemValue" SetColor:true];
             continue;
         }
         if([_field[@"ItemType"] isEqualToString:@"AHTradeQty"])
@@ -402,16 +421,8 @@
             [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"AH Trade Qty:" FieldName:@"ItemValue"];
             continue;
         }
-        if([_field[@"ItemType"] isEqualToString:@"ATTradeEdge"])
-        {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"AT Trade Edge:" FieldName:@"ItemValue" SetColor:true];
-            continue;
-        }
-        if([_field[@"ItemType"] isEqualToString:@"AHTradeEdge"])
-        {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"AH Trade Edge:" FieldName:@"ItemValue" SetColor:true];
-            continue;
-        }
+
+
         if([_field[@"ItemType"] isEqualToString:@"ExecPNL"])
         {
            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Excersize PNL:" FieldName:@"ItemValue" SetColor:true];

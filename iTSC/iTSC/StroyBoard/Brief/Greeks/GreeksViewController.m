@@ -200,10 +200,10 @@
     
     if(vInitAll)
     {
-        cell = [UIHelper SetTabelViewCellText:TableView Section:8 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
-        RefreshSwitchCell = cell;
-        cell = [UIHelper SetTabelViewCellText:TableView Section:8 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
+        cell = [UIHelper SetTabelViewCellText:TableView Section:8 Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
         RefreshCountCell = cell;
+        cell = [UIHelper SetTabelViewCellText:TableView Section:8 Row:1 TitleText:@"AutoRefresh:" DetialText:@""];
+        RefreshSwitchCell = cell;
     }
     
   
