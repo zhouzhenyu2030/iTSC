@@ -171,7 +171,7 @@
         [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"Asset (Market):" DetialText:@"-"];
         [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Asset (Theory):" DetialText:@"-"];
         [UIHelper SetTabelViewCellText:TableView Section:1 Row:3 TitleText:@"Asset Dif (Market-Theory):" DetialText:@"-"];
-        [UIHelper SetTabelViewCellText:TableView Section:1 Row:4 TitleText:@"Total Cash:" DetialText:@"-" Color:UIColor.brownColor];
+        [UIHelper SetTabelViewCellText:TableView Section:1 Row:4 TitleText:@"Available:" DetialText:@"-" Color:UIColor.brownColor];
         [UIHelper SetTabelViewCellText:TableView Section:1 Row:5 TitleText:@"Curr Margin:" DetialText:@"-"];
         
         
@@ -281,7 +281,7 @@
     
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Asset (Theory):" FieldName:@"AssetTheo" SetColor:false];
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Asset (Market):" FieldName:@"Asset" SetColor:false];
-    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total Cash:" FieldName:@"TotalCash" SetColor:false];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Available:" FieldName:@"Available" SetColor:false];
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Curr Margin:" FieldName:@"CurrMargin" SetColor:false];
     
     _fValue=[_field[@"Asset"]  floatValue] - [_field[@"AssetTheo"]  floatValue];
