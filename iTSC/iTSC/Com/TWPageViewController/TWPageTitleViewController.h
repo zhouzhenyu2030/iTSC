@@ -28,11 +28,11 @@
  */
 - (void)gotoItemWithIndex:(NSInteger)index animated:(BOOL)animated;
 
-/**
- *  设置自定义的指示器View
- *
- *  @param indicatorView 指示器View
- *  @param toFront       是否将指示器放在最前面
+/*
+   设置自定义的指示器View
+ 
+   @param indicatorView 指示器View
+   @param toFront       是否将指示器放在最前面
  */
 - (void)reloadData;
 //设置自定义的指示器View

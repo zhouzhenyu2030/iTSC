@@ -36,11 +36,11 @@
 
 @optional
 
-/**
- *  进入复用前会回调这个方法
- *
- *  @param pageViewController
- *  @param controller         即将进入的复用controller
+/*
+   进入复用前会回调这个方法
+ 
+   @param pageViewController
+   @param controller         即将进入的复用controller
  */
 
 - (void)pageViewController:(TWPageViewController * _Nonnull)pageViewController prepareReuseController:(UIViewController * _Nonnull) controller;
@@ -53,12 +53,12 @@
 
 - (void)pageViewController:(TWPageViewController * _Nonnull)pageViewController didDisappearController:(UIViewController * _Nonnull) controller atIndex:(NSInteger)index;
 
-/**
- *  当reloadData的时候，如果当前controller在childController中会回调这个方法
- *
- *  @param pageViewController
- *  @param controller
- *  @param index
+/*
+   当reloadData的时候，如果当前controller在childController中会回调这个方法
+ 
+   @param pageViewController
+   @param controller
+   @param index
  */
 - (void)pageViewController:(TWPageViewController * _Nonnull)pageViewController needrefreshController:(UIViewController * _Nonnull) controller atIndex:(NSInteger)index;
 @end
@@ -67,7 +67,7 @@
 
 @required
 
-/**
+/*
  *  Controller的数目
  *
  *  @param pageViewController
@@ -77,7 +77,7 @@
 - (NSInteger) numberOfControllersInPageViewController:( TWPageViewController * _Nonnull)pageViewController;
 
 
-/**
+/*
  *  当更新UI的时候会回调这个方法
  *
  *  @param pageViewController

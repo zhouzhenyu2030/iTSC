@@ -210,7 +210,7 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
     [self relayout];
 }
 
-/**
+/*
  *   重新计算容器的contentSize
  */
 - (void)resetSubViewSize {
@@ -261,7 +261,7 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
     }
 }
 
-/**
+/*
  *  重新布局子controller的位置
  */
 
@@ -356,7 +356,7 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
 }
 
 
-/**
+/*
  *  是否是子Controller
  *
  *  @param controller
@@ -372,7 +372,7 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
     return NO;
 }
 
-/**
+/*
  *  拖拽即将停止的时候通知各个controller回调各个Appearance相关的方法
  */
 - (void)updateControllersAppearanceStautsWhenEndCelerating {
@@ -393,7 +393,7 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
     }
 }
 
-/**
+/*
  *  拖拽过程中通知各个controller回调各个Appearance相关的方法
  */
 - (void)updateControllersAppearanceStautsWhenDraging {
@@ -425,7 +425,7 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
 }
 
 
-/**
+/*
  *  将要展现index位置的controller
  *
  *  @param index 索引
@@ -448,7 +448,7 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
 
 }
 
-/**
+/*
  *  已经展现index位置的controller
  *
  *  @param index 索引
@@ -470,7 +470,7 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
     [controller notifyDidAppear:YES];
 }
 
-/**
+/*
  *  index位置的controller将要消失
  *  @param index 索引
  */
@@ -492,7 +492,7 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
     [controller notifyWillDisappear:YES];
 }
 
-/**
+/*
  *  index位置的controller已经消失
  *  @param index 索引
  */
@@ -515,7 +515,7 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
     [controller notifyDidDisappear:YES];
 }
 
-/**
+/*
  *  如果self.childViewControllers不包含在controller，则在指定的index插入一个controller
  *  @param controller 需要插入的子controller
  *  @param index 位置
@@ -584,7 +584,7 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
 }
 
 
-/**
+/*
  *  移除一个子controller
  *  @param childController 子controller
  */
@@ -592,7 +592,7 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
 {
     return;
     //zzy
-    
+    /*
     //如果缓存中没有该类型的controller，则加入到缓存中
     NSString* className = NSStringFromClass([childController class]);
     if(!self.cacheControllers[className]) {
@@ -612,16 +612,18 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
     [childController.view removeFromSuperview];
     [childController removeFromParentViewController];
     //    [childController endAppearanceTransition];
+     */
 }
 
 
-/**
+/*
  *  移除除去当前位置、前一个、后一个controller之外的所有controller
  */
 - (void)removeOtherControllers
 {
     return;
     //zzy
+    /*
     NSInteger index = self.currentIndex;
     
     for(UIViewController *childController in self.childViewControllers) {
@@ -630,16 +632,17 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
             [self removeChildController:childController];
         }
     }
+     */
 }
 
-/**
+/*
  *  如果controller被缓存，则从缓存中移除，否则，不做任何操作
- *  @param controller
  */
 - (void)removeFromCacheIfNeedWithController:(UIViewController *)controller
 {
     return;
     //zzy
+    /*
     NSArray *keys = [self.cacheControllers allKeys];
     
     for (id key in keys) {
@@ -648,9 +651,10 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
             break;
         }
     }
+     */
 }
 
-/**
+/*
  *  返回在index位置的controller
  */
 - (UIViewController *)childControllerForIndex:(NSInteger)index {
@@ -665,7 +669,7 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
     return nil;
 }
 
-/**
+/*
  *  在index位置是否已经有controller占用了
  */
 - (BOOL)hasLayoutControllerAtIndex:(NSInteger)index {
@@ -680,7 +684,7 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
     return NO;
 }
 
-/**
+/*
  *  计算当前位置索引
  */
 - (NSInteger)caculateCurrentIndex {
