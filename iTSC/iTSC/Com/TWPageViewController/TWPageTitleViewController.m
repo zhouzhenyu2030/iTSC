@@ -20,8 +20,8 @@
 
 @implementation TWPageTitleViewController
 
-
-int  _TitleIndictorWidth= 30;  //zzy
+int  _TitleIndictorXAdd= 5;
+int  _TitleIndictorWidth= 50;  //zzy
 //int _TitleIndictorWidthShrink = -30; //zzy
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -137,7 +137,7 @@ int  _TitleIndictorWidth= 30;  //zzy
     }
     
     //frame.size.height=35;
-    frame.origin.x = cellFrame.origin.x + 10;
+    frame.origin.x = cellFrame.origin.x + _TitleIndictorXAdd;
     frame.origin.y = cellFrame.origin.y + cellFrame.size.height - 1;
     frame.size.width = _TitleIndictorWidth;
     //frame.size.width = cellFrame.size.width - _TitleIndictorWidthShrink;//_TitleIndictorWidth; //cellFrame.size.width - _TitleIndictorWidthShrink; //zzy

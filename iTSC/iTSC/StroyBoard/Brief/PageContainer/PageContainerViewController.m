@@ -30,8 +30,9 @@
 
 @implementation PageContainerViewController
 
- int  _numberOfItemsInPageTitleViewController = 6;  //zzy
-int  _TitleLableWidth = 50;  //zzy
+
+int  _numberOfItemsInPageTitleViewController = 6;  //zzy
+int  _TitleLableWidth = 60;  //zzy
 
 
 //viewDidLoad
@@ -177,13 +178,13 @@ int  _TitleLableWidth = 50;  //zzy
     switch(indexPath.row)
     {
         case 0:
-            cell.titleLabel.text = @"Ast";
+            cell.titleLabel.text = @"Asset";
             break;
         case 1:
-            cell.titleLabel.text = @"Grk";
+            cell.titleLabel.text = @"Greek";
             break;
         case 2:
-            cell.titleLabel.text = @"Trd";
+            cell.titleLabel.text = @"Trade";
             break;
         case 3:
             cell.titleLabel.text = @"Pnl";
@@ -192,7 +193,7 @@ int  _TitleLableWidth = 50;  //zzy
             cell.titleLabel.text = @"Pos";
             break;
         case 5:
-            cell.titleLabel.text = @"AE";
+            cell.titleLabel.text = @"AEdge";
             break;
       default:
             cell.titleLabel.text = [NSString stringWithFormat:@"Title%d", (int)indexPath.row];
