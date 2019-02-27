@@ -20,6 +20,10 @@
 
 @implementation TWPageTitleViewController
 
+
+int  _TitleIndictorWidth= 30;  //zzy
+//int _TitleIndictorWidthShrink = -30; //zzy
+
 //////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad
 {
@@ -129,13 +133,14 @@
     
     if(CGRectGetHeight(self.indicatorView.frame) == 0 && CGRectGetWidth(self.indicatorView.frame) == 0)
     {
-        frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) - 4, 0, 4);
+        frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) - 4, 0, 2);
     }
     
     //frame.size.height=35;
     frame.origin.x = cellFrame.origin.x + 10;
     frame.origin.y = cellFrame.origin.y + cellFrame.size.height - 1;
-    frame.size.width = cellFrame.size.width - 20;
+    frame.size.width = _TitleIndictorWidth;
+    //frame.size.width = cellFrame.size.width - _TitleIndictorWidthShrink;//_TitleIndictorWidth; //cellFrame.size.width - _TitleIndictorWidthShrink; //zzy
     frame.size.height = 0.7;
     
     if(animated)

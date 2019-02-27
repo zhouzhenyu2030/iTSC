@@ -39,6 +39,7 @@
 		19703EBD21F5BD09003D6697 /* PnlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19703EBC21F5BD09003D6697 /* PnlViewController.m */; };
 		1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980DBD521EF0291008C9FF0 /* TscConfig.m */; };
 		1980DBDA21F0083E008C9FF0 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1980DBD921F0083E008C9FF0 /* Test.storyboard */; };
+		198426352226704600BA10F0 /* AvgEdgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198426342226704600BA10F0 /* AvgEdgeViewController.m */; };
 		19FFB29221F1706900C02A53 /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19FFB29121F1706900C02A53 /* Help.storyboard */; };
 		19FFB29521F17B7D00C02A53 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB29421F17B7D00C02A53 /* TabBarController.m */; };
 		19FFB2A421F18EEE00C02A53 /* Config.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19FFB2A321F18EEE00C02A53 /* Config.storyboard */; };
@@ -114,6 +115,8 @@
 		1980DBD421EF0275008C9FF0 /* TscConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TscConfig.h; sourceTree = "<group>"; };
 		1980DBD521EF0291008C9FF0 /* TscConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TscConfig.m; sourceTree = "<group>"; };
 		1980DBD921F0083E008C9FF0 /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
+		1984263322266FD500BA10F0 /* AvgEdgeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvgEdgeViewController.h; sourceTree = "<group>"; };
+		198426342226704600BA10F0 /* AvgEdgeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvgEdgeViewController.m; sourceTree = "<group>"; };
 		19FFB29121F1706900C02A53 /* Help.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
 		19FFB29321F17B6900C02A53 /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		19FFB29421F17B7D00C02A53 /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
@@ -209,6 +212,8 @@
 		1904662F21F89F0F00FF09C0 /* PageContainer */ = {
 			isa = PBXGroup;
 			children = (
+				19FFB2C521F1A70D00C02A53 /* Title */,
+				19FFB2C921F1BAF600C02A53 /* Page */,
 				19FFB2AC21F19A8D00C02A53 /* PageContainerViewController.h */,
 				19FFB2AD21F19A8D00C02A53 /* PageContainerViewController.m */,
 			);
@@ -247,8 +252,6 @@
 				19FFB2A921F194BD00C02A53 /* Brief.storyboard */,
 				190210C021E45964009ADE0B /* BriefDetail.storyboard */,
 				1911DFA921FF11160079304C /* Asset.storyboard */,
-				19FFB2C521F1A70D00C02A53 /* Title */,
-				19FFB2C921F1BAF600C02A53 /* Page */,
 			);
 			path = StroyBoard;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				19703EBB21F5BCCB003D6697 /* PNL */,
 				194D007D21F2AE6D008918DA /* TradeSum */,
 				19703EB721F5A94F003D6697 /* Position */,
+				1984262F222656FD00BA10F0 /* AvgEdge */,
 			);
 			path = Brief;
 			sourceTree = "<group>";
@@ -359,6 +363,15 @@
 				194D007921F2824C008918DA /* TscConnections.m */,
 			);
 			path = ConfigFile;
+			sourceTree = "<group>";
+		};
+		1984262F222656FD00BA10F0 /* AvgEdge */ = {
+			isa = PBXGroup;
+			children = (
+				1984263322266FD500BA10F0 /* AvgEdgeViewController.h */,
+				198426342226704600BA10F0 /* AvgEdgeViewController.m */,
+			);
+			path = AvgEdge;
 			sourceTree = "<group>";
 		};
 		19FFB29021F1703C00C02A53 /* StroyBoard */ = {
@@ -600,6 +613,7 @@
 				1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */,
 				19FFB29521F17B7D00C02A53 /* TabBarController.m in Sources */,
 				19FFB2BC21F19A8E00C02A53 /* PageContainerViewController.m in Sources */,
+				198426352226704600BA10F0 /* AvgEdgeViewController.m in Sources */,
 				194D008921F41210008918DA /* UIHelper.m in Sources */,
 				190210DA21E48DB2009ADE0B /* OCCodingHelper.m in Sources */,
 				194B2B66220024F4008F8A9D /* HADrawChartView.m in Sources */,

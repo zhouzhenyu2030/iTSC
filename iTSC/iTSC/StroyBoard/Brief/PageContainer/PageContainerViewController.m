@@ -30,10 +30,15 @@
 
 @implementation PageContainerViewController
 
+ int  _numberOfItemsInPageTitleViewController = 6;  //zzy
+int  _TitleLableWidth = 50;  //zzy
+
 
 //viewDidLoad
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+
     
     for(UIViewController *ctrl in self.childViewControllers) {
         if([ctrl isKindOfClass:[TWPageViewController class]]) {
@@ -74,7 +79,7 @@
 }
 
 - (NSInteger) numberOfControllersInPageViewController:( TWPageViewController * _Nonnull)pageViewController {
-    return 5;
+    return _numberOfItemsInPageTitleViewController; //zzy
 }
 
 
@@ -114,6 +119,11 @@
             ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"Position"];
         }
             break;
+        case 5:
+        {
+            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"AvgEdge"];
+        }
+            break;
     }
     
     
@@ -149,14 +159,14 @@
 
 #pragma mark TWPageTitleViewControllerDataSource
 - (NSInteger)numberOfItemsInPageTitleViewController:(TWPageTitleViewController *)controller {
-    return 5;
+    return 6;
 }
 
 //zzy
 - (CGSize)pageTitleViewController:(TWPageTitleViewController *)controller sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     //return CGSizeMake(100, 20);
-    return CGSizeMake(70, self.pageTitleViewController.view.bounds.size.height);
+    return CGSizeMake(_TitleLableWidth, self.pageTitleViewController.view.bounds.size.height);
 }
 
 
@@ -167,13 +177,13 @@
     switch(indexPath.row)
     {
         case 0:
-            cell.titleLabel.text = @"Asset";
+            cell.titleLabel.text = @"Ast";
             break;
         case 1:
-            cell.titleLabel.text = @"Greek";
+            cell.titleLabel.text = @"Grk";
             break;
         case 2:
-            cell.titleLabel.text = @"Trade";
+            cell.titleLabel.text = @"Trd";
             break;
         case 3:
             cell.titleLabel.text = @"Pnl";
@@ -181,11 +191,15 @@
         case 4:
             cell.titleLabel.text = @"Pos";
             break;
-        default:
+        case 5:
+            cell.titleLabel.text = @"AE";
+            break;
+      default:
             cell.titleLabel.text = [NSString stringWithFormat:@"Title%d", (int)indexPath.row];
     }
     
     cell.titleLabel.textColor = [UIColor grayColor];
+    
  
     cell.backgroundColor = [UIColor clearColor];//[UIColor colorWithRed:(float)(random() %  10)/10.f green:(float)(random() %  10)/10.f blue:(float)(random() %  10)/10.f alpha:1.0];
     
