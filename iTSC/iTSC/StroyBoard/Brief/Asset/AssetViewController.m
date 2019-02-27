@@ -208,10 +208,13 @@
     [UIHelper SetTabelViewCellText:TableView Section:6 Row:2 TitleText:@"Theo Close PNL:" DetialText:@"-"];
 
     [UIHelper SetTabelViewCellText:TableView Section:7 Row:0 TitleText:@"Avg Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:1 TitleText:@"Smoothed Basis:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:2 TitleText:@"Smoothed Vol:" DetialText:@"-" Color:UIColor.blueColor];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:3 TitleText:@"U LP:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:4 TitleText:@"U %:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:1 TitleText:@"Positive Avg Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:2 TitleText:@"Negative Avg Edge:" DetialText:@"-"];
+    
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:3 TitleText:@"Smoothed Basis:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:4 TitleText:@"Smoothed Vol:" DetialText:@"-" Color:UIColor.blueColor];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:5 TitleText:@"U LP:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:6 TitleText:@"U %:" DetialText:@"-"];
 
     
     if(vInitAll)
@@ -333,7 +336,7 @@
 
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ExecPNL' or ItemType='CloseTheoryPNL' or ItemType='CloseMarketPNL' )"];
 
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='AvgEdge' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Edge' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='U' and (ItemType='LP' or ItemType='ChangePercentage') )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='SmoothedWingPara' and (ItemType='Vol') )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='SmoothedBasis' ) "];
@@ -439,11 +442,26 @@
             continue;
         }
         
+        
+        
         if([_field[@"ItemType"] isEqualToString:@"AvgEdge"])
         {
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"Avg Edge:" FieldName:@"ItemValue" SetColor:false];
             continue;
         }
+        if([_field[@"ItemType"] isEqualToString:@"PAvgEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Positive Avg Edge:" FieldName:@"ItemValue" SetColor:false];
+             continue;
+        }
+        if([_field[@"ItemType"] isEqualToString:@"NAvgEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Negative Avg Edge:" FieldName:@"ItemValue" SetColor:false];
+             continue;
+        }
+        
+        
+        
         
         if([_field[@"ItemKey"] isEqualToString:@"U"])
         {
