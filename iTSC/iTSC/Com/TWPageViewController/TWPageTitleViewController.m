@@ -20,9 +20,13 @@
 
 @implementation TWPageTitleViewController
 
-int  _TitleIndictorXAdd= 5;
-int  _TitleIndictorWidth= 50;  //zzy
+
+//zzy
 //int _TitleIndictorWidthShrink = -30; //zzy
+int  _TitleIndictorXAdd= 2;
+int  _TitleIndictorWidth= 50;
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad
