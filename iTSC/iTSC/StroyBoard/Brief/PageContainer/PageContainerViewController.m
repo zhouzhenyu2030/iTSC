@@ -31,8 +31,8 @@
 @implementation PageContainerViewController
 
 
-int  _numberOfItemsInPageTitleViewController = 6;  //zzy
-int  _TitleLableWidth = 60;  //zzy
+int  _numberOfItemsInPageTitleViewController = 6;   //zzy
+int  _TitleLableWidth = 60;                         //zzy
 
 
 //viewDidLoad
