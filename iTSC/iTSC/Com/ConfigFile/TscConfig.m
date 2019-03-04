@@ -35,14 +35,18 @@ NSUserDefaults *_UserDefaults;
     
     _RefreshSeconds = [_UserDefaults integerForKey:@"RefreshSeconds"];
     if(_RefreshSeconds<1) _RefreshSeconds=2;
-        
+    
     _isAssetAutoRefresh = [_UserDefaults boolForKey:@"isAssetAutoRefresh"];
     _isGreekAutoRefresh = [_UserDefaults boolForKey:@"isGreekAutoRefresh"];
     _isTradeSumAutoRefresh = [_UserDefaults boolForKey:@"isTradeSumAutoRefresh"];
     _isPositionAutoRefresh = [_UserDefaults boolForKey:@"isPositionAutoRefresh"];
     _isPnlAutoRefresh = [_UserDefaults boolForKey:@"isPnlAutoRefresh"];
 
+    
+    //HisAsset
     [self InitHisAssetStartDate];
+    _strHisAssetDisplayFieldName = [_UserDefaults stringForKey:@"HisAssetDisplayFieldName"];
+    
 }
 
 
@@ -220,7 +224,34 @@ NSString *_strDate;
 }
 
 
+
+
+//HisAssetDisplayFieldName
+static NSString* _strHisAssetDisplayFieldName;
++(NSString*) strHisAssetDisplayFieldName
+{
+    return _strHisAssetDisplayFieldName;
+}
++(void) setHisAssetDisplayFieldName:(NSString*) vValue
+{
+    _strHisAssetDisplayFieldName = vValue;
+    [_UserDefaults setObject:(vValue) forKey:(@"HisAssetDisplayFieldName")];
+}
+
+
+
+
+
+
 @end
+
+
+
+
+
+
+
+
 
 
 

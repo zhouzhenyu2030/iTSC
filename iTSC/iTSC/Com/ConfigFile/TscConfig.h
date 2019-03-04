@@ -55,6 +55,10 @@
 +(void) setHisAssetStartDate:(NSDate*) vValue;
 
 
+//HisAssetDisplayFieldName
++(NSString*) strHisAssetDisplayFieldName;
++(void) setHisAssetDisplayFieldName:(NSString*) vValue;
+
 
 
 @end

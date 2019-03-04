@@ -39,6 +39,7 @@
 		19703EBD21F5BD09003D6697 /* PnlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19703EBC21F5BD09003D6697 /* PnlViewController.m */; };
 		1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980DBD521EF0291008C9FF0 /* TscConfig.m */; };
 		1980DBDA21F0083E008C9FF0 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1980DBD921F0083E008C9FF0 /* Test.storyboard */; };
+		198173FA222CFD74009415A2 /* HAMktOrTheoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198173F9222CFD74009415A2 /* HAMktOrTheoPickerViewController.m */; };
 		198426352226704600BA10F0 /* AvgEdgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198426342226704600BA10F0 /* AvgEdgeViewController.m */; };
 		19FFB29221F1706900C02A53 /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19FFB29121F1706900C02A53 /* Help.storyboard */; };
 		19FFB29521F17B7D00C02A53 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB29421F17B7D00C02A53 /* TabBarController.m */; };
@@ -115,6 +116,8 @@
 		1980DBD421EF0275008C9FF0 /* TscConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TscConfig.h; sourceTree = "<group>"; };
 		1980DBD521EF0291008C9FF0 /* TscConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TscConfig.m; sourceTree = "<group>"; };
 		1980DBD921F0083E008C9FF0 /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
+		198173F9222CFD74009415A2 /* HAMktOrTheoPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HAMktOrTheoPickerViewController.m; sourceTree = "<group>"; };
+		198173FC222CFF0D009415A2 /* HAMktOrTheoPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HAMktOrTheoPickerViewController.h; sourceTree = "<group>"; };
 		1984263322266FD500BA10F0 /* AvgEdgeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvgEdgeViewController.h; sourceTree = "<group>"; };
 		198426342226704600BA10F0 /* AvgEdgeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvgEdgeViewController.m; sourceTree = "<group>"; };
 		19FFB29121F1706900C02A53 /* Help.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
@@ -233,6 +236,8 @@
 				194B2B5E21FFF2CE008F8A9D /* HisAssetQueryViewController.m */,
 				194B2B6922002DD6008F8A9D /* HADatePickerViewController.h */,
 				194B2B6722002DC6008F8A9D /* HADatePickerViewController.m */,
+				198173FC222CFF0D009415A2 /* HAMktOrTheoPickerViewController.h */,
+				198173F9222CFD74009415A2 /* HAMktOrTheoPickerViewController.m */,
 			);
 			path = HisAsset;
 			sourceTree = "<group>";
@@ -611,6 +616,7 @@
 				190210E621E49C27009ADE0B /* DBHelper.m in Sources */,
 				190210E321E49BC0009ADE0B /* ConfigHelper.m in Sources */,
 				1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */,
+				198173FA222CFD74009415A2 /* HAMktOrTheoPickerViewController.m in Sources */,
 				19FFB29521F17B7D00C02A53 /* TabBarController.m in Sources */,
 				19FFB2BC21F19A8E00C02A53 /* PageContainerViewController.m in Sources */,
 				198426352226704600BA10F0 /* AvgEdgeViewController.m in Sources */,

@@ -29,7 +29,8 @@
     NSMutableArray* xValueArr;
     NSMutableArray* yValueArr;
     
-    
+    NSString* myFunctionName;
+
 }
 
 

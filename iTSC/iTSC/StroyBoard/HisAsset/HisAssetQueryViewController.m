@@ -22,12 +22,14 @@
 
 @implementation HisAssetQueryViewController
 
-//@synthesize delegate;
-//@synthesize DatePicker;
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    myFunctionName=@"HAMktOrTheoPickerViewController";
     
     //画图数组
     xValueArr =  [[NSMutableArray alloc]init];
@@ -60,15 +62,16 @@
     OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
     if(_queryContext==nil)
     {
-        NSLog(@"HisAssetChartViewController: Init: queryContext==nil!");
+        NSLog(@"%@: Init: queryContext==nil!", myFunctionName);
         return;
     }
     
     //SELECT
     NSString* _condstr = [TscConnections getCurrentConnection].AccountID;
     _condstr = [_condstr stringByAppendingFormat:@" and HisDate>'%@'", [TscConfig strHisAssetStartDate]];
-    NSLog(@"HisAssetChartViewController: Query: %@", _condstr);
+    NSLog(@"%@: Query: %@",  myFunctionName, _condstr);
     
+    NSString* _displayFieldName=[TscConfig strHisAssetDisplayFieldName];
     OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"hisasset" condition:_condstr];
     NSError *error = nil;
     NSArray *tasks = [_queryContext executeQueryRequestAndFetchResult:query error:&error];
@@ -87,7 +90,7 @@
         NSLog(@"%@", _field);
         
         [xValueArr addObject:[_field[@"HisDate"] substringFromIndex:5]];
-        float _value=[_field[@"Asset"] doubleValue];
+        float _value=[_field[_displayFieldName] doubleValue];
         _value=_value/100/100;
         [yValueArr addObject:[NSString stringWithFormat:(@"%.2f"), _value]];
         //[yValueArr addObject:_field[@"Asset"]];
