@@ -193,7 +193,7 @@ int  _TitleLableWidth = 53;                         //zzy
             cell.titleLabel.text = @"Pos";
             break;
         case 5:
-            cell.titleLabel.text = @"AEdge";
+            cell.titleLabel.text = @"AE";
             break;
       default:
             cell.titleLabel.text = [NSString stringWithFormat:@"Title%d", (int)indexPath.row];
