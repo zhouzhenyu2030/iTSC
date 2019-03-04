@@ -61,7 +61,7 @@ NSString* myFunctionName=@"HAMktOrTheoPickerViewController";
         return 0;
     if([_InitFieldName length] == 0)
         return 0;
-    if([fieldname containsObject:_InitFieldName])
+    if([fieldname containsObject:_InitFieldName] == false)
         return 0;
     
     NSInteger _index=[fieldname indexOfObject:_InitFieldName];
