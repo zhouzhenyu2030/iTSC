@@ -55,7 +55,16 @@ NSString* myFunctionName=@"HAMktOrTheoPickerViewController";
     fieldname = @[@"Asset", @"AssetTheo"];
     
     //获取初始值
-    NSInteger _index=[fieldname indexOfObject:[TscConfig strHisAssetDisplayFieldName]];
+    NSString* _InitFieldName=[TscConfig strHisAssetDisplayFieldName];
+  
+    if(_InitFieldName == Nil)
+        return 0;
+    if([_InitFieldName length] == 0)
+        return 0;
+    if([fieldname containsObject:_InitFieldName])
+        return 0;
+    
+    NSInteger _index=[fieldname indexOfObject:_InitFieldName];
     if(_index<0) _index = 0;
     NSLog(@"%@: index=%d, initFieldName=%@", myFunctionName, (int)_index,[TscConfig strHisAssetDisplayFieldName]);
     return _index;
