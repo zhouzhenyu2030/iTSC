@@ -77,6 +77,39 @@ NSValue *value = nil;
     TscConnection _con;
     
     
+
+    _con.Name=@"138";
+    _con.IP=@"zhouzhenyu2005.kmdns.net";
+    _con.Port=13833;
+    _con.UserName=@"root";
+    _con.UserPassword=@"z";
+    _con.dbName=@"tss";
+    _con.AccountID = @"AccountID=11";
+    value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
+    [Connections setObject:value forKey:_con.Name];
+    
+    
+    _con.Name=@"158";
+    _con.IP=@"zhouzhenyu2005.kmdns.net";
+    _con.Port=15833;
+    _con.UserName=@"root";
+    _con.UserPassword=@"z";
+    _con.dbName=@"tss";
+    _con.AccountID = @"AccountID=11";
+    value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
+    [Connections setObject:value forKey:_con.Name];
+    
+    
+    _con.Name=@"168";
+    _con.IP=@"zhouzhenyu2005.kmdns.net";
+    _con.Port=16833;
+    _con.UserName=@"root";
+    _con.UserPassword=@"z";
+    _con.dbName=@"tss";
+    _con.AccountID = @"AccountID=11";
+    value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
+    [Connections setObject:value forKey:_con.Name];
+    
     _con.Name=@"148";
     _con.IP=@"101.226.255.148";
     _con.Port=30003;
@@ -87,36 +120,6 @@ NSValue *value = nil;
     value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
     [Connections setObject:value forKey:_con.Name];
     
-    _con.Name=@"158";
-    _con.IP=@"zhouzhenyu.imwork.net";
-    _con.Port=15833;
-    _con.UserName=@"root";
-    _con.UserPassword=@"z";
-    _con.dbName=@"tss";
-    _con.AccountID = @"AccountID=11";
-    value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
-    [Connections setObject:value forKey:_con.Name];
-    
-    _con.Name=@"138";
-    _con.IP=@"zhouzhenyu.imwork.net";
-    _con.Port=13833;
-    _con.UserName=@"root";
-    _con.UserPassword=@"z";
-    _con.dbName=@"tss";
-    _con.AccountID = @"AccountID=11";
-    value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
-    [Connections setObject:value forKey:_con.Name];
-    
-
-    _con.Name=@"168";
-    _con.IP=@"zhouzhenyu.imwork.net";
-    _con.Port=16833;
-    _con.UserName=@"root";
-    _con.UserPassword=@"z";
-    _con.dbName=@"tss";
-    _con.AccountID = @"AccountID=11";
-    value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
-    [Connections setObject:value forKey:_con.Name];
     
     
     for(id key in Connections)
