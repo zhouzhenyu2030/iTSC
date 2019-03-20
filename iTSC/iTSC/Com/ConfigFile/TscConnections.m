@@ -84,7 +84,7 @@ NSValue *value = nil;
     _con.UserName=@"root";
     _con.UserPassword=@"z";
     _con.dbName=@"tss";
-    _con.AccountID = @"AccountID=11";
+    _con.AccountID = @"AccountID=2512";
     value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
     [Connections setObject:value forKey:_con.Name];
     
@@ -126,11 +126,11 @@ NSValue *value = nil;
     {
         value = [Connections objectForKey:key];
         [value getValue:&_con];
-        NSLog(@"key: %@,value: %@",key,value);
+        NSLog(@"TscConnections: initDefault: key: %@",key);
     }
     
     
-    _CurrentConnectionKey = @"148";
+    _CurrentConnectionKey = @"138";
 }
 
 
