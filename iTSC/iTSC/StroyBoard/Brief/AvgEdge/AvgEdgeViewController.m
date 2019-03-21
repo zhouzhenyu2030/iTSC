@@ -109,20 +109,46 @@ NSString* FunctionName=@"AvgEdgeViewController";
     cell = [UIHelper SetTabelViewCellText:TableView Section:0 Row:0 TitleText:@"RecordDate:" DetialText:@"-/-/-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:0 Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
     
+    //FP
+    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"FP Option Numbr:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"FP Average Edge:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"FP Max Edge:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:3 TitleText:@"FP Min Edge:" DetialText:@"-"];
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"Option Numbr:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"Average Edge:" DetialText:@"-"];
+    
+    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:4 TitleText:@"FP Positive Option Number:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:5 TitleText:@"FP Positive Avg Edge:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:6 TitleText:@"FP Positive Max Edge:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:7 TitleText:@"FP Positive Min Edge:" DetialText:@"-"];
+    
+    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:8 TitleText:@"FP Negative Option Number:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:9 TitleText:@"FP Negative Avg Edge:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:10 TitleText:@"FP Negative Max Edge:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:11 TitleText:@"FP Negative Min Edge:" DetialText:@"-"];
+    
+ 
+    //NP
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"NP Option Numbr:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"NP Average Edge:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"NP Max Edge:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:3 TitleText:@"NP Min Edge:" DetialText:@"-"];
     
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"Positive Option Number:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Positive Avg Edge:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:4 TitleText:@"NP Positive Option Number:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:5 TitleText:@"NP Positive Avg Edge:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:6 TitleText:@"NP Positive Max Edge:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:7 TitleText:@"NP Positive Min Edge:" DetialText:@"-"];
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"Negative Option Number:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:1 TitleText:@"Negative Avg Edge:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:8 TitleText:@"NP Negative Option Number:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:9 TitleText:@"NP Negative Avg Edge:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:10 TitleText:@"NP Negative Max Edge:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:11 TitleText:@"NP Negative Min Edge:" DetialText:@"-"];
     
+    
+    //Refresh
     if(vInitAll)
     {
-        cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
+        cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
         RefreshCountCell = cell;
     }
     
@@ -174,20 +200,144 @@ NSString* FunctionName=@"AvgEdgeViewController";
         
         typename=_field[@"ItemType"];
         
+        
+        ////////////////////////////////////////  FP  /////////////////////////////////////////////
+        
         if([typename isEqualToString:@"OptionNumber"])
-            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Option Numbr:" FieldName:@"ItemValue"];
+        {
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"FP Option Numbr:" FieldName:@"ItemValue"];
+            continue;
+        }
         if([typename isEqualToString:@"AvgEdge"])
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Average Edge:" FieldName:@"ItemValue" SetColor:true];
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"FP Average Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([typename isEqualToString:@"MaxEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"FP Max Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([typename isEqualToString:@"MinEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"FP Min Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        
         
         if([typename isEqualToString:@"POptionNumber"])
-            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Positive Option Number:" FieldName:@"ItemValue"];
+        {
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"FP Positive Option Number:" FieldName:@"ItemValue"];
+            continue;
+        }
         if([typename isEqualToString:@"PAvgEdge"])
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Positive Avg Edge:" FieldName:@"ItemValue" SetColor:true];
-       
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"FP Positive Avg Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([typename isEqualToString:@"PMaxEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"FP Positive Max Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([typename isEqualToString:@"PMinEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"FP Positive Min Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        
+        
         if([typename isEqualToString:@"NOptionNumber"])
-            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Negative Option Number:" FieldName:@"ItemValue"];
+        {
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"FP Negative Option Number:" FieldName:@"ItemValue"];
+        continue;
+        }
+    
         if([typename isEqualToString:@"NAvgEdge"])
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Negative Avg Edge:" FieldName:@"ItemValue" SetColor:true];
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"FP Negative Avg Edge:" FieldName:@"ItemValue" SetColor:true];
+        continue;
+        }
+        if([typename isEqualToString:@"NMaxEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"FP Negative Max Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([typename isEqualToString:@"NMinEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"FP Negative Min Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        
+        
+        
+        ////////////////////////////////////////  NP  /////////////////////////////////////////////
+        if([typename isEqualToString:@"NPOptionNumber"])
+        {
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"NP Option Numbr:" FieldName:@"ItemValue"];
+            continue;
+        }
+        if([typename isEqualToString:@"NPAvgEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"NP Average Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([typename isEqualToString:@"NPMaxEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"NP Max Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([typename isEqualToString:@"NPMinEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"NP Min Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        
+        
+        if([typename isEqualToString:@"PNPOptionNumber"])
+        {
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"NP Positive Option Number:" FieldName:@"ItemValue"];
+            continue;
+        }
+        if([typename isEqualToString:@"PNPAvgEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"NP Positive Avg Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([typename isEqualToString:@"PNPMaxEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"NP Positive Max Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([typename isEqualToString:@"PNPMinEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"NP Positive Min Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        
+        
+        if([typename isEqualToString:@"NNPOptionNumber"])
+        {
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"NP Negative Option Number:" FieldName:@"ItemValue"];
+            continue;
+        }
+        
+        if([typename isEqualToString:@"NNPAvgEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"NP Negative Avg Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([typename isEqualToString:@"NNPMaxEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"NP Negative Max Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([typename isEqualToString:@"NNPMinEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"NP Negative Min Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        
     }
     
 

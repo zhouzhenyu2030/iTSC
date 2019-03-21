@@ -182,28 +182,32 @@
     [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"PCR:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:4 Row:3 TitleText:@"CCR:" DetialText:@"-"];
     
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"NPE:" DetialText:@"-" Font:_font];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"RealTime NPE Expose:" DetialText:@"-" Font:_font];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"NPE Average:" DetialText:@"-"];
+ 
     
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blueColor];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"Trade Qty:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"Trade Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:3 TitleText:@"AT Trade Qty:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:4 TitleText:@"AH Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blueColor];
+    [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:6 Row:2 TitleText:@"Trade Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:6 Row:3 TitleText:@"AT Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:6 Row:4 TitleText:@"AH Trade Qty:" DetialText:@"-"];
 
-    [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Marktet Total PNL:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"Theo Total PNL:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:0 TitleText:@"Marktet Total PNL:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:1 TitleText:@"Theo Total PNL:" DetialText:@"-"];
 
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:0 TitleText:@"Avg Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:1 TitleText:@"Smoothed Basis:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:2 TitleText:@"Smoothed Vol:" DetialText:@"-" Color:UIColor.blueColor];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:3 TitleText:@"U LP:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:4 TitleText:@"U %:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:8 Row:0 TitleText:@"Avg Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:8 Row:1 TitleText:@"Smoothed Basis:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:8 Row:2 TitleText:@"Smoothed Vol:" DetialText:@"-" Color:UIColor.blueColor];
+    [UIHelper SetTabelViewCellText:TableView Section:8 Row:3 TitleText:@"U LP:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:8 Row:4 TitleText:@"U %:" DetialText:@"-"];
 
     
     if(vInitAll)
     {
-        cell = [UIHelper SetTabelViewCellText:TableView Section:8 Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
+        cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
         RefreshCountCell = cell;
-        cell = [UIHelper SetTabelViewCellText:TableView Section:8 Row:1 TitleText:@"AutoRefresh:" DetialText:@""];
+        cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:1 TitleText:@"AutoRefresh:" DetialText:@""];
         RefreshSwitchCell = cell;
     }
     
@@ -241,7 +245,9 @@
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='PNL' and (ItemType='TotalPNL_Mkt' or ItemType='TotalPNL_Theo') )"];
     
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='AvgEdge' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Edge' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Expose' )"];
+    
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='U' and (ItemType='LP' or ItemType='ChangePercentage') )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='SmoothedWingPara' and (ItemType='Vol') )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='SmoothedBasis' ) "];
@@ -325,13 +331,15 @@
         }
         
         
-        //U
+        //AvgEdge
         if([typename isEqualToString:@"AvgEdge"])
         {
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"Avg Edge:" FieldName:@"ItemValue" SetColor:false];
             continue;
         }
+
         
+        //U
         if([_field[@"ItemKey"] isEqualToString:@"U"])
         {
             if([typename isEqualToString:@"LP"])
@@ -381,8 +389,24 @@
             if([titlename isEqualToString:@"Tata:"]) titlename = @"Thema:";
             
             [UIHelper DisplayCell:TableView Field:_field TitleName:titlename FieldName:@"ItemValue" SetColor:true];
+            
+            continue;
         }
-   
+        
+        //NPE
+        if([typename isEqualToString:@"RTNpeExpose"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"RealTime NPE Expose:" FieldName:@"ItemValue" SetColor:false];
+            continue;
+        }
+        if([typename isEqualToString:@"NPEA"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"NPE Average:" FieldName:@"ItemValue" SetColor:false];
+            continue;
+        }
+        
+        
+
     } //for over
     
     
