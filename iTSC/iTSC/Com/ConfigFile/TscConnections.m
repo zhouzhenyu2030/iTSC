@@ -110,6 +110,8 @@ NSValue *value = nil;
     value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
     [Connections setObject:value forKey:_con.Name];
     
+    
+    
     _con.Name=@"148";
     _con.IP=@"101.226.255.148";
     _con.Port=30003;
@@ -130,7 +132,7 @@ NSValue *value = nil;
     }
     
     
-    _CurrentConnectionKey = @"138";
+    _CurrentConnectionKey = @"158";
 }
 
 

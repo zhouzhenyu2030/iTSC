@@ -35,6 +35,7 @@ NSUserDefaults *_UserDefaults;
     
     _RefreshSeconds = [_UserDefaults integerForKey:@"RefreshSeconds"];
     if(_RefreshSeconds<1) _RefreshSeconds=2;
+    //_RefreshSeconds=10;
     
     _isAssetAutoRefresh = [_UserDefaults boolForKey:@"isAssetAutoRefresh"];
     _isGreekAutoRefresh = [_UserDefaults boolForKey:@"isGreekAutoRefresh"];

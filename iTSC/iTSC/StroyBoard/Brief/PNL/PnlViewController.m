@@ -38,6 +38,7 @@
     RefreshTimerElpasedSeconds = 0;
     if(myTimer==nil)
         myTimer  =  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
+    [self StopTimer];
 
     
     [self setupRefresh];

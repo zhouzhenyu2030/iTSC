@@ -227,7 +227,9 @@
         cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:0 TitleText:@"AccountID:" DetialText:@"-"];
     }
     
-
+    //MD
+    cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:1 TitleText:@"MD Date:" DetialText:@"-"];
+    cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:2 TitleText:@"MD Time:" DetialText:@"-"];
 }
 
 
@@ -341,6 +343,8 @@
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='SmoothedWingPara' and (ItemType='Vol') )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='SmoothedBasis' ) "];
     
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='MD' )"];
+    
     _condstr=[_condstr stringByAppendingString:@" ) and EntityType='A'"];
 
 
@@ -426,6 +430,7 @@
         }
 
 
+        //PNL
         if([_field[@"ItemType"] isEqualToString:@"ExecPNL"])
         {
            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Excersize PNL:" FieldName:@"ItemValue" SetColor:true];
@@ -443,7 +448,7 @@
         }
         
         
-        
+        //AvgEdge
         if([_field[@"ItemType"] isEqualToString:@"AvgEdge"])
         {
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"Avg Edge:" FieldName:@"ItemValue" SetColor:false];
@@ -462,7 +467,7 @@
         
         
         
-        
+        //U
         if([_field[@"ItemKey"] isEqualToString:@"U"])
         {
             if([_field[@"ItemType"] isEqualToString:@"LP"])
@@ -485,12 +490,16 @@
             }
         }
  
+        
+        //SmoothedBasis
         if([_field[@"ItemType"] isEqualToString:@"SmoothedBasis"])
         {
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"Smoothed Basis:" FieldName:@"ItemValue" SetColor:true];
             continue;
         }
         
+        
+        //SmoothedWingPara
         if([_field[@"ItemKey"] isEqualToString:@"SmoothedWingPara"])
         {
             if([_field[@"ItemType"] isEqualToString:@"Vol"])
@@ -501,6 +510,23 @@
                 continue;
             }
         }
+        
+        
+        //MD
+        if([_field[@"ItemKey"] isEqualToString:@"MD"])
+        {
+            if([_field[@"ItemType"] isEqualToString:@"Date"])
+            {
+                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"MD Date:" DetialText:_field[@"ItemValue"]];
+                continue;
+            }
+            if([_field[@"ItemType"] isEqualToString:@"Time"])
+            {
+                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"MD Time:" DetialText:_field[@"ItemValue"]];
+                continue;
+            }
+        }
+        
 
     }
 }
