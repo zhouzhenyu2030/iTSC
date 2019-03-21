@@ -230,6 +230,11 @@
     //MD
     cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:1 TitleText:@"MD Date:" DetialText:@"-"];
     cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:2 TitleText:@"MD Time:" DetialText:@"-"];
+    
+    
+    //Server ID
+    cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:3 TitleText:@"Server ID:" DetialText:@"-"];
+    
 }
 
 
@@ -242,11 +247,17 @@
     RefreshCountCell.detailTextLabel.text=[NSString stringWithFormat:@"%d", RefreshCnt];
     NSLog(@"AssetViewController: RefreshCnt=%d", RefreshCnt);
     
+    //Display
     [self _DisplayHisAsset];
     [self _DisplayRuntimeInfo];
+    
+    //ServerName
+    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Server ID:" DetialText:TscConnections.CurrentConnectionKey];
 
+    //reloadData
     [TableView reloadData];
 }
+
 
 //_DisplayHisAsset
 -(void) _DisplayHisAsset
@@ -527,7 +538,7 @@
             }
         }
         
-
+        
     }
 }
 
