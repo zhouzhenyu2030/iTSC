@@ -84,7 +84,7 @@ NSValue *value = nil;
     _con.UserName=@"root";
     _con.UserPassword=@"z";
     _con.dbName=@"tss";
-    _con.AccountID = @"AccountID=2512";
+    _con.AccountID = @"AccountID=0";
     value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
     [Connections setObject:value forKey:_con.Name];
     
@@ -95,7 +95,7 @@ NSValue *value = nil;
     _con.UserName=@"root";
     _con.UserPassword=@"z";
     _con.dbName=@"tss";
-    _con.AccountID = @"AccountID=11";
+    _con.AccountID = @"AccountID=0";
     value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
     [Connections setObject:value forKey:_con.Name];
     
@@ -106,7 +106,7 @@ NSValue *value = nil;
     _con.UserName=@"root";
     _con.UserPassword=@"z";
     _con.dbName=@"tss";
-    _con.AccountID = @"AccountID=11";
+    _con.AccountID = @"AccountID=0";
     value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
     [Connections setObject:value forKey:_con.Name];
     
