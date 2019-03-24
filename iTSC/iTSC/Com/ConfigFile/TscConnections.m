@@ -38,13 +38,13 @@ static NSString *_CurrentConnectionKey;
     _UserDefaults = [NSUserDefaults standardUserDefaults];
     
     DNSs= [[NSMutableDictionary alloc]init];
-    Connections = [[NSMutableDictionary alloc]init];
-    
-    [self initDefault];
-    //[self saveConnections];
-    
+    [self initDNSs];
     _CurrentDNSName = [self SetCurrentDNS:[_UserDefaults stringForKey:@"CurrentDNSName"]];
     
+    
+    Connections = [[NSMutableDictionary alloc]init];
+    [self initConnections];
+    //[self saveConnections];
     _CurrentConnectionKey = [self SetCurrentConnection:[_UserDefaults stringForKey:@"CurrentConnectionKey"]];
 }
 
@@ -52,29 +52,33 @@ static NSString *_CurrentConnectionKey;
 
 
 ///////////////////////////////////// initDefault ///////////////////////////////////
-+(void) initDefault
++(void) initDNSs
 {
     
     //DNS
     TscDNS _dns;
     
     _dns.Name=@"imwork";
-    _dns.DNS=@"zhouzhenyu.imwork.net";
+    _dns.DNSString=@"zhouzhenyu.imwork.net";
     value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
     [DNSs setObject:value forKey:_dns.Name];
     
     _dns.Name=@"kmdns";
-    _dns.DNS=@"zhouzhenyu2005.kmdns.net";
+    _dns.DNSString=@"zhouzhenyu2005.kmdns.net";
     value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
     [DNSs setObject:value forKey:_dns.Name];
     
-    
+}
+
++(void) initConnections
+{
+    NSString *_dnsString=[self getCurrnetDNSString];
     
     //Connection
     TscConnection _con;
     
     _con.Name=@"138";
-    _con.IP=@"zhouzhenyu2005.kmdns.net";
+    _con.IP=_dnsString;
     _con.Port=13833;
     _con.UserName=@"root";
     _con.UserPassword=@"z";
@@ -85,7 +89,7 @@ static NSString *_CurrentConnectionKey;
     
     
     _con.Name=@"158";
-    _con.IP=@"zhouzhenyu2005.kmdns.net";
+    _con.IP=_dnsString;
     _con.Port=15833;
     _con.UserName=@"root";
     _con.UserPassword=@"z";
@@ -96,7 +100,7 @@ static NSString *_CurrentConnectionKey;
     
     
     _con.Name=@"168";
-    _con.IP=@"zhouzhenyu2005.kmdns.net";
+    _con.IP=_dnsString;
     _con.Port=16833;
     _con.UserName=@"root";
     _con.UserPassword=@"z";
@@ -146,16 +150,34 @@ static NSString *_CurrentConnectionKey;
     if(value!=nil)
     {
         [value getValue:&_dns];
-        NSLog(@"TscConnections: getDNS: Found. vName=%@, DNS= %@",vName, _dns.DNS);
+        NSLog(@"TscConnections: getDNS: Found. vName=%@, DNS= %@",vName, _dns.DNSString);
     }
     else
     {
         _dns.Name=@"imwork";
-        _dns.DNS=@"zhouzhenyu.imwork.net";
-        NSLog(@"TscConnections: getDNS: not Found, return Defautl. vName=%@, DNS= %@",vName, _dns.DNS);
+        _dns.DNSString=@"zhouzhenyu.imwork.net";
+        NSLog(@"TscConnections: getDNS: not Found, return Defautl. vName=%@, DNS= %@",vName, _dns.DNSString);
     }
  
     return _dns;
+}
++(NSString*) getCurrnetDNSString
+{
+    TscDNS _dns;
+    value = [DNSs objectForKey:_CurrentDNSName];
+    if(value!=nil)
+    {
+        [value getValue:&_dns];
+        NSLog(@"TscConnections: getDNS: Found. vName=%@, DNS= %@",_CurrentDNSName, _dns.DNSString);
+    }
+    else
+    {
+        _dns.Name=@"imwork";
+        _dns.DNSString=@"zhouzhenyu.imwork.net";
+        NSLog(@"TscConnections: getDNS: not Found, return Defautl. vName=%@, DNS= %@",_CurrentDNSName, _dns.DNSString);
+    }
+    
+    return _dns.DNSString;
 }
 
 +(NSString*) SetCurrentDNS:(NSString*) vDNSName

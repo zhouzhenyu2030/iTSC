@@ -30,7 +30,7 @@
 typedef struct
 {
     NSString *Name;
-    NSString *DNS;
+    NSString *DNSString;
 } TscDNS;
 
 
