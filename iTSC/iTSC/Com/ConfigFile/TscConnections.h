@@ -26,6 +26,15 @@
 @end
 */
 
+
+typedef struct
+{
+    NSString *Name;
+    NSString *DNS;
+} TscDNS;
+
+
+
 typedef struct
 {
     NSString *Name;
@@ -43,6 +52,15 @@ typedef struct
 
 +(void) Init;
 
+
+
+//DNS
++(NSString*) CurrentDNSName;
++(NSString*) SetCurrentDNS:(NSString*) vDNSName;
+
+
+
+//Connection
 +(NSInteger) Count;
 
 +(NSMutableDictionary*) getConnectionArray;

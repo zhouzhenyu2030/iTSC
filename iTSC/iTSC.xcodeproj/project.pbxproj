@@ -328,6 +328,13 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
+		196CBF4022472227002F8F0F /* Init */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Init;
+			sourceTree = "<group>";
+		};
 		19703EB621F55C27003D6697 /* Com */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,6 +389,7 @@
 		19FFB29021F1703C00C02A53 /* StroyBoard */ = {
 			isa = PBXGroup;
 			children = (
+				196CBF4022472227002F8F0F /* Init */,
 				194FF95521EC2BEA00CAB449 /* Brief */,
 				1911DFAC21FF28E00079304C /* HisAsset */,
 				19FFB2A621F191B700C02A53 /* Control */,

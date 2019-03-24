@@ -12,72 +12,67 @@
 #import "TscConnections.h"
 
 
+//
+static NSUserDefaults *_UserDefaults;
+NSValue *value = nil;
+
+//DNS
+static NSMutableDictionary *DNSs;
+static NSString *_CurrentDNSName;
+
+//Connection
 static NSMutableDictionary *Connections;
 static NSString *_CurrentConnectionKey;
-static NSUserDefaults *_UserDefaults;
+
+
 
 
 @implementation TscConnections
 
 
-NSValue *value = nil;
 
 
-//init
+///////////////////////////////////// init /////////////////////////////////////
 +(void) Init
 {
     _UserDefaults = [NSUserDefaults standardUserDefaults];
     
+    DNSs= [[NSMutableDictionary alloc]init];
     Connections = [[NSMutableDictionary alloc]init];
     
     [self initDefault];
-    [self saveConnections];
+    //[self saveConnections];
+    
+    _CurrentDNSName = [self SetCurrentDNS:[_UserDefaults stringForKey:@"CurrentDNSName"]];
     
     _CurrentConnectionKey = [self SetCurrentConnection:[_UserDefaults stringForKey:@"CurrentConnectionKey"]];
 }
 
-//Count
-+(NSInteger) Count
-{
-    return Connections.count;
-}
-
-//get
-+(TscConnection) getConnection:(NSString*) vName
-{
-    TscConnection _con;
-    value = [Connections objectForKey:vName];
-    [value getValue:&_con];
-    NSLog(@"key: %@,value: %@",vName,value);
-    return _con;
-}
-+(TscConnection) getCurrentConnection
-{
-    return [self getConnection:_CurrentConnectionKey];
-}
-
-
-//getConnectionArray
-+(NSMutableDictionary*) getConnectionArray
-{
-    return Connections;
-}
-
-//getConnectionKeys
-+(NSArray*) getConnectionKeys
-{
-    return [Connections allKeys];
-}
 
 
 
-//default
+///////////////////////////////////// initDefault ///////////////////////////////////
 +(void) initDefault
 {
+    
+    //DNS
+    TscDNS _dns;
+    
+    _dns.Name=@"imwork";
+    _dns.DNS=@"zhouzhenyu.imwork.net";
+    value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
+    [DNSs setObject:value forKey:_dns.Name];
+    
+    _dns.Name=@"kmdns";
+    _dns.DNS=@"zhouzhenyu2005.kmdns.net";
+    value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
+    [DNSs setObject:value forKey:_dns.Name];
+    
+    
+    
+    //Connection
     TscConnection _con;
     
-    
-
     _con.Name=@"138";
     _con.IP=@"zhouzhenyu2005.kmdns.net";
     _con.Port=13833;
@@ -133,6 +128,86 @@ NSValue *value = nil;
     
     
     _CurrentConnectionKey = @"158";
+}
+
+
+
+
+///////////////////////////////////// DNS ///////////////////////////////////
++(NSString*) CurrentDNSName
+{
+    return _CurrentDNSName;
+}
+
++(TscDNS) getDNS:(NSString*) vName
+{
+    TscDNS _dns;
+    value = [DNSs objectForKey:vName];
+    if(value!=nil)
+    {
+        [value getValue:&_dns];
+        NSLog(@"TscConnections: getDNS: Found. vName=%@, DNS= %@",vName, _dns.DNS);
+    }
+    else
+    {
+        _dns.Name=@"imwork";
+        _dns.DNS=@"zhouzhenyu.imwork.net";
+        NSLog(@"TscConnections: getDNS: not Found, return Defautl. vName=%@, DNS= %@",vName, _dns.DNS);
+    }
+ 
+    return _dns;
+}
+
++(NSString*) SetCurrentDNS:(NSString*) vDNSName
+{
+    if(vDNSName != nil)
+    {
+        if([vDNSName isEqualToString:_CurrentDNSName] == false)
+        {
+            TscDNS _dns = [self getDNS:vDNSName];
+            _CurrentDNSName = _dns.Name;
+            [_UserDefaults setValue:_CurrentDNSName forKey:(@"CurrentDNSName")];
+        }
+    }
+    
+    return _CurrentDNSName;
+}
+
+
+
+
+/////////////////////////////////// Connection ///////////////////////////////////
+//Count
++(NSInteger) Count
+{
+    return Connections.count;
+}
+
+//get
++(TscConnection) getConnection:(NSString*) vName
+{
+    TscConnection _con;
+    value = [Connections objectForKey:vName];
+    [value getValue:&_con];
+    NSLog(@"key: %@,value: %@",vName,value);
+    return _con;
+}
++(TscConnection) getCurrentConnection
+{
+    return [self getConnection:_CurrentConnectionKey];
+}
+
+
+//getConnectionArray
++(NSMutableDictionary*) getConnectionArray
+{
+    return Connections;
+}
+
+//getConnectionKeys
++(NSArray*) getConnectionKeys
+{
+    return [Connections allKeys];
 }
 
 
