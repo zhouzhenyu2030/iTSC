@@ -35,6 +35,8 @@
 		194D008E21F44057008918DA /* AssetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008D21F44057008918DA /* AssetViewController.m */; };
 		194D009021F46CE5008918DA /* TradeSumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008F21F46CE5008918DA /* TradeSumsViewController.m */; };
 		196B41D121EED13800105D44 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196B41D021EED13800105D44 /* ConfigViewController.m */; };
+		196CBF42224722F2002F8F0F /* iTSCInit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 196CBF41224722F2002F8F0F /* iTSCInit.storyboard */; };
+		196CBF46224725F0002F8F0F /* iTSCInit.m in Sources */ = {isa = PBXBuildFile; fileRef = 196CBF45224725F0002F8F0F /* iTSCInit.m */; };
 		19703EBA21F5B537003D6697 /* PositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19703EB921F5B537003D6697 /* PositionViewController.m */; };
 		19703EBD21F5BD09003D6697 /* PnlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19703EBC21F5BD09003D6697 /* PnlViewController.m */; };
 		1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980DBD521EF0291008C9FF0 /* TscConfig.m */; };
@@ -109,6 +111,9 @@
 		194D009121F46CF1008918DA /* TradeSumsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TradeSumsViewController.h; sourceTree = "<group>"; };
 		196B41CF21EED11F00105D44 /* ConfigViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
 		196B41D021EED13800105D44 /* ConfigViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
+		196CBF41224722F2002F8F0F /* iTSCInit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = iTSCInit.storyboard; sourceTree = "<group>"; };
+		196CBF4422472542002F8F0F /* iTSCInit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iTSCInit.h; sourceTree = "<group>"; };
+		196CBF45224725F0002F8F0F /* iTSCInit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iTSCInit.m; sourceTree = "<group>"; };
 		19703EB821F5B528003D6697 /* PositionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PositionViewController.h; sourceTree = "<group>"; };
 		19703EB921F5B537003D6697 /* PositionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PositionViewController.m; sourceTree = "<group>"; };
 		19703EBC21F5BD09003D6697 /* PnlViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PnlViewController.m; sourceTree = "<group>"; };
@@ -328,11 +333,24 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
-		196CBF4022472227002F8F0F /* Init */ = {
+		196CBF4022472227002F8F0F /* iTSCInit */ = {
 			isa = PBXGroup;
 			children = (
+				196CBF41224722F2002F8F0F /* iTSCInit.storyboard */,
+				196CBF4422472542002F8F0F /* iTSCInit.h */,
+				196CBF45224725F0002F8F0F /* iTSCInit.m */,
 			);
-			path = Init;
+			path = iTSCInit;
+			sourceTree = "<group>";
+		};
+		196CBF43224724A3002F8F0F /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				19FFB2C621F1B5B100C02A53 /* Main.storyboard */,
+				19FFB29321F17B6900C02A53 /* TabBarController.h */,
+				19FFB29421F17B7D00C02A53 /* TabBarController.m */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		19703EB621F55C27003D6697 /* Com */ = {
@@ -389,15 +407,13 @@
 		19FFB29021F1703C00C02A53 /* StroyBoard */ = {
 			isa = PBXGroup;
 			children = (
-				196CBF4022472227002F8F0F /* Init */,
+				196CBF4022472227002F8F0F /* iTSCInit */,
+				196CBF43224724A3002F8F0F /* Main */,
 				194FF95521EC2BEA00CAB449 /* Brief */,
 				1911DFAC21FF28E00079304C /* HisAsset */,
 				19FFB2A621F191B700C02A53 /* Control */,
 				196B41CE21EED10800105D44 /* Config */,
 				19FFB2C821F1B9D600C02A53 /* Other */,
-				19FFB2C621F1B5B100C02A53 /* Main.storyboard */,
-				19FFB29321F17B6900C02A53 /* TabBarController.h */,
-				19FFB29421F17B7D00C02A53 /* TabBarController.m */,
 			);
 			path = StroyBoard;
 			sourceTree = "<group>";
@@ -555,6 +571,7 @@
 				19FFB2AA21F194BD00C02A53 /* Brief.storyboard in Resources */,
 				19FFB2A421F18EEE00C02A53 /* Config.storyboard in Resources */,
 				1980DBDA21F0083E008C9FF0 /* Test.storyboard in Resources */,
+				196CBF42224722F2002F8F0F /* iTSCInit.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -640,6 +657,7 @@
 				190210CA21E45966009ADE0B /* main.m in Sources */,
 				19417D4721E86BA000C1FF2C /* StringHelper.m in Sources */,
 				19FFB2C321F19A8E00C02A53 /* ViewController.m in Sources */,
+				196CBF46224725F0002F8F0F /* iTSCInit.m in Sources */,
 				19FFB2BF21F19A8E00C02A53 /* SampleTitleViewController.m in Sources */,
 				194B2B6322001775008F8A9D /* TscConst.m in Sources */,
 				19FFB2C021F19A8E00C02A53 /* TableViewController.m in Sources */,
