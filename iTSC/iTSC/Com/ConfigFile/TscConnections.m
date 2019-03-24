@@ -179,6 +179,16 @@ static NSString *_CurrentConnectionKey;
     
     return _dns.DNSString;
 }
+//get DNS Array
++(NSMutableDictionary*) getDNSArray
+{
+    return DNSs;
+}
+//get DNS Names
++(NSArray*) getDNSNames
+{
+    return [DNSs allKeys];
+}
 
 +(NSString*) SetCurrentDNS:(NSString*) vDNSName
 {
