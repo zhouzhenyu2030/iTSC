@@ -56,17 +56,34 @@ static NSString *_CurrentDNSName;
     _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
     [DNSs setObject:_dns_value forKey:_dns.Name];
     
+    _dns.Name=@"f2233";
+    _dns.DNSString=@"zhouzhenyu.f2233.net";
+    _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
+    [DNSs setObject:_dns_value forKey:_dns.Name];
+    
+    
     //_UserDefaults
     _CurrentDNSName = [self SetCurrentDNS:[_DNS_UserDefaults stringForKey:@"CurrentDNSName"]];
     
+    //test
+    _CurrentDNSName = [self SetCurrentDNS:@"f2233"];
 }
 
 
-///////////////////////////////////// getCurrentDNSName ///////////////////////////////////
-+(NSString*) getCurrentDNSName
+///////////////////////////////////// get DNS Array ///////////////////////////////////
++(NSMutableDictionary*) getDNSArray
 {
-    return _CurrentDNSName;
+    return DNSs;
 }
+
+////////////////////////////////////// get DNS Names ///////////////////////////////////
++(NSArray*) getDNSNames
+{
+    return [DNSs allKeys];
+}
+
+
+
 
 ///////////////////////////////////// getDNS ///////////////////////////////////
 +(TscDNS) getDNS:(NSString*) vName
@@ -87,6 +104,31 @@ static NSString *_CurrentDNSName;
     
     return _dns;
 }
+
+
+///////////////////////////////////// getCurrentDNSName ///////////////////////////////////
++(NSString*) getCurrentDNSName
+{
+    return _CurrentDNSName;
+}
+
+
+
+
+///////////////////////////////////// getDNSString ///////////////////////////////////
++(NSString*) getDNSString:(NSString*) vDNSName
+{
+    TscDNS _dns;
+    _dns_value = [DNSs objectForKey:vDNSName];
+    if(_dns_value == nil)
+        return nil;
+    
+    [_dns_value getValue:&_dns];
+    NSLog(@"TscConnections: getDNS: Found. vName=%@, DNS= %@",_CurrentDNSName, _dns.DNSString);
+
+    return _dns.DNSString;
+}
+
 
 ///////////////////////////////////// getCurrnetDNSString ///////////////////////////////////
 +(NSString*) getCurrnetDNSString
@@ -109,18 +151,11 @@ static NSString *_CurrentDNSName;
 }
 
 
-///////////////////////////////////// get DNS Array ///////////////////////////////////
-+(NSMutableDictionary*) getDNSArray
-{
-    return DNSs;
-}
 
 
-////////////////////////////////////// get DNS Names ///////////////////////////////////
-+(NSArray*) getDNSNames
-{
-    return [DNSs allKeys];
-}
+
+
+
 
 
 ///////////////////////////////////// SetCurrentDNS ///////////////////////////////////

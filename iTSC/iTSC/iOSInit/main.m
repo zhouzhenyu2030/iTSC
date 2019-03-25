@@ -21,19 +21,24 @@ int main(int argc, char * argv[]) {
         [TscDNSs Init];
         [TscConnections Init];
         
-        PingHelper* _h=[[PingHelper alloc] init];
-        
-        [_h Ping:[TscDNSs getCurrnetDNSString]];
-        [_h Wait];
-        while(true)
-        {
-            sleep(1);
-            //NSLog(@"PingHelper: Wait: hostName=%@, hostAddress=%@.", _pinger.hostName, _pinger.hostAddress);
-        }
-        return 0;
-        
-        //[DBHelper Connect];
+        [DBHelper SetAvailableDNS];
         
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }
+
+
+
+
+
+
+//PingHelper* _h=[[PingHelper alloc] init];
+
+//[_h Ping:[TscDNSs getCurrnetDNSString]];
+//[_h Wait];
+//while(true)
+//{
+//    sleep(1);
+//NSLog(@"PingHelper: Wait: hostName=%@, hostAddress=%@.", _pinger.hostName, _pinger.hostAddress);
+//}
+//return 0;

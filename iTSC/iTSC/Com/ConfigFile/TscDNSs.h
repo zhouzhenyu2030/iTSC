@@ -27,9 +27,15 @@ typedef struct
 
 
 //DNS
++(NSMutableDictionary*) getDNSArray;
+
++(NSArray*) getDNSNames;
 +(NSString*) getCurrentDNSName;
-+(NSString*) SetCurrentDNS:(NSString*) vDNSName;
+
 +(NSString*) getCurrnetDNSString;
++(NSString*) getDNSString:(NSString*) vDNSName;
+
++(NSString*) SetCurrentDNS:(NSString*) vDNSName;
 
 
 @end

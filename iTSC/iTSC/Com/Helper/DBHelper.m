@@ -30,82 +30,131 @@ static OHMySQLQueryContext *_queryContext;
 
 
 ///////////////////////// function /////////////////////////
-+(void)Connect
++(bool)Connect
 {
     //NSLog(@"DBHelper: Connect: start.");
     if(_isConnected == true)
     {
         NSLog(@"DBHelper: Connect: isConnected == true!");
-        return;
+        return true;
     }
     
     
     TscConnection _con = [TscConnections getCurrentConnection];
-    //TscConnection _con = [TscConnections getConnection:@"148"];
-    NSLog(@"DBHelper: Connect: TscConnection = %@", _con.Name);
+    NSLog(@"DBHelper: TestConnect: TscConnection = %@", _con.Name);
+    
+    //DNS
+    NSString* _address;
+    if(_con.isUsingDNS)
+    {
+        _address=[TscDNSs getCurrnetDNSString];
+    }
+    else
+    {
+        _address=_con.IP;
+    }
     
     
     //user
     _user = [[OHMySQLUser alloc] initWithUserName:_con.UserName
                                          password:_con.UserPassword
-                                       serverName:_con.IP
+                                       serverName:_address
                                            dbName:_con.dbName
                                              port:_con.Port
                                            socket:nil];
     
     if(_user==nil)
     {
-        NSLog(@"DBHelper: Connect: _user==nil!");
-        return;
+        NSLog(@"DBHelper: TestConnect: _user==nil!");
+        return false;
     }
     
-    NSLog(@"DBHelper: Connect: _user is Created!");
-
+    NSLog(@"DBHelper: TestConnect: _user is Created!");
+    
     //coordinator
     _coordinator = [[OHMySQLStoreCoordinator alloc] initWithUser:_user];
     if(_coordinator==nil)
     {
-        NSLog(@"DBHelper: Connect: _coordinator==nil!");
-        return;
+        NSLog(@"DBHelper: TestConnect: _coordinator==nil!");
+        return false;
     }
-    NSLog(@"DBHelper: Connect: _coordinator is Created!");
+    NSLog(@"DBHelper: TestConnect: _coordinator is Created!");
     
     
     //connect
     [_coordinator connect];
-    NSLog(@"DBHelper: Connect: _coordinator is connecting!");
+    NSLog(@"DBHelper: TestConnect: _coordinator is connecting!");
     if([_coordinator isConnected] == false)
     {
-        NSLog(@"DBHelper: Connect: _coordinator isConnected == false!");
-        return;
+        NSLog(@"DBHelper: TestConnect: _coordinator isConnected == false!");
+        return false;
     }
-    NSLog(@"DBHelper: Connect: connected.");
+    NSLog(@"DBHelper: TestConnect: connected.");
     
     
     //pingMySQL
     OHResultErrorType _ret = [_coordinator pingMySQL];
     if(_ret!=OHResultErrorTypeNone)
     {
-        NSLog(@"DBHelper: Connect: _coordinator pingMySQL error! _ret=%d", (int)_ret);
-        return;
+        NSLog(@"DBHelper: TestConnect: _coordinator pingMySQL error! _ret=%d", (int)_ret);
+        return false;
     }
     
     //Query Context
     _queryContext = [OHMySQLQueryContext new];
     _queryContext.storeCoordinator = _coordinator;
     
-    NSLog(@"DBHelper: Connect: Context is created.");
+    NSLog(@"DBHelper: TestConnect: Context is created.");
     
     if(_queryContext==nil)
     {
-        NSLog(@"DBHelper: Connect: queryContext==nil!");
-        return;
+        NSLog(@"DBHelper: TestConnect: queryContext==nil!");
+        return false;
     }
     
     
     //isConnected
     _isConnected = true;
     
+    return true;
+    
+}
+
+//TestConnect
++(bool)TestConnect:(NSString*)vDNSName
+{
+    [TscDNSs SetCurrentDNS:vDNSName];
+    return [self Connect];
+}
+
+//SetAvailableDNS
++(bool)SetAvailableDNS
+{
+
+    //_con
+    TscConnection _con = [TscConnections getCurrentConnection];
+    
+    
+    //非DNS
+    if(_con.isUsingDNS==false)
+    {
+        return [self Connect];
+    }
+    
+    //当前DNS
+    if([self Connect])
+        return true;
+    
+    //循环判断DNS
+    NSArray *DNSNames = [TscDNSs getDNSNames];
+    for (NSString *c in DNSNames)
+    {
+        if([self TestConnect:c])
+        {
+            return true;
+        }
+     }
+    return false;
 }
 
 //Reconnect
@@ -144,6 +193,11 @@ static OHMySQLQueryContext *_queryContext;
     
     return [path stringByAppendingPathComponent:@"contacts.db"];
 }
+
+
+
+
+
 
 
 -(void)getdata

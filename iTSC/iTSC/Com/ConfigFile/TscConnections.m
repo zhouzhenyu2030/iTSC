@@ -52,6 +52,7 @@ static NSString *_CurrentConnectionKey;
     TscConnection _con;
     
     _con.Name=@"138";
+    _con.isUsingDNS=true;
     _con.IP=_dnsString;
     _con.Port=13833;
     _con.UserName=@"root";
@@ -63,6 +64,7 @@ static NSString *_CurrentConnectionKey;
     
     
     _con.Name=@"158";
+    _con.isUsingDNS=true;
     _con.IP=_dnsString;
     _con.Port=15833;
     _con.UserName=@"root";
@@ -74,6 +76,7 @@ static NSString *_CurrentConnectionKey;
     
     
     _con.Name=@"168";
+    _con.isUsingDNS=true;
     _con.IP=_dnsString;
     _con.Port=16833;
     _con.UserName=@"root";
@@ -86,6 +89,7 @@ static NSString *_CurrentConnectionKey;
     
     
     _con.Name=@"148";
+    _con.isUsingDNS=false;
     _con.IP=@"101.226.255.148";
     _con.Port=30003;
     _con.UserName=@"opt";

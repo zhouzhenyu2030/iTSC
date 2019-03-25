@@ -72,15 +72,18 @@
         i++;
     }
     LastConnectionRow = [NSIndexPath indexPathForRow:i-1 inSection:ConnectionConfigSection].row;
-
-    
+  
     //添加Connection
     [UIHelper SetTabelViewCellText:TableView Section:(int)ConnectionConfigSection Row:i TitleText:@"添加 Connection" DetialText:@""];
+    
+    //显示DNS
+    cell=[UIHelper SetTabelViewCellText:TableView Section:(int)ConnectionConfigSection Row:i+1 TitleText:@"DNS" DetialText:[TscDNSs getCurrentDNSName]];
+    cell.accessoryType = UITableViewCellAccessoryNone;
     
     //隐藏多余行
     NSIndexPath *indexPath;
     NSInteger rows = [TableView numberOfRowsInSection:ConnectionConfigSection];
-    for(int j=i+1; j<(int)rows; j++)
+    for(int j=i+2; j<(int)rows; j++)
     {
         indexPath=[NSIndexPath indexPathForRow:j inSection:ConnectionConfigSection];
         cell = [TableView cellForRowAtIndexPath:indexPath];
@@ -90,7 +93,7 @@
     
     
     
-    //////////////////////////////////////// Connection Config ////////////////////////////////////////
+    //////////////////////////////////////// DB Config (Refresh/Reconnect/Clear) ////////////////////////////////////////
     _SectionIndex++;
     RefreshSecondsSection=_SectionIndex; RefreshSecondsRow=0;
     [UIHelper SetTabelViewCellText:TableView Section:(int)RefreshSecondsSection Row:(int)RefreshSecondsRow TitleText:@"Refresh Seconds:" DetialText:[NSString stringWithFormat:@"%d", (int)[TscConfig RefreshSeconds]]];

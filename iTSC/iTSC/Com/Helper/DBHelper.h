@@ -27,7 +27,9 @@
 
 
 //function
-+(void)Connect;
++(bool)SetAvailableDNS;
++(bool)Connect;
++(bool)TestConnect:(NSString*)vDNSString;
 +(void)Reconnect;
 +(void)Disconnect;
 
