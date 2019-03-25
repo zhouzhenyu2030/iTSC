@@ -15,9 +15,12 @@
 
 @interface ConfigViewController : UITableViewController
 {
-    NSIndexPath *lastIndexPath;
+    NSIndexPath *lastDNSIndexPath, *lastConnectionIndexPath;
     
+    NSInteger DNSSection, FirstDNSRow, LastDNSRow;
+
     NSInteger ConnectionConfigSection, FirstConnectionRow, LastConnectionRow;
+    
     NSInteger RefreshSecondsSection, RefreshSecondsRow;
     NSInteger ReconnectDBSection, ReconnectDBRow;
     NSInteger ClearRunTimeInfoTalbeSection, ClearRunTimeInfoTalbeRow;

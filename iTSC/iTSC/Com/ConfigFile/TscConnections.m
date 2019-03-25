@@ -111,8 +111,7 @@ static NSString *_CurrentConnectionKey;
     
     //
     _CurrentConnectionKey = [self SetCurrentConnection:[_con_UserDefaults stringForKey:@"CurrentConnectionKey"]];
-    
-    _CurrentConnectionKey = @"158";
+    //_CurrentConnectionKey = @"158";
 }
 
 

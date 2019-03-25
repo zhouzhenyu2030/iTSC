@@ -30,7 +30,7 @@
 +(bool)SetAvailableDNS;
 +(bool)Connect;
 +(bool)TestConnect:(NSString*)vDNSString;
-+(void)Reconnect;
++(bool)Reconnect;
 +(void)Disconnect;
 
 

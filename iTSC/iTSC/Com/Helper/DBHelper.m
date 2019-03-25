@@ -39,6 +39,9 @@ static OHMySQLQueryContext *_queryContext;
         return true;
     }
     
+    //Init
+    _coordinator = nil;
+    _queryContext = nil;
     
     TscConnection _con = [TscConnections getCurrentConnection];
     NSLog(@"DBHelper: TestConnect: TscConnection = %@", _con.Name);
@@ -63,7 +66,7 @@ static OHMySQLQueryContext *_queryContext;
                                              port:_con.Port
                                            socket:nil];
     
-    if(_user==nil)
+    if(_user == nil)
     {
         NSLog(@"DBHelper: TestConnect: _user==nil!");
         return false;
@@ -123,6 +126,7 @@ static OHMySQLQueryContext *_queryContext;
 //TestConnect
 +(bool)TestConnect:(NSString*)vDNSName
 {
+    _isConnected = false;
     [TscDNSs SetCurrentDNS:vDNSName];
     return [self Connect];
 }
@@ -131,6 +135,8 @@ static OHMySQLQueryContext *_queryContext;
 +(bool)SetAvailableDNS
 {
 
+    _isConnected = false;
+    
     //_con
     TscConnection _con = [TscConnections getCurrentConnection];
     
@@ -158,13 +164,13 @@ static OHMySQLQueryContext *_queryContext;
 }
 
 //Reconnect
-+(void) Reconnect
++(bool) Reconnect
 {
     if(_isConnected)
         [self Disconnect];
     _queryContext = nil;
     _isConnected = false;
-    [self Connect];
+    return [self Connect];
 }
 
 

@@ -56,14 +56,14 @@ static NSString *_CurrentDNSName;
     _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
     [DNSs setObject:_dns_value forKey:_dns.Name];
     
-    _dns.Name=@"f2233";
-    _dns.DNSString=@"zhouzhenyu.f2233.net";
+    _dns.Name=@"f3322";
+    _dns.DNSString=@"zhouzhenyu.f3322.net";
     _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
     [DNSs setObject:_dns_value forKey:_dns.Name];
     
-    
+  
     //_UserDefaults
-    _CurrentDNSName = [self SetCurrentDNS:[_DNS_UserDefaults stringForKey:@"CurrentDNSName"]];
+    [self SetCurrentDNS:[_DNS_UserDefaults stringForKey:@"CurrentDNSName"]];
     
 
 }
@@ -123,7 +123,7 @@ static NSString *_CurrentDNSName;
         return nil;
     
     [_dns_value getValue:&_dns];
-    NSLog(@"TscConnections: getDNS: Found. vName=%@, DNS= %@",_CurrentDNSName, _dns.DNSString);
+    NSLog(@"TscConnections: getDNS: Found. vName=%@, DNS= %@",_dns.Name, _dns.DNSString);
 
     return _dns.DNSString;
 }
@@ -158,19 +158,22 @@ static NSString *_CurrentDNSName;
 
 
 ///////////////////////////////////// SetCurrentDNS ///////////////////////////////////
-+(NSString*) SetCurrentDNS:(NSString*) vDNSName
++(void) SetCurrentDNS:(NSString*) vDNSName
 {
-    if(vDNSName != nil)
+    if(vDNSName == nil)
+    {
+       _CurrentDNSName = @"imwork";
+    }
+    else
     {
         if([vDNSName isEqualToString:_CurrentDNSName] == false)
         {
             TscDNS _dns = [self getDNS:vDNSName];
             _CurrentDNSName = _dns.Name;
-            [_DNS_UserDefaults setValue:_CurrentDNSName forKey:(@"CurrentDNSName")];
         }
     }
     
-    return _CurrentDNSName;
+    [_DNS_UserDefaults setValue:_CurrentDNSName forKey:(@"CurrentDNSName")];
 }
 
 

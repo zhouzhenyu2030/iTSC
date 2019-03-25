@@ -35,7 +35,7 @@ typedef struct
 +(NSString*) getCurrnetDNSString;
 +(NSString*) getDNSString:(NSString*) vDNSName;
 
-+(NSString*) SetCurrentDNS:(NSString*) vDNSName;
++(void) SetCurrentDNS:(NSString*) vDNSName;
 
 
 @end

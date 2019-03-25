@@ -42,6 +42,7 @@
     [UIHelper ClearTabelViewCellText:TableView];
     
     UITableViewCell *cell;
+    int i;
     
     int _SectionIndex = 0;
     cell = [UIHelper SetTabelViewCellText:TableView Section:_SectionIndex Row:0 TitleText:@"屏幕常亮:" DetialText:@""];
@@ -50,18 +51,38 @@
     cell = [UIHelper SetTabelViewCellText:TableView Section:_SectionIndex Row:1 TitleText:@"自动刷新:" DetialText:@""];
     Cell_Switch_GlobalAutoRefresh = cell;
     
-    //显示DNS
-    _SectionIndex++;
-    cell=[UIHelper SetTabelViewCellText:TableView Section:_SectionIndex Row:0 TitleText:@"DNS" DetialText:[TscDNSs getCurrentDNSName]];
-    cell.accessoryType = UITableViewCellAccessoryNone;
     
+    
+    /////////////////////////////////////// 显示DNS ////////////////////////////////////////
+    _SectionIndex++;
+    //cell=[UIHelper SetTabelViewCellText:TableView Section:_SectionIndex Row:0 TitleText:@"DNS" DetialText:[TscDNSs getCurrentDNSName]];
+    //cell.accessoryType = UITableViewCellAccessoryNone;
+    DNSSection = _SectionIndex;
+    NSArray *DNSNames = [TscDNSs getDNSNames];
+    i = 0;
+    //显示Connection
+    FirstDNSRow = [NSIndexPath indexPathForRow:0 inSection:DNSSection].row;
+    for (NSString *c in DNSNames)
+    {
+        cell = [UIHelper SetTabelViewCellText:TableView Section:(int)DNSSection Row:i TitleText:c DetialText:@""];
+        if([c isEqualToString:[TscDNSs getCurrentDNSName]])
+        {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            lastDNSIndexPath = [NSIndexPath indexPathForRow:i inSection:DNSSection];
+        }
+        else
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        i++;
+    }
+    LastDNSRow = [NSIndexPath indexPathForRow:i-1 inSection:DNSSection].row;
+  
     
     
     //////////////////////////////////////// Connection Confit ////////////////////////////////////////
     _SectionIndex++;
-    ConnectionConfigSection=_SectionIndex;
+    ConnectionConfigSection = _SectionIndex;
     NSArray *ConnectionKeys = [TscConnections getConnectionKeys];
-    int i = 0;
+    i = 0;
     //显示Connection
     FirstConnectionRow = [NSIndexPath indexPathForRow:0 inSection:ConnectionConfigSection].row;
     for (NSString *c in ConnectionKeys)
@@ -71,7 +92,7 @@
         if([c isEqualToString:[TscConnections CurrentConnectionKey]])
         {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            lastIndexPath = [NSIndexPath indexPathForRow:i inSection:ConnectionConfigSection];
+            lastConnectionIndexPath = [NSIndexPath indexPathForRow:i inSection:ConnectionConfigSection];
         }
         else
             cell.accessoryType = UITableViewCellAccessoryNone;
@@ -85,13 +106,13 @@
   
     //隐藏多余行
     NSIndexPath *indexPath;
- //   NSInteger rows = [TableView numberOfRowsInSection:ConnectionConfigSection];
-  //  for(int j=i; j<(int)rows; j++)
-  //  {
-  //      indexPath=[NSIndexPath indexPathForRow:j inSection:ConnectionConfigSection];
-  //      cell = [TableView cellForRowAtIndexPath:indexPath];
-   //     //[cell setHidden:true];
-   //     [cell delete:(self)];
+    //   NSInteger rows = [TableView numberOfRowsInSection:ConnectionConfigSection];
+    //  for(int j=i; j<(int)rows; j++)
+    //  {
+    //      indexPath=[NSIndexPath indexPathForRow:j inSection:ConnectionConfigSection];
+    //      cell = [TableView cellForRowAtIndexPath:indexPath];
+    //     //[cell setHidden:true];
+    //     [cell delete:(self)];
     //}
     
     //删除多余行
@@ -189,19 +210,41 @@
         UIAlertController * alertController=[UIHelper ShowMessage:@"Reconnect DB" Message:@"Reconnect DB is over."];
         [self presentViewController:alertController animated:YES completion:nil];
     }
+  
+    //DNS 设定
+    if([indexPath section] == DNSSection)
+    {
+        if([indexPath row]>=FirstDNSRow && [indexPath row]<=LastDNSRow)
+        {
+            [TscDNSs SetCurrentDNS:[TableView cellForRowAtIndexPath:indexPath].textLabel.text];
+            if([DBHelper Reconnect]==false)
+            {
+                UIAlertController * alertController=[UIHelper ShowMessage:@"DNS Set." Message:@"DB Connect failed."];
+                [self presentViewController:alertController animated:YES completion:nil];
+            }
+
+            if (indexPath != lastDNSIndexPath)
+            {
+                [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
+                [tableView cellForRowAtIndexPath:lastDNSIndexPath].accessoryType = UITableViewCellAccessoryNone;
+            }
+            lastDNSIndexPath = indexPath;
+        }
+    }
+
     
-    //connection set
+    //connection 设定
     if([indexPath section] == ConnectionConfigSection)
     {
         if([indexPath row]>=FirstConnectionRow && [indexPath row]<=LastConnectionRow)
         {
-            if (indexPath != lastIndexPath)
+            if (indexPath != lastConnectionIndexPath)
             {
                 [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
-                [tableView cellForRowAtIndexPath:lastIndexPath].accessoryType = UITableViewCellAccessoryNone;
+                [tableView cellForRowAtIndexPath:lastConnectionIndexPath].accessoryType = UITableViewCellAccessoryNone;
             }
             [TscConnections SetCurrentConnection:[TableView cellForRowAtIndexPath:indexPath].textLabel.text];
-            lastIndexPath = indexPath;
+            lastConnectionIndexPath = indexPath;
         }
     }
     
@@ -217,7 +260,7 @@
         [self presentViewController:alertController animated:YES completion:nil];
     }
 
-    //SetTime
+    //设定Server时间
     if([indexPath section] == SetTimeSection && [indexPath row] == SetTimeRow)
     {
         NSString* _ret = [self Function_SetTime];
