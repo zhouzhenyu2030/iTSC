@@ -210,7 +210,7 @@
 			children = (
 				194D008B21F4148C008918DA /* nouse */,
 				190210DE21E49682009ADE0B /* 编程 */,
-				197BF9D92248648100450399 /* Ping */,
+				197BF9D92248648100450399 /* Ping(nouse) */,
 				190210E421E49C0A009ADE0B /* DBHelper.h */,
 				190210E521E49C27009ADE0B /* DBHelper.m */,
 				19417D4521E86B8C00C1FF2C /* StringHelper.h */,
@@ -397,7 +397,7 @@
 			path = PNL;
 			sourceTree = "<group>";
 		};
-		197BF9D92248648100450399 /* Ping */ = {
+		197BF9D92248648100450399 /* Ping(nouse) */ = {
 			isa = PBXGroup;
 			children = (
 				197BF9D82248626900450399 /* SimplePing.h */,
@@ -407,7 +407,7 @@
 				197BF9DA2248651900450399 /* PingHelper.h */,
 				197BF9DB2248652C00450399 /* PingHelper.m */,
 			);
-			path = Ping;
+			path = "Ping(nouse)";
 			sourceTree = "<group>";
 		};
 		1980DBD321EF025E008C9FF0 /* ConfigFile */ = {
