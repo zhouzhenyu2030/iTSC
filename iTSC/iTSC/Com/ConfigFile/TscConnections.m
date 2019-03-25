@@ -10,19 +10,7 @@
 
 #import "DBHelper.h"
 #import "TscConnections.h"
-
-
-//
-static NSUserDefaults *_UserDefaults;
-NSValue *value = nil;
-
-//DNS
-static NSMutableDictionary *DNSs;
-static NSString *_CurrentDNSName;
-
-//Connection
-static NSMutableDictionary *Connections;
-static NSString *_CurrentConnectionKey;
+#import "PingHelper.h"
 
 
 
@@ -30,49 +18,35 @@ static NSString *_CurrentConnectionKey;
 @implementation TscConnections
 
 
+//
+static NSUserDefaults *_con_UserDefaults;
+NSValue *_con_value = nil;
+
+//Connection
+static NSMutableDictionary *Connections;
+static NSString *_CurrentConnectionKey;
+
 
 
 ///////////////////////////////////// init /////////////////////////////////////
 +(void) Init
 {
-    _UserDefaults = [NSUserDefaults standardUserDefaults];
+    _con_UserDefaults = [NSUserDefaults standardUserDefaults];
     
-    DNSs= [[NSMutableDictionary alloc]init];
-    [self initDNSs];
-    _CurrentDNSName = [self SetCurrentDNS:[_UserDefaults stringForKey:@"CurrentDNSName"]];
-    
-    
+
     Connections = [[NSMutableDictionary alloc]init];
     [self initConnections];
     //[self saveConnections];
-    _CurrentConnectionKey = [self SetCurrentConnection:[_UserDefaults stringForKey:@"CurrentConnectionKey"]];
+ 
 }
 
 
 
 
-///////////////////////////////////// initDefault ///////////////////////////////////
-+(void) initDNSs
-{
-    
-    //DNS
-    TscDNS _dns;
-    
-    _dns.Name=@"imwork";
-    _dns.DNSString=@"zhouzhenyu.imwork.net";
-    value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
-    [DNSs setObject:value forKey:_dns.Name];
-    
-    _dns.Name=@"kmdns";
-    _dns.DNSString=@"zhouzhenyu2005.kmdns.net";
-    value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
-    [DNSs setObject:value forKey:_dns.Name];
-    
-}
-
+///////////////////////////////////// initConnections ///////////////////////////////////
 +(void) initConnections
 {
-    NSString *_dnsString=[self getCurrnetDNSString];
+    NSString *_dnsString=[TscDNSs getCurrnetDNSString];
     
     //Connection
     TscConnection _con;
@@ -84,8 +58,8 @@ static NSString *_CurrentConnectionKey;
     _con.UserPassword=@"z";
     _con.dbName=@"tss";
     _con.AccountID = @"AccountID=0";
-    value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
-    [Connections setObject:value forKey:_con.Name];
+    _con_value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
+    [Connections setObject:_con_value forKey:_con.Name];
     
     
     _con.Name=@"158";
@@ -95,8 +69,8 @@ static NSString *_CurrentConnectionKey;
     _con.UserPassword=@"z";
     _con.dbName=@"tss";
     _con.AccountID = @"AccountID=0";
-    value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
-    [Connections setObject:value forKey:_con.Name];
+    _con_value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
+    [Connections setObject:_con_value forKey:_con.Name];
     
     
     _con.Name=@"168";
@@ -106,8 +80,8 @@ static NSString *_CurrentConnectionKey;
     _con.UserPassword=@"z";
     _con.dbName=@"tss";
     _con.AccountID = @"AccountID=0";
-    value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
-    [Connections setObject:value forKey:_con.Name];
+    _con_value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
+    [Connections setObject:_con_value forKey:_con.Name];
     
     
     
@@ -118,93 +92,24 @@ static NSString *_CurrentConnectionKey;
     _con.UserPassword=@"Hr@2017yy";
     _con.dbName=@"tss";
     _con.AccountID = @"AccountID=1202";
-    value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
-    [Connections setObject:value forKey:_con.Name];
+    _con_value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
+    [Connections setObject:_con_value forKey:_con.Name];
     
     
-    
+    //
     for(id key in Connections)
     {
-        value = [Connections objectForKey:key];
-        [value getValue:&_con];
+        _con_value = [Connections objectForKey:key];
+        [_con_value getValue:&_con];
         NSLog(@"TscConnections: initDefault: key: %@",key);
     }
     
     
+    //
+    _CurrentConnectionKey = [self SetCurrentConnection:[_con_UserDefaults stringForKey:@"CurrentConnectionKey"]];
+    
     _CurrentConnectionKey = @"158";
 }
-
-
-
-
-///////////////////////////////////// DNS ///////////////////////////////////
-+(NSString*) CurrentDNSName
-{
-    return _CurrentDNSName;
-}
-
-+(TscDNS) getDNS:(NSString*) vName
-{
-    TscDNS _dns;
-    value = [DNSs objectForKey:vName];
-    if(value!=nil)
-    {
-        [value getValue:&_dns];
-        NSLog(@"TscConnections: getDNS: Found. vName=%@, DNS= %@",vName, _dns.DNSString);
-    }
-    else
-    {
-        _dns.Name=@"imwork";
-        _dns.DNSString=@"zhouzhenyu.imwork.net";
-        NSLog(@"TscConnections: getDNS: not Found, return Defautl. vName=%@, DNS= %@",vName, _dns.DNSString);
-    }
- 
-    return _dns;
-}
-+(NSString*) getCurrnetDNSString
-{
-    TscDNS _dns;
-    value = [DNSs objectForKey:_CurrentDNSName];
-    if(value!=nil)
-    {
-        [value getValue:&_dns];
-        NSLog(@"TscConnections: getDNS: Found. vName=%@, DNS= %@",_CurrentDNSName, _dns.DNSString);
-    }
-    else
-    {
-        _dns.Name=@"imwork";
-        _dns.DNSString=@"zhouzhenyu.imwork.net";
-        NSLog(@"TscConnections: getDNS: not Found, return Defautl. vName=%@, DNS= %@",_CurrentDNSName, _dns.DNSString);
-    }
-    
-    return _dns.DNSString;
-}
-//get DNS Array
-+(NSMutableDictionary*) getDNSArray
-{
-    return DNSs;
-}
-//get DNS Names
-+(NSArray*) getDNSNames
-{
-    return [DNSs allKeys];
-}
-
-+(NSString*) SetCurrentDNS:(NSString*) vDNSName
-{
-    if(vDNSName != nil)
-    {
-        if([vDNSName isEqualToString:_CurrentDNSName] == false)
-        {
-            TscDNS _dns = [self getDNS:vDNSName];
-            _CurrentDNSName = _dns.Name;
-            [_UserDefaults setValue:_CurrentDNSName forKey:(@"CurrentDNSName")];
-        }
-    }
-    
-    return _CurrentDNSName;
-}
-
 
 
 
@@ -219,9 +124,9 @@ static NSString *_CurrentConnectionKey;
 +(TscConnection) getConnection:(NSString*) vName
 {
     TscConnection _con;
-    value = [Connections objectForKey:vName];
-    [value getValue:&_con];
-    NSLog(@"key: %@,value: %@",vName,value);
+    _con_value = [Connections objectForKey:vName];
+    [_con_value getValue:&_con];
+    NSLog(@"key: %@,value: %@", vName, _con_value);
     return _con;
 }
 +(TscConnection) getCurrentConnection
@@ -287,7 +192,7 @@ static NSString *_CurrentConnectionKey;
         {
             TscConnection _con = [self getConnection:vConnectionKey];
             _CurrentConnectionKey = _con.Name;
-            [_UserDefaults setValue:_CurrentConnectionKey forKey:(@"CurrentConnectionKey")];
+            [_con_UserDefaults setValue:_CurrentConnectionKey forKey:(@"CurrentConnectionKey")];
             [DBHelper Reconnect];
         }
     }

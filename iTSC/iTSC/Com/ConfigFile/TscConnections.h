@@ -13,25 +13,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-/*
-@interface ClassTscConnection : NSObject
-{
-    @public
-    NSString *Name;
-    NSString *IP;
-    int Port;
-    NSString* UserName;
-    NSString* UserPassword;
-}
-@end
-*/
+#import "TscDNSs.h"
 
-
-typedef struct
-{
-    NSString *Name;
-    NSString *DNSString;
-} TscDNS;
 
 
 
@@ -44,20 +27,16 @@ typedef struct
     NSString* UserPassword;
     NSString* dbName;
     NSString* AccountID;
+    bool isUsingDNS;
 } TscConnection;
 
 
 
 @interface TscConnections : NSObject
 
+
+
 +(void) Init;
-
-
-
-//DNS
-+(NSString*) CurrentDNSName;
-+(NSString*) SetCurrentDNS:(NSString*) vDNSName;
-
 
 
 //Connection
