@@ -50,6 +50,12 @@
     cell = [UIHelper SetTabelViewCellText:TableView Section:_SectionIndex Row:1 TitleText:@"自动刷新:" DetialText:@""];
     Cell_Switch_GlobalAutoRefresh = cell;
     
+    //显示DNS
+    _SectionIndex++;
+    cell=[UIHelper SetTabelViewCellText:TableView Section:_SectionIndex Row:0 TitleText:@"DNS" DetialText:[TscDNSs getCurrentDNSName]];
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    
+    
     
     //////////////////////////////////////// Connection Confit ////////////////////////////////////////
     _SectionIndex++;
@@ -76,20 +82,25 @@
     //添加Connection
     [UIHelper SetTabelViewCellText:TableView Section:(int)ConnectionConfigSection Row:i TitleText:@"添加 Connection" DetialText:@""];
     
-    //显示DNS
-    cell=[UIHelper SetTabelViewCellText:TableView Section:(int)ConnectionConfigSection Row:i+1 TitleText:@"DNS" DetialText:[TscDNSs getCurrentDNSName]];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    
+  
     //隐藏多余行
     NSIndexPath *indexPath;
-    NSInteger rows = [TableView numberOfRowsInSection:ConnectionConfigSection];
-    for(int j=i+2; j<(int)rows; j++)
-    {
-        indexPath=[NSIndexPath indexPathForRow:j inSection:ConnectionConfigSection];
-        cell = [TableView cellForRowAtIndexPath:indexPath];
-        [cell setHidden:true];
-    }
+ //   NSInteger rows = [TableView numberOfRowsInSection:ConnectionConfigSection];
+  //  for(int j=i; j<(int)rows; j++)
+  //  {
+  //      indexPath=[NSIndexPath indexPathForRow:j inSection:ConnectionConfigSection];
+  //      cell = [TableView cellForRowAtIndexPath:indexPath];
+   //     //[cell setHidden:true];
+   //     [cell delete:(self)];
+    //}
     
+    //删除多余行
+    while([TableView numberOfRowsInSection:ConnectionConfigSection]>i+1)
+    {
+        indexPath=[NSIndexPath indexPathForRow:i+1 inSection:ConnectionConfigSection];
+        cell = [TableView cellForRowAtIndexPath:indexPath];
+        [cell delete:(TableView)];
+    }
     
     
     
@@ -103,7 +114,7 @@
     cell.textLabel.textColor = UIColor.blueColor;
     cell.accessoryType = UITableViewCellAccessoryNone;
     
-    ClearRunTimeInfoTalbeSection=2; ClearRunTimeInfoTalbeRow=2;
+    ClearRunTimeInfoTalbeSection=_SectionIndex; ClearRunTimeInfoTalbeRow=2;
     cell=[UIHelper SetTabelViewCellText:TableView Section:(int)ClearRunTimeInfoTalbeSection Row:(int)ClearRunTimeInfoTalbeRow TitleText:@"Clear RunTimeInfo Table" DetialText:@""];
     cell.textLabel.textColor = UIColor.blueColor;
     cell.accessoryType = UITableViewCellAccessoryNone;

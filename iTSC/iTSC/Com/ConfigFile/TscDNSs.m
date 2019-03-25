@@ -65,8 +65,7 @@ static NSString *_CurrentDNSName;
     //_UserDefaults
     _CurrentDNSName = [self SetCurrentDNS:[_DNS_UserDefaults stringForKey:@"CurrentDNSName"]];
     
-    //test
-    _CurrentDNSName = [self SetCurrentDNS:@"f2233"];
+
 }
 
 
