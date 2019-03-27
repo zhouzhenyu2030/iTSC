@@ -250,7 +250,7 @@
     
     _condstr=[_condstr stringByAppendingString:@" (ItemKey='Risk')"];
     
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Position' and ItemType='Position' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Position' and (ItemType='Position' or ItemType='NetPosition'))"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='TradeSum' and (ItemType='TradeQty' or ItemType='ATTradeQty' or ItemType='AHTradeQty' or ItemType='TradeEdge') )"];
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='PNL' and (ItemType='TotalPNL_Mkt' or ItemType='TotalPNL_Theo') )"];
@@ -417,7 +417,7 @@
         }
         if([typename isEqualToString:@"NetPosition"])
         {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"TOption Net Position:" FieldName:@"ItemValue" SetColor:false];
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"TOption Net Position:" FieldName:@"ItemValue"];
             continue;
         }
 
