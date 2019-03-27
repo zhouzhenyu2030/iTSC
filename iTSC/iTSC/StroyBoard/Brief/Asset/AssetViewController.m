@@ -213,28 +213,25 @@
     
     [UIHelper SetTabelViewCellText:TableView Section:7 Row:3 TitleText:@"Smoothed Basis:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:7 Row:4 TitleText:@"Smoothed Vol:" DetialText:@"-" Color:UIColor.blueColor];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:5 TitleText:@"U LP:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:6 TitleText:@"U %:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:5 TitleText:@"U %:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:6 TitleText:@"U LP:" DetialText:@"-"];
 
+    
+    [UIHelper SetTabelViewCellText:TableView Section:8 Row:0 TitleText:@"Server ID:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:8 Row:1 TitleText:@"MD Time:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:8 Row:2 TitleText:@"MD Date:" DetialText:@"-"];
     
     if(vInitAll)
     {
-        cell = [UIHelper SetTabelViewCellText:TableView Section:8 Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
-        RefreshCountCell = cell;
-        cell = [UIHelper SetTabelViewCellText:TableView Section:8 Row:1 TitleText:@"AutoRefresh:" DetialText:@""];
-        RefreshSwitchCell = cell;
+        [UIHelper SetTabelViewCellText:TableView Section:8 Row:3 TitleText:@"AccountID:" DetialText:@"-"];
 
-        cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:0 TitleText:@"AccountID:" DetialText:@"-"];
+        cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
+        RefreshCountCell = cell;
+        cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:1 TitleText:@"AutoRefresh:" DetialText:@""];
+        RefreshSwitchCell = cell;
     }
     
-    //MD
-    cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:1 TitleText:@"MD Date:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:2 TitleText:@"MD Time:" DetialText:@"-"];
-    
-    
-    //Server ID
-    cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:3 TitleText:@"Server ID:" DetialText:@"-"];
-    
+
 }
 
 

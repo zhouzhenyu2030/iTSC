@@ -12,6 +12,7 @@
 #import "StringHelper.h"
 #import "TscConfig.h"
 #import "UIHelper.h"
+#import "TscConnections.h"
 
 
 @implementation GreeksViewController
@@ -86,7 +87,11 @@
     
     isTimerProcessing=true;
     RefreshCnt++;
+    
     [self QueryAndDisplay];
+    //Server ID
+    [UIHelper SetTabelViewCellDetailText:TableView TitleText:@"Server ID:" DetialText:TscConnections.CurrentConnectionKey];
+   
     isTimerProcessing=false;
     
     RefreshTimerElpasedSeconds=0;
@@ -184,8 +189,8 @@
     
     [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"NPE:" DetialText:@"-" Font:_font];
     [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"RealTime NPE Expose:" DetialText:@"-" Font:_font];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"NPE Average:" DetialText:@"-"];
- 
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"NP Average Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:3 TitleText:@"TOption Net Position:" DetialText:@"-"];
     
     [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blueColor];
     [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"Trade Qty:" DetialText:@"-"];
@@ -199,19 +204,22 @@
     [UIHelper SetTabelViewCellText:TableView Section:8 Row:0 TitleText:@"Avg Edge:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:8 Row:1 TitleText:@"Smoothed Basis:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:8 Row:2 TitleText:@"Smoothed Vol:" DetialText:@"-" Color:UIColor.blueColor];
-    [UIHelper SetTabelViewCellText:TableView Section:8 Row:3 TitleText:@"U LP:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:8 Row:4 TitleText:@"U %:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:8 Row:3 TitleText:@"U %:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:8 Row:4 TitleText:@"U LP:" DetialText:@"-"];
+
+    
+    [UIHelper SetTabelViewCellText:TableView Section:9 Row:0 TitleText:@"Server ID:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:9 Row:1 TitleText:@"MD Time:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:9 Row:2 TitleText:@"MD Date:" DetialText:@"-"];
 
     
     if(vInitAll)
     {
-        cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
+        cell = [UIHelper SetTabelViewCellText:TableView Section:10 Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
         RefreshCountCell = cell;
-        cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:1 TitleText:@"AutoRefresh:" DetialText:@""];
+        cell = [UIHelper SetTabelViewCellText:TableView Section:10 Row:1 TitleText:@"AutoRefresh:" DetialText:@""];
         RefreshSwitchCell = cell;
     }
-    
-  
 }
 
 
@@ -220,7 +228,9 @@
 - (void)QueryAndDisplay
 {
 
+    //RefreshCount
     RefreshCountCell.detailTextLabel.text=[NSString stringWithFormat:@"%d", RefreshCnt];
+    
 
     //DB Query
     NSLog(@"GreeksViewController: start!");
@@ -247,6 +257,8 @@
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Edge' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Expose' )"];
+    
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='MD' )"];
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='U' and (ItemType='LP' or ItemType='ChangePercentage') )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='SmoothedWingPara' and (ItemType='Vol') )"];
@@ -331,14 +343,6 @@
         }
         
         
-        //AvgEdge
-        if([typename isEqualToString:@"AvgEdge"])
-        {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Avg Edge:" FieldName:@"ItemValue" SetColor:false];
-            continue;
-        }
-
-        
         //U
         if([_field[@"ItemKey"] isEqualToString:@"U"])
         {
@@ -393,18 +397,46 @@
             continue;
         }
         
+        //AvgEdge
+        if([typename isEqualToString:@"AvgEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Avg Edge:" FieldName:@"ItemValue" SetColor:false];
+            continue;
+        }
+        
         //NPE
         if([typename isEqualToString:@"RTNpeExpose"])
         {
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"RealTime NPE Expose:" FieldName:@"ItemValue" SetColor:false];
             continue;
         }
-        if([typename isEqualToString:@"NPEA"])
+        if([typename isEqualToString:@"NPAvgEdge"])
         {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"NPE Average:" FieldName:@"ItemValue" SetColor:false];
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"NP Average Edge:" FieldName:@"ItemValue" SetColor:false];
             continue;
         }
+        if([typename isEqualToString:@"NetPosition"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"TOption Net Position:" FieldName:@"ItemValue" SetColor:false];
+            continue;
+        }
+
         
+        
+        //MD
+        if([_field[@"ItemKey"] isEqualToString:@"MD"])
+        {
+            if([_field[@"ItemType"] isEqualToString:@"Date"])
+            {
+                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"MD Date:" DetialText:_field[@"ItemValue"]];
+                continue;
+            }
+            if([_field[@"ItemType"] isEqualToString:@"Time"])
+            {
+                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"MD Time:" DetialText:_field[@"ItemValue"]];
+                continue;
+            }
+        }
         
 
     } //for over
