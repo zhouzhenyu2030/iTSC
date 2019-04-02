@@ -271,7 +271,7 @@
     //SELECT
     NSString* _condstr = [TscConnections getCurrentConnection].AccountID;
     _condstr = [_condstr stringByAppendingString:@" order by HisDate DESC limit 1"];
-    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"hisasset" condition:_condstr];
+    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"tsshis.hisasset" condition:_condstr];
     NSError *error = nil;
     NSArray *tasks = [_queryContext executeQueryRequestAndFetchResult:query error:&error];
     

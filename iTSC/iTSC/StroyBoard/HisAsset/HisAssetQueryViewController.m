@@ -72,7 +72,7 @@
     NSLog(@"%@: Query: %@",  myFunctionName, _condstr);
     
     NSString* _displayFieldName=[TscConfig strHisAssetDisplayFieldName];
-    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"hisasset" condition:_condstr];
+    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"tsshis.hisasset" condition:_condstr];
     NSError *error = nil;
     NSArray *tasks = [_queryContext executeQueryRequestAndFetchResult:query error:&error];
     
