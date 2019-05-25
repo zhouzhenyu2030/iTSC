@@ -95,7 +95,7 @@
     leftAxis.axisLineColor = [UIColor lightGrayColor];//左Y轴线条颜色
     leftAxis.gridColor = [UIColor lightGrayColor];
     leftAxis.zeroLineColor = [UIColor lightGrayColor];//左Y轴底线条颜色
-    leftAxis.drawZeroLineEnabled = YES;
+    leftAxis.drawZeroLineEnabled = NO; //YES; //zzy
     leftAxis.drawLimitLinesBehindDataEnabled = YES;
     // 设置X轴
     ChartXAxis* xAxis =_linechartView.xAxis;
@@ -251,7 +251,7 @@
     {
         return [NSString stringWithFormat:@"%.1fw", value/(double)10000];
     }
-    return [NSString stringWithFormat:@"%0.2f", value];
+    return [NSString stringWithFormat:@"%0.4fw", value]; //zzy
 }
 
 
