@@ -54,7 +54,7 @@ static NSString *_CurrentConnectionKey;
     _con.Name=@"138";
     _con.isUsingDNS=true;
     _con.IP=_dnsString;
-    _con.Port=13833;
+    _con.Port=53833;
     _con.UserName=@"root";
     _con.UserPassword=@"z";
     _con.dbName=@"tss";
@@ -66,7 +66,7 @@ static NSString *_CurrentConnectionKey;
     _con.Name=@"158";
     _con.isUsingDNS=true;
     _con.IP=_dnsString;
-    _con.Port=15833;
+    _con.Port=55833;
     _con.UserName=@"root";
     _con.UserPassword=@"z";
     _con.dbName=@"tss";
@@ -78,7 +78,7 @@ static NSString *_CurrentConnectionKey;
     _con.Name=@"168";
     _con.isUsingDNS=true;
     _con.IP=_dnsString;
-    _con.Port=16833;
+    _con.Port=56833;
     _con.UserName=@"root";
     _con.UserPassword=@"z";
     _con.dbName=@"tss";
@@ -86,7 +86,16 @@ static NSString *_CurrentConnectionKey;
     _con_value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
     [Connections setObject:_con_value forKey:_con.Name];
     
-    
+    _con.Name=@"118";
+    _con.isUsingDNS=true;
+    _con.IP=_dnsString;
+    _con.Port=51833;
+    _con.UserName=@"root";
+    _con.UserPassword=@"z";
+    _con.dbName=@"tss";
+    _con.AccountID = @"AccountID=0";
+    _con_value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
+    [Connections setObject:_con_value forKey:_con.Name];
     
     _con.Name=@"148";
     _con.isUsingDNS=false;
@@ -98,6 +107,7 @@ static NSString *_CurrentConnectionKey;
     _con.AccountID = @"AccountID=1202";
     _con_value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
     [Connections setObject:_con_value forKey:_con.Name];
+    
     
     
     //
