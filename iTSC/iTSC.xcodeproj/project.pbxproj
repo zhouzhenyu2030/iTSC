@@ -274,7 +274,6 @@
 			children = (
 				19FFB2A921F194BD00C02A53 /* Brief.storyboard */,
 				190210C021E45964009ADE0B /* BriefDetail.storyboard */,
-				1911DFA921FF11160079304C /* Asset.storyboard */,
 			);
 			path = StroyBoard;
 			sourceTree = "<group>";
@@ -459,6 +458,7 @@
 		19FFB2AB21F19A8D00C02A53 /* Asset */ = {
 			isa = PBXGroup;
 			children = (
+				1911DFA921FF11160079304C /* Asset.storyboard */,
 				194D008C21F44049008918DA /* AssetViewController.h */,
 				194D008D21F44057008918DA /* AssetViewController.m */,
 			);

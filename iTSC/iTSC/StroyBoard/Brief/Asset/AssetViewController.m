@@ -168,11 +168,12 @@
         [UIHelper SetTabelViewCellText:TableView Section:0 Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
         
         [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"Risk Level (%):" DetialText:@"-" Color:UIColor.magentaColor];
-        [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"Asset (Market):" DetialText:@"-"];
-        [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Asset (Theory):" DetialText:@"-"];
-        [UIHelper SetTabelViewCellText:TableView Section:1 Row:3 TitleText:@"Asset Dif (Market-Theory):" DetialText:@"-"];
-        [UIHelper SetTabelViewCellText:TableView Section:1 Row:4 TitleText:@"Available:" DetialText:@"-" Color:UIColor.brownColor];
-        [UIHelper SetTabelViewCellText:TableView Section:1 Row:5 TitleText:@"Curr Margin:" DetialText:@"-"];
+        [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"NV (Theory):" DetialText:@"-"];
+        [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Asset (Market):" DetialText:@"-"];
+        [UIHelper SetTabelViewCellText:TableView Section:1 Row:3 TitleText:@"Asset (Theory):" DetialText:@"-"];
+        [UIHelper SetTabelViewCellText:TableView Section:1 Row:4 TitleText:@"Asset Dif (Market-Theory):" DetialText:@"-"];
+        [UIHelper SetTabelViewCellText:TableView Section:1 Row:5 TitleText:@"Available:" DetialText:@"-" Color:UIColor.brownColor];
+        [UIHelper SetTabelViewCellText:TableView Section:1 Row:6 TitleText:@"Curr Margin:" DetialText:@"-"];
         
         
         [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"Marktet Trade PNL:" DetialText:@"-"];
@@ -188,7 +189,7 @@
 
     
     //Runtimeinfo
-    [UIHelper SetTabelViewCellText:TableView Section:1 Row:6 TitleText:@"Total Margin:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:1 Row:7 TitleText:@"Total Margin:" DetialText:@"-"];
     
     [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"TPR:" DetialText:@"-" Color:UIColor.magentaColor];
     [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"TOR(%):" DetialText:@"-" Color:UIColor.purpleColor];
@@ -207,13 +208,12 @@
     [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"Market Close PNL:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:6 Row:2 TitleText:@"Theo Close PNL:" DetialText:@"-"];
 
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:0 TitleText:@"Avg Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:1 TitleText:@"Positive Avg Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:2 TitleText:@"Negative Avg Edge:" DetialText:@"-"];
-    
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:3 TitleText:@"Smoothed Basis:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:4 TitleText:@"Smoothed Vol:" DetialText:@"-" Color:UIColor.blueColor];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:5 TitleText:@"U %:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:0 TitleText:@"U %:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:1 TitleText:@"Smoothed Basis:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:2 TitleText:@"Smoothed Vol:" DetialText:@"-" Color:UIColor.blueColor];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:3 TitleText:@"Avg Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:4 TitleText:@"Positive Avg Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:7 Row:5 TitleText:@"Negative Avg Edge:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:7 Row:6 TitleText:@"U LP:" DetialText:@"-"];
 
     
@@ -292,6 +292,11 @@
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"AccountID:" DetialText:_sValue];
     
     
+
+    _fValue = [_field[@"NVTheo"]  floatValue];
+    _sValue = [StringHelper fPositiveFormat:_fValue pointNumber:4];
+    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"NV (Theory):" DetialText:_sValue];
+ 
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Asset (Theory):" FieldName:@"AssetTheo" SetColor:false];
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Asset (Market):" FieldName:@"Asset" SetColor:false];
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Available:" FieldName:@"Available" SetColor:false];
@@ -379,6 +384,8 @@
         _field=[tasks objectAtIndex:i];
         NSLog(@"%@", _field);
         
+        
+
         if([_field[@"ItemType"] isEqualToString:@"TotalMargin"])
         {
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total Margin:" FieldName:@"ItemValue" SetColor:false];

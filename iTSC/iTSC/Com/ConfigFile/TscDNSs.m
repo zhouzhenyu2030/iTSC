@@ -46,15 +46,25 @@ static NSString *_CurrentDNSName;
     //DNS
     TscDNS _dns;
     
+    
+    _dns.Name=@"myds";
+    _dns.DNSString=@"cqg.myds.me";
+    _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
+    [DNSs setObject:_dns_value forKey:_dns.Name];
+    
+    
     _dns.Name=@"imwork";
     _dns.DNSString=@"zhouzhenyu.imwork.net";
     _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
     [DNSs setObject:_dns_value forKey:_dns.Name];
     
-    _dns.Name=@"kmdns";
-    _dns.DNSString=@"zhouzhenyu2005.kmdns.net";
-    _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
-    [DNSs setObject:_dns_value forKey:_dns.Name];
+    //_dns.Name=@"kmdns";
+    //_dns.DNSString=@"zhouzhenyu2005.kmdns.net";
+    //_dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
+    //[DNSs setObject:_dns_value forKey:_dns.Name];
+    
+    
+ 
     
     _dns.Name=@"f3322";
     _dns.DNSString=@"zhouzhenyu.f3322.net";
@@ -141,8 +151,8 @@ static NSString *_CurrentDNSName;
     }
     else
     {
-        _dns.Name=@"imwork";
-        _dns.DNSString=@"zhouzhenyu.imwork.net";
+        _dns.Name=@"myds";
+        _dns.DNSString=@"cqg.myds.me";
         NSLog(@"TscConnections: getDNS: not Found, return Defautl. vName=%@, DNS= %@",_CurrentDNSName, _dns.DNSString);
     }
     
@@ -162,7 +172,7 @@ static NSString *_CurrentDNSName;
 {
     if(vDNSName == nil)
     {
-       _CurrentDNSName = @"imwork";
+       _CurrentDNSName = @"myds";
     }
     else
     {
