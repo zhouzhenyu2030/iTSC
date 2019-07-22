@@ -176,13 +176,6 @@
         [UIHelper SetTabelViewCellText:TableView Section:1 Row:6 TitleText:@"Curr Margin:" DetialText:@"-"];
         
         
-        [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"Marktet Trade PNL:" DetialText:@"-"];
-        [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Marktet Yd PNL:" DetialText:@"-"];
-        [UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Marktet Total PNL:" DetialText:@"-"];
-        
-        [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"Theo Trade PNL:" DetialText:@"-"];
-        [UIHelper SetTabelViewCellText:TableView Section:3 Row:1 TitleText:@"Theo Yd PNL:" DetialText:@"-"];
-        [UIHelper SetTabelViewCellText:TableView Section:3 Row:2 TitleText:@"Theo Total PNL:" DetialText:@"-"];
         
     }
     
@@ -191,6 +184,15 @@
     //Runtimeinfo
     [UIHelper SetTabelViewCellText:TableView Section:1 Row:7 TitleText:@"Total Margin:" DetialText:@"-"];
     
+    [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"Marktet Trade PNL:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Marktet Yd PNL:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Marktet Total PNL:" DetialText:@"-"];
+    
+    [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"Theo Trade PNL:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:3 Row:1 TitleText:@"Theo Yd PNL:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:3 Row:2 TitleText:@"Theo Total PNL:" DetialText:@"-"];
+
+
     [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"TPR:" DetialText:@"-" Color:UIColor.magentaColor];
     [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"TOR(%):" DetialText:@"-" Color:UIColor.purpleColor];
     [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blueColor];
@@ -311,15 +313,14 @@
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Risk Level (%):" DetialText:_sValue];
     
     
-    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Trade PNL:" FieldName:@"TradeMktPNL" SetColor:true];
-    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Yd PNL:" FieldName:@"YdMktPNL" SetColor:true];
-    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Total PNL:" FieldName:@"TotalMktPNL" SetColor:true];
+    //[UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Trade PNL:" FieldName:@"TradeMktPNL" SetColor:true];
+    //[UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Yd PNL:" FieldName:@"YdMktPNL" SetColor:true];
+    //[UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Total PNL:" FieldName:@"TotalMktPNL" SetColor:true];
     
-    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Trade PNL:" FieldName:@"TradeTheoPNL" SetColor:true];
-    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Yd PNL:" FieldName:@"YdTheoPNL" SetColor:true];
-    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Total PNL:" FieldName:@"TotalTheoPNL" SetColor:true];
-    
-    
+    //[UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Trade PNL:" FieldName:@"TradeTheoPNL" SetColor:true];
+    //[UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Yd PNL:" FieldName:@"YdTheoPNL" SetColor:true];
+    //[UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Total PNL:" FieldName:@"TotalTheoPNL" SetColor:true];
+
 
     NSLog(@"AssetViewController: SELECT: over!");
 }
@@ -349,7 +350,7 @@
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ATTradeEdge' or ItemType='ATTradeQty' or ItemType='AHTradeEdge' or ItemType='AHTradeQty' )"];
 
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ExecPNL' or ItemType='CloseTheoryPNL' or ItemType='CloseMarketPNL' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='PNL' and EntityType='A' )"];
 
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Edge' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='U' and (ItemType='LP' or ItemType='ChangePercentage') )"];
@@ -392,6 +393,7 @@
             continue;
         }
         
+
 
         if([_field[@"ItemType"] isEqualToString:@"OrderTradeRatio"])
         {
@@ -446,21 +448,40 @@
 
 
         //PNL
-        if([_field[@"ItemType"] isEqualToString:@"ExecPNL"])
+        if([_field[@"ItemKey"] isEqualToString:@"PNL"])
         {
-           [UIHelper DisplayCell:TableView Field:_field TitleName:@"Excersize PNL:" FieldName:@"ItemValue" SetColor:true];
-            continue;
+            if([_field[@"ItemType"] isEqualToString:@"ExecPNL"])
+            {
+                [UIHelper DisplayCell:TableView Field:_field TitleName:@"Excersize PNL:" FieldName:@"ItemValue" SetColor:true];
+                continue;
+            }
+            if([_field[@"ItemType"] isEqualToString:@"CloseTheoryPNL"])
+            {
+                [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Close PNL:" FieldName:@"ItemValue" SetColor:true];
+                continue;
+            }
+            if([_field[@"ItemType"] isEqualToString:@"CloseMarketPNL"])
+            {
+                [UIHelper DisplayCell:TableView Field:_field TitleName:@"Market Close PNL:" FieldName:@"ItemValue" SetColor:true];
+                continue;
+            }
+          
+    
+            if([_field[@"ItemType"] isEqualToString:@"YPNL_Mkt"])
+                [UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Yd PNL:" FieldName:@"ItemValue"    SetColor:true];
+            if([_field[@"ItemType"] isEqualToString:@"TradePNL_Mkt"])
+                [UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Trade PNL:" FieldName:@"ItemValue"     SetColor:true];
+            if([_field[@"ItemType"] isEqualToString:@"TotalPNL_Mkt"])
+                [UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Total PNL:" FieldName:@"ItemValue"     SetColor:true];
+            
+            if([_field[@"ItemType"] isEqualToString:@"YPNL_Theo"])
+                [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Yd PNL:" FieldName:@"ItemValue" SetColor:true];
+            if([_field[@"ItemType"] isEqualToString:@"TradePNL_Theo"])
+                [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Trade PNL:" FieldName:@"ItemValue"    SetColor:true];
+            if([_field[@"ItemType"] isEqualToString:@"TotalPNL_Theo"])
+                [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Total PNL:" FieldName:@"ItemValue"    SetColor:true];
         }
-        if([_field[@"ItemType"] isEqualToString:@"CloseTheoryPNL"])
-        {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Close PNL:" FieldName:@"ItemValue" SetColor:true];
-            continue;
-        }
-        if([_field[@"ItemType"] isEqualToString:@"CloseMarketPNL"])
-        {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Market Close PNL:" FieldName:@"ItemValue" SetColor:true];
-            continue;
-        }
+        
         
         
         //AvgEdge
