@@ -141,7 +141,7 @@ static OHMySQLQueryContext *_queryContext;
     TscConnection _con = [TscConnections getCurrentConnection];
     
     
-    //Connection不使用非DNS
+    //Connection不使用DNS
     if(_con.isUsingDNS == false)
     {
         return [self Connect];
@@ -151,21 +151,50 @@ static OHMySQLQueryContext *_queryContext;
     if([self Connect])
         return true;
     
-    //循环判断DNS
+
+    
+    //Array
     NSArray *DNSNames = [TscDNSs getDNSNames];
     NSArray *ConnectionKeys = [TscConnections getConnectionKeys];
+    
+    //循环判断DNS
     for (NSString *d in DNSNames)
     {
-        //循环判断Connection
-        for (NSString *c in ConnectionKeys)
+        [TscConnections SetCurrentConnection:(@"168")];
+        if([self TestConnect:d])
+        {
+            return true;
+        }
+        
+        
+        //循环判断Connection会退出，可能是超时
+        /*for (NSString *c in ConnectionKeys)
+        {
+            if([TscConnections getConnection:(c)].isUsingDNS == true)
+            {
+                [TscConnections SetCurrentConnection:(c)];
+                if([self TestConnect:d])
+                {
+                    return true;
+                }
+            }
+        }*/
+    }
+    
+    //连接不使用DNS的Connection
+    for (NSString *c in ConnectionKeys)
+    {
+        if([TscConnections getConnection:(c)].isUsingDNS == false)
         {
             [TscConnections SetCurrentConnection:c];
-            if([self TestConnect:d])
-            {
+            if([self Connect])
                 return true;
-            }
         }
     }
+    
+    //如果都连不通，设置为148
+    [TscConnections SetCurrentConnection:(@"148")];
+    
     return false;
 }
 
