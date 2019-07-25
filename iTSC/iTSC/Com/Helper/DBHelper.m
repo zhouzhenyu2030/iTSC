@@ -142,7 +142,7 @@ static OHMySQLQueryContext *_queryContext;
     
     
     //非DNS
-    if(_con.isUsingDNS==false)
+    if(_con.isUsingDNS == false)
     {
         return [self Connect];
     }
