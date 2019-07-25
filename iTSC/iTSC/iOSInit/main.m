@@ -21,7 +21,7 @@ int main(int argc, char * argv[]) {
         [TscDNSs Init];
         [TscConnections Init];
         
-        //[DBHelper SetAvailableDNS];
+ 
         
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
