@@ -160,7 +160,7 @@ static OHMySQLQueryContext *_queryContext;
     //循环判断DNS
     for (NSString *d in DNSNames)
     {
-        [TscConnections SetCurrentConnection:(@"168")];
+        //[TscConnections SetCurrentConnection:(@"168")];
         if([self TestConnect:d])
         {
             return true;
