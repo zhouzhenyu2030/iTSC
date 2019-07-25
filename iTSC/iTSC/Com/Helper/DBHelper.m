@@ -153,13 +153,19 @@ static OHMySQLQueryContext *_queryContext;
     
     //循环判断DNS
     NSArray *DNSNames = [TscDNSs getDNSNames];
-    for (NSString *c in DNSNames)
+    NSArray *ConnectionKeys = [TscConnections getConnectionKeys];
+    for (NSString *d in DNSNames)
     {
-        if([self TestConnect:c])
+        //循环判断Connection
+        for (NSString *c in ConnectionKeys)
         {
-            return true;
+            [TscConnections SetCurrentConnection:c];
+            if([self TestConnect:d])
+            {
+                return true;
+            }
         }
-     }
+    }
     return false;
 }
 

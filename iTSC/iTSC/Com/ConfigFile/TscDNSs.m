@@ -58,13 +58,6 @@ static NSString *_CurrentDNSName;
     _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
     [DNSs setObject:_dns_value forKey:_dns.Name];
     
-    //_dns.Name=@"kmdns";
-    //_dns.DNSString=@"zhouzhenyu2005.kmdns.net";
-    //_dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
-    //[DNSs setObject:_dns_value forKey:_dns.Name];
-    
-    
- 
     
     _dns.Name=@"f3322";
     _dns.DNSString=@"zhouzhenyu.f3322.net";
