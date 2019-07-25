@@ -141,7 +141,7 @@ static OHMySQLQueryContext *_queryContext;
     TscConnection _con = [TscConnections getCurrentConnection];
     
     
-    //非DNS
+    //Connection不使用非DNS
     if(_con.isUsingDNS == false)
     {
         return [self Connect];
