@@ -125,23 +125,21 @@
     [_linechartView clear];
     
     //最大最小值
-    NSArray* _xValueArr = xValueArr;// 设置x轴折线数据 （模拟数据）
-    NSArray* _yValueArr = yValueArr;// 设置y轴折线数据 （模拟数据）
+    NSArray* _xValueArr = xValueArr;// 设置x轴折线数据
+    NSArray* _yValueArr = yValueArr;// 设置y轴折线数据
     double _chart_YmaxValue = [[_yValueArr valueForKeyPath:@"@max.doubleValue"] doubleValue];   //最大值
     double _chart_YminValue = [[_yValueArr valueForKeyPath:@"@min.doubleValue"] doubleValue];  //最小值
-    if(_chart_YmaxValue<0.03&& (_chart_YminValue==_chart_YmaxValue))
-        _scale = 10;
-    else
-    {
-        if(_chart_YminValue==_chart_YmaxValue)
-            _scale = 2;
-        else
-            _scale = 1;
-    }
-    [self initLineChartViewWithLeftaxisMaxValue:_chart_YmaxValue MinValue:_chart_YminValue]; //引入
+    _scale = 1;
+ 
+    // zzy 避免最大/小值坐标不显示
+    _chart_YminValue = floor(_chart_YminValue*100) /100;
+    _chart_YmaxValue = ceil(_chart_YmaxValue*100) /100;
+
+    //设置 坐标轴 最大最小值
+    [self initLineChartViewWithLeftaxisMaxValue:_chart_YmaxValue MinValue:_chart_YminValue];
      
     //chartView设置X轴数据（日期）
-    if(_xValueArr.count>0)
+    if(_xValueArr.count > 0)
     {
         _linechartView.xAxis.axisMaximum = (double)xValueArr.count-1+0.3;
         _linechartView.xAxis.valueFormatter = [[ChartIndexAxisValueFormatter alloc]initWithValues:xValueArr];
@@ -218,6 +216,7 @@
     chartDataSet.valueFont = [UIFont systemFontOfSize:12];   //折线字体大小
     //chartDataSet.valueFormatter =  [[ChartIndexAxisValueFormatter alloc] initWithValues:statistics];//self; //需要遵循IChartValueFormatter协议
     chartDataSet.lineWidth = 1.0f;//折线宽度
+    chartDataSet.drawValuesEnabled=false;//折线不显示数值 zzy
     chartDataSet.valueColors = @[color]; //折线拐点处显示数据的颜色
     chartDataSet.drawCirclesEnabled = NO;//是否绘制拐点
     chartDataSet.axisDependency = AxisDependencyLeft; //轴线方向

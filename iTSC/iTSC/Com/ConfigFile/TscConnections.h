@@ -51,6 +51,8 @@ typedef struct
 +(NSString*) CurrentConnectionKey;
 +(NSString*) SetCurrentConnection:(NSString*) ConnectionKey;
 
++(void)sortedDictionary:(NSDictionary *)dict;
+
 @end
 
 

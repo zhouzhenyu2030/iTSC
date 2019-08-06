@@ -41,12 +41,6 @@
 - (IBAction)ButtonClick:(id)sender
 {
     [self QueryData];
-    
-    HADrawChartViewController *ctrl = [TscConst HADrawChartViewController];
-    //HADrawChartView *ctrl = [TscConst HADrawChartView];
-    
-    if(ctrl!=nil)
-        [ctrl initLineChartDataWithXvalueArr:xValueArr YvalueArr:yValueArr];
 }
 
 
@@ -91,13 +85,18 @@
         
         [xValueArr addObject:[_field[@"HisDate"] substringFromIndex:5]];
         float _value=[_field[_displayFieldName] doubleValue];
-        //_value=_value/100/100;  //zzy
+ 
         [yValueArr addObject:[NSString stringWithFormat:(@"%.4f"), _value]];
+        
+         //_value=_value/100/100;  //zzy
         //[yValueArr addObject:_field[@"Asset"]];
     }
 
     
-    
+    //设置Y坐标轴最大最小值
+    HADrawChartViewController *ctrl = [TscConst HADrawChartViewController];
+    if(ctrl!=nil)
+        [ctrl initLineChartDataWithXvalueArr:xValueArr YvalueArr:yValueArr];
 
 }
 
