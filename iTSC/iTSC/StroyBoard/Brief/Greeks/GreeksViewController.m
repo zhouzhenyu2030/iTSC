@@ -78,7 +78,7 @@
 {
     if([TscConfig isInBackground] == true) return;
     if([TscConfig isGlobalAutoRefresh] == false) return;
-    if([TscConfig isGreekAutoRefresh] == false) return;
+    //if([TscConfig isGreekAutoRefresh] == false) return;
     
     if(isTimerProcessing) return;
     

@@ -60,7 +60,7 @@ static NSString *_CurrentDNSName;
     
     
     _dns.Name=@"f3322";
-    _dns.DNSString=@"zhouzhenyu.f3322.net";
+    _dns.DNSString=@"cqgts.f3322.net";
     _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
     [DNSs setObject:_dns_value forKey:_dns.Name];
     
@@ -81,7 +81,17 @@ static NSString *_CurrentDNSName;
 ////////////////////////////////////// get DNS Names ///////////////////////////////////
 +(NSArray*) getDNSNames
 {
-    return [DNSs allKeys];
+    //将所有的key放进数组
+    NSArray *allKeyArray = [DNSs allKeys];
+    
+    //序列化器对数组进行排序的block 返回值为排序后的数组
+    NSArray *afterSortKeyArray = [allKeyArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id _Nonnull obj2) {
+        NSComparisonResult resuest = [obj1 compare:obj2];
+        return resuest;
+    }];
+   
+    //返回结果
+    return afterSortKeyArray;
 }
 
 
