@@ -35,8 +35,8 @@
 +(Boolean) isAssetAutoRefresh;
 +(void) setAssetAutoRefresh:(Boolean) vValue;
 
-+(Boolean) isGreekAutoRefresh;
-+(void) setGreekAutoRefresh:(Boolean) vValue;
+//+(Boolean) isGreekAutoRefresh;
+//+(void) setGreekAutoRefresh:(Boolean) vValue;
 
 +(Boolean) isTradeSumAutoRefresh;
 +(void) setTradeSumAutoRefresh:(Boolean) vValue;

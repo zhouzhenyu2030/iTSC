@@ -29,10 +29,7 @@
     isTimerProcessing = false;
 
     [self InitTableViewCells:true];
- 
-    Switch_AutoRefresh = [self AppendSwitch];
-    Switch_AutoRefresh.on = [TscConfig isGreekAutoRefresh];
-    
+   
     RefreshTimerElpasedSeconds = 0;
     if(myTimer==nil)
         myTimer  =  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
@@ -63,14 +60,6 @@
 }
 
 
-//AppendSwitch
--(UISwitch*) AppendSwitch
-{
-    UISwitch *_switch = [[UISwitch alloc] init];
-    [_switch addTarget:self action:@selector(SwitchChanged:) forControlEvents:UIControlEventValueChanged];
-    RefreshSwitchCell.accessoryView = _switch;
-    return _switch;
-}
 
 
 //定时器处理函数
@@ -78,7 +67,6 @@
 {
     if([TscConfig isInBackground] == true) return;
     if([TscConfig isGlobalAutoRefresh] == false) return;
-    //if([TscConfig isGreekAutoRefresh] == false) return;
     
     if(isTimerProcessing) return;
     
@@ -120,7 +108,7 @@
 //页面将要进入前台，开启定时器
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self SetTimerState];
+    [self StartTimer];
 }
 
 
@@ -131,22 +119,8 @@
 }
 
 
-//根据switch设定Timer启停
--(void) SetTimerState
-{
-    if ([Switch_AutoRefresh isOn])
-        [self StartTimer];
-    else
-        [self StopTimer];
-}
 
 
-//switch状态改变
--(void)SwitchChanged:(id)sender
-{
-    [self SetTimerState];
-    [TscConfig setGreekAutoRefresh:([Switch_AutoRefresh isOn])];
-}
 
 
 
@@ -217,8 +191,6 @@
     {
         cell = [UIHelper SetTabelViewCellText:TableView Section:10 Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
         RefreshCountCell = cell;
-        cell = [UIHelper SetTabelViewCellText:TableView Section:10 Row:1 TitleText:@"AutoRefresh:" DetialText:@""];
-        RefreshSwitchCell = cell;
     }
 }
 

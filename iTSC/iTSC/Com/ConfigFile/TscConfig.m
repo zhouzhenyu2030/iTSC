@@ -38,7 +38,7 @@ NSUserDefaults *_UserDefaults;
     //_RefreshSeconds=10;
     
     _isAssetAutoRefresh = [_UserDefaults boolForKey:@"isAssetAutoRefresh"];
-    _isGreekAutoRefresh = [_UserDefaults boolForKey:@"isGreekAutoRefresh"];
+//    _isGreekAutoRefresh = [_UserDefaults boolForKey:@"isGreekAutoRefresh"];
     _isTradeSumAutoRefresh = [_UserDefaults boolForKey:@"isTradeSumAutoRefresh"];
     _isPositionAutoRefresh = [_UserDefaults boolForKey:@"isPositionAutoRefresh"];
     _isPnlAutoRefresh = [_UserDefaults boolForKey:@"isPnlAutoRefresh"];
@@ -62,7 +62,7 @@ NSUserDefaults *_UserDefaults;
     _RefreshSeconds = 2;
     
     _isAssetAutoRefresh = false;
-    _isGreekAutoRefresh = false;
+//    _isGreekAutoRefresh = false;
     _isPnlAutoRefresh = false;
     _isTradeSumAutoRefresh = false;
     _isPositionAutoRefresh = false;
@@ -137,16 +137,16 @@ static Boolean _isAssetAutoRefresh;
 
 
 //GreekAutoRefresh
-static Boolean _isGreekAutoRefresh;
-+(Boolean) isGreekAutoRefresh
-{
-    return _isGreekAutoRefresh;
-}
-+(void) setGreekAutoRefresh:(Boolean) vValue
-{
-    _isGreekAutoRefresh = vValue;
-    [_UserDefaults setBool:(vValue) forKey:(@"isGreekAutoRefresh")];
-}
+//static Boolean _isGreekAutoRefresh;
+//+(Boolean) isGreekAutoRefresh
+//{
+//    return _isGreekAutoRefresh;
+//}
+//+(void) setGreekAutoRefresh:(Boolean) vValue
+//{
+//    _isGreekAutoRefresh = vValue;
+//    [_UserDefaults setBool:(vValue) forKey:(@"isGreekAutoRefresh")];
+//}
 
 
 //PNL AutoRefresh
