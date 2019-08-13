@@ -206,8 +206,15 @@
     //ReconnectDB
     if([indexPath section] == ReconnectDBSection && [indexPath row] == ReconnectDBRow)
     {
-        [DBHelper Reconnect];
-        UIAlertController * alertController=[UIHelper ShowMessage:@"Reconnect DB" Message:@"Reconnect DB is over."];
+        UIAlertController * alertController;
+        if([DBHelper Reconnect]==false)
+        {
+            alertController=[UIHelper ShowMessage:@"Reconnect DB" Message:@"Reconnect DB fail."];
+        }
+        else
+        {
+            alertController=[UIHelper ShowMessage:@"Reconnect DB" Message:@"Reconnect DB success."];
+        }
         [self presentViewController:alertController animated:YES completion:nil];
     }
   
@@ -217,12 +224,14 @@
         if([indexPath row]>=FirstDNSRow && [indexPath row]<=LastDNSRow)
         {
             [TscDNSs SetCurrentDNS:[TableView cellForRowAtIndexPath:indexPath].textLabel.text];
+            
             if([DBHelper Reconnect]==false)
             {
-                UIAlertController * alertController=[UIHelper ShowMessage:@"DNS Set." Message:@"DB Connect failed."];
+                UIAlertController * alertController;
+                alertController=[UIHelper ShowMessage:@"DNS Set." Message:@"DB Connect failed."];
                 [self presentViewController:alertController animated:YES completion:nil];
             }
-
+            
             if (indexPath != lastDNSIndexPath)
             {
                 [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;

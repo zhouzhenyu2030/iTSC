@@ -194,6 +194,7 @@ static OHMySQLQueryContext *_queryContext;
     
     //如果都连不通，设置为148
     [TscConnections SetCurrentConnection:(@"148")];
+    [TscDNSs SetCurrentDNS:(@"f3322")];
     
     return false;
 }
@@ -213,6 +214,8 @@ static OHMySQLQueryContext *_queryContext;
 +(void)Disconnect
 {
     [_coordinator disconnect];
+    _queryContext = nil;
+    _isConnected = false;
     NSLog(@"DBHelper: Init: Disconnected.");
 }
 

@@ -64,7 +64,14 @@ static NSString *_CurrentDNSName;
     _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
     [DNSs setObject:_dns_value forKey:_dns.Name];
     
-  
+    _dns.Name=@"cqgts.com";
+    _dns.DNSString=@"cqgts.com";
+    _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
+    [DNSs setObject:_dns_value forKey:_dns.Name];
+    
+    
+    
+    
     //_UserDefaults
     [self SetCurrentDNS:[_DNS_UserDefaults stringForKey:@"CurrentDNSName"]];
     
