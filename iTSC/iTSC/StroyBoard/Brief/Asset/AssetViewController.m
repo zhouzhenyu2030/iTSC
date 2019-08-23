@@ -200,10 +200,12 @@
 
     [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"Trade Edge:" DetialText:@"-" Color:UIColor.blueColor];
     [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"Trade Qty:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"AT Trade Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:3 TitleText:@"AT Trade Qty:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:4 TitleText:@"AH Trade Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:5 TitleText:@"AH Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"AQ Trade Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:3 TitleText:@"AQ Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:4 TitleText:@"AT Trade Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:5 TitleText:@"AT Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:6 TitleText:@"AH Trade Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:7 TitleText:@"AH Trade Qty:" DetialText:@"-"];
 
     
     [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Excersize PNL:" DetialText:@"-"];
@@ -348,7 +350,7 @@
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradePosRatio' or ItemType='OrderTradeRatio' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradeEdge' or ItemType='TradeQty' )"];
     
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ATTradeEdge' or ItemType='ATTradeQty' or ItemType='AHTradeEdge' or ItemType='AHTradeQty' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='AQTradeEdge' or ItemType='AQTradeQty' or ItemType='ATTradeEdge' or ItemType='ATTradeQty' or ItemType='AHTradeEdge' or ItemType='AHTradeQty' )"];
 
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='PNL' and EntityType='A' )"];
 
@@ -422,6 +424,16 @@
         if([_field[@"ItemType"] isEqualToString:@"TradeQty"])
         {
             [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Trade Qty:" FieldName:@"ItemValue"];
+            continue;
+        }
+        
+        if([_field[@"ItemType"] isEqualToString:@"AQTradeEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"AQ Trade Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }        if([_field[@"ItemType"] isEqualToString:@"AQTradeQty"])
+        {
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"AQ Trade Qty:" FieldName:@"ItemValue"];
             continue;
         }
         
