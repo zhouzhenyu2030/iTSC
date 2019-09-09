@@ -46,6 +46,9 @@
 {
     NSIndexPath *indexPath=[NSIndexPath indexPathForRow:vRowIndex inSection:vSectionIndex];
     UITableViewCell *cell = [vTableView cellForRowAtIndexPath:indexPath];
+     
+    cell.textLabel.font = [UIFont systemFontOfSize:12];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
     
     cell.detailTextLabel.textColor = UIColor.blackColor;
     

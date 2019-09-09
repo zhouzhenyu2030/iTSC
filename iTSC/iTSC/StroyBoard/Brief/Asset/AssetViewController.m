@@ -22,17 +22,16 @@
 @synthesize TableView;
 
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     RefreshCnt = 0;
     isTimerProcessing = false;
     
-    [self InitTableViewCells];
-    
     Switch_AutoRefresh = [self AppendSwitch];
     Switch_AutoRefresh.on = [TscConfig isAssetAutoRefresh];
+    
+    [self InitTableViewCells];
     
     RefreshTimerElpasedSeconds = 0;
     if(myTimer==nil)
@@ -73,7 +72,6 @@
 {
     UISwitch *_switch = [[UISwitch alloc] init];
     [_switch addTarget:self action:@selector(SwitchChanged:) forControlEvents:UIControlEventValueChanged];
-    RefreshSwitchCell.accessoryView = _switch;
     return _switch;
 }
 
@@ -156,20 +154,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////
 -(void) InitTableViewCells
 {
-     TableView.rowHeight = 18;
-    
-    [UIHelper ClearTabelViewCellText:TableView];
-    
+    TableView.rowHeight = 18;
     [self ResetTableViewCells];
-    
-    RefreshSwitchCell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:1 TitleText:@"AutoRefresh:" DetialText:@""];
-    
-}
+ }
 
 -(void) ResetTableViewCells
 {
     //hisAsset
-    
     [UIHelper SetTabelViewCellText:TableView Section:0 Row:0 TitleText:@"HisDate:" DetialText:@"-/-/-"];
     [UIHelper SetTabelViewCellText:TableView Section:0 Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
     
@@ -234,7 +225,8 @@
     
     //sys
     [UIHelper SetTabelViewCellText:TableView Section:9 Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
-
+    RefreshSwitchCell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:1 TitleText:@"AutoRefresh:" DetialText:@""];
+    RefreshSwitchCell.accessoryView = Switch_AutoRefresh;
 }
 
 
