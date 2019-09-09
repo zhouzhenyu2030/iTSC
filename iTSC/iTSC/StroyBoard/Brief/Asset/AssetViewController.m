@@ -196,7 +196,7 @@
     
     
     [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"TPR:" DetialText:@"-" Color:UIColor.magentaColor];
-    [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"OCR:" DetialText:@"-" Color:UIColor.greenColor];
+    [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"OCR:" DetialText:@"-" Color:UIColor.brownColor];
     [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"TOR(%):" DetialText:@"-" Color:UIColor.purpleColor];
     [UIHelper SetTabelViewCellText:TableView Section:4 Row:3 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blueColor];
     
@@ -209,7 +209,8 @@
     [UIHelper SetTabelViewCellText:TableView Section:5 Row:5 TitleText:@"AT Trade Qty:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:5 Row:6 TitleText:@"AH Trade Edge:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:5 Row:7 TitleText:@"AH Trade Qty:" DetialText:@"-"];
-    
+    [UIHelper SetTabelViewCellText:TableView Section:5 Row:8 TitleText:@"Order Cnt:" DetialText:@"-"];
+
     
     [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Excersize PNL:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"Market Close PNL:" DetialText:@"-"];
@@ -355,7 +356,7 @@
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Capital' and ItemType='TotalMargin' )"];
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradePosRatio' or ItemType='OrderTradeRatio' or ItemType='OCR' )"];
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradeEdge' or ItemType='TradeQty' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType=OrderInsertCnt or ItemType='TradeEdge' or ItemType='TradeQty' )"];
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='AQTradeEdge' or ItemType='AQTradeQty' or ItemType='ATTradeEdge' or ItemType='ATTradeQty' or ItemType='AHTradeEdge' or ItemType='AHTradeQty' )"];
 
@@ -468,6 +469,11 @@
         if([_field[@"ItemType"] isEqualToString:@"AHTradeQty"])
         {
             [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"AH Trade Qty:" FieldName:@"ItemValue"];
+            continue;
+        }
+        if([_field[@"ItemType"] isEqualToString:@"OrderInsertCnt"])
+        {
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Order Cnt:" FieldName:@"ItemValue"];
             continue;
         }
 

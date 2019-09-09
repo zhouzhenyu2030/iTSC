@@ -51,7 +51,7 @@ static NSString *_CurrentConnectionKey;
     //Connection
     TscConnection _con;
     
-    _con.Name=@"5-5";
+    _con.Name=@"6-5";
     _con.isUsingDNS=true;
     _con.IP=_dnsString;
     _con.Port=56053;
