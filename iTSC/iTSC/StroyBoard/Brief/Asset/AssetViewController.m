@@ -29,7 +29,7 @@
     RefreshCnt = 0;
     isTimerProcessing = false;
     
-    [self InitTableViewCells:true];
+    [self InitTableViewCells];
     
     Switch_AutoRefresh = [self AppendSwitch];
     Switch_AutoRefresh.on = [TscConfig isAssetAutoRefresh];
@@ -53,8 +53,7 @@
 // 下拉刷新触发
 - (void)refreshClick:(UIRefreshControl *)refreshControl
 {
-    [self InitTableViewCells:true];
-    RefreshCountCell.detailTextLabel.text=@"0";
+    [self ResetTableViewCells];
     RefreshCnt = 1;
     [self QueryAndDisplay];
     [self.TableView reloadData];
@@ -152,37 +151,38 @@
 
 
 
-////////////////////////////////////////////////////////////////////////////////////
--(void) InitTableViewCells:(BOOL)vInitAll
+////////////////////////////////////////////////////////////////////////////////////////////
+// InitTableViewCells
+////////////////////////////////////////////////////////////////////////////////////////////
+-(void) InitTableViewCells
 {
-    if(vInitAll)
-        [UIHelper ClearTabelViewCellText:TableView];
-
-    UITableViewCell *cell;
-
-
-    //hisAsset
-    if(vInitAll)
-    {
-        [UIHelper SetTabelViewCellText:TableView Section:0 Row:0 TitleText:@"HisDate:" DetialText:@"-/-/-"];
-        [UIHelper SetTabelViewCellText:TableView Section:0 Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
-        
-        [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"Risk Level (%):" DetialText:@"-" Color:UIColor.magentaColor];
-        [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"NV (Theory):" DetialText:@"-"];
-        [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Asset (Market):" DetialText:@"-"];
-        [UIHelper SetTabelViewCellText:TableView Section:1 Row:3 TitleText:@"Asset (Theory):" DetialText:@"-"];
-        [UIHelper SetTabelViewCellText:TableView Section:1 Row:4 TitleText:@"Asset Dif (Market-Theory):" DetialText:@"-"];
-        [UIHelper SetTabelViewCellText:TableView Section:1 Row:5 TitleText:@"Available:" DetialText:@"-" Color:UIColor.brownColor];
-        [UIHelper SetTabelViewCellText:TableView Section:1 Row:6 TitleText:@"Curr Margin:" DetialText:@"-"];
-        
-        
-        
-    }
+    [UIHelper ClearTabelViewCellText:TableView];
     
+    [self ResetTableViewCells];
+    
+    RefreshSwitchCell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:1 TitleText:@"AutoRefresh:" DetialText:@""];
+    
+}
 
+-(void) ResetTableViewCells
+{
+    //hisAsset
+    
+    [UIHelper SetTabelViewCellText:TableView Section:0 Row:0 TitleText:@"HisDate:" DetialText:@"-/-/-"];
+    [UIHelper SetTabelViewCellText:TableView Section:0 Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
+    
+    [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"Risk Level (%):" DetialText:@"-" Color:UIColor.magentaColor];
+    [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"NV (Theory):" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Asset (Market):" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:1 Row:3 TitleText:@"Asset (Theory):" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:1 Row:4 TitleText:@"Asset Dif (Market-Theory):" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:1 Row:5 TitleText:@"Available:" DetialText:@"-" Color:UIColor.brownColor];
+    [UIHelper SetTabelViewCellText:TableView Section:1 Row:6 TitleText:@"Curr Margin:" DetialText:@"-"];
+    
     
     //Runtimeinfo
     [UIHelper SetTabelViewCellText:TableView Section:1 Row:7 TitleText:@"Total Margin:" DetialText:@"-"];
+    
     
     [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"Marktet Trade PNL:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Marktet Yd PNL:" DetialText:@"-"];
@@ -191,13 +191,14 @@
     [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"Theo Trade PNL:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:3 Row:1 TitleText:@"Theo Yd PNL:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:3 Row:2 TitleText:@"Theo Total PNL:" DetialText:@"-"];
-
-
+    
+    
     [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"TPR:" DetialText:@"-" Color:UIColor.magentaColor];
-    [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"TOR(%):" DetialText:@"-" Color:UIColor.purpleColor];
-    [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blueColor];
-
-
+    [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"OCR:" DetialText:@"-" Color:UIColor.greenColor];
+    [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"TOR(%):" DetialText:@"-" Color:UIColor.purpleColor];
+    [UIHelper SetTabelViewCellText:TableView Section:4 Row:3 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blueColor];
+    
+    
     [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"Trade Edge:" DetialText:@"-" Color:UIColor.blueColor];
     [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"Trade Qty:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"AQ Trade Edge:" DetialText:@"-"];
@@ -206,12 +207,13 @@
     [UIHelper SetTabelViewCellText:TableView Section:5 Row:5 TitleText:@"AT Trade Qty:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:5 Row:6 TitleText:@"AH Trade Edge:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:5 Row:7 TitleText:@"AH Trade Qty:" DetialText:@"-"];
-
+    
     
     [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Excersize PNL:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"Market Close PNL:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:6 Row:2 TitleText:@"Theo Close PNL:" DetialText:@"-"];
-
+    
+    
     [UIHelper SetTabelViewCellText:TableView Section:7 Row:0 TitleText:@"U %:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:7 Row:1 TitleText:@"Smoothed Basis:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:7 Row:2 TitleText:@"Smoothed Vol:" DetialText:@"-" Color:UIColor.blueColor];
@@ -219,34 +221,36 @@
     [UIHelper SetTabelViewCellText:TableView Section:7 Row:4 TitleText:@"Positive Avg Edge:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:7 Row:5 TitleText:@"Negative Avg Edge:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:7 Row:6 TitleText:@"U LP:" DetialText:@"-"];
-
+    
     
     [UIHelper SetTabelViewCellText:TableView Section:8 Row:0 TitleText:@"Server ID:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:8 Row:1 TitleText:@"MD Time:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:8 Row:2 TitleText:@"MD Date:" DetialText:@"-"];
-    
-    if(vInitAll)
-    {
-        [UIHelper SetTabelViewCellText:TableView Section:8 Row:3 TitleText:@"AccountID:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:8 Row:3 TitleText:@"AccountID:" DetialText:@"-"];
 
-        cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
-        RefreshCountCell = cell;
-        cell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:1 TitleText:@"AutoRefresh:" DetialText:@""];
-        RefreshSwitchCell = cell;
-    }
     
+    //sys
+    [UIHelper SetTabelViewCellText:TableView Section:9 Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
 
 }
 
 
 
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
 //查询，在此获取数据
+////////////////////////////////////////////////////////////////////////////////////////////
 - (void)QueryAndDisplay
 {
-    NSLog(@"AssetViewController: start!");
+    //NSLog(@"AssetViewController: start!");
     
-    RefreshCountCell.detailTextLabel.text=[NSString stringWithFormat:@"%d", RefreshCnt];
-    NSLog(@"AssetViewController: RefreshCnt=%d", RefreshCnt);
+    //重置原显示
+    [self ResetTableViewCells];
+
+    //RefreshCnt
+    [UIHelper SetTabelViewCellDetailText:TableView TitleText:@"RefreshCount:" DetialText:[NSString stringWithFormat:@"%d", RefreshCnt]];
+    //NSLog(@"AssetViewController: RefreshCnt=%d", RefreshCnt);
     
     //Display
     [self _DisplayHisAsset];
@@ -260,7 +264,12 @@
 }
 
 
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
 //_DisplayHisAsset
+////////////////////////////////////////////////////////////////////////////////////////////
 -(void) _DisplayHisAsset
 {
     OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
@@ -270,7 +279,7 @@
         return;
     }
     
-    NSLog(@"AssetViewController: SELECT: start!");
+    //NSLog(@"AssetViewController: SELECT: start!");
     
     //SELECT
     NSString* _condstr = [TscConnections getCurrentConnection].AccountID;
@@ -281,7 +290,7 @@
     
     
     NSUInteger count = tasks.count;
-    NSLog(@"%@", [tasks objectAtIndex:count-1]);
+    //NSLog(@"%@", [tasks objectAtIndex:count-1]);
     if(count<=0)
         return;
     
@@ -315,20 +324,16 @@
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Risk Level (%):" DetialText:_sValue];
     
     
-    //[UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Trade PNL:" FieldName:@"TradeMktPNL" SetColor:true];
-    //[UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Yd PNL:" FieldName:@"YdMktPNL" SetColor:true];
-    //[UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Total PNL:" FieldName:@"TotalMktPNL" SetColor:true];
-    
-    //[UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Trade PNL:" FieldName:@"TradeTheoPNL" SetColor:true];
-    //[UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Yd PNL:" FieldName:@"YdTheoPNL" SetColor:true];
-    //[UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Total PNL:" FieldName:@"TotalTheoPNL" SetColor:true];
-
-
-    NSLog(@"AssetViewController: SELECT: over!");
+    //NSLog(@"AssetViewController: SELECT: over!");
 }
 
 
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
 //_DisplayRuntimeInfo
+////////////////////////////////////////////////////////////////////////////////////////////
 -(void) _DisplayRuntimeInfo
 {
  
@@ -347,7 +352,7 @@
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Capital' and ItemType='TotalMargin' )"];
     
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradePosRatio' or ItemType='OrderTradeRatio' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradePosRatio' or ItemType='OrderTradeRatio' or ItemType='OCR' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradeEdge' or ItemType='TradeQty' )"];
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='AQTradeEdge' or ItemType='AQTradeQty' or ItemType='ATTradeEdge' or ItemType='ATTradeQty' or ItemType='AHTradeEdge' or ItemType='AHTradeQty' )"];
@@ -368,9 +373,7 @@
     NSError *error = nil;
     NSArray *tasks = [_queryContext executeQueryRequestAndFetchResult:query error:&error];
     
-    //清除原显示
-    [self InitTableViewCells:false];
-    
+ 
     NSInteger count = tasks.count;
     if(count <= 0)
         return;
@@ -385,10 +388,11 @@
     for( int i=0; i<count; i++)
     {
         _field=[tasks objectAtIndex:i];
-        NSLog(@"%@", _field);
+        //NSLog(@"%@", _field);
         
         
 
+        //Margin
         if([_field[@"ItemType"] isEqualToString:@"TotalMargin"])
         {
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total Margin:" FieldName:@"ItemValue" SetColor:false];
@@ -397,11 +401,17 @@
         
 
 
+        //Ratio
         if([_field[@"ItemType"] isEqualToString:@"OrderTradeRatio"])
         {
             _fValue=[_field[@"ItemValue"] floatValue]*100;
             value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
             [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"TOR(%):" DetialText:value];
+            continue;
+        }
+        if([_field[@"ItemType"] isEqualToString:@"OCR"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"OCR:" FieldName:@"ItemValue" SetColor:false];
             continue;
         }
         if([_field[@"ItemType"] isEqualToString:@"TradePosRatio"])
@@ -416,6 +426,7 @@
         }
         
         
+        //Trade
         if([_field[@"ItemType"] isEqualToString:@"TradeEdge"])
         {
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"Trade Edge:" FieldName:@"ItemValue" SetColor:true];

@@ -192,8 +192,8 @@ static OHMySQLQueryContext *_queryContext;
         }
     }
     
-    //如果都连不通，设置为148
-    [TscConnections SetCurrentConnection:(@"148")];
+    //如果都连不通，设置为none
+    [TscConnections SetCurrentConnection:(@"none")];
     [TscDNSs SetCurrentDNS:(@"f3322")];
     
     return false;
