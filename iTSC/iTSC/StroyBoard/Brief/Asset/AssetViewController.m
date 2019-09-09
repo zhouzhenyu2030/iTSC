@@ -355,8 +355,10 @@
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Capital' and ItemType='TotalMargin' )"];
     
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='OrderInsertCnt' )"];
+    
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradePosRatio' or ItemType='OrderTradeRatio' or ItemType='OCR' )"];
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemType=OrderInsertCnt or ItemType='TradeEdge' or ItemType='TradeQty' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradeEdge' or ItemType='TradeQty' )"];
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='AQTradeEdge' or ItemType='AQTradeQty' or ItemType='ATTradeEdge' or ItemType='ATTradeQty' or ItemType='AHTradeEdge' or ItemType='AHTradeQty' )"];
 
@@ -422,11 +424,15 @@
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"TPR:" FieldName:@"ItemValue" SetColor:false];
             continue;
         }
+        
+        
+        //Position
         if([_field[@"ItemType"] isEqualToString:@"Position"])
         {
             [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Position:" FieldName:@"ItemValue"];
             continue;
         }
+        
         
         
         //Trade
@@ -471,6 +477,9 @@
             [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"AH Trade Qty:" FieldName:@"ItemValue"];
             continue;
         }
+        
+        
+        //Order
         if([_field[@"ItemType"] isEqualToString:@"OrderInsertCnt"])
         {
             [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Order Cnt:" FieldName:@"ItemValue"];
