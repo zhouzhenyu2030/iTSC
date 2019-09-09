@@ -196,7 +196,7 @@
     
     
     [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"TPR:" DetialText:@"-" Color:UIColor.magentaColor];
-    [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"OCR:" DetialText:@"-" Color:UIColor.brownColor];
+    [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"OCR:" DetialText:@"-" Color:UIColor.orangeColor];
     [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"TOR(%):" DetialText:@"-" Color:UIColor.purpleColor];
     [UIHelper SetTabelViewCellText:TableView Section:4 Row:3 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blueColor];
     
