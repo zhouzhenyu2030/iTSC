@@ -39,7 +39,7 @@
         myTimer  =  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
     
     [self setupRefresh];
-    TableView.rowHeight = 18;
+
 }
 
 // 设置下拉刷新
@@ -156,6 +156,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////
 -(void) InitTableViewCells
 {
+     TableView.rowHeight = 18;
+    
     [UIHelper ClearTabelViewCellText:TableView];
     
     [self ResetTableViewCells];
