@@ -81,7 +81,7 @@
 {
     if([TscConfig isInBackground] == true) return;
     if([TscConfig isGlobalAutoRefresh] == false) return;
-    if([TscConfig isAssetAutoRefresh] == false) return;
+    //if([TscConfig isAssetAutoRefresh] == false) return;
     
     if(isTimerProcessing) return;
     
@@ -225,8 +225,8 @@
     
     //sys
     [UIHelper SetTabelViewCellText:TableView Section:9 Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
-    RefreshSwitchCell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:1 TitleText:@"AutoRefresh:" DetialText:@""];
-    RefreshSwitchCell.accessoryView = Switch_AutoRefresh;
+    //RefreshSwitchCell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:1 TitleText:@"AutoRefresh:" DetialText:@""];
+    //RefreshSwitchCell.accessoryView = Switch_AutoRefresh;
 }
 
 

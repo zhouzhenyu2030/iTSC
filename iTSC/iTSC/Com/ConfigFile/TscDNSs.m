@@ -23,7 +23,7 @@ NSValue *_dns_value = nil;
 //DNS
 static NSMutableDictionary *DNSs;
 static NSString *_CurrentDNSName;
-
+static TscDNS _DefautlDNS;
 
 
 ///////////////////////////////////// init /////////////////////////////////////
@@ -32,6 +32,7 @@ static NSString *_CurrentDNSName;
 {
     _DNS_UserDefaults = [NSUserDefaults standardUserDefaults];
     
+ 
     DNSs= [[NSMutableDictionary alloc]init];
     [self initDNSs];
 }
@@ -46,28 +47,33 @@ static NSString *_CurrentDNSName;
     //DNS
     TscDNS _dns;
     
+
+    _dns.Name=@"cqgts.com";
+    _dns.DNSString=@"cqgts.com";
+    _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
+    [DNSs setObject:_dns_value forKey:_dns.Name];
+    
+    _DefautlDNS = _dns;
+    
+    
+    _dns.Name=@"cqgfn.com";
+    _dns.DNSString=@"cqgfn.com";
+    _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
+    [DNSs setObject:_dns_value forKey:_dns.Name];
+    
+    
     
     _dns.Name=@"myds";
     _dns.DNSString=@"cqg.myds.me";
     _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
     [DNSs setObject:_dns_value forKey:_dns.Name];
     
-    
-    _dns.Name=@"imwork";
-    _dns.DNSString=@"zhouzhenyu.imwork.net";
-    _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
-    [DNSs setObject:_dns_value forKey:_dns.Name];
-    
-    
     _dns.Name=@"f3322";
     _dns.DNSString=@"cqgts.f3322.net";
     _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
     [DNSs setObject:_dns_value forKey:_dns.Name];
     
-    _dns.Name=@"cqgts.com";
-    _dns.DNSString=@"cqgts.com";
-    _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
-    [DNSs setObject:_dns_value forKey:_dns.Name];
+  
     
     
     
@@ -116,8 +122,7 @@ static NSString *_CurrentDNSName;
     }
     else
     {
-        _dns.Name=@"imwork";
-        _dns.DNSString=@"zhouzhenyu.imwork.net";
+        _dns=_DefautlDNS;
         NSLog(@"TscConnections: getDNS: not Found, return Defautl. vName=%@, DNS= %@",vName, _dns.DNSString);
     }
     
@@ -161,8 +166,7 @@ static NSString *_CurrentDNSName;
     }
     else
     {
-        _dns.Name=@"myds";
-        _dns.DNSString=@"cqg.myds.me";
+        _dns=_DefautlDNS;
         NSLog(@"TscConnections: getDNS: not Found, return Defautl. vName=%@, DNS= %@",_CurrentDNSName, _dns.DNSString);
     }
     
@@ -182,7 +186,7 @@ static NSString *_CurrentDNSName;
 {
     if(vDNSName == nil)
     {
-       _CurrentDNSName = @"myds";
+       _CurrentDNSName = @"cqgts.com";
     }
     else
     {
