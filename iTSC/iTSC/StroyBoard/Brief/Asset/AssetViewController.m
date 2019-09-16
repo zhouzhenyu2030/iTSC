@@ -119,7 +119,8 @@
 //页面将要进入前台，开启定时器
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self SetTimerState];
+    //[self SetTimerState];
+    [self StartTimer];
 }
 
 
@@ -131,22 +132,25 @@
 
 
 //根据switch设定Timer启停
--(void) SetTimerState
+/*
+ -(void) SetTimerState
 {
     if ([Switch_AutoRefresh isOn])
         [self StartTimer];
     else
         [self StopTimer];
 }
+*/
 
 
 //switch状态改变
+/*
 -(void)SwitchChanged:(id)sender
 {
     [self SetTimerState];
     [TscConfig setAssetAutoRefresh:([Switch_AutoRefresh isOn])];
 }
-
+*/
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////
