@@ -51,10 +51,10 @@ static NSString *_CurrentConnectionKey;
     //Connection
     TscConnection _con;
     
-    _con.Name=@"6-5";
+    _con.Name=@"7-2";
     _con.isUsingDNS=true;
     _con.IP=_dnsString;
-    _con.Port=56053;
+    _con.Port=57053;
     _con.UserName=@"root";
     _con.UserPassword=@"z";
     _con.dbName=@"tss";
