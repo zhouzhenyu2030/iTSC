@@ -47,14 +47,18 @@ static TscDNS _DefautlDNS;
     //DNS
     TscDNS _dns;
     
-
+    _dns.Name=@"119.136.25.68";
+    _dns.DNSString=@"119.136.25.68";
+    _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
+    [DNSs setObject:_dns_value forKey:_dns.Name];
+    _DefautlDNS = _dns;
+    
     _dns.Name=@"cqgts.com";
     _dns.DNSString=@"cqgts.com";
     _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
     [DNSs setObject:_dns_value forKey:_dns.Name];
     
-    _DefautlDNS = _dns;
-    
+
     
     //_dns.Name=@"cqgfn.com";
     //_dns.DNSString=@"cqgfn.com";
