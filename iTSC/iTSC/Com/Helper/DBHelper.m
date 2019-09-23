@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DBHelper.h"
+#import "UIHelper.h"
 #import "TscConnections.h"
 
 
@@ -30,19 +31,31 @@ static OHMySQLQueryContext *_queryContext;
 
 
 ///////////////////////// function /////////////////////////
-+(bool)Connect
+
+//Ping
++(OHResultErrorType)PingSQL:(bool)visInit
 {
-    //NSLog(@"DBHelper: Connect: start.");
-    if(_isConnected == true)
+    //
+    if(visInit)
     {
-        NSLog(@"DBHelper: Connect: isConnected == true!");
-        return true;
+        //SetCoordinator
+        _coordinator = nil;
+        _queryContext = nil;
+        if([self SetCoordinator]==false)
+            return -8888;
     }
-    
-    //Init
-    _coordinator = nil;
-    _queryContext = nil;
-    
+    if(_coordinator == nil)
+    {
+        return -9999;
+    }
+ 
+    //ping    
+    return [_coordinator pingMySQL];
+}
+
+//SetCoordinator
++(bool)SetCoordinator
+{
     TscConnection _con = [TscConnections getCurrentConnection];
     NSLog(@"DBHelper: TestConnect: TscConnection = %@", _con.Name);
     
@@ -76,7 +89,7 @@ static OHMySQLQueryContext *_queryContext;
     
     //coordinator
     _coordinator = [[OHMySQLStoreCoordinator alloc] initWithUser:_user];
-    if(_coordinator==nil)
+    if(_coordinator == nil)
     {
         NSLog(@"DBHelper: TestConnect: _coordinator==nil!");
         return false;
@@ -84,6 +97,30 @@ static OHMySQLQueryContext *_queryContext;
     NSLog(@"DBHelper: TestConnect: _coordinator is Created!");
     
     
+    return true;
+    
+}
+
+//Connect
++(bool)Connect
+{
+    //NSLog(@"DBHelper: Connect: start.");
+    if(_isConnected == true)
+    {
+        NSLog(@"DBHelper: Connect: isConnected == true!");
+        return true;
+    }
+    
+    //Init
+    _coordinator = nil;
+    _queryContext = nil;
+    
+ 
+    //SetCoordinator
+    if([self SetCoordinator]==false)
+        return false;
+    
+
     //connect
     [_coordinator connect];
     NSLog(@"DBHelper: TestConnect: _coordinator is connecting!");
@@ -95,13 +132,7 @@ static OHMySQLQueryContext *_queryContext;
     NSLog(@"DBHelper: TestConnect: connected.");
     
     
-    //pingMySQL
-    OHResultErrorType _ret = [_coordinator pingMySQL];
-    if(_ret!=OHResultErrorTypeNone)
-    {
-        NSLog(@"DBHelper: TestConnect: _coordinator pingMySQL error! _ret=%d", (int)_ret);
-        return false;
-    }
+ 
     
     //Query Context
     _queryContext = [OHMySQLQueryContext new];

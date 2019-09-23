@@ -162,6 +162,17 @@
     return alertController;
 }
 
++(UIAlertController *) GenAlertController:(NSString*)vMessage
+{
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"iTSC" message:vMessage preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"OK Action");
+    }];
+    [alertController addAction:okAction];
+    return alertController;
+}
+
 +(UIAlertController *) ShowAlert:(NSString*) vTitle Message:(NSString*)vMessage
 {
     //(UITableViewController*) vViewontroller Title:

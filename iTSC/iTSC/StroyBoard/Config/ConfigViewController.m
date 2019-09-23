@@ -130,12 +130,18 @@
     RefreshSecondsSection=_SectionIndex; RefreshSecondsRow=0;
     [UIHelper SetTabelViewCellText:TableView Section:(int)RefreshSecondsSection Row:(int)RefreshSecondsRow TitleText:@"Refresh Seconds:" DetialText:[NSString stringWithFormat:@"%d", (int)[TscConfig RefreshSeconds]]];
     
-    ReconnectDBSection=_SectionIndex; ReconnectDBRow=1;
+    
+    PingDBSection=_SectionIndex; PingDBRow=1;
+    cell=[UIHelper SetTabelViewCellText:TableView Section:(int)PingDBSection Row:(int)PingDBRow TitleText:@"Ping DB" DetialText:@""];
+    cell.textLabel.textColor = UIColor.blueColor;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    
+    ReconnectDBSection=_SectionIndex; ReconnectDBRow=2;
     cell=[UIHelper SetTabelViewCellText:TableView Section:(int)ReconnectDBSection Row:(int)ReconnectDBRow TitleText:@"Reconnect DB" DetialText:@""];
     cell.textLabel.textColor = UIColor.blueColor;
     cell.accessoryType = UITableViewCellAccessoryNone;
     
-    ClearRunTimeInfoTalbeSection=_SectionIndex; ClearRunTimeInfoTalbeRow=2;
+    ClearRunTimeInfoTalbeSection=_SectionIndex; ClearRunTimeInfoTalbeRow=3;
     cell=[UIHelper SetTabelViewCellText:TableView Section:(int)ClearRunTimeInfoTalbeSection Row:(int)ClearRunTimeInfoTalbeRow TitleText:@"Clear RunTimeInfo Table" DetialText:@""];
     cell.textLabel.textColor = UIColor.blueColor;
     cell.accessoryType = UITableViewCellAccessoryNone;
@@ -195,6 +201,7 @@
 ////////////////////////////////////////// didSelectRowAtIndexPath //////////////////////////////////////////
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UIAlertController * alertController;
     
     //RefreshSeconds
     if([indexPath section] == RefreshSecondsSection && [indexPath row] == RefreshSecondsRow)
@@ -203,10 +210,45 @@
         [UIHelper SetTabelViewCellText:TableView Section:(int)RefreshSecondsSection Row:(int)RefreshSecondsRow TitleText:@"Refresh Seconds:" DetialText:[NSString stringWithFormat:@"%d", (int)[TscConfig RefreshSeconds]]];
     }
  
+    //PingDB
+    if([indexPath section] == PingDBSection && [indexPath row] == PingDBRow)
+    {
+        OHResultErrorType ret = [DBHelper PingSQL:true];
+        NSString* msg=[NSString stringWithFormat: @"Ping Error. %d ", (int)ret];
+        switch (ret)
+        {
+            case -8888:
+                alertController=[UIHelper GenAlertController:[msg stringByAppendingString:@"coordinator init error."]];
+                break;
+            case -9999:
+                alertController=[UIHelper GenAlertController:[msg stringByAppendingString:@"coordinator=nil!"]];
+                break;
+            case OHResultErrorTypeNone:
+                alertController=[UIHelper GenAlertController:@"Ping is Success."];
+                break;
+            case OHResultErrorTypeSync:
+                alertController=[UIHelper GenAlertController:[msg stringByAppendingString:@"Commands were executed in an improper order."]];
+                break;
+            case OHResultErrorTypeGone:
+               alertController=[UIHelper GenAlertController:[msg stringByAppendingString:@"The MySQL server has gone away."]];
+                break;
+            case OHResultErrorTypeLost:
+               alertController=[UIHelper GenAlertController:[msg stringByAppendingString:@"The connection to the server was lost during the query."]];
+                break;
+            case OHResultErrorTypeUnknown:
+                  alertController=[UIHelper GenAlertController:[msg stringByAppendingString:@"An unknown error occurred."]];
+                break;
+            default:
+                alertController=[UIHelper GenAlertController:[msg stringByAppendingString:@"Unknown."]];
+                break;
+        }
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+    
     //ReconnectDB
     if([indexPath section] == ReconnectDBSection && [indexPath row] == ReconnectDBRow)
     {
-        UIAlertController * alertController;
+        
         if([DBHelper Reconnect]==false)
         {
             alertController=[UIHelper ShowMessage:@"Reconnect DB" Message:@"Reconnect DB fail."];

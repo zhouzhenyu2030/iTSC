@@ -28,6 +28,8 @@
 
 //function
 +(bool)SetAvailableDNS;
++(bool)SetCoordinator;
++(OHResultErrorType)PingSQL:(bool)visInit;
 +(bool)Connect;
 +(bool)TestConnect:(NSString*)vDNSString;
 +(bool)Reconnect;
