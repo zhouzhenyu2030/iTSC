@@ -56,22 +56,22 @@ static TscDNS _DefautlDNS;
     _DefautlDNS = _dns;
     
     
-    _dns.Name=@"cqgfn.com";
-    _dns.DNSString=@"cqgfn.com";
-    _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
-    [DNSs setObject:_dns_value forKey:_dns.Name];
+    //_dns.Name=@"cqgfn.com";
+    //_dns.DNSString=@"cqgfn.com";
+    //_dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
+    //[DNSs setObject:_dns_value forKey:_dns.Name];
     
     
     
-    _dns.Name=@"myds";
-    _dns.DNSString=@"cqg.myds.me";
-    _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
-    [DNSs setObject:_dns_value forKey:_dns.Name];
+    //_dns.Name=@"myds";
+    //_dns.DNSString=@"cqg.myds.me";
+    //_dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
+    //[DNSs setObject:_dns_value forKey:_dns.Name];
     
-    _dns.Name=@"f3322";
-    _dns.DNSString=@"cqgts.f3322.net";
-    _dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
-    [DNSs setObject:_dns_value forKey:_dns.Name];
+    //_dns.Name=@"f3322";
+    //_dns.DNSString=@"cqgts.f3322.net";
+    //_dns_value = [NSValue valueWithBytes:&_dns objCType:@encode(TscDNS)];
+    //[DNSs setObject:_dns_value forKey:_dns.Name];
     
   
     
