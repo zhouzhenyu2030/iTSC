@@ -88,10 +88,10 @@ static int _ret;
     
     //_try_connect
     NSLog(@"NetHelper: TestServerReachability: testing...");
-    //_ret = [self _try_connect];
+    _ret = [self _block_connect];
+    //_ret = [self _try_connect];_block_connect
     //NSLog(@"NetHelper: TestServerReachability: _try_connect: _ret = %d", _ret);
-    _ret = connect(_sockfd, (struct sockaddr*)&addr_server, addr_server.sin_len);
-    NSLog(@"NetHelper: TestServerReachability: connect: _ret = %d", _ret);
+
     
     //close
     close(_sockfd);
@@ -102,7 +102,7 @@ static int _ret;
 
 
 
-+(int)_try_connect
++(int)_nonblock_connect
 {
     //设置非阻塞模式
     
@@ -162,6 +162,31 @@ static int _ret;
         }
     }
     return n;
+}
+
+
++(int)_block_connect
+{
+    //设置tcp超时
+    int _secs=(int)[TscConfig ConnectionTimeOutSeconds];
+    struct timeval timeo = {_secs, 0};   //{0,200000};//你想设置的超时时间 {tv_sec, tv_usec}
+    int err = setsockopt(_sockfd, SOL_SOCKET, SO_RCVTIMEO, &timeo, sizeof(timeo));
+    if (err)
+    {
+        NSLog(@"SO_RCVTIMEO: 设置超时失败");
+    }
+    err = setsockopt(_sockfd, SOL_SOCKET, SO_SNDTIMEO, &timeo, sizeof(timeo));
+    if (err)
+    {
+        NSLog(@"SO_SNDTIMEO: 设置超时失败");
+    }
+    NSLog(@"NetHelper: TestServerReachability: ConnectionTimeOutSeconds=%d",_secs);
+    
+    
+    //connect
+    _ret = connect(_sockfd, (struct sockaddr*)&addr_server, addr_server.sin_len);
+    NSLog(@"NetHelper: TestServerReachability: block_connect: _ret = %d", _ret);
+    return _ret;
 }
 
 

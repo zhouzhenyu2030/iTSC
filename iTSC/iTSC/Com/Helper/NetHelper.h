@@ -19,7 +19,8 @@
 
 +(bool)SetAvailableDNS;
 
-+(int)_try_connect;
++(int)_block_connect;
++(int)_nonblock_connect;
 
 @end
 
