@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "DBHelper.h"
 #import "TscConfig.h"
+#import "UIHelper.h"
 
 
 @interface AppDelegate ()

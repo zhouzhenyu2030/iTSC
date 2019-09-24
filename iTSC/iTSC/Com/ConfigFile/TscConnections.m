@@ -85,7 +85,7 @@ static NSString *_CurrentConnectionKey;
     _con.Name=@"6-8";
     _con.isUsingDNS=true;
     _con.IP=_dnsString;
-    _con.Port=56083;
+    _con.Port=56000; //56083;
     _con.UserName=@"root";
     _con.UserPassword=@"z";
     _con.dbName=@"tss";
@@ -154,7 +154,7 @@ static NSString *_CurrentConnectionKey;
     TscConnection _con;
     _con_value = [Connections objectForKey:vName];
     [_con_value getValue:&_con];
-    NSLog(@"key: %@,value: %@", vName, _con_value);
+    //NSLog(@"key: %@,value: %@", vName, _con_value);
     return _con;
 }
 +(TscConnection) getCurrentConnection
@@ -297,7 +297,7 @@ static NSString *_CurrentConnectionKey;
             TscConnection _con = [self getConnection:vConnectionKey];
             _CurrentConnectionKey = _con.Name;
             [_con_UserDefaults setValue:_CurrentConnectionKey forKey:(@"CurrentConnectionKey")];
-            [DBHelper Reconnect];
+            //[DBHelper Reconnect:false];
         }
     }
     

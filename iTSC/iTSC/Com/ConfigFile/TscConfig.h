@@ -28,8 +28,17 @@
 +(Boolean) isGlobalAutoRefresh;
 +(void) setGlobalAutoRefresh:(Boolean) vValue;
 
+
+
 +(NSInteger) RefreshSeconds;
 +(void) setRefreshSeconds:(NSInteger) vValue;
+
+
+//ConnectionTimeOutSeconds
++(NSInteger) ConnectionTimeOutSeconds;
++(void) setConnectionTimeOutSeconds:(NSInteger) vValue;
+
+
 
 
 +(Boolean) isAssetAutoRefresh;

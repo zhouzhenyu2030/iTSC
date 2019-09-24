@@ -22,6 +22,7 @@
     NSInteger ConnectionConfigSection, FirstConnectionRow, LastConnectionRow;
     
     NSInteger RefreshSecondsSection, RefreshSecondsRow;
+    NSInteger ConnectionTimeOutSecondsSection, ConnectionTimeOutSecondsRow;
     NSInteger TestDBReachabilitySection, TestDBReachabilityRow;
     NSInteger ReconnectDBSection, ReconnectDBRow;
     NSInteger ClearRunTimeInfoTalbeSection, ClearRunTimeInfoTalbeRow;
@@ -34,12 +35,16 @@
 
     UITableViewCell *Cell_Switch_ShowAllTime;
     UITableViewCell *Cell_Switch_GlobalAutoRefresh;
+    
+    
+
 }
 
 
 
 @property (strong, nonatomic) IBOutlet UITableView *TableView;
 
+-(void)_TestConnection;
 
 @end
 

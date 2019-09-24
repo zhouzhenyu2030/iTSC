@@ -22,6 +22,8 @@
 
 @synthesize TableView;
 
+static UIAlertController * alertController;
+
 
 
 //viewDidLoad
@@ -136,12 +138,19 @@
     cell.textLabel.textColor = UIColor.blueColor;
     cell.accessoryType = UITableViewCellAccessoryNone;
     
-    ReconnectDBSection=_SectionIndex; ReconnectDBRow=2;
+    
+    ConnectionTimeOutSecondsSection=_SectionIndex; ConnectionTimeOutSecondsRow=2;
+    [UIHelper SetTabelViewCellText:TableView Section:(int)ConnectionTimeOutSecondsSection Row:(int)ConnectionTimeOutSecondsRow TitleText:@"Connection Timeout Seconds:" DetialText:[NSString stringWithFormat:@"%d", (int)[TscConfig ConnectionTimeOutSeconds]]];
+    
+    
+    
+    ReconnectDBSection=_SectionIndex; ReconnectDBRow=3;
     cell=[UIHelper SetTabelViewCellText:TableView Section:(int)ReconnectDBSection Row:(int)ReconnectDBRow TitleText:@"Reconnect DB" DetialText:@""];
     cell.textLabel.textColor = UIColor.blueColor;
     cell.accessoryType = UITableViewCellAccessoryNone;
     
-    ClearRunTimeInfoTalbeSection=_SectionIndex; ClearRunTimeInfoTalbeRow=3;
+    
+    ClearRunTimeInfoTalbeSection=_SectionIndex; ClearRunTimeInfoTalbeRow=4;
     cell=[UIHelper SetTabelViewCellText:TableView Section:(int)ClearRunTimeInfoTalbeSection Row:(int)ClearRunTimeInfoTalbeRow TitleText:@"Clear RunTimeInfo Table" DetialText:@""];
     cell.textLabel.textColor = UIColor.blueColor;
     cell.accessoryType = UITableViewCellAccessoryNone;
@@ -201,7 +210,7 @@
 ////////////////////////////////////////// didSelectRowAtIndexPath //////////////////////////////////////////
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIAlertController * alertController;
+    
     
     //RefreshSeconds
     if([indexPath section] == RefreshSecondsSection && [indexPath row] == RefreshSecondsRow)
@@ -209,8 +218,15 @@
         [self SetRefreshSeconds];
         [UIHelper SetTabelViewCellText:TableView Section:(int)RefreshSecondsSection Row:(int)RefreshSecondsRow TitleText:@"Refresh Seconds:" DetialText:[NSString stringWithFormat:@"%d", (int)[TscConfig RefreshSeconds]]];
     }
- 
-    //PingDB
+    
+    //ConnectionTimeOutSeconds
+    if([indexPath section] == ConnectionTimeOutSecondsSection && [indexPath row] == ConnectionTimeOutSecondsRow)
+    {
+        [self SetConnectionTimeOutSeconds];
+        [UIHelper SetTabelViewCellText:TableView Section:(int)ConnectionTimeOutSecondsSection Row:(int)ConnectionTimeOutSecondsRow TitleText:@"Connection Timeout Seconds:" DetialText:[NSString stringWithFormat:@"%d", (int)[TscConfig ConnectionTimeOutSeconds]]];
+    }
+    
+    //TestDBReachability
     if([indexPath section] == TestDBReachabilitySection && [indexPath row] == TestDBReachabilityRow)
     {
         int ret = [NetHelper TestServerReachability];
@@ -225,7 +241,7 @@
     if([indexPath section] == ReconnectDBSection && [indexPath row] == ReconnectDBRow)
     {
         
-        if([DBHelper Reconnect]==false)
+        if([DBHelper Reconnect:false]==false)
         {
             alertController=[UIHelper ShowMessage:@"Reconnect DB" Message:@"Reconnect DB fail."];
         }
@@ -241,21 +257,15 @@
     {
         if([indexPath row]>=FirstDNSRow && [indexPath row]<=LastDNSRow)
         {
-            [TscDNSs SetCurrentDNS:[TableView cellForRowAtIndexPath:indexPath].textLabel.text];
-            
-            if([DBHelper Reconnect]==false)
-            {
-                UIAlertController * alertController;
-                alertController=[UIHelper ShowMessage:@"DNS Set." Message:@"DB Connect failed."];
-                [self presentViewController:alertController animated:YES completion:nil];
-            }
-            
             if (indexPath != lastDNSIndexPath)
             {
                 [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
                 [tableView cellForRowAtIndexPath:lastDNSIndexPath].accessoryType = UITableViewCellAccessoryNone;
             }
             lastDNSIndexPath = indexPath;
+
+            [TscDNSs SetCurrentDNS:[TableView cellForRowAtIndexPath:indexPath].textLabel.text];
+            [self _TestConnection];
         }
     }
 
@@ -270,8 +280,10 @@
                 [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
                 [tableView cellForRowAtIndexPath:lastConnectionIndexPath].accessoryType = UITableViewCellAccessoryNone;
             }
-            [TscConnections SetCurrentConnection:[TableView cellForRowAtIndexPath:indexPath].textLabel.text];
             lastConnectionIndexPath = indexPath;
+
+            [TscConnections SetCurrentConnection:[TableView cellForRowAtIndexPath:indexPath].textLabel.text];
+            [self _TestConnection];
         }
     }
     
@@ -312,6 +324,34 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
+
+
+
+-(void)_TestConnection
+{
+    [DBHelper Disconnect];
+
+    alertController = nil;
+    int ret =[NetHelper TestServerReachability];
+    if(ret!=0)
+    {
+        NSString* msg=[NetHelper getConnectResultMsg:ret];
+        alertController=[UIHelper GenAlertController:msg];
+     }
+    else
+    {
+        if([DBHelper Reconnect:false]==false)
+            alertController=[UIHelper ShowMessage:@"Connection Set." Message:@"DB Connect failed."];
+    }
+
+    if(alertController != nil)
+        [self presentViewController:alertController animated:YES completion:nil];
+
+}
+
+
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //SetRefreshSeconds
@@ -351,6 +391,42 @@
     
 }
 
+//SetConnectionTimeOutSeconds
+-(void) SetConnectionTimeOutSeconds
+{
+    // 1.创建UIAlertController
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Connection Timeout Seconds"
+                                                                             message:@"Input Connection Timeout Seconds:"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    
+    //TextField
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull myTextField) {
+    }];
+    UITextField *_TextField = alertController.textFields.firstObject;
+    _TextField.text=[NSString stringWithFormat:@"%d", (int)[TscConfig ConnectionTimeOutSeconds]];
+    
+    // 2.创建并添加按钮
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action)
+                               {
+                                   NSLog(@"OK Action:%@", _TextField.text);
+                                   NSInteger _value=_TextField.text.integerValue;
+                                   if(_value<=0) _value=2;
+                                   [TscConfig setConnectionTimeOutSeconds:_value];
+                               }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"Cancel Action");
+    }];
+    
+    
+    [alertController addAction:okAction];
+    [alertController addAction:cancelAction];
+    
+    
+    // 3.呈现UIAlertContorller
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+}
 
 
 //ClearRunTimeInfoTalbe

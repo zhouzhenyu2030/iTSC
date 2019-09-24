@@ -39,6 +39,8 @@
     
     [self setupRefresh];
 
+ 
+    
 }
 
 // 设置下拉刷新
@@ -274,7 +276,7 @@
     OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
     if(_queryContext==nil)
     {
-        NSLog(@"AssetViewController: Init: queryContext==nil!");
+        NSLog(@"AssetViewController: DisplayHisAsset: queryContext==nil!");
         return;
     }
     
@@ -341,7 +343,7 @@
     OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
     if(_queryContext==nil)
     {
-        NSLog(@"AssetViewController: Init: queryContext==nil!");
+        NSLog(@"AssetViewController: DisplayRuntimeInfo: queryContext==nil!");
         return;
     }
     

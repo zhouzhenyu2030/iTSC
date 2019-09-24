@@ -13,7 +13,8 @@
 #import "DBHelper.h"
 #import "NetHelper.h"
 
-int main(int argc, char * argv[]) {
+int main(int argc, char * argv[])
+{
     
   
     @autoreleasepool
@@ -24,7 +25,7 @@ int main(int argc, char * argv[]) {
         
 
         [NetHelper SetAvailableDNS];
-        
+
         
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }

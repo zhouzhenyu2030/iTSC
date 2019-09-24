@@ -37,6 +37,10 @@ NSUserDefaults *_UserDefaults;
     if(_RefreshSeconds<1) _RefreshSeconds=2;
     //_RefreshSeconds=10;
     
+    _ConnectionTimeOutSeconds = [_UserDefaults integerForKey:@"ConnectionTimeOutSeconds"];
+    if(_ConnectionTimeOutSeconds<1) _ConnectionTimeOutSeconds=1;
+    
+    
     _isAssetAutoRefresh = [_UserDefaults boolForKey:@"isAssetAutoRefresh"];
 //    _isGreekAutoRefresh = [_UserDefaults boolForKey:@"isGreekAutoRefresh"];
     _isTradeSumAutoRefresh = [_UserDefaults boolForKey:@"isTradeSumAutoRefresh"];
@@ -121,6 +125,24 @@ static NSInteger _RefreshSeconds;
     _RefreshSeconds = vValue;
     [_UserDefaults setInteger:(vValue) forKey:(@"RefreshSeconds")];
 }
+
+
+//ConnectionTimeOutSeconds
+static NSInteger _ConnectionTimeOutSeconds;
++(NSInteger) ConnectionTimeOutSeconds
+{
+    if(_ConnectionTimeOutSeconds<0)
+        _ConnectionTimeOutSeconds=1;
+    return _ConnectionTimeOutSeconds;
+}
++(void) setConnectionTimeOutSeconds:(NSInteger) vValue
+{
+    _ConnectionTimeOutSeconds = vValue;
+    if(_ConnectionTimeOutSeconds<0)
+        _ConnectionTimeOutSeconds=1;
+    [_UserDefaults setInteger:(_ConnectionTimeOutSeconds) forKey:(@"ConnectionTimeOutSeconds")];
+}
+
 
 
 //AssetAutoRefresh

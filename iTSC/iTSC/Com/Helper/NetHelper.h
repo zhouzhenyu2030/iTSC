@@ -11,11 +11,15 @@
 
 @interface NetHelper:NSObject
 
+
++(int) getIPFromHostName:(NSString*)vHostName;
+
 +(int)TestServerReachability;
 +(NSString*)getConnectResultMsg:(int)vResult;
 
 +(bool)SetAvailableDNS;
 
++(int)_try_connect;
 
 @end
 

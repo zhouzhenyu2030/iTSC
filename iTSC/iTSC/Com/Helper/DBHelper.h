@@ -23,8 +23,8 @@
 //function
 
 +(bool)SetCoordinator;
-+(bool)Connect;
-+(bool)Reconnect;
++(bool)Connect:(BOOL)visCheckGlobalAutoRefresh;
++(bool)Reconnect:(BOOL)visCheckGlobalAutoRefresh;
 +(void)Disconnect;
 
 +(OHMySQLQueryContext *)GetContext;
