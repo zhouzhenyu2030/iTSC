@@ -39,10 +39,7 @@
 		196CBF46224725F0002F8F0F /* iTSCInit.m in Sources */ = {isa = PBXBuildFile; fileRef = 196CBF45224725F0002F8F0F /* iTSCInit.m */; };
 		19703EBA21F5B537003D6697 /* PositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19703EB921F5B537003D6697 /* PositionViewController.m */; };
 		19703EBD21F5BD09003D6697 /* PnlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19703EBC21F5BD09003D6697 /* PnlViewController.m */; };
-		197BF9D72248624300450399 /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 197BF9D62248624300450399 /* SimplePing.m */; };
-		197BF9DC2248652C00450399 /* PingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 197BF9DB2248652C00450399 /* PingHelper.m */; };
 		197BF9DE2248861D00450399 /* TscDNSs.m in Sources */ = {isa = PBXBuildFile; fileRef = 197BF9DD2248861D00450399 /* TscDNSs.m */; };
-		197BF9E22248987600450399 /* MySimplePingDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 197BF9E12248987600450399 /* MySimplePingDelegate.m */; };
 		1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980DBD521EF0291008C9FF0 /* TscConfig.m */; };
 		1980DBDA21F0083E008C9FF0 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1980DBD921F0083E008C9FF0 /* Test.storyboard */; };
 		198173FA222CFD74009415A2 /* HAMktOrTheoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198173F9222CFD74009415A2 /* HAMktOrTheoPickerViewController.m */; };
@@ -123,14 +120,8 @@
 		19703EB921F5B537003D6697 /* PositionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PositionViewController.m; sourceTree = "<group>"; };
 		19703EBC21F5BD09003D6697 /* PnlViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PnlViewController.m; sourceTree = "<group>"; };
 		19703EBE21F5BD17003D6697 /* PnlViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PnlViewController.h; sourceTree = "<group>"; };
-		197BF9D62248624300450399 /* SimplePing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimplePing.m; sourceTree = "<group>"; };
-		197BF9D82248626900450399 /* SimplePing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimplePing.h; sourceTree = "<group>"; };
-		197BF9DA2248651900450399 /* PingHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PingHelper.h; sourceTree = "<group>"; };
-		197BF9DB2248652C00450399 /* PingHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PingHelper.m; sourceTree = "<group>"; };
 		197BF9DD2248861D00450399 /* TscDNSs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TscDNSs.m; sourceTree = "<group>"; };
 		197BF9DF2248863A00450399 /* TscDNSs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TscDNSs.h; sourceTree = "<group>"; };
-		197BF9E02248986800450399 /* MySimplePingDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MySimplePingDelegate.h; sourceTree = "<group>"; };
-		197BF9E12248987600450399 /* MySimplePingDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySimplePingDelegate.m; sourceTree = "<group>"; };
 		1980DBD421EF0275008C9FF0 /* TscConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TscConfig.h; sourceTree = "<group>"; };
 		1980DBD521EF0291008C9FF0 /* TscConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TscConfig.m; sourceTree = "<group>"; };
 		1980DBD921F0083E008C9FF0 /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
@@ -213,7 +204,6 @@
 			children = (
 				194D008B21F4148C008918DA /* nouse */,
 				190210DE21E49682009ADE0B /* 编程 */,
-				197BF9D92248648100450399 /* Ping(nouse) */,
 				190210E421E49C0A009ADE0B /* DBHelper.h */,
 				190210E521E49C27009ADE0B /* DBHelper.m */,
 				19417D4521E86B8C00C1FF2C /* StringHelper.h */,
@@ -399,19 +389,6 @@
 				19703EBC21F5BD09003D6697 /* PnlViewController.m */,
 			);
 			path = PNL;
-			sourceTree = "<group>";
-		};
-		197BF9D92248648100450399 /* Ping(nouse) */ = {
-			isa = PBXGroup;
-			children = (
-				197BF9D82248626900450399 /* SimplePing.h */,
-				197BF9D62248624300450399 /* SimplePing.m */,
-				197BF9E02248986800450399 /* MySimplePingDelegate.h */,
-				197BF9E12248987600450399 /* MySimplePingDelegate.m */,
-				197BF9DA2248651900450399 /* PingHelper.h */,
-				197BF9DB2248652C00450399 /* PingHelper.m */,
-			);
-			path = "Ping(nouse)";
 			sourceTree = "<group>";
 		};
 		1980DBD321EF025E008C9FF0 /* ConfigFile */ = {
@@ -667,7 +644,6 @@
 				190210BF21E45964009ADE0B /* ControlViewController.m in Sources */,
 				1911DFBA21FF307D0079304C /* Chart-Bridging-Header.swift in Sources */,
 				194D008421F2B52B008918DA /* GreeksViewController.m in Sources */,
-				197BF9D72248624300450399 /* SimplePing.m in Sources */,
 				190210B921E45964009ADE0B /* AppDelegate.m in Sources */,
 				190210D821E48399009ADE0B /* FilePathHelper.m in Sources */,
 				194D007A21F2824C008918DA /* TscConnections.m in Sources */,
@@ -681,7 +657,6 @@
 				19FFB2BC21F19A8E00C02A53 /* PageContainerViewController.m in Sources */,
 				198426352226704600BA10F0 /* AvgEdgeViewController.m in Sources */,
 				194D008921F41210008918DA /* UIHelper.m in Sources */,
-				197BF9E22248987600450399 /* MySimplePingDelegate.m in Sources */,
 				190210DA21E48DB2009ADE0B /* OCCodingHelper.m in Sources */,
 				194B2B66220024F4008F8A9D /* HADrawChartView.m in Sources */,
 				19703EBA21F5B537003D6697 /* PositionViewController.m in Sources */,
@@ -689,7 +664,6 @@
 				194D008721F2C714008918DA /* TestViewController.m in Sources */,
 				19FFB2C121F19A8E00C02A53 /* TWPageTitleViewController.m in Sources */,
 				194D009021F46CE5008918DA /* TradeSumsViewController.m in Sources */,
-				197BF9DC2248652C00450399 /* PingHelper.m in Sources */,
 				19FFB2C221F19A8E00C02A53 /* TWPageViewController.m in Sources */,
 				190210CA21E45966009ADE0B /* main.m in Sources */,
 				19417D4721E86BA000C1FF2C /* StringHelper.m in Sources */,

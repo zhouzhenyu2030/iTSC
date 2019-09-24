@@ -10,7 +10,6 @@
 #define TscDNSs_h
 
 #import <UIKit/UIKit.h>
-#import "PingHelper.h"
 
 typedef struct
 {

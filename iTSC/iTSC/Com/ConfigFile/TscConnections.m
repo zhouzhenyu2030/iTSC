@@ -10,8 +10,6 @@
 
 #import "DBHelper.h"
 #import "TscConnections.h"
-#import "PingHelper.h"
-
 
 
 
