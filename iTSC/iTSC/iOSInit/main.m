@@ -11,6 +11,7 @@
 #import "TscConfig.h"
 #import "TscConnections.h"
 #import "DBHelper.h"
+#import "NetHelper.h"
 
 int main(int argc, char * argv[]) {
     
@@ -21,7 +22,9 @@ int main(int argc, char * argv[]) {
         [TscDNSs Init];
         [TscConnections Init];
         
-        //[DBHelper SetAvailableDNS];
+
+        [NetHelper SetAvailableDNS];
+        
         
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }

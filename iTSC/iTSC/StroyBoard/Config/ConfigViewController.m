@@ -16,7 +16,7 @@
 #import "TscConfig.h"
 #import "UIHelper.h"
 #import "TscConnections.h"
-
+#import "NetHelper.h"
 
 @implementation ConfigViewController
 
@@ -131,8 +131,8 @@
     [UIHelper SetTabelViewCellText:TableView Section:(int)RefreshSecondsSection Row:(int)RefreshSecondsRow TitleText:@"Refresh Seconds:" DetialText:[NSString stringWithFormat:@"%d", (int)[TscConfig RefreshSeconds]]];
     
     
-    PingDBSection=_SectionIndex; PingDBRow=1;
-    cell=[UIHelper SetTabelViewCellText:TableView Section:(int)PingDBSection Row:(int)PingDBRow TitleText:@"Ping DB" DetialText:@""];
+    TestDBReachabilitySection=_SectionIndex; TestDBReachabilityRow=1;
+    cell=[UIHelper SetTabelViewCellText:TableView Section:(int)TestDBReachabilitySection Row:(int)TestDBReachabilityRow TitleText:@"Test DB Reachability" DetialText:@""];
     cell.textLabel.textColor = UIColor.blueColor;
     cell.accessoryType = UITableViewCellAccessoryNone;
     
@@ -211,39 +211,15 @@
     }
  
     //PingDB
-    if([indexPath section] == PingDBSection && [indexPath row] == PingDBRow)
+    if([indexPath section] == TestDBReachabilitySection && [indexPath row] == TestDBReachabilityRow)
     {
-        OHResultErrorType ret = [DBHelper PingSQL:true];
-        NSString* msg=[NSString stringWithFormat: @"Ping Error. %d ", (int)ret];
-        switch (ret)
-        {
-            case -8888:
-                alertController=[UIHelper GenAlertController:[msg stringByAppendingString:@"coordinator init error."]];
-                break;
-            case -9999:
-                alertController=[UIHelper GenAlertController:[msg stringByAppendingString:@"coordinator=nil!"]];
-                break;
-            case OHResultErrorTypeNone:
-                alertController=[UIHelper GenAlertController:@"Ping is Success."];
-                break;
-            case OHResultErrorTypeSync:
-                alertController=[UIHelper GenAlertController:[msg stringByAppendingString:@"Commands were executed in an improper order."]];
-                break;
-            case OHResultErrorTypeGone:
-               alertController=[UIHelper GenAlertController:[msg stringByAppendingString:@"The MySQL server has gone away."]];
-                break;
-            case OHResultErrorTypeLost:
-               alertController=[UIHelper GenAlertController:[msg stringByAppendingString:@"The connection to the server was lost during the query."]];
-                break;
-            case OHResultErrorTypeUnknown:
-                  alertController=[UIHelper GenAlertController:[msg stringByAppendingString:@"An unknown error occurred."]];
-                break;
-            default:
-                alertController=[UIHelper GenAlertController:[msg stringByAppendingString:@"Unknown."]];
-                break;
-        }
+        int ret = [NetHelper TestServerReachability];
+        NSString* msg=[NetHelper getConnectResultMsg:ret];
+        alertController=[UIHelper GenAlertController:msg];
         [self presentViewController:alertController animated:YES completion:nil];
+        
     }
+    
     
     //ReconnectDB
     if([indexPath section] == ReconnectDBSection && [indexPath row] == ReconnectDBRow)

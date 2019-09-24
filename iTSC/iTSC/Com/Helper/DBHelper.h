@@ -19,29 +19,31 @@
 
 
 
-//property
-//@property (weak, nonatomic) OHMySQLQueryContext *queryContext;
-//{
-   //OHMySQLQueryContext *queryContext;
-//}
-
 
 //function
-+(bool)SetAvailableDNS;
+
 +(bool)SetCoordinator;
-+(OHResultErrorType)PingSQL:(bool)visInit;
 +(bool)Connect;
-+(bool)TestConnect:(NSString*)vDNSString;
 +(bool)Reconnect;
 +(void)Disconnect;
 
-
 +(OHMySQLQueryContext *)GetContext;
 
--(NSString *)databasePath;
--(void)getdata;
 
 
+//-(NSString *)databasePath;
+//-(void)getdata;
+
+
+//property
+//@property (weak, nonatomic) OHMySQLQueryContext *queryContext;
+//{
+//OHMySQLQueryContext *queryContext;
+//}
+
+//+(bool)TestConnect:(NSString*)vDNSString;
+//+(OHResultErrorType)PingSQL:(bool)visInit;
+//+(NSString*)getPingResultMsg:(OHResultErrorType)vPingResult;
 
 
 @end

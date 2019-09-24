@@ -22,7 +22,7 @@
     NSInteger ConnectionConfigSection, FirstConnectionRow, LastConnectionRow;
     
     NSInteger RefreshSecondsSection, RefreshSecondsRow;
-    NSInteger PingDBSection, PingDBRow;
+    NSInteger TestDBReachabilitySection, TestDBReachabilityRow;
     NSInteger ReconnectDBSection, ReconnectDBRow;
     NSInteger ClearRunTimeInfoTalbeSection, ClearRunTimeInfoTalbeRow;
     NSInteger SetTimeSection, SetTimeRow;

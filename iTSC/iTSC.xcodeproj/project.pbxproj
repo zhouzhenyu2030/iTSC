@@ -47,6 +47,7 @@
 		1980DBDA21F0083E008C9FF0 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1980DBD921F0083E008C9FF0 /* Test.storyboard */; };
 		198173FA222CFD74009415A2 /* HAMktOrTheoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198173F9222CFD74009415A2 /* HAMktOrTheoPickerViewController.m */; };
 		198426352226704600BA10F0 /* AvgEdgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198426342226704600BA10F0 /* AvgEdgeViewController.m */; };
+		19F2FE862339AE63008498D7 /* NetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2FE852339AE63008498D7 /* NetHelper.m */; };
 		19FFB29221F1706900C02A53 /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19FFB29121F1706900C02A53 /* Help.storyboard */; };
 		19FFB29521F17B7D00C02A53 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB29421F17B7D00C02A53 /* TabBarController.m */; };
 		19FFB2A421F18EEE00C02A53 /* Config.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19FFB2A321F18EEE00C02A53 /* Config.storyboard */; };
@@ -137,6 +138,8 @@
 		198173FC222CFF0D009415A2 /* HAMktOrTheoPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HAMktOrTheoPickerViewController.h; sourceTree = "<group>"; };
 		1984263322266FD500BA10F0 /* AvgEdgeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvgEdgeViewController.h; sourceTree = "<group>"; };
 		198426342226704600BA10F0 /* AvgEdgeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvgEdgeViewController.m; sourceTree = "<group>"; };
+		19F2FE842339AE50008498D7 /* NetHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetHelper.h; sourceTree = "<group>"; };
+		19F2FE852339AE63008498D7 /* NetHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetHelper.m; sourceTree = "<group>"; };
 		19FFB29121F1706900C02A53 /* Help.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
 		19FFB29321F17B6900C02A53 /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		19FFB29421F17B7D00C02A53 /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
@@ -217,6 +220,8 @@
 				19417D4621E86BA000C1FF2C /* StringHelper.m */,
 				194D008A21F4121E008918DA /* UIHelper.h */,
 				194D008821F41210008918DA /* UIHelper.m */,
+				19F2FE842339AE50008498D7 /* NetHelper.h */,
+				19F2FE852339AE63008498D7 /* NetHelper.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -696,6 +701,7 @@
 				194B2B6822002DC6008F8A9D /* HADatePickerViewController.m in Sources */,
 				19FFB2BE21F19A8E00C02A53 /* SampleTitleCell.m in Sources */,
 				194B2B5F21FFF2CE008F8A9D /* HisAssetQueryViewController.m in Sources */,
+				19F2FE862339AE63008498D7 /* NetHelper.m in Sources */,
 				196B41D121EED13800105D44 /* ConfigViewController.m in Sources */,
 				19703EBD21F5BD09003D6697 /* PnlViewController.m in Sources */,
 			);
