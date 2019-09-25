@@ -16,7 +16,6 @@
 		190210DA21E48DB2009ADE0B /* OCCodingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210D921E48DB2009ADE0B /* OCCodingHelper.m */; };
 		190210DD21E49649009ADE0B /* 编程-属性 in Resources */ = {isa = PBXBuildFile; fileRef = 190210DC21E49649009ADE0B /* 编程-属性 */; };
 		190210E021E499DE009ADE0B /* 编程-本地数据保存 in Resources */ = {isa = PBXBuildFile; fileRef = 190210DF21E499DE009ADE0B /* 编程-本地数据保存 */; };
-		190210E321E49BC0009ADE0B /* ConfigHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210E221E49BC0009ADE0B /* ConfigHelper.m */; };
 		190210E621E49C27009ADE0B /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 190210E521E49C27009ADE0B /* DBHelper.m */; };
 		1911DFAB21FF11160079304C /* Asset.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1911DFA921FF11160079304C /* Asset.storyboard */; };
 		1911DFAF21FF294E0079304C /* HADrawChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1911DFAE21FF294E0079304C /* HADrawChartViewController.m */; };
@@ -77,8 +76,6 @@
 		190210D921E48DB2009ADE0B /* OCCodingHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCCodingHelper.m; sourceTree = "<group>"; };
 		190210DC21E49649009ADE0B /* 编程-属性 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "编程-属性"; sourceTree = "<group>"; };
 		190210DF21E499DE009ADE0B /* 编程-本地数据保存 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "编程-本地数据保存"; sourceTree = "<group>"; };
-		190210E121E49BA1009ADE0B /* ConfigHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigHelper.h; sourceTree = "<group>"; };
-		190210E221E49BC0009ADE0B /* ConfigHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfigHelper.m; sourceTree = "<group>"; };
 		190210E421E49C0A009ADE0B /* DBHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBHelper.h; sourceTree = "<group>"; };
 		190210E521E49C27009ADE0B /* DBHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
 		1911DFAA21FF11160079304C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Asset.storyboard; sourceTree = "<group>"; };
@@ -223,6 +220,7 @@
 		190210DE21E49682009ADE0B /* 编程 */ = {
 			isa = PBXGroup;
 			children = (
+				190210D921E48DB2009ADE0B /* OCCodingHelper.m */,
 				190210DC21E49649009ADE0B /* 编程-属性 */,
 				190210DF21E499DE009ADE0B /* 编程-本地数据保存 */,
 			);
@@ -291,9 +289,6 @@
 			children = (
 				190210D621E48375009ADE0B /* FilePathHelper.h */,
 				190210D721E48399009ADE0B /* FilePathHelper.m */,
-				190210D921E48DB2009ADE0B /* OCCodingHelper.m */,
-				190210E121E49BA1009ADE0B /* ConfigHelper.h */,
-				190210E221E49BC0009ADE0B /* ConfigHelper.m */,
 			);
 			path = nouse;
 			sourceTree = "<group>";
@@ -652,7 +647,6 @@
 				194D007A21F2824C008918DA /* TscConnections.m in Sources */,
 				1911DFAF21FF294E0079304C /* HADrawChartViewController.m in Sources */,
 				190210E621E49C27009ADE0B /* DBHelper.m in Sources */,
-				190210E321E49BC0009ADE0B /* ConfigHelper.m in Sources */,
 				1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */,
 				198173FA222CFD74009415A2 /* HAMktOrTheoPickerViewController.m in Sources */,
 				197BF9DE2248861D00450399 /* TscDNSs.m in Sources */,
