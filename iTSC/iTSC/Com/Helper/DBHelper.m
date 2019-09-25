@@ -32,7 +32,10 @@ static NSString* _CurrentConnectionKey;
 
 +(NSString*) CurrentConnectionKey
 {
-    return _CurrentConnectionKey;
+    if(_isConnected)
+        return _CurrentConnectionKey;
+    else
+        return [_CurrentConnectionKey stringByAppendingString:@" (disconnected)"];
 }
 
 
@@ -135,11 +138,11 @@ static NSString* _CurrentConnectionKey;
     }
     
     //是否有查询请求
-    //if(_isWillQuery == true)
-    //{
-    //    _isThreadProcessing = false;
-    //    return;
-    //}
+    if(_isWillQuery == true)
+    {
+        _isThreadProcessing = false;
+        return;
+    }
     
     //建立连接
     _isThreadProcessing = true;
