@@ -31,8 +31,6 @@ static char _ip[32];
 static struct sockaddr_in addr_server;
 static int _ret;
 
-#define SUCCESS 1
-#define FAIL -1
 
 
 ///////////////////////////////// TestServerReachability /////////////////////////////////

@@ -233,7 +233,6 @@ static UIAlertController * alertController;
         NSString* msg=[NetHelper getConnectResultMsg:ret];
         alertController=[UIHelper GenAlertController:msg];
         [self presentViewController:alertController animated:YES completion:nil];
-        
     }
     
     
@@ -332,21 +331,30 @@ static UIAlertController * alertController;
     [DBHelper Disconnect];
 
     alertController = nil;
+    bool _isCanConnect = true;
+    
     int ret =[NetHelper TestServerReachability];
     if(ret!=0)
     {
         NSString* msg=[NetHelper getConnectResultMsg:ret];
         alertController=[UIHelper GenAlertController:msg];
+        _isCanConnect = false;
      }
     else
     {
         if([DBHelper Reconnect:false]==false)
+        {
             alertController=[UIHelper ShowMessage:@"Connection Set." Message:@"DB Connect failed."];
+            _isCanConnect = false;
+        }
     }
 
     if(alertController != nil)
         [self presentViewController:alertController animated:YES completion:nil];
 
+    
+    [TscConfig setGlobalAutoRefresh:_isCanConnect];
+    Switch_GlobalAutoRefresh.on = [TscConfig isGlobalAutoRefresh];
 }
 
 

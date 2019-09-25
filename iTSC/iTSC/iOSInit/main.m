@@ -19,6 +19,13 @@ int main(int argc, char * argv[])
   
     @autoreleasepool
     {
+        //设置不被SIGPIPE信号中断，物理链路损坏时才不会导致程序直接被Terminate
+        //在网络异常的时候如果程序收到SIGPIRE是会直接被退出的。
+        struct sigaction sa;
+        sa.sa_handler = SIG_IGN;
+        sigaction( SIGPIPE, &sa, 0 );
+        
+
         [TscConfig Init];
         [TscDNSs Init];
         [TscConnections Init];
