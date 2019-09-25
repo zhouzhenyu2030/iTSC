@@ -76,6 +76,7 @@ void* _thread_task_db_connection_test(void *param)
         if(_isThreadSuspend)
             continue;
         
+
         [DBHelper CheckConnect];
         _ThreadLoopCnt++;
     }

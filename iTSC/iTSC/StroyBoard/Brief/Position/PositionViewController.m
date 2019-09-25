@@ -86,8 +86,13 @@
     if(RefreshTimerElpasedSeconds<TscConfig.RefreshSeconds) return;
     
     isTimerProcessing=true;
-    RefreshCnt++;
-    [self QueryAndDisplay];
+    //Display
+    if([DBHelper BeginQuery])
+    {
+        RefreshCnt++;
+        [self QueryAndDisplay];
+        [DBHelper EndQuery];
+    }
     isTimerProcessing=false;
     
     RefreshTimerElpasedSeconds=0;

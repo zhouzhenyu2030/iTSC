@@ -251,7 +251,7 @@
     [UIHelper SetTabelViewCellDetailText:TableView TitleText:@"RefreshCount:" DetialText:[NSString stringWithFormat:@"%d", RefreshCnt]];
     
     //ServerName
-    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Server ID:" DetialText:TscConnections.CurrentConnectionKey];
+    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Server ID:" DetialText:DBHelper.CurrentConnectionKey];
 
     //Display
     if([DBHelper BeginQuery])

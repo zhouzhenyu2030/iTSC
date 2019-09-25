@@ -24,9 +24,16 @@ static NSLock *_db_locker = nil;
 static bool _isThreadProcessing;
 
 static bool _isWillQuery;
-
+static NSString* _CurrentConnectionKey;
 
 @implementation DBHelper
+
+
+
++(NSString*) CurrentConnectionKey
+{
+    return _CurrentConnectionKey;
+}
 
 
 //////////////////////// Init ////////////////////////
@@ -44,7 +51,117 @@ static bool _isWillQuery;
     _queryContext.storeCoordinator = _coordinator;
     
     _isWillQuery = false;
+    _CurrentConnectionKey = @"";
 }
+
+
+
+//////////////////////// GetContext ////////////////////////
++(OHMySQLQueryContext *)GetContext
+{
+    //isGlobalAutoRefresh
+    if([TscConfig isGlobalAutoRefresh] == false)
+    {
+        NSLog(@"DBHelper: GetContext: isGlobalAutoRefresh = false.");
+        return nil;
+    }
+    
+    //是否有断开原连接申请
+    if(_isWillDisconnect == true)
+    {
+        [_coordinator disconnect];
+        _isWillDisconnect = false;
+        _isConnected = false;
+        NSLog(@"DBHelper: GetContext: _coordinator _isWillDisconnect = true.");
+        return nil;
+    }
+
+    //连接是否正常
+    if([_coordinator isConnected] == false)
+    {
+        _isConnected = false;
+        NSLog(@"DBHelper: GetContext: _coordinator isConnected = false.");
+        return nil;
+    }
+    
+
+    _isConnected = true;
+    return _queryContext;
+    
+}
++(bool)BeginQuery
+{
+    //_isWillQuery = true;
+    if(_isThreadProcessing == true)
+    {
+        NSLog(@"DBHelper: BeginQuery: _isThreadProcessing = true.");
+        return false;
+    }
+    
+    NSLog(@"DBHelper: BeginQuery: lock.");
+    [self Lock];
+    return true;
+}
++(void)EndQuery
+{
+    NSLog(@"DBHelper: EndQuery.");
+    //_isWillQuery = false;
+    [self UnLock];
+}
+
+
+
+
+
+
+
+//////////////////////// CheckConnect ////////////////////////
++(void)CheckConnect
+{
+    //isGlobalAutoRefresh
+    if([TscConfig isGlobalAutoRefresh] == false)
+    {
+        _isThreadProcessing = false;
+        NSLog(@"BHelper: CheckConnect: isGlobalAutoRefresh = false.");
+        return;
+    }
+    
+    //检查连接是否正常
+    if(_isConnected == true)
+    {
+        _isThreadProcessing = false;
+        NSLog(@"DBHelper: CheckConnect: _isConnected = true.");
+        return;
+    }
+    
+    //是否有查询请求
+    //if(_isWillQuery == true)
+    //{
+    //    _isThreadProcessing = false;
+    //    return;
+    //}
+    
+    //建立连接
+    _isThreadProcessing = true;
+    [DBHelper Lock];
+    //connect
+    bool isOK = [self Connect1];
+    if( isOK == true)
+    {
+        //连接成功
+        _isConnected = true;
+        NSLog(@"DBHelper: CheckConnect: Connect = true.");
+    }
+    else
+    {
+        //连接失败
+        _isConnected = false;
+        NSLog(@"DBHelper: CheckConnect: Connect = false.");
+    }
+    [DBHelper UnLock];
+    _isThreadProcessing = false;
+}
+
 
 
 //////////////////////// Connect ////////////////////////
@@ -53,6 +170,7 @@ static bool _isWillQuery;
     //getCurrentConnection
     TscConnection _con = [TscConnections getCurrentConnection];
     NSLog(@"DBHelper: Connect: TscConnection = %@", _con.Name);
+    _CurrentConnectionKey = _con.Name;
     
     
     //getCurrnetDNSString
@@ -78,7 +196,7 @@ static bool _isWillQuery;
     
     //coordinator
     _coordinator = [_coordinator initWithUser:_user];
-
+    
     
     //_coordinator connect
     NSLog(@"DBHelper: Connect: _coordinator is connecting...");
@@ -91,7 +209,7 @@ static bool _isWillQuery;
         _isConnected = false;
         return false;
     }
-
+    
     _isConnected = true;
     NSLog(@"DBHelper: Connect: connected.");
     
@@ -100,95 +218,6 @@ static bool _isWillQuery;
 }
 
 
-
-
-
-//////////////////////// GetContext ////////////////////////
-+(OHMySQLQueryContext *)GetContext
-{
-    if([TscConfig isGlobalAutoRefresh] == false)
-    {
-        NSLog(@"DBHelper: GetContext: isGlobalAutoRefresh = false.");
-        return nil;
-    }
-    
-    if(_isConnected == false)
-    {
-        NSLog(@"DBHelper: GetContext: _isConnected = false.");
-        return nil;
-    }
-    
-    return _queryContext;
-
-}
-+(bool)BeginQuery
-{
-    _isWillQuery = true;
-    if(_isThreadProcessing == true)
-        return false;
-    
-    NSLog(@"DBHelper: BeginQuery: lock.");
-    [self Lock];
-    return true;
-}
-+(void)EndQuery
-{
-        NSLog(@"DBHelper: EndQuery.");
-    _isWillQuery = false;
-    [self UnLock];
-}
-
-
-
-//////////////////////// CheckConnect ////////////////////////
-+(void)CheckConnect
-{
-    if(_isWillQuery == true)
-    {
-        _isThreadProcessing = false;
-        return;
-    }
-    
-    _isThreadProcessing = true;
-    [DBHelper Lock];
-    [self _this_CheckConnect];
-    [DBHelper UnLock];
-    _isThreadProcessing = false;
-}
-+(void)_this_CheckConnect
-{
-    
-    //断开原连接
-    if(_isWillDisconnect == true)
-    {
-        [_coordinator disconnect];
-        _isWillDisconnect = false;
-        _isConnected = false;
-    }
-
-    //检查连接是否正常
-    if([_coordinator isConnected] == true)
-    {
-        _isConnected = true;
-        NSLog(@"DBHelper: CheckConnect: _coordinator isConnected = true.");
-        return;
-    }
-    
-    //connect
-    bool isOK = [self Connect1];
-    if( isOK == true)
-    {
-        //连接成功
-        _isConnected = true;
-        NSLog(@"DBHelper: CheckConnect: Connect = true.");
-    }
-    else
-    {
-        //连接失败
-        _isConnected = false;
-        NSLog(@"DBHelper: CheckConnect: Connect = false.");
-    }
-}
 
 
 //////////////////////// Disconnect ////////////////////////

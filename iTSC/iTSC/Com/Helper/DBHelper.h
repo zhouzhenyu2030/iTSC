@@ -22,6 +22,9 @@
 
 //function
 
+
++(NSString*) CurrentConnectionKey;
+
 +(void)Init;
 
 

@@ -74,12 +74,20 @@
     if(RefreshTimerElpasedSeconds<TscConfig.RefreshSeconds) return;
     
     isTimerProcessing=true;
-    RefreshCnt++;
+ 
     
-    [self QueryAndDisplay];
     //Server ID
-    [UIHelper SetTabelViewCellDetailText:TableView TitleText:@"Server ID:" DetialText:TscConnections.CurrentConnectionKey];
-   
+    [UIHelper SetTabelViewCellDetailText:TableView TitleText:@"Server ID:" DetialText:DBHelper.CurrentConnectionKey];
+
+
+    //Display
+    if([DBHelper BeginQuery])
+    {
+        RefreshCnt++;
+        [self QueryAndDisplay];
+        [DBHelper EndQuery];
+    }
+    
     isTimerProcessing=false;
     
     RefreshTimerElpasedSeconds=0;

@@ -40,7 +40,12 @@
 ////////////////////////////////////////////
 - (IBAction)ButtonClick:(id)sender
 {
-    [self QueryData];
+    //Display
+    if([DBHelper BeginQuery])
+    {
+        [self QueryData];
+        [DBHelper EndQuery];
+    }
 }
 
 
