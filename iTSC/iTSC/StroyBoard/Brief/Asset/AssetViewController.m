@@ -83,9 +83,10 @@
     RefreshTimerElpasedSeconds++;
     if(RefreshTimerElpasedSeconds<TscConfig.RefreshSeconds) return;
     
- 
+
     //display
     isTimerProcessing=true;
+    RefreshCnt++;
     [self QueryAndDisplay];
     isTimerProcessing=false;
     
@@ -248,7 +249,6 @@
     //Display
     if([DBHelper BeginQuery])
     {
-        RefreshCnt++;
         [self _DisplayHisAsset];
         [self _DisplayRuntimeInfo];
         [DBHelper EndQuery];
