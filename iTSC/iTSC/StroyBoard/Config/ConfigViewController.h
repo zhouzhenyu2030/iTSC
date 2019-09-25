@@ -44,7 +44,7 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *TableView;
 
--(void)_TestConnection;
+-(void)_CheckConnection;
 
 @end
 

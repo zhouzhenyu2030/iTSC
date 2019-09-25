@@ -22,12 +22,27 @@
 
 //function
 
-+(bool)SetCoordinator;
-+(bool)Connect:(BOOL)visCheckGlobalAutoRefresh;
-+(bool)Reconnect:(BOOL)visCheckGlobalAutoRefresh;
-+(void)Disconnect;
++(void)Init;
+
+
++(bool)Connect1;
+
++(void)CheckConnect;
+
++(void)SetToDisconnect;
++(void)Disconnect1;
 
 +(OHMySQLQueryContext *)GetContext;
+
+
++(bool)BeginQuery;
++(void)EndQuery;
+
+
++(void)Lock;
++(void)UnLock;
+
+
 
 
 

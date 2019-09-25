@@ -12,7 +12,7 @@
 #import "StringHelper.h"
 #import "TscConfig.h"
 #import "UIHelper.h"
-
+#import "ThreadHelper.h"
 
 
 @implementation ControlViewController
@@ -149,6 +149,8 @@
     
     cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
     RefreshCountCell = cell;
+    
+    ThreadLoopCntCell=[UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Thread Loop Count:" DetialText:@"-"];
 }
 
 
@@ -190,6 +192,7 @@
     NSLog(@"ControlViewController: CheckGlobalStart: start!");
     
     RefreshCountCell.detailTextLabel.text=[NSString stringWithFormat:@"%d", (int)RefreshCnt];
+    ThreadLoopCntCell.detailTextLabel.text=[NSString stringWithFormat:@"%d", [ThreadHelper ThreadLoopCnt]];
     
     OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
     if(_queryContext==nil)

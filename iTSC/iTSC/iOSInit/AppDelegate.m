@@ -10,6 +10,7 @@
 #import "DBHelper.h"
 #import "TscConfig.h"
 #import "UIHelper.h"
+#import "ThreadHelper.h"
 
 
 @interface AppDelegate ()
@@ -37,6 +38,7 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
     [TscConfig setInBackground:true];
+    [ThreadHelper Suspend];
 }
 
 
@@ -52,6 +54,7 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
     [TscConfig setInBackground:false];
+    [ThreadHelper Resume];
     [TscConfig RefreshCurrentShowAllTime];
 
 }
@@ -60,9 +63,10 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     
-    //disconnect
-    [DBHelper Disconnect];
-    
+
+    //thread stop
+    [ThreadHelper Stop];
+
 }
 
 

@@ -14,81 +14,48 @@
 #import "TscConfig.h"
 
 //static
-static Boolean _isConnected = false;
+static bool _isConnected;
+static bool _isWillDisconnect;
 static OHMySQLUser *_user;
 static OHMySQLStoreCoordinator *_coordinator;
 static OHMySQLQueryContext *_queryContext;
 
+static NSLock *_db_locker = nil;
+static bool _isThreadProcessing;
+
+static bool _isWillQuery;
 
 
 @implementation DBHelper
 
 
-
-
-
-//////////////////////// Connect ////////////////////////
-+(bool)Connect:(BOOL)visCheckGlobalAutoRefresh
+//////////////////////// Init ////////////////////////
++(void)Init
 {
-    if(visCheckGlobalAutoRefresh)
-    {
-        if([TscConfig isGlobalAutoRefresh] == false)
-            return false;
-    }
+    _db_locker = [[NSLock alloc] init];
+    _isThreadProcessing = false;
     
-    if([_coordinator isConnected])
-    {
-        NSLog(@"DBHelper: Connect: isConnected == true!");
-        return true;
-    }
-
- 
-    //SetCoordinator
-    if([self SetCoordinator] == false)
-    {
-        NSLog(@"DBHelper: Connect: SetCoordinator: false.");
-        return false;
-    }
+    _isWillDisconnect = false;
+    _isConnected = false;
     
-    
-    //connect
-    NSLog(@"DBHelper: Connect: _coordinator is connecting...");
-    [_coordinator connect];
-    if([_coordinator isConnected] == false)
-    {
-        NSLog(@"DBHelper: Connect: _coordinator isConnected == false!");
-        return false;
-    }
-    NSLog(@"DBHelper: Connect: connected.");
-    
-    //Query Context
+    _user = [OHMySQLUser alloc];
+    _coordinator = [OHMySQLStoreCoordinator alloc];
     _queryContext = [OHMySQLQueryContext new];
     _queryContext.storeCoordinator = _coordinator;
     
-    NSLog(@"DBHelper: Connect: Context is created.");
-    
-    if(_queryContext==nil)
-    {
-        NSLog(@"DBHelper: TestConnect: queryContext==nil!");
-        return false;
-    }
-    
-    
-    //isConnected
-    _isConnected = true;
-    
-    return true;
-    
+    _isWillQuery = false;
 }
 
 
-//////////////////////// SetCoordinator ////////////////////////
-+(bool)SetCoordinator
+//////////////////////// Connect ////////////////////////
++(bool)Connect1
 {
+    //getCurrentConnection
     TscConnection _con = [TscConnections getCurrentConnection];
-    NSLog(@"DBHelper: SetCoordinator: TscConnection = %@", _con.Name);
+    NSLog(@"DBHelper: Connect: TscConnection = %@", _con.Name);
     
-    //DNS
+    
+    //getCurrnetDNSString
     NSString* _address;
     if(_con.isUsingDNS)
     {
@@ -101,65 +68,39 @@ static OHMySQLQueryContext *_queryContext;
     
     
     //user
-    if(_user==nil)
-    {
-        _user = [OHMySQLUser alloc];
-        NSLog(@"DBHelper: SetCoordinator: _user is Created!");
-    }
-    
-    _user=[_user initWithUserName:_con.UserName
-                         password:_con.UserPassword
-                       serverName:_address
-                           dbName:_con.dbName
-                             port:_con.Port
-                           socket:nil];
-    
-    if(_user == nil)
-    {
-        NSLog(@"DBHelper: SetCoordinator: _user==nil!");
-        return false;
-    }
-
+    _user = [_user initWithUserName:_con.UserName
+                           password:_con.UserPassword
+                         serverName:_address
+                             dbName:_con.dbName
+                               port:_con.Port
+                             socket:nil];
     
     
     //coordinator
-    if(_coordinator == nil)
-    {
-        _coordinator = [OHMySQLStoreCoordinator alloc];
-        NSLog(@"DBHelper: SetCoordinator: _coordinator is Created!");
-    }
     _coordinator = [_coordinator initWithUser:_user];
-    if(_coordinator == nil)
+
+    
+    //_coordinator connect
+    NSLog(@"DBHelper: Connect: _coordinator is connecting...");
+    
+    [_coordinator connect];
+    
+    if([_coordinator isConnected] == false)
     {
-        NSLog(@"DBHelper: SetCoordinator: _coordinator==nil!");
+        NSLog(@"DBHelper: Connect: _coordinator isConnected = false!");
+        _isConnected = false;
         return false;
     }
- 
-    
+
+    _isConnected = true;
+    NSLog(@"DBHelper: Connect: connected.");
     
     return true;
     
 }
 
-//////////////////////// Reconnect ////////////////////////
-+(bool) Reconnect:(BOOL)visCheckGlobalAutoRefresh
-{
-    //if([_coordinator isConnected])
-    [self Disconnect];
-    _queryContext = nil;
-    _isConnected = false;
-    return [self Connect:visCheckGlobalAutoRefresh];
-}
 
 
-//////////////////////// Disconnect ////////////////////////
-+(void)Disconnect
-{
-    [_coordinator disconnect];
-    _queryContext = nil;
-    _isConnected = false;
-    NSLog(@"DBHelper: Disconnect: Disconnected.");
-}
 
 
 //////////////////////// GetContext ////////////////////////
@@ -167,35 +108,116 @@ static OHMySQLQueryContext *_queryContext;
 {
     if([TscConfig isGlobalAutoRefresh] == false)
     {
-        NSLog(@"GetContext: isGlobalAutoRefresh = false.");
+        NSLog(@"DBHelper: GetContext: isGlobalAutoRefresh = false.");
         return nil;
     }
     
-    //if(_isConnected == true)
-    if([_coordinator isConnected] == true)
+    if(_isConnected == false)
     {
-        NSLog(@"GetContext: _coordinator isConnected = true.");
-        return _queryContext;
-    }
-    
-    
-    if([NetHelper TestServerReachability] != 0)
-    {
-        NSLog(@"GetContext: TestServerReachability = false.");
+        NSLog(@"DBHelper: GetContext: _isConnected = false.");
         return nil;
     }
     
-     
-    if([self Connect:true] == true)
-    {
-        NSLog(@"GetContext: Connect = true.");
-        return _queryContext;
-    }
+    return _queryContext;
+
+}
++(bool)BeginQuery
+{
+    _isWillQuery = true;
+    if(_isThreadProcessing == true)
+        return false;
     
-    return nil;
+    NSLog(@"DBHelper: BeginQuery: lock.");
+    [self Lock];
+    return true;
+}
++(void)EndQuery
+{
+        NSLog(@"DBHelper: EndQuery.");
+    _isWillQuery = false;
+    [self UnLock];
 }
 
 
+
+//////////////////////// CheckConnect ////////////////////////
++(void)CheckConnect
+{
+    if(_isWillQuery == true)
+    {
+        _isThreadProcessing = false;
+        return;
+    }
+    
+    _isThreadProcessing = true;
+    [DBHelper Lock];
+    [self _this_CheckConnect];
+    [DBHelper UnLock];
+    _isThreadProcessing = false;
+}
++(void)_this_CheckConnect
+{
+    
+    //断开原连接
+    if(_isWillDisconnect == true)
+    {
+        [_coordinator disconnect];
+        _isWillDisconnect = false;
+        _isConnected = false;
+    }
+
+    //检查连接是否正常
+    if([_coordinator isConnected] == true)
+    {
+        _isConnected = true;
+        NSLog(@"DBHelper: CheckConnect: _coordinator isConnected = true.");
+        return;
+    }
+    
+    //connect
+    bool isOK = [self Connect1];
+    if( isOK == true)
+    {
+        //连接成功
+        _isConnected = true;
+        NSLog(@"DBHelper: CheckConnect: Connect = true.");
+    }
+    else
+    {
+        //连接失败
+        _isConnected = false;
+        NSLog(@"DBHelper: CheckConnect: Connect = false.");
+    }
+}
+
+
+//////////////////////// Disconnect ////////////////////////
++(void)Disconnect1
+{
+    _isConnected = false;
+    [_coordinator disconnect];
+    NSLog(@"DBHelper: Disconnect.");
+}
+
+
+//////////////////////// SetToDisconnect ////////////////////////
++(void)SetToDisconnect
+{
+    _isConnected = false;
+    _isWillDisconnect = true;
+    NSLog(@"DBHelper: SetToDisconnect.");
+}
+
+
+//////////////////////// Lock & UnLock ////////////////////////
++(void)Lock
+{
+    [_db_locker lock];
+}
++(void)UnLock
+{
+    [_db_locker unlock];
+}
 
 
 @end
@@ -206,6 +228,19 @@ static OHMySQLQueryContext *_queryContext;
 
 
 /*
+ //////////////////////// Reconnect ////////////////////////
+ +(bool) Reconnect
+ {
+ [self Disconnect];
+ return [self Connect];
+ }
+
+ 
+
+ 
+ 
+ 
+ 
  
  //返回数据库路径，保存到Cache目录下
  -(NSString *)databasePath

@@ -17,7 +17,6 @@
 +(int)TestServerReachability;
 +(NSString*)getConnectResultMsg:(int)vResult;
 
-+(bool)SetAvailableDNS;
 
 +(int)_block_connect;
 +(int)_nonblock_connect;

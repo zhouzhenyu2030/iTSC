@@ -17,6 +17,8 @@
 #import "UIHelper.h"
 #import "TscConnections.h"
 #import "NetHelper.h"
+#import "ThreadHelper.h"
+
 
 @implementation ConfigViewController
 
@@ -146,7 +148,7 @@ static UIAlertController * alertController;
     
     ReconnectDBSection=_SectionIndex; ReconnectDBRow=3;
     cell=[UIHelper SetTabelViewCellText:TableView Section:(int)ReconnectDBSection Row:(int)ReconnectDBRow TitleText:@"Reconnect DB" DetialText:@""];
-    cell.textLabel.textColor = UIColor.blueColor;
+    cell.textLabel.textColor = UIColor.grayColor;   //UIColor.blueColor;
     cell.accessoryType = UITableViewCellAccessoryNone;
     
     
@@ -239,7 +241,7 @@ static UIAlertController * alertController;
     //ReconnectDB
     if([indexPath section] == ReconnectDBSection && [indexPath row] == ReconnectDBRow)
     {
-        
+        /*
         if([DBHelper Reconnect:false]==false)
         {
             alertController=[UIHelper ShowMessage:@"Reconnect DB" Message:@"Reconnect DB fail."];
@@ -249,6 +251,7 @@ static UIAlertController * alertController;
             alertController=[UIHelper ShowMessage:@"Reconnect DB" Message:@"Reconnect DB success."];
         }
         [self presentViewController:alertController animated:YES completion:nil];
+         */
     }
   
     //DNS 设定
@@ -264,7 +267,7 @@ static UIAlertController * alertController;
             lastDNSIndexPath = indexPath;
 
             [TscDNSs SetCurrentDNS:[TableView cellForRowAtIndexPath:indexPath].textLabel.text];
-            [self _TestConnection];
+            [self _CheckConnection];
         }
     }
 
@@ -282,7 +285,7 @@ static UIAlertController * alertController;
             lastConnectionIndexPath = indexPath;
 
             [TscConnections SetCurrentConnection:[TableView cellForRowAtIndexPath:indexPath].textLabel.text];
-            [self _TestConnection];
+            [self _CheckConnection];
         }
     }
     
@@ -326,10 +329,16 @@ static UIAlertController * alertController;
 
 
 
--(void)_TestConnection
+-(void)_CheckConnection
 {
+    [DBHelper SetToDisconnect];
+    return;
+
+    /*
     [DBHelper Disconnect];
 
+    
+    
     alertController = nil;
     bool _isCanConnect = true;
     
@@ -353,8 +362,10 @@ static UIAlertController * alertController;
         [self presentViewController:alertController animated:YES completion:nil];
 
     
-    [TscConfig setGlobalAutoRefresh:_isCanConnect];
-    Switch_GlobalAutoRefresh.on = [TscConfig isGlobalAutoRefresh];
+    //[TscConfig setGlobalAutoRefresh:_isCanConnect];
+    //Switch_GlobalAutoRefresh.on = [TscConfig isGlobalAutoRefresh];
+     
+     */
 }
 
 

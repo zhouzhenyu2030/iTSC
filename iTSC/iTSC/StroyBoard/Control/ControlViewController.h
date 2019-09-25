@@ -16,7 +16,7 @@
     bool isTimerProcessing;
     NSInteger RefreshCnt;
     UITableViewCell *RefreshCountCell;
-    
+    UITableViewCell *ThreadLoopCntCell;
     
     
     //GlobalStart

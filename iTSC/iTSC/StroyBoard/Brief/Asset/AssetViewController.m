@@ -167,8 +167,9 @@
 -(void) ResetTableViewCells
 {
     //hisAsset
-    [UIHelper SetTabelViewCellText:TableView Section:0 Row:0 TitleText:@"HisDate:" DetialText:@"-/-/-"];
-    [UIHelper SetTabelViewCellText:TableView Section:0 Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
+    [UIHelper SetTabelViewCellText:TableView Section:0 Row:0 TitleText:@"Server ID:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:0 Row:1 TitleText:@"HisDate:" DetialText:@"-/-/-"];
+    [UIHelper SetTabelViewCellText:TableView Section:0 Row:2 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
     
     [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"Risk Level (%):" DetialText:@"-" Color:UIColor.magentaColor];
     [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"NV (Theory):" DetialText:@"-"];
@@ -223,10 +224,9 @@
     [UIHelper SetTabelViewCellText:TableView Section:7 Row:6 TitleText:@"U LP:" DetialText:@"-"];
     
     
-    [UIHelper SetTabelViewCellText:TableView Section:8 Row:0 TitleText:@"Server ID:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:8 Row:1 TitleText:@"MD Time:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:8 Row:2 TitleText:@"MD Date:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:8 Row:3 TitleText:@"AccountID:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:8 Row:0 TitleText:@"MD Time:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:8 Row:1 TitleText:@"MD Date:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:8 Row:2 TitleText:@"AccountID:" DetialText:@"-"];
 
     
     //sys
@@ -244,21 +244,22 @@
 ////////////////////////////////////////////////////////////////////////////////////////////
 - (void)QueryAndDisplay
 {
-    //NSLog(@"AssetViewController: start!");
-    
     //重置原显示
     [self ResetTableViewCells];
 
     //RefreshCnt
     [UIHelper SetTabelViewCellDetailText:TableView TitleText:@"RefreshCount:" DetialText:[NSString stringWithFormat:@"%d", RefreshCnt]];
-    //NSLog(@"AssetViewController: RefreshCnt=%d", RefreshCnt);
-    
-    //Display
-    [self _DisplayHisAsset];
-    [self _DisplayRuntimeInfo];
     
     //ServerName
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Server ID:" DetialText:TscConnections.CurrentConnectionKey];
+
+    //Display
+    if([DBHelper BeginQuery])
+    {
+        [self _DisplayHisAsset];
+        [self _DisplayRuntimeInfo];
+        [DBHelper EndQuery];
+    }
 
     //reloadData
     [TableView reloadData];

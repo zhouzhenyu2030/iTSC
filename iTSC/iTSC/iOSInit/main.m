@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "AppDelegate.h"
 #import "TscConfig.h"
 #import "TscConnections.h"
+#import "ThreadHelper.h"
 #import "DBHelper.h"
 #import "NetHelper.h"
+
 
 int main(int argc, char * argv[])
 {
@@ -29,9 +32,9 @@ int main(int argc, char * argv[])
         [TscConfig Init];
         [TscDNSs Init];
         [TscConnections Init];
+        [DBHelper Init];
         
-
-        [NetHelper SetAvailableDNS];
+        [ThreadHelper Start];
 
         
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));

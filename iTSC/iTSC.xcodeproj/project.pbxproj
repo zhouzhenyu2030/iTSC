@@ -45,6 +45,7 @@
 		198173FA222CFD74009415A2 /* HAMktOrTheoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198173F9222CFD74009415A2 /* HAMktOrTheoPickerViewController.m */; };
 		198426352226704600BA10F0 /* AvgEdgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198426342226704600BA10F0 /* AvgEdgeViewController.m */; };
 		19F2FE862339AE63008498D7 /* NetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2FE852339AE63008498D7 /* NetHelper.m */; };
+		19F2FE88233AF022008498D7 /* ThreadHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2FE87233AF022008498D7 /* ThreadHelper.m */; };
 		19FFB29221F1706900C02A53 /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19FFB29121F1706900C02A53 /* Help.storyboard */; };
 		19FFB29521F17B7D00C02A53 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FFB29421F17B7D00C02A53 /* TabBarController.m */; };
 		19FFB2A421F18EEE00C02A53 /* Config.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19FFB2A321F18EEE00C02A53 /* Config.storyboard */; };
@@ -74,7 +75,6 @@
 		190210D621E48375009ADE0B /* FilePathHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilePathHelper.h; sourceTree = "<group>"; };
 		190210D721E48399009ADE0B /* FilePathHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilePathHelper.m; sourceTree = "<group>"; };
 		190210D921E48DB2009ADE0B /* OCCodingHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCCodingHelper.m; sourceTree = "<group>"; };
-		190210DB21E49255009ADE0B /* Locker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Locker.h; sourceTree = "<group>"; };
 		190210DC21E49649009ADE0B /* 编程-属性 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "编程-属性"; sourceTree = "<group>"; };
 		190210DF21E499DE009ADE0B /* 编程-本地数据保存 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "编程-本地数据保存"; sourceTree = "<group>"; };
 		190210E121E49BA1009ADE0B /* ConfigHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigHelper.h; sourceTree = "<group>"; };
@@ -131,6 +131,8 @@
 		198426342226704600BA10F0 /* AvgEdgeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvgEdgeViewController.m; sourceTree = "<group>"; };
 		19F2FE842339AE50008498D7 /* NetHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetHelper.h; sourceTree = "<group>"; };
 		19F2FE852339AE63008498D7 /* NetHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetHelper.m; sourceTree = "<group>"; };
+		19F2FE87233AF022008498D7 /* ThreadHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreadHelper.m; sourceTree = "<group>"; };
+		19F2FE89233AF03A008498D7 /* ThreadHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreadHelper.h; sourceTree = "<group>"; };
 		19FFB29121F1706900C02A53 /* Help.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
 		19FFB29321F17B6900C02A53 /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		19FFB29421F17B7D00C02A53 /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
@@ -212,6 +214,8 @@
 				194D008821F41210008918DA /* UIHelper.m */,
 				19F2FE842339AE50008498D7 /* NetHelper.h */,
 				19F2FE852339AE63008498D7 /* NetHelper.m */,
+				19F2FE89233AF03A008498D7 /* ThreadHelper.h */,
+				19F2FE87233AF022008498D7 /* ThreadHelper.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -285,7 +289,6 @@
 		194D008B21F4148C008918DA /* nouse */ = {
 			isa = PBXGroup;
 			children = (
-				190210DB21E49255009ADE0B /* Locker.h */,
 				190210D621E48375009ADE0B /* FilePathHelper.h */,
 				190210D721E48399009ADE0B /* FilePathHelper.m */,
 				190210D921E48DB2009ADE0B /* OCCodingHelper.m */,
@@ -660,6 +663,7 @@
 				190210DA21E48DB2009ADE0B /* OCCodingHelper.m in Sources */,
 				194B2B66220024F4008F8A9D /* HADrawChartView.m in Sources */,
 				19703EBA21F5B537003D6697 /* PositionViewController.m in Sources */,
+				19F2FE88233AF022008498D7 /* ThreadHelper.m in Sources */,
 				194D008E21F44057008918DA /* AssetViewController.m in Sources */,
 				194D008721F2C714008918DA /* TestViewController.m in Sources */,
 				19FFB2C121F19A8E00C02A53 /* TWPageTitleViewController.m in Sources */,

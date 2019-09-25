@@ -245,52 +245,6 @@ static int _ret;
 }
 
 
-///////////////////////////////// SetAvailableDNS /////////////////////////////////
-+(bool)SetAvailableDNS
-{
-    //当前DNS
-    if([self TestServerReachability]==0)
-        return true;
-    
-    //循环判断DNS
-    /*
-    NSArray *DNSNames = [TscDNSs getDNSNames];
-    for (NSString *d in DNSNames)
-    {
-        NSLog(@"NetHelper: TestConnect. %@", d);
-        [TscDNSs SetCurrentDNS:d];
-        if([self TestServerReachability]==0)
-        {
-            return true;
-        }
-    }
-    */
-    
-    
-    
-    //连接不使用DNS的Connection
-    /*
-    NSArray *ConnectionKeys = [TscConnections getConnectionKeys];
-    for (NSString *c in ConnectionKeys)
-    {
-        if([TscConnections getConnection:(c)].isUsingDNS == false)
-        {
-            [TscConnections SetCurrentConnection:c];
-            if([self Connect])
-                return true;
-        }
-    }
-    */
-    
-    
-    //如果都连不通，设置为none
-    //[TscConnections SetCurrentConnection:(@"none")];
-    //[TscDNSs SetCurrentDNS:(@"none")];
-    [TscConfig setGlobalAutoRefresh:false];
-    
-    
-    return false;
-}
 
     
     
