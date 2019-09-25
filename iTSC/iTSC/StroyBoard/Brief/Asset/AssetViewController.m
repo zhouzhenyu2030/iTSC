@@ -17,19 +17,18 @@
 
 @implementation AssetViewController
 
-
-
 @synthesize TableView;
 
 
-- (void)viewDidLoad {
+
+
+//////////////////////// viewDidLoad ////////////////////////
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     RefreshCnt = 0;
     isTimerProcessing = false;
-    
-    Switch_AutoRefresh = [self AppendSwitch];
-    Switch_AutoRefresh.on = [TscConfig isAssetAutoRefresh];
     
     [self InitTableViewCells];
     
@@ -38,12 +37,9 @@
         myTimer  =  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
     
     [self setupRefresh];
-
- 
-    
 }
 
-// 设置下拉刷新
+//////////////////////// 设置下拉刷新 ////////////////////////
 - (void)setupRefresh
 {
     refreshControl = [[UIRefreshControl alloc] init];
@@ -62,16 +58,9 @@
 }
 
 
-//AppendSwitch
--(UISwitch*) AppendSwitch
-{
-    UISwitch *_switch = [[UISwitch alloc] init];
-    [_switch addTarget:self action:@selector(SwitchChanged:) forControlEvents:UIControlEventValueChanged];
-    return _switch;
-}
 
 
-//定时器处理函数
+//////////////////////// 定时器处理函数 ////////////////////////
 -(void)timerFired
 {
     if([TscConfig isInBackground] == true) return;
@@ -604,3 +593,16 @@
 
 
 @end
+
+
+
+
+//AppendSwitch
+/*
+ -(UISwitch*) AppendSwitch
+ {
+ UISwitch *_switch = [[UISwitch alloc] init];
+ [_switch addTarget:self action:@selector(SwitchChanged:) forControlEvents:UIControlEventValueChanged];
+ return _switch;
+ }
+ */

@@ -15,7 +15,7 @@
 {
     NSInteger RefreshTimerElpasedSeconds;
     int RefreshCnt;
-    UISwitch *Switch_AutoRefresh;
+    //UISwitch *Switch_AutoRefresh;
     UITableViewCell *RefreshSwitchCell;
     UIRefreshControl *refreshControl;
     NSTimer* myTimer;
