@@ -32,6 +32,11 @@ static NSString* _CurrentConnectionKey;
 
 +(NSString*) CurrentConnectionKey
 {
+    if(_isThreadProcessing)
+    {
+        return [_CurrentConnectionKey stringByAppendingString:@" (connectiong...)"];
+    }
+
     if(_isConnected)
         return _CurrentConnectionKey;
     else

@@ -59,13 +59,6 @@
     [self QueryAndDisplay];
     [self.TableView reloadData];
     [refreshControl endRefreshing];
-    /*
-     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-     [self.TableView reloadData];
-     if ([self.TableView.refreshControl isRefreshing])
-     [self.TableView.refreshControl endRefreshing];
-     });
-    */
 }
 
 
@@ -90,8 +83,9 @@
     RefreshTimerElpasedSeconds++;
     if(RefreshTimerElpasedSeconds<TscConfig.RefreshSeconds) return;
     
+ 
+    //display
     isTimerProcessing=true;
-    RefreshCnt++;
     [self QueryAndDisplay];
     isTimerProcessing=false;
     
@@ -246,21 +240,23 @@
 {
     //重置原显示
     [self ResetTableViewCells];
-
-    //RefreshCnt
-    [UIHelper SetTabelViewCellDetailText:TableView TitleText:@"RefreshCount:" DetialText:[NSString stringWithFormat:@"%d", RefreshCnt]];
     
+   
     //ServerName
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Server ID:" DetialText:DBHelper.CurrentConnectionKey];
-
+    
     //Display
     if([DBHelper BeginQuery])
     {
+        RefreshCnt++;
         [self _DisplayHisAsset];
         [self _DisplayRuntimeInfo];
         [DBHelper EndQuery];
     }
-
+    
+    //RefreshCnt
+    [UIHelper SetTabelViewCellDetailText:TableView TitleText:@"RefreshCount:" DetialText:[NSString stringWithFormat:@"%d", RefreshCnt]];
+    
     //reloadData
     [TableView reloadData];
 }
