@@ -15,7 +15,9 @@
 
 //static
 static bool _isConnected;
-static bool _isWillDisconnect;
+static bool _isWillDisconnect; //DNS切换后断开原连接
+static bool _isQuerying;
+
 static OHMySQLUser *_user;
 static OHMySQLStoreCoordinator *_coordinator;
 static OHMySQLQueryContext *_queryContext;
@@ -23,7 +25,6 @@ static OHMySQLQueryContext *_queryContext;
 static NSLock *_db_locker = nil;
 static bool _isThreadProcessing;
 
-static bool _isWillQuery;
 static NSString* _CurrentConnectionKey;
 
 @implementation DBHelper
@@ -34,7 +35,7 @@ static NSString* _CurrentConnectionKey;
 {
     if(_isThreadProcessing)
     {
-        return [_CurrentConnectionKey stringByAppendingString:@" (connectiong...)"];
+        return [_CurrentConnectionKey stringByAppendingString:@" (connecting...)"];
     }
 
     if(_isConnected)
@@ -52,13 +53,13 @@ static NSString* _CurrentConnectionKey;
     
     _isWillDisconnect = false;
     _isConnected = false;
+    _isQuerying = false;
     
     _user = [OHMySQLUser alloc];
     _coordinator = [OHMySQLStoreCoordinator alloc];
     _queryContext = [OHMySQLQueryContext new];
     _queryContext.storeCoordinator = _coordinator;
     
-    _isWillQuery = false;
     _CurrentConnectionKey = @"";
 }
 
@@ -99,21 +100,26 @@ static NSString* _CurrentConnectionKey;
 }
 +(bool)BeginQuery
 {
-    //_isWillQuery = true;
     if(_isThreadProcessing == true)
     {
         NSLog(@"DBHelper: BeginQuery: _isThreadProcessing = true.");
         return false;
     }
+    if(_isConnected == false)
+    {
+        NSLog(@"DBHelper: BeginQuery: _isConnected = false.");
+        return false;
+    }
     
     NSLog(@"DBHelper: BeginQuery: lock.");
+    _isQuerying = true;
     [self Lock];
     return true;
 }
 +(void)EndQuery
 {
     NSLog(@"DBHelper: EndQuery.");
-    //_isWillQuery = false;
+    _isQuerying = false;
     [self UnLock];
 }
 
@@ -143,11 +149,12 @@ static NSString* _CurrentConnectionKey;
     }
     
     //是否有查询请求
-    if(_isWillQuery == true)
+    if(_isQuerying == true)
     {
         _isThreadProcessing = false;
         return;
     }
+    
     
     //建立连接
     _isThreadProcessing = true;
@@ -200,11 +207,11 @@ static NSString* _CurrentConnectionKey;
                              dbName:_con.dbName
                                port:_con.Port
                              socket:nil];
-    
+ 
     
     //coordinator
     _coordinator = [_coordinator initWithUser:_user];
-    
+
     
     //_coordinator connect
     NSLog(@"DBHelper: Connect: _coordinator is connecting...");

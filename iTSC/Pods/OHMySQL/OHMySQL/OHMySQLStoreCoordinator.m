@@ -11,11 +11,15 @@
 
 #import "lib/include/mysql.h"
 
+
+
+
 @interface OHMySQLStoreCoordinator ()
 
 @property (nonatomic, strong, readwrite) OHMySQLStore *store;
 @property (nonatomic, strong, readwrite) OHMySQLUser *user;
 @property (readwrite, nullable) void *mysql;
+
 
 @end
 
@@ -26,12 +30,27 @@
 	[self configureConnectionForEncoding:encoding];
 }
 
-- (instancetype)initWithUser:(OHMySQLUser *)user {
+
+// zzy - timeout -connect.
+- (void)setTimeOutSeconds:(NSInteger)vTimeOutSeconds
+{
+    NSLog(@"OHMySQLStoreCoordinator: setTimeOutSeconds: vTimeOutSecconds=%ld", vTimeOutSeconds);
+    _timeoutseconds = vTimeOutSeconds;
+    if(_timeoutseconds < 1000 )
+        _timeoutseconds = 1000;
+    NSLog(@"OHMySQLStoreCoordinator: setTimeOutSeconds: _timeoutseconds=%ld", _timeoutseconds);
+}
+
+
+- (instancetype)initWithUser:(OHMySQLUser *)user{
     NSParameterAssert(user);
     if (self = [super init]) {
         _user = user;
 		_encoding = CharsetEncodingUTF8;
+        _timeoutseconds = 2*1000; //zzy
     }
+
+    
     
     return self;
 }
@@ -49,6 +68,7 @@
     my_bool reconnect = 1;
     mysql_options(_mysql, MYSQL_OPT_RECONNECT, &reconnect);
     mysql_options(_mysql, MYSQL_OPT_PROTOCOL, &_protocol);
+    mysql_options(_mysql, MYSQL_OPT_CONNECT_TIMEOUT, &_timeoutseconds);
     
     OHSSLConfig *SSLconfig = self.user.sslConfig;
     if (SSLconfig) {
@@ -58,6 +78,8 @@
 		uint ssl_mode = SSL_MODE_REQUIRED;
 		mysql_options(_mysql, MYSQL_OPT_SSL_MODE, &ssl_mode);
 
+        
+        
         mysql_ssl_set(_mysql, SSLconfig.key.UTF8String, SSLconfig.certPath.UTF8String,
                       SSLconfig.certAuthPath.UTF8String, SSLconfig.certAuthPEMPath.UTF8String,
                       SSLconfig.cipher.UTF8String);
@@ -68,6 +90,8 @@
 		return ;
     }
 
+    OHLog(@"OHMySQLStoreCoordinator: connect: _timeoutseconds=%ld", _timeoutseconds); //zzy
+    
 	OHLog(@"MySQL cipher: %s", mysql_get_ssl_cipher(_mysql));
 	
 	self.store = [[OHMySQLStore alloc] initWithMySQL:_mysql];

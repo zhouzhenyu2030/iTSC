@@ -24,8 +24,19 @@
 /// One of the protocols. Needs to be set before calling -connect.
 @property (nonatomic, assign) OHProtocolType protocol;
 
+
+
 /// The default character set for the current connection. By default UTF-8.
 @property (nonatomic, assign) CharsetEncoding encoding;
+
+
+//zzy
+@property (atomic, assign) NSInteger timeoutseconds;
+
+
+
+
+
 
 - (nonnull instancetype)initWithUser:(nonnull OHMySQLUser *)user;
 
@@ -64,5 +75,7 @@
  *  @return Zero if the connection to the server is active. Nonzero if an error occurred. A nonzero return does not indicate whether the MySQL server itself is down; the connection might be broken for other reasons such as network problems.
  */
 - (OHResultErrorType)pingMySQL __attribute__((warn_unused_result));
+
+
 
 @end
