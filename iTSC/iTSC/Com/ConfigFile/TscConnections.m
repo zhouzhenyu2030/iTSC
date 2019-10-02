@@ -53,7 +53,7 @@ static NSString *_CurrentConnectionKey;
     _con.Name=@"6-6";
     _con.isUsingDNS=true;
     _con.IP=_dnsString;
-    _con.Port=56000; //56063;
+    _con.Port=56063; //56063;
     _con.UserName=@"root";
     _con.UserPassword=@"z";
     _con.dbName=@"tss";
