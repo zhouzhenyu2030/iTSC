@@ -49,11 +49,10 @@ static NSString *_CurrentConnectionKey;
     //Connection
     TscConnection _con;
     
-
-    _con.Name=@"6-6";
+    _con.Name=@"195-2";
     _con.isUsingDNS=true;
     _con.IP=_dnsString;
-    _con.Port=56063; //56063;
+    _con.Port=30623;
     _con.UserName=@"root";
     _con.UserPassword=@"z";
     _con.dbName=@"tss";
@@ -61,22 +60,35 @@ static NSString *_CurrentConnectionKey;
     _con_value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
     [Connections setObject:_con_value forKey:_con.Name];
     
-    /*_con.Name=@"6-7";
+    
+    _con.Name=@"195-3";
     _con.isUsingDNS=true;
     _con.IP=_dnsString;
-    _con.Port=56073;
+    _con.Port=30633;
     _con.UserName=@"root";
     _con.UserPassword=@"z";
     _con.dbName=@"tss";
     _con.AccountID = @"AccountID=0";
     _con_value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
     [Connections setObject:_con_value forKey:_con.Name];
-    */
+    
+    
+    _con.Name=@"6-6";
+    _con.isUsingDNS=true;
+    _con.IP=_dnsString;
+    _con.Port=20663;
+    _con.UserName=@"root";
+    _con.UserPassword=@"z";
+    _con.dbName=@"tss";
+    _con.AccountID = @"AccountID=0";
+    _con_value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
+    [Connections setObject:_con_value forKey:_con.Name];
+    
     
     _con.Name=@"6-8";
     _con.isUsingDNS=true;
     _con.IP=_dnsString;
-    _con.Port=56083;
+    _con.Port=20683;
     _con.UserName=@"root";
     _con.UserPassword=@"z";
     _con.dbName=@"tss";
@@ -88,7 +100,7 @@ static NSString *_CurrentConnectionKey;
     _con.Name=@"6-9";
     _con.isUsingDNS=true;
     _con.IP=_dnsString;
-    _con.Port=56093;
+    _con.Port=20693;
     _con.UserName=@"root";
     _con.UserPassword=@"z";
     _con.dbName=@"tss";
@@ -97,16 +109,7 @@ static NSString *_CurrentConnectionKey;
     [Connections setObject:_con_value forKey:_con.Name];
     
     
-    _con.Name=@"195";
-    _con.isUsingDNS=true;
-    _con.IP=_dnsString;
-    _con.Port=19503;
-    _con.UserName=@"root";
-    _con.UserPassword=@"z";
-    _con.dbName=@"tss";
-    _con.AccountID = @"AccountID=0";
-    _con_value = [NSValue valueWithBytes:&_con objCType:@encode(TscConnection)];
-    [Connections setObject:_con_value forKey:_con.Name];
+ 
     
     
  
