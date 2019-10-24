@@ -214,6 +214,12 @@ static int _ret;
     const char * _chostname = [vHostName UTF8String];
     //NSLog(@"NetHelper: getIPFromHostName: vHostName=%@: _chostname=%s", vHostName, _chostname);
     
+    if(_chostname == nil)
+    {
+        NSLog(@"NetHelper: getIPFromHostName: gethostbyname: _chostname=nil, ret=-6666");
+        return -6666;
+    }
+    
     //gethostbyname
     _hostent = gethostbyname(_chostname);
     if(_hostent == nil)
