@@ -150,73 +150,95 @@
 
 -(void) ResetTableViewCells
 {
+    int _iS = 0;
+    
     //hisAsset
-    [UIHelper SetTabelViewCellText:TableView Section:0 Row:0 TitleText:@"Server ID:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:0 Row:1 TitleText:@"HisDate:" DetialText:@"-/-/-"];
-    [UIHelper SetTabelViewCellText:TableView Section:0 Row:2 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Server ID:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"MD Time:" DetialText:@"-"];
     
-    [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"Risk Level (%):" DetialText:@"-" Color:UIColor.magentaColor];
-    [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"NV (Theory):" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Asset (Market):" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:1 Row:3 TitleText:@"Asset (Theory):" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:1 Row:4 TitleText:@"Asset Dif (Market-Theory):" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:1 Row:5 TitleText:@"Available:" DetialText:@"-" Color:UIColor.brownColor];
-    [UIHelper SetTabelViewCellText:TableView Section:1 Row:6 TitleText:@"Curr Margin:" DetialText:@"-"];
+    //MD info
+    _iS++;
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"U %:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"U LP:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Smoothed Basis:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"Smoothed Vol:" DetialText:@"-" Color:UIColor.blueColor];
     
+    //Asset
+    _iS++;
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Risk Level (%):" DetialText:@"-" Color:UIColor.magentaColor];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"NV (Theory):" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Asset (Market):" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"Asset (Theory):" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:4 TitleText:@"Available:" DetialText:@"-" Color:UIColor.brownColor];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:5 TitleText:@"Total Margin:" DetialText:@"-"];   //From Runtimeinfo
+
+    //Position &Risk
+    _iS++;
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blueColor];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"Delta:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Vega:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"SRR:" DetialText:@"-"];
+
+    //Market PNL
+    _iS++;
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Marktet Trade PNL:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"Marktet Yd PNL:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Marktet Total PNL:" DetialText:@"-"];
     
-    //Runtimeinfo
-    [UIHelper SetTabelViewCellText:TableView Section:1 Row:7 TitleText:@"Total Margin:" DetialText:@"-"];
-    
-    
-    [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"Marktet Trade PNL:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Marktet Yd PNL:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Marktet Total PNL:" DetialText:@"-"];
-    
-    [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"Theo Trade PNL:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:3 Row:1 TitleText:@"Theo Yd PNL:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:3 Row:2 TitleText:@"Theo Total PNL:" DetialText:@"-"];
-    
-    
-    [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"TPR:" DetialText:@"-" Color:UIColor.magentaColor];
-    [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"OCR:" DetialText:@"-" Color:UIColor.orangeColor];
-    [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"TOR(%):" DetialText:@"-" Color:UIColor.purpleColor];
-    [UIHelper SetTabelViewCellText:TableView Section:4 Row:3 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blueColor];
-    
-    
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"Trade Edge:" DetialText:@"-" Color:UIColor.blueColor];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"Trade Qty:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"AQ Trade Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:3 TitleText:@"AQ Trade Qty:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:4 TitleText:@"AT Trade Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:5 TitleText:@"AT Trade Qty:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:6 TitleText:@"AH Trade Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:7 TitleText:@"AH Trade Qty:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:8 TitleText:@"Order Cnt:" DetialText:@"-"];
+    //Theo PNL
+    _iS++;
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Theo Trade PNL:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"Theo Yd PNL:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Theo Total PNL:" DetialText:@"-"];
 
     
-    [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Excersize PNL:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"Market Close PNL:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:6 Row:2 TitleText:@"Theo Close PNL:" DetialText:@"-"];
-    
-    
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:0 TitleText:@"U %:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:1 TitleText:@"Smoothed Basis:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:2 TitleText:@"Smoothed Vol:" DetialText:@"-" Color:UIColor.blueColor];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:3 TitleText:@"Avg Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:4 TitleText:@"Positive Avg Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:5 TitleText:@"Negative Avg Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:6 TitleText:@"U LP:" DetialText:@"-"];
-    
-    
-    [UIHelper SetTabelViewCellText:TableView Section:8 Row:0 TitleText:@"MD Time:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:8 Row:1 TitleText:@"MD Date:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:8 Row:2 TitleText:@"AccountID:" DetialText:@"-"];
+    //OT & Ratio
+    _iS++;
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Trade Edge:" DetialText:@"-" Color:UIColor.blueColor];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Order Cnt:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"TPR:" DetialText:@"-" Color:UIColor.magentaColor];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:4 TitleText:@"OCR:" DetialText:@"-" Color:UIColor.orangeColor];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:5 TitleText:@"TOR(%):" DetialText:@"-" Color:UIColor.purpleColor];
 
+    //Auto
+    _iS++;
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"AT Trade Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"AT Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"AH Trade Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"AH Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:4 TitleText:@"AL Trade Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:5 TitleText:@"AL Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:6 TitleText:@"AQ Trade Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:7 TitleText:@"AQ Trade Qty:" DetialText:@"-"];
+
+    //PNL
+    _iS++;
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Excersize PNL:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"Market Close PNL:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Theo Close PNL:" DetialText:@"-"];
     
-    //sys
-    [UIHelper SetTabelViewCellText:TableView Section:9 Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
-    //RefreshSwitchCell = [UIHelper SetTabelViewCellText:TableView Section:9 Row:1 TitleText:@"AutoRefresh:" DetialText:@""];
-    //RefreshSwitchCell.accessoryView = Switch_AutoRefresh;
+    //Misc
+    _iS++;
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Avg Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"Positive Avg Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Negative Avg Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"Asset Dif (Market-Theory):" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:4 TitleText:@"Curr Margin:" DetialText:@"-"];
+    
+ 
+    //date time
+    _iS++;
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"MD Date:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"HisDate:" DetialText:@"-/-/-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"AccountID:" DetialText:@"-"];
+ 
+
+    //refresh
+    _iS++;
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
+ 
 }
 
 
@@ -339,13 +361,19 @@
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Capital' and ItemType='TotalMargin' )"];
     
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Risk' )"];
+    
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='OrderInsertCnt' )"];
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradePosRatio' or ItemType='OrderTradeRatio' or ItemType='OCR' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradeEdge' or ItemType='TradeQty' )"];
     
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='AQTradeEdge' or ItemType='AQTradeQty' or ItemType='ATTradeEdge' or ItemType='ATTradeQty' or ItemType='AHTradeEdge' or ItemType='AHTradeQty' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ATTradeEdge' or ItemType='ATTradeQty') "];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ALTradeEdge' or ItemType='ALTradeQty' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='AHTradeEdge' or ItemType='AHTradeQty' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='AQTradeEdge' or ItemType='AQTradeQty' )"];
 
+    
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='PNL' and EntityType='A' )"];
 
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Edge' )"];
@@ -370,6 +398,7 @@
     
     //显示
     NSDictionary  *_field;
+    NSString* _typename;
     float _fValue;
     NSString* value;
     UITableViewCell *cell;
@@ -377,33 +406,42 @@
     for( int i=0; i<count; i++)
     {
         _field=[tasks objectAtIndex:i];
-        //NSLog(@"%@", _field);
         
-        
+        _typename=_field[@"ItemType"];
 
         //Margin
-        if([_field[@"ItemType"] isEqualToString:@"TotalMargin"])
+        if([_typename isEqualToString:@"TotalMargin"])
         {
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total Margin:" FieldName:@"ItemValue" SetColor:false];
             continue;
         }
         
-
+        //Risk Field
+        if([_field[@"ItemKey"] isEqualToString:@"Risk"])
+        {
+            NSString* titlename = [_typename substringFromIndex:5]; titlename = [titlename stringByAppendingString:@":"];
+            if([titlename isEqualToString:@"Tata:"]) titlename = @"Thema:";
+            
+            [UIHelper DisplayCell:TableView Field:_field TitleName:titlename FieldName:@"ItemValue" SetColor:true];
+            
+            continue;
+        }
+        
 
         //Ratio
-        if([_field[@"ItemType"] isEqualToString:@"OrderTradeRatio"])
+        if([_typename isEqualToString:@"OrderTradeRatio"])
         {
             _fValue=[_field[@"ItemValue"] floatValue]*100;
             value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
             [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"TOR(%):" DetialText:value];
             continue;
         }
-        if([_field[@"ItemType"] isEqualToString:@"OCR"])
+        if([_typename isEqualToString:@"OCR"])
         {
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"OCR:" FieldName:@"ItemValue" SetColor:false];
             continue;
         }
-        if([_field[@"ItemType"] isEqualToString:@"TradePosRatio"])
+        if([_typename isEqualToString:@"TradePosRatio"])
         {
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"TPR:" FieldName:@"ItemValue" SetColor:false];
             continue;
@@ -411,115 +449,136 @@
         
         
         //Position
-        if([_field[@"ItemType"] isEqualToString:@"Position"])
+        if([_typename isEqualToString:@"Position"])
         {
             [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Position:" FieldName:@"ItemValue"];
             continue;
         }
         
         
-        
-        //Trade
-        if([_field[@"ItemType"] isEqualToString:@"TradeEdge"])
-        {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Trade Edge:" FieldName:@"ItemValue" SetColor:true];
-            continue;
-        }
-        if([_field[@"ItemType"] isEqualToString:@"TradeQty"])
-        {
-            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Trade Qty:" FieldName:@"ItemValue"];
-            continue;
-        }
-        
-        if([_field[@"ItemType"] isEqualToString:@"AQTradeEdge"])
-        {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"AQ Trade Edge:" FieldName:@"ItemValue" SetColor:true];
-            continue;
-        }        if([_field[@"ItemType"] isEqualToString:@"AQTradeQty"])
-        {
-            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"AQ Trade Qty:" FieldName:@"ItemValue"];
-            continue;
-        }
-        
-        if([_field[@"ItemType"] isEqualToString:@"ATTradeEdge"])
-        {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"AT Trade Edge:" FieldName:@"ItemValue" SetColor:true];
-            continue;
-        }        if([_field[@"ItemType"] isEqualToString:@"ATTradeQty"])
-        {
-            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"AT Trade Qty:" FieldName:@"ItemValue"];
-            continue;
-        }
-        
-        if([_field[@"ItemType"] isEqualToString:@"AHTradeEdge"])
-        {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"AH Trade Edge:" FieldName:@"ItemValue" SetColor:true];
-            continue;
-        }
-        if([_field[@"ItemType"] isEqualToString:@"AHTradeQty"])
-        {
-            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"AH Trade Qty:" FieldName:@"ItemValue"];
-            continue;
-        }
-        
-        
         //Order
-        if([_field[@"ItemType"] isEqualToString:@"OrderInsertCnt"])
+        if([_typename isEqualToString:@"OrderInsertCnt"])
         {
             [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Order Cnt:" FieldName:@"ItemValue"];
             continue;
         }
 
+        //Trade
+        if([_typename isEqualToString:@"TradeQty"])
+        {
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Trade Qty:" FieldName:@"ItemValue"];
+            continue;
+        }
+
+        
+       
+        
+        //Auto Trade Qty Edge
+        if([_typename isEqualToString:@"TradeEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Trade Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        
+        
+        if([_typename isEqualToString:@"ATTradeEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"AT Trade Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([_typename isEqualToString:@"ATTradeQty"])
+        {
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"AT Trade Qty:" FieldName:@"ItemValue"];
+            continue;
+        }
+  
+        
+        if([_typename isEqualToString:@"ALTradeEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"AL Trade Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([_typename isEqualToString:@"ALTradeQty"])
+        {
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"AL Trade Qty:" FieldName:@"ItemValue"];
+            continue;
+        }
+        
+        
+
+        if([_typename isEqualToString:@"AHTradeEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"AH Trade Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([_typename isEqualToString:@"AHTradeQty"])
+        {
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"AH Trade Qty:" FieldName:@"ItemValue"];
+            continue;
+        }
+        
+        if([_typename isEqualToString:@"AQTradeEdge"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"AQ Trade Edge:" FieldName:@"ItemValue" SetColor:true];
+            continue;
+        }
+        if([_typename isEqualToString:@"AQTradeQty"])
+        {
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"AQ Trade Qty:" FieldName:@"ItemValue"];
+            continue;
+        }
+
+  
 
         //PNL
         if([_field[@"ItemKey"] isEqualToString:@"PNL"])
         {
-            if([_field[@"ItemType"] isEqualToString:@"ExecPNL"])
+            if([_typename isEqualToString:@"ExecPNL"])
             {
                 [UIHelper DisplayCell:TableView Field:_field TitleName:@"Excersize PNL:" FieldName:@"ItemValue" SetColor:true];
                 continue;
             }
-            if([_field[@"ItemType"] isEqualToString:@"CloseTheoryPNL"])
+            if([_typename isEqualToString:@"CloseTheoryPNL"])
             {
                 [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Close PNL:" FieldName:@"ItemValue" SetColor:true];
                 continue;
             }
-            if([_field[@"ItemType"] isEqualToString:@"CloseMarketPNL"])
+            if([_typename isEqualToString:@"CloseMarketPNL"])
             {
                 [UIHelper DisplayCell:TableView Field:_field TitleName:@"Market Close PNL:" FieldName:@"ItemValue" SetColor:true];
                 continue;
             }
           
     
-            if([_field[@"ItemType"] isEqualToString:@"YPNL_Mkt"])
+            if([_typename isEqualToString:@"YPNL_Mkt"])
                 [UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Yd PNL:" FieldName:@"ItemValue"    SetColor:true];
-            if([_field[@"ItemType"] isEqualToString:@"TradePNL_Mkt"])
+            if([_typename isEqualToString:@"TradePNL_Mkt"])
                 [UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Trade PNL:" FieldName:@"ItemValue"     SetColor:true];
-            if([_field[@"ItemType"] isEqualToString:@"TotalPNL_Mkt"])
+            if([_typename isEqualToString:@"TotalPNL_Mkt"])
                 [UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Total PNL:" FieldName:@"ItemValue"     SetColor:true];
             
-            if([_field[@"ItemType"] isEqualToString:@"YPNL_Theo"])
+            if([_typename isEqualToString:@"YPNL_Theo"])
                 [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Yd PNL:" FieldName:@"ItemValue" SetColor:true];
-            if([_field[@"ItemType"] isEqualToString:@"TradePNL_Theo"])
+            if([_typename isEqualToString:@"TradePNL_Theo"])
                 [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Trade PNL:" FieldName:@"ItemValue"    SetColor:true];
-            if([_field[@"ItemType"] isEqualToString:@"TotalPNL_Theo"])
+            if([_typename isEqualToString:@"TotalPNL_Theo"])
                 [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Total PNL:" FieldName:@"ItemValue"    SetColor:true];
         }
         
         
         
         //AvgEdge
-        if([_field[@"ItemType"] isEqualToString:@"AvgEdge"])
+        if([_typename isEqualToString:@"AvgEdge"])
         {
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"Avg Edge:" FieldName:@"ItemValue" SetColor:false];
             continue;
         }
-        if([_field[@"ItemType"] isEqualToString:@"PAvgEdge"])
+        if([_typename isEqualToString:@"PAvgEdge"])
         {
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"Positive Avg Edge:" FieldName:@"ItemValue" SetColor:false];
              continue;
         }
-        if([_field[@"ItemType"] isEqualToString:@"NAvgEdge"])
+        if([_typename isEqualToString:@"NAvgEdge"])
         {
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"Negative Avg Edge:" FieldName:@"ItemValue" SetColor:false];
              continue;
@@ -530,14 +589,14 @@
         //U
         if([_field[@"ItemKey"] isEqualToString:@"U"])
         {
-            if([_field[@"ItemType"] isEqualToString:@"LP"])
+            if([_typename isEqualToString:@"LP"])
             {
                 _fValue=[_field[@"ItemValue"] floatValue];
                 value = [StringHelper fPositiveFormat:_fValue pointNumber:4];
                 [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"U LP:" DetialText:value];
                 continue;
             }
-            if([_field[@"ItemType"] isEqualToString:@"ChangePercentage"])
+            if([_typename isEqualToString:@"ChangePercentage"])
             {
                 _fValue=[_field[@"ItemValue"] floatValue];
                 value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
@@ -552,7 +611,7 @@
  
         
         //SmoothedBasis
-        if([_field[@"ItemType"] isEqualToString:@"SmoothedBasis"])
+        if([_typename isEqualToString:@"SmoothedBasis"])
         {
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"Smoothed Basis:" FieldName:@"ItemValue" SetColor:true];
             continue;
@@ -562,7 +621,7 @@
         //SmoothedWingPara
         if([_field[@"ItemKey"] isEqualToString:@"SmoothedWingPara"])
         {
-            if([_field[@"ItemType"] isEqualToString:@"Vol"])
+            if([_typename isEqualToString:@"Vol"])
             {
                 _fValue=[_field[@"ItemValue"] floatValue]*100;
                 value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
@@ -575,12 +634,12 @@
         //MD
         if([_field[@"ItemKey"] isEqualToString:@"MD"])
         {
-            if([_field[@"ItemType"] isEqualToString:@"Date"])
+            if([_typename isEqualToString:@"Date"])
             {
                 [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"MD Date:" DetialText:_field[@"ItemValue"]];
                 continue;
             }
-            if([_field[@"ItemType"] isEqualToString:@"Time"])
+            if([_typename isEqualToString:@"Time"])
             {
                 [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"MD Time:" DetialText:_field[@"ItemValue"]];
                 continue;
