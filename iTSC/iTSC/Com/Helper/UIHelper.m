@@ -59,6 +59,12 @@
     
     return cell;
 }
++(UITableViewCell*) SetTabelViewCellText:(UITableView*)vTableView Section:(int)vSectionIndex Row:(int)vRowIndex TitleText:(NSString*) vTitleText DetialText:(NSString*) vDetailText Color:(UIColor*) vColor Font:(UIFont*) vFont
+{
+    UITableViewCell *cell = [self SetTabelViewCellText:vTableView Section:vSectionIndex Row:vRowIndex TitleText:vTitleText DetialText:vDetailText Color:vColor];
+    cell.detailTextLabel.font = vFont;
+    return cell;
+}
 +(UITableViewCell*) SetTabelViewCellText:(UITableView*)vTableView Section:(int)vSectionIndex Row:(int)vRowIndex TitleText:(NSString*) vTitleText DetialText:(NSString*) vDetailText Font:(UIFont*) vFont
 {
     UITableViewCell *cell = [self SetTabelViewCellText:vTableView Section:vSectionIndex Row:vRowIndex TitleText:vTitleText DetialText:vDetailText];

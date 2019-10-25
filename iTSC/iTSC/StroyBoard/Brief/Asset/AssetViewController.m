@@ -150,6 +150,7 @@
 
 -(void) ResetTableViewCells
 {
+    UIFont* _bold_font = [UIFont boldSystemFontOfSize:12];
     int _iS = 0;
     
     //hisAsset
@@ -158,26 +159,27 @@
     
     //MD info
     _iS++;
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"U %:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"U LP:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"U LP:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"U %:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Smoothed Basis:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"Smoothed Vol:" DetialText:@"-" Color:UIColor.blueColor];
     
-    //Asset
+    //Asset & Position
     _iS++;
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Risk Level (%):" DetialText:@"-" Color:UIColor.magentaColor];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"NV (Theory):" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Asset (Market):" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"Asset (Theory):" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:4 TitleText:@"Available:" DetialText:@"-" Color:UIColor.brownColor];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:5 TitleText:@"Total Margin:" DetialText:@"-"];   //From Runtimeinfo
+            //From Runtimeinfo
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:5 TitleText:@"Total Margin:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:6 TitleText:@"Position:" DetialText:@"-" Color:UIColor.greenColor];
 
-    //Position &Risk
+    //Risk
     _iS++;
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blueColor];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"Delta:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Vega:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"SRR:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Delta:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"Vega:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"SRR:" DetialText:@"-"];
 
     //Market PNL
     _iS++;
@@ -194,8 +196,8 @@
     
     //OT & Ratio
     _iS++;
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Trade Edge:" DetialText:@"-" Color:UIColor.blueColor];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Trade Edge:" DetialText:@"-" Color:UIColor.blueColor Font:_bold_font];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"Trade Qty:" DetialText:@"-" Color:UIColor.greenColor];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Order Cnt:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"TPR:" DetialText:@"-" Color:UIColor.magentaColor];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:4 TitleText:@"OCR:" DetialText:@"-" Color:UIColor.orangeColor];
@@ -601,10 +603,15 @@
                 _fValue=[_field[@"ItemValue"] floatValue];
                 value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
                 cell=[UIHelper SetTabelViewCellDetailText:TableView TitleText: @"U %:" DetialText:value];
-                if(_fValue>0)
-                    cell.detailTextLabel.textColor=UIColor.purpleColor;
+                if(_fValue > 0)
+                    cell.detailTextLabel.textColor = UIColor.greenColor;
                 else
-                    cell.detailTextLabel.textColor=UIColor.darkGrayColor;
+                {
+                    if(_fValue == 0)
+                        cell.detailTextLabel.textColor = UIColor.blackColor;
+                    else
+                        cell.detailTextLabel.textColor = UIColor.redColor;
+                }
                 continue;
             }
         }
