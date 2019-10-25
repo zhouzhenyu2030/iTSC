@@ -20,6 +20,7 @@
 @synthesize TableView;
 
 
+NSNumberFormatter *_Asset_numberFormatter;
 
 
 //////////////////////// viewDidLoad ////////////////////////
@@ -27,6 +28,7 @@
 {
     [super viewDidLoad];
     
+    _Asset_numberFormatter = [[NSNumberFormatter alloc] init];
     RefreshCnt = 0;
     isTimerProcessing = false;
     
@@ -173,7 +175,7 @@
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:4 TitleText:@"Available:" DetialText:@"-" Color:UIColor.brownColor];
             //From Runtimeinfo
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:5 TitleText:@"Total Margin:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:6 TitleText:@"Position:" DetialText:@"-" Color:UIColor.greenColor];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:6 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blackColor Font:_bold_font];
 
     //Risk
     _iS++;
@@ -197,7 +199,7 @@
     //OT & Ratio
     _iS++;
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Trade Edge:" DetialText:@"-" Color:UIColor.blueColor Font:_bold_font];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"Trade Qty:" DetialText:@"-" Color:UIColor.greenColor];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"Trade Qty:" DetialText:@"-" Color:UIColor.blackColor Font:_bold_font];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Order Cnt:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"TPR:" DetialText:@"-" Color:UIColor.magentaColor];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:4 TitleText:@"OCR:" DetialText:@"-" Color:UIColor.orangeColor];
@@ -411,6 +413,55 @@
         
         _typename=_field[@"ItemType"];
 
+        
+        
+        
+          //U
+        if([_field[@"ItemKey"] isEqualToString:@"U"])
+        {
+            if([_typename isEqualToString:@"LP"])
+            {
+                _fValue=[_field[@"ItemValue"] floatValue];
+                //value = [StringHelper fPositiveFormat:_fValue pointNumber:2];
+                
+                //价格表示方式: nnn. nn nn
+                int _ivalue =(int)(_fValue);
+                [_Asset_numberFormatter setPositiveFormat:@",###;"];
+                value = [_Asset_numberFormatter stringFromNumber:[NSNumber numberWithFloat:_ivalue]];
+
+                _ivalue=_fValue*100 - _ivalue*100;
+                value = [value stringByAppendingString:[NSString stringWithFormat: @". %00d", _ivalue]];
+                
+                _ivalue=(int)(_fValue * 100);
+                _ivalue=_fValue*10000 - _ivalue*100;
+                value = [value stringByAppendingString:[NSString stringWithFormat: @" %00d", _ivalue]];
+ 
+                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"U LP:" DetialText:value];
+                continue;
+            }
+            
+            
+            if([_typename isEqualToString:@"ChangePercentage"])
+            {
+                _fValue=[_field[@"ItemValue"] floatValue];
+                value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
+                cell=[UIHelper SetTabelViewCellDetailText:TableView TitleText: @"U %:" DetialText:value];
+                if(_fValue > 0)
+                    cell.detailTextLabel.textColor = UIColor.greenColor;
+                else
+                {
+                    if(_fValue == 0)
+                        cell.detailTextLabel.textColor = UIColor.blackColor;
+                    else
+                        cell.detailTextLabel.textColor = UIColor.redColor;
+                }
+                continue;
+            }
+        }
+        
+        
+        
+        
         //Margin
         if([_typename isEqualToString:@"TotalMargin"])
         {
@@ -588,33 +639,7 @@
         
         
         
-        //U
-        if([_field[@"ItemKey"] isEqualToString:@"U"])
-        {
-            if([_typename isEqualToString:@"LP"])
-            {
-                _fValue=[_field[@"ItemValue"] floatValue];
-                value = [StringHelper fPositiveFormat:_fValue pointNumber:4];
-                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"U LP:" DetialText:value];
-                continue;
-            }
-            if([_typename isEqualToString:@"ChangePercentage"])
-            {
-                _fValue=[_field[@"ItemValue"] floatValue];
-                value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
-                cell=[UIHelper SetTabelViewCellDetailText:TableView TitleText: @"U %:" DetialText:value];
-                if(_fValue > 0)
-                    cell.detailTextLabel.textColor = UIColor.greenColor;
-                else
-                {
-                    if(_fValue == 0)
-                        cell.detailTextLabel.textColor = UIColor.blackColor;
-                    else
-                        cell.detailTextLabel.textColor = UIColor.redColor;
-                }
-                continue;
-            }
-        }
+ 
  
         
         //SmoothedBasis

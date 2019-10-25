@@ -67,7 +67,7 @@
                 _sFormat=[_sFormat stringByAppendingString:@"0"];
             }
             _sFormat=[_sFormat stringByAppendingString:@";"];
-            [numberFormatter setPositiveFormat:_sFormat];
+            [numberFormatter setPositiveFormat:_sFormat];   //@",###.0000;"
             return [numberFormatter stringFromNumber:[NSNumber numberWithFloat:vValue]];
         }
             break;
