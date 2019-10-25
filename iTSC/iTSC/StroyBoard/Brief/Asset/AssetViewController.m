@@ -148,7 +148,9 @@ NSNumberFormatter *_Asset_numberFormatter;
 {
     TableView.rowHeight = 18;
     [self ResetTableViewCells];
- }
+}
+
+
 
 -(void) ResetTableViewCells
 {
@@ -163,7 +165,7 @@ NSNumberFormatter *_Asset_numberFormatter;
     _iS++;
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"U LP:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"U %:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Smoothed Basis:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Smoothed Basis:" DetialText:@"-" Color:UIColor.blueColor];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"Smoothed Vol:" DetialText:@"-" Color:UIColor.blueColor];
     
     //Asset & Position
@@ -430,11 +432,11 @@ NSNumberFormatter *_Asset_numberFormatter;
                 value = [_Asset_numberFormatter stringFromNumber:[NSNumber numberWithFloat:_ivalue]];
 
                 _ivalue=_fValue*100 - _ivalue*100;
-                value = [value stringByAppendingString:[NSString stringWithFormat: @". %00d", _ivalue]];
+                value = [value stringByAppendingString:[NSString stringWithFormat: @". %02d", _ivalue]];
                 
                 _ivalue=(int)(_fValue * 100);
                 _ivalue=_fValue*10000 - _ivalue*100;
-                value = [value stringByAppendingString:[NSString stringWithFormat: @" %00d", _ivalue]];
+                value = [value stringByAppendingString:[NSString stringWithFormat: @" %02d", _ivalue]];
  
                 [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"U LP:" DetialText:value];
                 continue;
@@ -453,11 +455,34 @@ NSNumberFormatter *_Asset_numberFormatter;
                     if(_fValue == 0)
                         cell.detailTextLabel.textColor = UIColor.blackColor;
                     else
-                        cell.detailTextLabel.textColor = UIColor.redColor;
+                        cell.detailTextLabel.textColor = UIColor.redColor;  //cyanColor:亮蓝色
                 }
                 continue;
             }
         }
+        
+        
+        
+        //SmoothedBasis
+        if([_typename isEqualToString:@"SmoothedBasis"])
+        {
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Smoothed Basis:" FieldName:@"ItemValue" SetColor:false];
+            continue;
+        }
+        
+        
+        //SmoothedWingPara
+        if([_field[@"ItemKey"] isEqualToString:@"SmoothedWingPara"])
+        {
+            if([_typename isEqualToString:@"Vol"])
+            {
+                _fValue=[_field[@"ItemValue"] floatValue]*100;
+                value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
+                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Smoothed Vol:" DetialText:value];
+                continue;
+            }
+        }
+        
         
         
         
@@ -475,7 +500,7 @@ NSNumberFormatter *_Asset_numberFormatter;
             NSString* titlename = [_typename substringFromIndex:5]; titlename = [titlename stringByAppendingString:@":"];
             if([titlename isEqualToString:@"Tata:"]) titlename = @"Thema:";
             
-            [UIHelper DisplayCell:TableView Field:_field TitleName:titlename FieldName:@"ItemValue" SetColor:true];
+            [UIHelper DisplayCell:TableView Field:_field TitleName:titlename FieldName:@"ItemValue" SetColor:false];
             
             continue;
         }
@@ -637,31 +662,8 @@ NSNumberFormatter *_Asset_numberFormatter;
              continue;
         }
         
-        
-        
  
- 
-        
-        //SmoothedBasis
-        if([_typename isEqualToString:@"SmoothedBasis"])
-        {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Smoothed Basis:" FieldName:@"ItemValue" SetColor:true];
-            continue;
-        }
-        
-        
-        //SmoothedWingPara
-        if([_field[@"ItemKey"] isEqualToString:@"SmoothedWingPara"])
-        {
-            if([_typename isEqualToString:@"Vol"])
-            {
-                _fValue=[_field[@"ItemValue"] floatValue]*100;
-                value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
-                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Smoothed Vol:" DetialText:value];
-                continue;
-            }
-        }
-        
+   
         
         //MD
         if([_field[@"ItemKey"] isEqualToString:@"MD"])
@@ -673,7 +675,9 @@ NSNumberFormatter *_Asset_numberFormatter;
             }
             if([_typename isEqualToString:@"Time"])
             {
-                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"MD Time:" DetialText:_field[@"ItemValue"]];
+                value=_field[@"ItemValue"];
+                if([value length]>=8)  value = [value substringToIndex:8];
+                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"MD Time:" DetialText:value];
                 continue;
             }
         }
