@@ -21,6 +21,7 @@
 
 
 NSNumberFormatter *_Asset_numberFormatter;
+UIFont* _bold_font;
 
 
 //////////////////////// viewDidLoad ////////////////////////
@@ -29,6 +30,7 @@ NSNumberFormatter *_Asset_numberFormatter;
     [super viewDidLoad];
     
     _Asset_numberFormatter = [[NSNumberFormatter alloc] init];
+    _bold_font = [UIFont boldSystemFontOfSize:12];
     RefreshCnt = 0;
     isTimerProcessing = false;
     
@@ -154,7 +156,7 @@ NSNumberFormatter *_Asset_numberFormatter;
 
 -(void) ResetTableViewCells
 {
-    UIFont* _bold_font = [UIFont boldSystemFontOfSize:12];
+ 
     int _iS = 0;
     
     //hisAsset
@@ -164,7 +166,7 @@ NSNumberFormatter *_Asset_numberFormatter;
     //MD info
     _iS++;
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"U LP:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"U %:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"U %:" DetialText:@"-" Font:_bold_font];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Smoothed Basis:" DetialText:@"-" Color:UIColor.blueColor];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"Smoothed Vol:" DetialText:@"-" Color:UIColor.blueColor];
     
@@ -421,6 +423,7 @@ NSNumberFormatter *_Asset_numberFormatter;
           //U
         if([_field[@"ItemKey"] isEqualToString:@"U"])
         {
+            //
             if([_typename isEqualToString:@"LP"])
             {
                 _fValue=[_field[@"ItemValue"] floatValue];
@@ -442,7 +445,7 @@ NSNumberFormatter *_Asset_numberFormatter;
                 continue;
             }
             
-            
+            //
             if([_typename isEqualToString:@"ChangePercentage"])
             {
                 _fValue=[_field[@"ItemValue"] floatValue];
@@ -450,21 +453,23 @@ NSNumberFormatter *_Asset_numberFormatter;
                 cell=[UIHelper SetTabelViewCellDetailText:TableView TitleText: @"U %:" DetialText:value];
                 if(_fValue > 0)
                 {
-                    //绿土(56,94,15)
-                    cell.detailTextLabel.textColor = [UIColor colorWithRed:56/255.0f green:94/255.0f blue:15/255.0f alpha:1.0f];
+                    //酸橙绿(50,205,50)-稍暗，(50,215,50); 嫩绿色(0,255,127)-过亮；绿土(56,94,15)-颜色过暗；森林绿(34,139,34)-较绿土亮，但亮度仍不足;
+                    cell.detailTextLabel.textColor = [UIColor colorWithRed:50/255.0f green:215/255.0f blue:50/255.0f alpha:1.0f];
                 }
-                else
+                if(_fValue < 0)
                 {
-                    if(_fValue == 0)
-                        cell.detailTextLabel.textColor = UIColor.blackColor;
-                    else
-                    {
-                        //棕色(128,42,42);  印度红(176,23,31);  cyanColor:亮蓝色
-                        cell.detailTextLabel.textColor = [UIColor colorWithRed:176/255.0f green:23/255.0f blue:31/255.0f alpha:1.0f];
-                    }
+                    //棕色(128,42,42);  印度红(176,23,31);  cyanColor:亮蓝色
+                    cell.detailTextLabel.textColor = [UIColor colorWithRed:176/255.0f green:23/255.0f blue:31/255.0f alpha:1.0f];
                 }
-                continue;
+                if(_fValue == 0)
+                {
+                    cell.detailTextLabel.textColor = UIColor.blackColor;
+                }
             }
+            
+            //
+            continue;
+            
         }
         
         
