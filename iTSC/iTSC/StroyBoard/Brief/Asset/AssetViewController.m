@@ -449,13 +449,19 @@ NSNumberFormatter *_Asset_numberFormatter;
                 value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
                 cell=[UIHelper SetTabelViewCellDetailText:TableView TitleText: @"U %:" DetialText:value];
                 if(_fValue > 0)
-                    cell.detailTextLabel.textColor = UIColor.greenColor;
+                {
+                    //绿土(56,94,15)
+                    cell.detailTextLabel.textColor = [UIColor colorWithRed:56/255.0f green:94/255.0f blue:15/255.0f alpha:1.0f];
+                }
                 else
                 {
                     if(_fValue == 0)
                         cell.detailTextLabel.textColor = UIColor.blackColor;
                     else
-                        cell.detailTextLabel.textColor = UIColor.redColor;  //cyanColor:亮蓝色
+                    {
+                        //棕色(128,42,42);  印度红(176,23,31);  cyanColor:亮蓝色
+                        cell.detailTextLabel.textColor = [UIColor colorWithRed:176/255.0f green:23/255.0f blue:31/255.0f alpha:1.0f];
+                    }
                 }
                 continue;
             }
