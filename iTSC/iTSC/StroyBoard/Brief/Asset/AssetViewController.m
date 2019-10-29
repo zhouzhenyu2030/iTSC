@@ -109,7 +109,6 @@ UIFont* _bold_font;
 //页面将要进入前台，开启定时器
 -(void)viewWillAppear:(BOOL)animated
 {
-    //[self SetTimerState];
     [self StartTimer];
 }
 
@@ -119,28 +118,6 @@ UIFont* _bold_font;
 {
     [self StopTimer];
 }
-
-
-//根据switch设定Timer启停
-/*
- -(void) SetTimerState
-{
-    if ([Switch_AutoRefresh isOn])
-        [self StartTimer];
-    else
-        [self StopTimer];
-}
-*/
-
-
-//switch状态改变
-/*
--(void)SwitchChanged:(id)sender
-{
-    [self SetTimerState];
-    [TscConfig setAssetAutoRefresh:([Switch_AutoRefresh isOn])];
-}
-*/
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -268,7 +245,7 @@ UIFont* _bold_font;
     //Display
     if([DBHelper BeginQuery])
     {
-        [self _DisplayHisAsset];
+        [self _DisplayAsset];
         [self _DisplayRuntimeInfo];
         [DBHelper EndQuery];
     }
@@ -285,66 +262,47 @@ UIFont* _bold_font;
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-//_DisplayHisAsset
+//_DisplayAsset
 ////////////////////////////////////////////////////////////////////////////////////////////
--(void) _DisplayHisAsset
+-(void) _DisplayAsset
 {
     OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
-    if(_queryContext==nil)
-    {
-        NSLog(@"AssetViewController: DisplayHisAsset: queryContext==nil!");
-        return;
-    }
-    
-    //NSLog(@"AssetViewController: SELECT: start!");
-    
+
     //SELECT
-    NSString* _condstr = [TscConnections getCurrentConnection].AccountID;
-    _condstr = [_condstr stringByAppendingString:@" order by HisDate DESC limit 1"];
-    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"tsshis.hisasset" condition:_condstr];
+    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"tss.asset" condition:@" TypeID='T'"];
     NSError *error = nil;
     NSArray *tasks = [_queryContext executeQueryRequestAndFetchResult:query error:&error];
     
+    if(error!=nil)
+        return;
     
     NSUInteger count = tasks.count;
-    //NSLog(@"%@", [tasks objectAtIndex:count-1]);
-    if(count<=0)
+    if(count <= 0)
         return;
     
     //显示
-    NSDictionary  *_field=[tasks objectAtIndex:count-1];
+    NSDictionary  *_field=[tasks objectAtIndex:count - 1];
     NSString* _sValue;
     float _fValue;
     
-    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"HisDate:" DetialText:_field[@"HisDate"]];
-    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RecordTime:" DetialText:[_field[@"RecordTime"] substringToIndex:8]];
-    _sValue = [NSString stringWithFormat:@"%d", [_field[@"AccountID"] intValue]];
-    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"AccountID:" DetialText:_sValue];
-    
-    
-
-    _fValue = [_field[@"NVTheo"]  floatValue];
+    _fValue = [_field[@"NetValueTheory"]  floatValue];
     _sValue = [StringHelper fPositiveFormat:_fValue pointNumber:4];
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"NV (Theory):" DetialText:_sValue];
- 
-    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Asset (Theory):" FieldName:@"AssetTheo" SetColor:false];
-    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Asset (Market):" FieldName:@"Asset" SetColor:false];
-    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Available:" FieldName:@"Available" SetColor:false];
-    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Curr Margin:" FieldName:@"CurrMargin" SetColor:false];
     
-    _fValue=[_field[@"Asset"]  floatValue] - [_field[@"AssetTheo"]  floatValue];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Asset (Theory):" FieldName:@"AssetTheory" SetColor:false];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Asset (Market):" FieldName:@"AssetLP" SetColor:false];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Available:" FieldName:@"TotalCash" SetColor:false];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Curr Margin:" FieldName:@"TotalMargin" SetColor:false];
+    
+    _fValue=[_field[@"AssetLP"]  floatValue] - [_field[@"AssetTheory"]  floatValue];
     _sValue = [StringHelper fPositiveFormat:_fValue pointNumber:2];
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Asset Dif (Market-Theory):" DetialText:_sValue];
     
-    _fValue = [_field[@"RiskLevel"]  floatValue] *100;
+    _fValue = [_field[@"RiskLevelTheory"]  floatValue] *100;
     _sValue = [StringHelper fPositiveFormat:_fValue pointNumber:2]; _sValue = [_sValue stringByAppendingString:@"%"];
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Risk Level (%):" DetialText:_sValue];
     
-    
-    //NSLog(@"AssetViewController: SELECT: over!");
 }
-
-
 
 
 
@@ -695,6 +653,70 @@ UIFont* _bold_font;
         
         
     }
+}
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+//_DisplayHisAsset
+////////////////////////////////////////////////////////////////////////////////////////////
+-(void) _DisplayHisAsset
+{
+    OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
+    if(_queryContext==nil)
+    {
+        NSLog(@"AssetViewController: DisplayHisAsset: queryContext==nil!");
+        return;
+    }
+    
+    //NSLog(@"AssetViewController: SELECT: start!");
+    
+    //SELECT
+    NSString* _condstr = [TscConnections getCurrentConnection].AccountID;
+    _condstr = [_condstr stringByAppendingString:@" order by HisDate DESC limit 1"];
+    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"tsshis.hisasset" condition:_condstr];
+    NSError *error = nil;
+    NSArray *tasks = [_queryContext executeQueryRequestAndFetchResult:query error:&error];
+    
+    
+    NSUInteger count = tasks.count;
+    //NSLog(@"%@", [tasks objectAtIndex:count-1]);
+    if(count<=0)
+        return;
+    
+    //显示
+    NSDictionary  *_field=[tasks objectAtIndex:count-1];
+    NSString* _sValue;
+    float _fValue;
+    
+    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"HisDate:" DetialText:_field[@"HisDate"]];
+    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RecordTime:" DetialText:[_field[@"RecordTime"] substringToIndex:8]];
+    _sValue = [NSString stringWithFormat:@"%d", [_field[@"AccountID"] intValue]];
+    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"AccountID:" DetialText:_sValue];
+    
+    
+    
+    _fValue = [_field[@"NVTheo"]  floatValue];
+    _sValue = [StringHelper fPositiveFormat:_fValue pointNumber:4];
+    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"NV (Theory):" DetialText:_sValue];
+    
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Asset (Theory):" FieldName:@"AssetTheo" SetColor:false];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Asset (Market):" FieldName:@"Asset" SetColor:false];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Available:" FieldName:@"Available" SetColor:false];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Curr Margin:" FieldName:@"CurrMargin" SetColor:false];
+    
+    _fValue=[_field[@"Asset"]  floatValue] - [_field[@"AssetTheo"]  floatValue];
+    _sValue = [StringHelper fPositiveFormat:_fValue pointNumber:2];
+    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Asset Dif (Market-Theory):" DetialText:_sValue];
+    
+    _fValue = [_field[@"RiskLevel"]  floatValue] *100;
+    _sValue = [StringHelper fPositiveFormat:_fValue pointNumber:2]; _sValue = [_sValue stringByAppendingString:@"%"];
+    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Risk Level (%):" DetialText:_sValue];
+    
+    
+    //NSLog(@"AssetViewController: SELECT: over!");
 }
 
 
