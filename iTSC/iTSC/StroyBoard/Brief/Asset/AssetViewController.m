@@ -210,7 +210,8 @@ UIFont* _bold_font;
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Negative Avg Edge:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"Asset Dif (Market-Theory):" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:4 TitleText:@"Curr Margin:" DetialText:@"-"];
-    
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:5 TitleText:@"Trade Fee:" DetialText:@"-"];
+
  
     //date time
     _iS++;
@@ -338,6 +339,7 @@ UIFont* _bold_font;
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ALTradeEdge' or ItemType='ALTradeQty' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='AHTradeEdge' or ItemType='AHTradeQty' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='AQTradeEdge' or ItemType='AQTradeQty' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradeFee' )"];
 
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='PNL' and EntityType='A' )"];
@@ -632,7 +634,10 @@ UIFont* _bold_font;
         }
         
  
-   
+        //TradeFee
+        if([_typename isEqualToString:@"TradeFee"])
+            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Trade Fee:" FieldName:@"ItemValue" SetColor:false];
+
         
         //MD
         if([_field[@"ItemKey"] isEqualToString:@"MD"])
