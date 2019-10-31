@@ -210,7 +210,8 @@ UIFont* _bold_font;
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Negative Avg Edge:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"Asset Dif (Market-Theory):" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:4 TitleText:@"Curr Margin:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:5 TitleText:@"Trade Fee:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:5 TitleText:@"Market Value (Theory):" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:6 TitleText:@"Trade Fee:" DetialText:@"-"];
 
  
     //date time
@@ -286,6 +287,10 @@ UIFont* _bold_font;
     NSString* _sValue;
     float _fValue;
     
+    _fValue = [_field[@"RiskLevelTheory"]  floatValue] *100;
+    _sValue = [StringHelper fPositiveFormat:_fValue pointNumber:2]; _sValue = [_sValue stringByAppendingString:@"%"];
+    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Risk Level (%):" DetialText:_sValue];
+    
     _fValue = [_field[@"NetValueTheory"]  floatValue];
     _sValue = [StringHelper fPositiveFormat:_fValue pointNumber:4];
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"NV (Theory):" DetialText:_sValue];
@@ -293,16 +298,14 @@ UIFont* _bold_font;
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Asset (Theory):" FieldName:@"AssetTheory" SetColor:false];
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Asset (Market):" FieldName:@"AssetLP" SetColor:false];
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Available:" FieldName:@"TotalCash" SetColor:false];
-    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Curr Margin:" FieldName:@"TotalMargin" SetColor:false];
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total Margin:" FieldName:@"TotalMargin" SetColor:false];
     
     _fValue=[_field[@"AssetLP"]  floatValue] - [_field[@"AssetTheory"]  floatValue];
     _sValue = [StringHelper fPositiveFormat:_fValue pointNumber:2];
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Asset Dif (Market-Theory):" DetialText:_sValue];
     
-    _fValue = [_field[@"RiskLevelTheory"]  floatValue] *100;
-    _sValue = [StringHelper fPositiveFormat:_fValue pointNumber:2]; _sValue = [_sValue stringByAppendingString:@"%"];
-    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Risk Level (%):" DetialText:_sValue];
-    
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Market Value (Theory):" FieldName:@"MarketValueTheory" SetColor:false];
+
 }
 
 
@@ -458,12 +461,6 @@ UIFont* _bold_font;
         
         
         
-        //Margin
-        if([_typename isEqualToString:@"TotalMargin"])
-        {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total Margin:" FieldName:@"ItemValue" SetColor:false];
-            continue;
-        }
         
         //Risk Field
         if([_field[@"ItemKey"] isEqualToString:@"Risk"])
