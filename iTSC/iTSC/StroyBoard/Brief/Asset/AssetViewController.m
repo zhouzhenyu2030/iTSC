@@ -163,6 +163,7 @@ UIFont* _bold_font;
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Delta:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"Vega:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"SRR:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"SLR:" DetialText:@"-"];
 
     //Market PNL
     _iS++;
