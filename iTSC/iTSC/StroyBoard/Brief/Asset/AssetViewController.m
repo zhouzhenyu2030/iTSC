@@ -183,9 +183,10 @@ UIFont* _bold_font;
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Trade Edge:" DetialText:@"-" Color:UIColor.blueColor Font:_bold_font];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"Trade Qty:" DetialText:@"-" Color:UIColor.blackColor Font:_bold_font];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Order Cnt:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"TPR:" DetialText:@"-" Color:UIColor.magentaColor];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:4 TitleText:@"OCR:" DetialText:@"-" Color:UIColor.orangeColor];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:5 TitleText:@"TOR(%):" DetialText:@"-" Color:UIColor.purpleColor];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"OOM Cnt:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:4 TitleText:@"TPR:" DetialText:@"-" Color:UIColor.magentaColor];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:5 TitleText:@"OCR:" DetialText:@"-" Color:UIColor.orangeColor];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:6 TitleText:@"TOR(%):" DetialText:@"-" Color:UIColor.purpleColor];
 
     //Auto
     _iS++;
@@ -348,6 +349,8 @@ UIFont* _bold_font;
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='PNL' and EntityType='A' )"];
 
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Status' and EntityType='OOMCnt' )"];
+
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Edge' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='U' and (ItemType='LP' or ItemType='ChangePercentage') )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='SmoothedWingPara' and (ItemType='Vol') )"];
@@ -509,7 +512,13 @@ UIFont* _bold_font;
             [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Order Cnt:" FieldName:@"ItemValue"];
             continue;
         }
-
+        if([_typename isEqualToString:@"OOMCnt"])
+          {
+              [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"OOM Cnt:" FieldName:@"ItemValue"];
+              continue;
+          }
+        
+        
         //Trade
         if([_typename isEqualToString:@"TradeQty"])
         {
