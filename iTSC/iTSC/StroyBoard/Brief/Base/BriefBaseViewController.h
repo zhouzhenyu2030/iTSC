@@ -28,7 +28,12 @@
     
     NSString* zCondStr;
     NSString* zTableName;
-    NSArray *tasks;
+    NSArray *zRecords;
+    
+    NSDictionary  *zField;
+    NSString* zItemKey;
+    NSString* zItemType;
+    NSString* zItemValue;
 }
 
 
@@ -37,8 +42,13 @@
 //action
 -(void) SetLogStr;
 -(void) SetTableView;
+
 -(void) InitTableViewCells:(BOOL)vInitAll;
+
 -(void) SetQureyCondition;
+-(bool) QueryData;
+-(void) Display;
+-(void) DisplayItem;
 -(void) QueryAndDisplay;
 
 @end
