@@ -34,11 +34,11 @@
 // zzy - timeout -connect.
 - (void)setTimeOutSeconds:(NSInteger)vTimeOutSeconds
 {
-    NSLog(@"OHMySQLStoreCoordinator: setTimeOutSeconds: vTimeOutSecconds=%ld", vTimeOutSeconds);
+    NSLog(@"OHMySQLStoreCoordinator: setTimeOutSeconds: vTimeOutSecconds=%ld", (long)vTimeOutSeconds);
     _timeoutseconds = vTimeOutSeconds;
     if(_timeoutseconds < 1000 )
         _timeoutseconds = 1000;
-    NSLog(@"OHMySQLStoreCoordinator: setTimeOutSeconds: _timeoutseconds=%ld", _timeoutseconds);
+    NSLog(@"OHMySQLStoreCoordinator: setTimeOutSeconds: _timeoutseconds=%ld", (long)_timeoutseconds);
 }
 
 
