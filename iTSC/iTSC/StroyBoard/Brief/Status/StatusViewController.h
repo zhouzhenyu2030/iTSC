@@ -9,26 +9,15 @@
 #ifndef StatusViewControler_h
 #define StatusViewControler_h
 
-#import <UIKit/UIKit.h>
 
-@interface StatusViewController: UITableViewController
-{
-        NSInteger RefreshTimerElpasedSeconds;
-        int RefreshCnt;
-        UISwitch *Switch_AutoRefresh;
-    //    UITableViewCell *RefreshSwitchCell;
-        UITableViewCell *RefreshCountCell;
-        UIRefreshControl *refreshControl;
-        NSTimer* myTimer;
-        bool isTimerProcessing;
-}
+#import "BriefBaseViewController.h"
 
+@interface StatusViewController: BriefBaseViewController
 
 
 //property
-@property (strong, nonatomic) IBOutlet UITableView *TableView;
+@property (strong, nonatomic) IBOutlet UITableView *IBOutletTableView;
 
-//action
 
 @end
 
