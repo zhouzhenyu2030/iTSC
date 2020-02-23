@@ -40,6 +40,7 @@
 		196CBF46224725F0002F8F0F /* iTSCInit.m in Sources */ = {isa = PBXBuildFile; fileRef = 196CBF45224725F0002F8F0F /* iTSCInit.m */; };
 		19703EBA21F5B537003D6697 /* PositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19703EB921F5B537003D6697 /* PositionViewController.m */; };
 		19703EBD21F5BD09003D6697 /* PnlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19703EBC21F5BD09003D6697 /* PnlViewController.m */; };
+		1975F9CB24023EF8008FA5D7 /* BriefBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1975F9CA24023EF8008FA5D7 /* BriefBaseViewController.m */; };
 		197BF9DE2248861D00450399 /* TscDNSs.m in Sources */ = {isa = PBXBuildFile; fileRef = 197BF9DD2248861D00450399 /* TscDNSs.m */; };
 		1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1980DBD521EF0291008C9FF0 /* TscConfig.m */; };
 		1980DBDA21F0083E008C9FF0 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1980DBD921F0083E008C9FF0 /* Test.storyboard */; };
@@ -122,6 +123,8 @@
 		19703EB921F5B537003D6697 /* PositionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PositionViewController.m; sourceTree = "<group>"; };
 		19703EBC21F5BD09003D6697 /* PnlViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PnlViewController.m; sourceTree = "<group>"; };
 		19703EBE21F5BD17003D6697 /* PnlViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PnlViewController.h; sourceTree = "<group>"; };
+		1975F9C924023EBE008FA5D7 /* BriefBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BriefBaseViewController.h; sourceTree = "<group>"; };
+		1975F9CA24023EF8008FA5D7 /* BriefBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BriefBaseViewController.m; sourceTree = "<group>"; };
 		197BF9DD2248861D00450399 /* TscDNSs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TscDNSs.m; sourceTree = "<group>"; };
 		197BF9DF2248863A00450399 /* TscDNSs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TscDNSs.h; sourceTree = "<group>"; };
 		1980DBD421EF0275008C9FF0 /* TscConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TscConfig.h; sourceTree = "<group>"; };
@@ -314,6 +317,7 @@
 			children = (
 				1904662F21F89F0F00FF09C0 /* PageContainer */,
 				194D007B21F2ADD2008918DA /* StroyBoard */,
+				1975F9C824023E7E008FA5D7 /* Base */,
 				19FFB2AB21F19A8D00C02A53 /* Asset */,
 				1951F04F24015AFA002D5468 /* Status */,
 				194FF95721EC2C1A00CAB449 /* Greeks */,
@@ -403,6 +407,15 @@
 				19703EBC21F5BD09003D6697 /* PnlViewController.m */,
 			);
 			path = PNL;
+			sourceTree = "<group>";
+		};
+		1975F9C824023E7E008FA5D7 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				1975F9C924023EBE008FA5D7 /* BriefBaseViewController.h */,
+				1975F9CA24023EF8008FA5D7 /* BriefBaseViewController.m */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		1980DBD321EF025E008C9FF0 /* ConfigFile */ = {
@@ -556,7 +569,7 @@
 				TargetAttributes = {
 					190210B321E45964009ADE0B = {
 						CreatedOnToolsVersion = 10.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -662,6 +675,7 @@
 				190210B921E45964009ADE0B /* AppDelegate.m in Sources */,
 				190210D821E48399009ADE0B /* FilePathHelper.m in Sources */,
 				194D007A21F2824C008918DA /* TscConnections.m in Sources */,
+				1975F9CB24023EF8008FA5D7 /* BriefBaseViewController.m in Sources */,
 				1911DFAF21FF294E0079304C /* HADrawChartViewController.m in Sources */,
 				1951F05D2401610B002D5468 /* StatusViewController.m in Sources */,
 				190210E621E49C27009ADE0B /* DBHelper.m in Sources */,
@@ -854,7 +868,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "iTSC/Com/iTSC-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -880,7 +894,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cqg.iTSC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "iTSC/Com/iTSC-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
