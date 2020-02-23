@@ -33,6 +33,8 @@
 		194D008921F41210008918DA /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008821F41210008918DA /* UIHelper.m */; };
 		194D008E21F44057008918DA /* AssetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008D21F44057008918DA /* AssetViewController.m */; };
 		194D009021F46CE5008918DA /* TradeSumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008F21F46CE5008918DA /* TradeSumsViewController.m */; };
+		1951F05A2401604D002D5468 /* Status.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1951F0592401604D002D5468 /* Status.storyboard */; };
+		1951F05D2401610B002D5468 /* StatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1951F05C2401610B002D5468 /* StatusViewController.m */; };
 		196B41D121EED13800105D44 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196B41D021EED13800105D44 /* ConfigViewController.m */; };
 		196CBF42224722F2002F8F0F /* iTSCInit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 196CBF41224722F2002F8F0F /* iTSCInit.storyboard */; };
 		196CBF46224725F0002F8F0F /* iTSCInit.m in Sources */ = {isa = PBXBuildFile; fileRef = 196CBF45224725F0002F8F0F /* iTSCInit.m */; };
@@ -108,6 +110,9 @@
 		194D008D21F44057008918DA /* AssetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetViewController.m; sourceTree = "<group>"; };
 		194D008F21F46CE5008918DA /* TradeSumsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TradeSumsViewController.m; sourceTree = "<group>"; };
 		194D009121F46CF1008918DA /* TradeSumsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TradeSumsViewController.h; sourceTree = "<group>"; };
+		1951F0592401604D002D5468 /* Status.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Status.storyboard; sourceTree = "<group>"; };
+		1951F05B240160F0002D5468 /* StatusViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusViewController.h; sourceTree = "<group>"; };
+		1951F05C2401610B002D5468 /* StatusViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatusViewController.m; sourceTree = "<group>"; };
 		196B41CF21EED11F00105D44 /* ConfigViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
 		196B41D021EED13800105D44 /* ConfigViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 		196CBF41224722F2002F8F0F /* iTSCInit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = iTSCInit.storyboard; sourceTree = "<group>"; };
@@ -310,6 +315,7 @@
 				1904662F21F89F0F00FF09C0 /* PageContainer */,
 				194D007B21F2ADD2008918DA /* StroyBoard */,
 				19FFB2AB21F19A8D00C02A53 /* Asset */,
+				1951F04F24015AFA002D5468 /* Status */,
 				194FF95721EC2C1A00CAB449 /* Greeks */,
 				19703EBB21F5BCCB003D6697 /* PNL */,
 				194D007D21F2AE6D008918DA /* TradeSum */,
@@ -326,6 +332,16 @@
 				194D008321F2B52B008918DA /* GreeksViewController.m */,
 			);
 			path = Greeks;
+			sourceTree = "<group>";
+		};
+		1951F04F24015AFA002D5468 /* Status */ = {
+			isa = PBXGroup;
+			children = (
+				1951F0592401604D002D5468 /* Status.storyboard */,
+				1951F05B240160F0002D5468 /* StatusViewController.h */,
+				1951F05C2401610B002D5468 /* StatusViewController.m */,
+			);
+			path = Status;
 			sourceTree = "<group>";
 		};
 		196B41CE21EED10800105D44 /* Config */ = {
@@ -574,6 +590,7 @@
 				1911DFAB21FF11160079304C /* Asset.storyboard in Resources */,
 				1911DFB121FF29EB0079304C /* HisAssetChart.storyboard in Resources */,
 				19FFB29221F1706900C02A53 /* Help.storyboard in Resources */,
+				1951F05A2401604D002D5468 /* Status.storyboard in Resources */,
 				190210C421E45966009ADE0B /* Assets.xcassets in Resources */,
 				190210C221E45964009ADE0B /* BriefDetail.storyboard in Resources */,
 				19FFB2AA21F194BD00C02A53 /* Brief.storyboard in Resources */,
@@ -646,6 +663,7 @@
 				190210D821E48399009ADE0B /* FilePathHelper.m in Sources */,
 				194D007A21F2824C008918DA /* TscConnections.m in Sources */,
 				1911DFAF21FF294E0079304C /* HADrawChartViewController.m in Sources */,
+				1951F05D2401610B002D5468 /* StatusViewController.m in Sources */,
 				190210E621E49C27009ADE0B /* DBHelper.m in Sources */,
 				1980DBD621EF0291008C9FF0 /* TscConfig.m in Sources */,
 				198173FA222CFD74009415A2 /* HAMktOrTheoPickerViewController.m in Sources */,

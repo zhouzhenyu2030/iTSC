@@ -177,6 +177,9 @@
     [UIHelper SetTabelViewCellText:TableView Section:2 Row:4 TitleText:@"Buy Open Trade:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:2 Row:5 TitleText:@"Trade Fee:" DetialText:@"-"];
     
+    [UIHelper SetTabelViewCellText:TableView Section:2 Row:6 TitleText:@"Open Trade Qty:" DetialText:@"-"];
+    
+    
     [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"Trade Edge (AT):" DetialText:@"-" Color:UIColor.blueColor];
     [UIHelper SetTabelViewCellText:TableView Section:3 Row:1 TitleText:@"Trade Qty (AT):" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:3 Row:2 TitleText:@"Edge Per Order (AT):" DetialText:@"-"];
@@ -279,6 +282,9 @@
             [UIHelper DisplayCell:TableView Field:_field TitleName:@"Edge Per Order:" FieldName:@"ItemValue" SetColor:false];
         if([typename isEqualToString:@"BuyOpenTrade"])
             [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Buy Open Trade:" FieldName:@"ItemValue"];
+
+        if([typename isEqualToString:@"OpenTradeQty"])
+            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Open Trade Qty:" FieldName:@"ItemValue"];
 
 
 

@@ -99,28 +99,34 @@ int  _TitleLableWidth = 53;                         //zzy
   
         case 1:
         {
-            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"Greeks"];
+            ctrl = [[UIStoryboard storyboardWithName:@"Status" bundle:nil] instantiateViewControllerWithIdentifier:@"Status"];
         }
             break;
 
         case 2:
         {
-            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"TradeSums"];
+            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"Greeks"];
         }
             break;
 
         case 3:
         {
+            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"TradeSums"];
+        }
+            break;
+
+        case 4:
+        {
             ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"PNL"];
         }
             break;
             
-        case 4:
+        case 5:
         {
             ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"Position"];
         }
             break;
-        case 5:
+        case 6:
         {
             ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"AvgEdge"];
         }
@@ -181,18 +187,21 @@ int  _TitleLableWidth = 53;                         //zzy
             cell.titleLabel.text = @"Asset";
             break;
         case 1:
-            cell.titleLabel.text = @"Greek";
+            cell.titleLabel.text = @"Status";
             break;
         case 2:
-            cell.titleLabel.text = @"Trade";
+            cell.titleLabel.text = @"Greek";
             break;
         case 3:
-            cell.titleLabel.text = @"Pnl";
+            cell.titleLabel.text = @"Trade";
             break;
         case 4:
-            cell.titleLabel.text = @"Pos";
+            cell.titleLabel.text = @"Pnl";
             break;
         case 5:
+            cell.titleLabel.text = @"Pos";
+            break;
+        case 6:
             cell.titleLabel.text = @"AE";
             break;
       default:
