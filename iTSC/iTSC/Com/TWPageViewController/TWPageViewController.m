@@ -753,7 +753,7 @@ typedef NS_ENUM(NSUInteger, AppearanceStatus) {
         
         self.hasProcessForwardAppearance = NO;
         
-        _currentIndex = [self caculateCurrentIndex];
+        self->_currentIndex = [self caculateCurrentIndex];
         
         if([self.dataSource respondsToSelector:@selector(pageViewController:viewControllerForIndex:)]) {
             if(self.preIndex != self.currentIndex) {

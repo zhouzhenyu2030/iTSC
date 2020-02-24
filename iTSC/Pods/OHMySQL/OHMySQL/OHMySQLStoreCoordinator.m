@@ -90,7 +90,7 @@
 		return ;
     }
 
-    OHLog(@"OHMySQLStoreCoordinator: connect: _timeoutseconds=%ld", _timeoutseconds); //zzy
+    OHLog(@"OHMySQLStoreCoordinator: connect: _timeoutseconds=%ld", (long)_timeoutseconds); //zzy
     
 	OHLog(@"MySQL cipher: %s", mysql_get_ssl_cipher(_mysql));
 	
@@ -131,7 +131,8 @@
 
 - (OHResultErrorType)refresh:(OHRefreshOptions)options {
     @synchronized (self) {
-        return _mysql != NULL ? mysql_refresh(_mysql, options) : OHResultErrorTypeGone;
+        unsigned int _zzyop = (unsigned int)options;
+        return _mysql != NULL ? mysql_refresh(_mysql, _zzyop) : OHResultErrorTypeGone;
     }
 }
 

@@ -83,7 +83,7 @@ int  _TitleIndictorWidth= 50;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:animated];
             
-            _selectedIndex = index;
+            self->_selectedIndex = index;
             
             [self updateIndicatorPositionForIndex:self.selectedIndex animated:animated];
             
