@@ -45,33 +45,38 @@
     
     UIFont* _font = [UIFont boldSystemFontOfSize:12];
     
-    [UIHelper SetTabelViewCellText:zTableView Section:0 Row:0 TitleText:@"RecordDate:" DetialText:@"-/-/-"];
-    [UIHelper SetTabelViewCellText:zTableView Section:0 Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
+    int _iSN = 0;
     
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"RecordDate:" DetialText:@"-/-/-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
+    
+    //Status
+    _iSN++;
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Basis Error Cnt:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"WingFit Error Cnt:" DetialText:@"-"];
 
-    //order
-    [UIHelper SetTabelViewCellText:zTableView Section:1 Row:0 TitleText:@"OOM Cnt:" DetialText:@"-" Font:_font];
-    //[UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"Vega:" DetialText:@"-" Font:_font];
-    //[UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Theta:" DetialText:@"-" Font:_font];
+    //Order
+    _iSN++;
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"OOM Cnt:" DetialText:@"-" Font:_font];
 
     
-    //trade
-    [UIHelper SetTabelViewCellText:zTableView Section:2 Row:0 TitleText:@"Open Trade Qty:" DetialText:@"-" Font:_font];
-    [UIHelper SetTabelViewCellText:zTableView Section:2 Row:1 TitleText:@"Buy Open Trade Qty:" DetialText:@"-" Font:_font];
-    //[UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Vanna:" DetialText:@"-"];
-    //[UIHelper SetTabelViewCellText:TableView Section:2 Row:3 TitleText:@"Volga:" DetialText:@"-" Font:_font];
-    //[UIHelper SetTabelViewCellText:TableView Section:2 Row:4 TitleText:@"Veta:" DetialText:@"-"];
-    //[UIHelper SetTabelViewCellText:TableView Section:2 Row:5 TitleText:@"Thema:" DetialText:@"-" Font:_font];
+    //Trade
+    _iSN++;
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"Open Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:2 TitleText:@"Buy Open Trade Qty:" DetialText:@"-"];
     
     
     //Posion
-    [UIHelper SetTabelViewCellText:zTableView Section:3 Row:0 TitleText:@"Long Position:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:zTableView Section:3 Row:1 TitleText:@"Short Position:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:zTableView Section:3 Row:2 TitleText:@"Position:" DetialText:@"-"];
+    _iSN++;
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Position:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"Long Position:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:2 TitleText:@"Short Position:" DetialText:@"-"];
 
     
     //Mds
-    [UIHelper SetTabelViewCellText:zTableView Section:4 Row:0 TitleText:@"Md Overall Voume:" DetialText:@"-"];
+    _iSN++;
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Md Overall Voume:" DetialText:@"-"];
 
 
     if(vInitAll)
@@ -128,6 +133,11 @@
     //------------------------ Trade ------------------------
     if([zItemKey isEqualToString:@"TradeSum"])
     {
+        if([zItemType isEqualToString:@"TradeQty"])
+        {
+            [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Trade Qty:" FieldName:@"ItemValue"];
+            return;
+        }
         if([zItemType isEqualToString:@"OpenTradeQty"])
         {
             [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Open Trade Qty:" FieldName:@"ItemValue"];

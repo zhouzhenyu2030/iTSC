@@ -347,9 +347,9 @@ UIFont* _bold_font;
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradeFee' )"];
 
     
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='PNL' and EntityType='A' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='PNL' )"];
 
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Status' and EntityType='OOMCnt' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Status' )"];
 
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Edge' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='U' and (ItemType='LP' or ItemType='ChangePercentage') )"];
@@ -358,6 +358,8 @@ UIFont* _bold_font;
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='MD' )"];
     
+    
+    // OverAll
     _condstr=[_condstr stringByAppendingString:@" ) and EntityType='A'"];
 
 
