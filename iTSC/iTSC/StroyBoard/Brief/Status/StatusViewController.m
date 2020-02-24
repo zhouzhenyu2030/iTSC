@@ -77,6 +77,7 @@
     //Mds
     _iSN++;
     [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Md Overall Voume:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"Near Month Remain Days:" DetialText:@"-"];
 
 
     //RefreshCount
@@ -179,6 +180,11 @@
         if([zItemType isEqualToString:@"Volume"])
         {
             [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Md Overall Voume:" FieldName:@"ItemValue"];
+            return;
+        }
+        if([zItemType isEqualToString:@"RemainDays"])
+        {
+            [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Near Month Remain Days:" FieldName:@"ItemValue"];
             return;
         }
     }
