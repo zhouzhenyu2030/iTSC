@@ -57,7 +57,7 @@
     
     //trade
     [UIHelper SetTabelViewCellText:zTableView Section:2 Row:0 TitleText:@"Open Trade Qty:" DetialText:@"-" Font:_font];
-    //[UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Charm:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:2 Row:1 TitleText:@"Buy Open Trade Qty:" DetialText:@"-" Font:_font];
     //[UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Vanna:" DetialText:@"-"];
     //[UIHelper SetTabelViewCellText:TableView Section:2 Row:3 TitleText:@"Volga:" DetialText:@"-" Font:_font];
     //[UIHelper SetTabelViewCellText:TableView Section:2 Row:4 TitleText:@"Veta:" DetialText:@"-"];
@@ -96,18 +96,11 @@
     //zCondStr
     zCondStr = @"(";
     
-    
-    //MD
     zCondStr=[zCondStr stringByAppendingString:@" ( ItemKey='MD' )"];
-
-    //Position
     zCondStr=[zCondStr stringByAppendingString:@" or ( ItemKey='Position' )"];
-
-    zCondStr=[zCondStr stringByAppendingString:@" or ( ItemKey='TradeSum' and (ItemType='TradeQty' or ItemType='OpenTradeQty') )"];
-    
-    zCondStr=[zCondStr stringByAppendingString:@" or ( ItemKey='Status' and (ItemType='OOMCnt') )"];
-
-    zCondStr=[zCondStr stringByAppendingString:@" or ( ItemKey='MDS' and (ItemType='Volume' or ItemType='Value') )"];
+    zCondStr=[zCondStr stringByAppendingString:@" or ( ItemKey='TradeSum' )"];
+    zCondStr=[zCondStr stringByAppendingString:@" or ( ItemKey='Status')"];
+    zCondStr=[zCondStr stringByAppendingString:@" or ( ItemKey='MDS' )"];
 
     //OverAll
     zCondStr=[zCondStr stringByAppendingString:@" ) and EntityType='A'"];
@@ -122,41 +115,53 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)DisplayItem
 {
-    //Log
+    //------------------------ Log ------------------------
      NSLog(@"%@: DisplayItem: start!", zLogStr);
     
-    //Trade
+    //------------------------ Order ------------------------
     if([zItemType isEqualToString:@"OOMCnt"])
     {
         [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"OOM Cnt:" FieldName:@"ItemValue"];
         return;
     }
 
-    //Trade
-    if([zItemType isEqualToString:@"OpenTradeQty"])
+    //------------------------ Trade ------------------------
+    if([zItemKey isEqualToString:@"TradeSum"])
     {
-        [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Open Trade Qty:" FieldName:@"ItemValue"];
-        return;
+        if([zItemType isEqualToString:@"OpenTradeQty"])
+        {
+            [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Open Trade Qty:" FieldName:@"ItemValue"];
+            return;
+        }
+        if([zItemType isEqualToString:@"BuyOpenTrade"])
+        {
+            [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Buy Open Trade Qty:" FieldName:@"ItemValue"];
+            return;
+        }
     }
         
-    //Position
-    if([zItemType isEqualToString:@"LongPosition"])
+    
+    //------------------------ Position ------------------------
+    if([zItemKey isEqualToString:@"Position"])
     {
-        [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Long Position:" FieldName:@"ItemValue"];
-        return;
-    }
-    if([zItemType isEqualToString:@"Short Position"])
-    {
-        [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Short Position:" FieldName:@"ItemValue"];
-        return;
-    }
-    if([zItemType isEqualToString:@"Position"])
-    {
-        [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Position:" FieldName:@"ItemValue"];
-        return;
+        if([zItemType isEqualToString:@"LongPosition"])
+        {
+            [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Long Position:" FieldName:@"ItemValue"];
+            return;
+        }
+        if([zItemType isEqualToString:@"ShortPosition"])
+        {
+            [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Short Position:" FieldName:@"ItemValue"];
+            return;
+        }
+        if([zItemType isEqualToString:@"Position"])
+        {
+            [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Position:" FieldName:@"ItemValue"];
+            return;
+        }
     }
     
-    //MDS
+    //------------------------ MDS ------------------------
     if([zItemKey isEqualToString:@"MDS"])
     {
         if([zItemType isEqualToString:@"Volume"])
