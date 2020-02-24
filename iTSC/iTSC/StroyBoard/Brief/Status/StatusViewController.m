@@ -79,9 +79,11 @@
     [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Md Overall Voume:" DetialText:@"-"];
 
 
+    //RefreshCount
+    _iSN++;
     if(vInitAll)
     {
-        cell = [UIHelper SetTabelViewCellText:zTableView Section:5 Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
+        cell = [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
         RefreshCountCell = cell;
     }
 }
