@@ -52,8 +52,8 @@
     
     //Status
     _iSN++;
-    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Basis Error Cnt:" DetialText:@"-" Color:UIColor.grayColor];
-    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"WingFit Error Cnt:" DetialText:@"-" Color:UIColor.grayColor];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Basis Error Cnt:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"WingFit Error Cnt:" DetialText:@"-"];
 
     //Order
     _iSN++;
@@ -63,7 +63,7 @@
     //Trade
     _iSN++;
     [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Trade Qty:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"Open Trade Qty:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"Open Trade Qty:" DetialText:@"-" Font:_font];
     [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:2 TitleText:@"Buy Open Trade Qty:" DetialText:@"-"];
     
     
@@ -157,6 +157,11 @@
     //------------------------ Position ------------------------
     if([zItemKey isEqualToString:@"Position"])
     {
+        if([zItemType isEqualToString:@"Position"])
+        {
+            [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Position:" FieldName:@"ItemValue"];
+            return;
+        }
         if([zItemType isEqualToString:@"LongPosition"])
         {
             [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Long Position:" FieldName:@"ItemValue"];
@@ -167,12 +172,8 @@
             [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Short Position:" FieldName:@"ItemValue"];
             return;
         }
-        if([zItemType isEqualToString:@"Position"])
-        {
-            [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Position:" FieldName:@"ItemValue"];
-            return;
-        }
     }
+    
     
     //------------------------ MDS ------------------------
     if([zItemKey isEqualToString:@"MDS"])
