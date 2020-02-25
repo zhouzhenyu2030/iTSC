@@ -470,7 +470,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Refresh" id="y0q-R6-V28" userLabel="Refresh Cnt">
+                            <tableViewSection headerTitle="Refresh" id="y0q-R6-V28">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="VDY-F8-7xS" detailTextLabel="s8c-ab-niI" style="IBUITableViewCellStyleValue1" id="j0q-tw-c2j">
                                         <rect key="frame" x="0.0" y="524" width="414" height="18"/>
