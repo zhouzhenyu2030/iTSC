@@ -79,15 +79,7 @@
     [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:2 TitleText:@"PCR:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:3 TitleText:@"CCR:" DetialText:@"-"];
     
-    //NPE
-    /*
-    _iSN++;
-    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"NPE:" DetialText:@"-" Font:_font];
-    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"RealTime NPE Expose:" DetialText:@"-" Font:_font];
-    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:2 TitleText:@"NP Average Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:3 TitleText:@"TOption Net Position:" DetialText:@"-"];
-     */
-    
+
     //RefreshCount
      _iSN++;
     if(vInitAll)
@@ -99,7 +91,7 @@
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//查询，在此获取数据
+//查询条件
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 -(void) SetQureyCondition
 {
@@ -111,16 +103,14 @@
     
     zCondStr=[zCondStr stringByAppendingString:@" ( ItemKey='MD' )"];
     zCondStr=[zCondStr stringByAppendingString:@" or (ItemKey='Risk')"];
-    //zCondStr=[zCondStr stringByAppendingString:@" or ( ItemKey='Edge' )"];
-    //zCondStr=[zCondStr stringByAppendingString:@" or ( ItemKey='Expose' )"];
-
+  
     //OverAll
     zCondStr=[zCondStr stringByAppendingString:@" ) and EntityType='A'"];
     
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//显示
+//显示item
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)DisplayItem
 {
@@ -138,27 +128,6 @@
         
         return;
     }
-    
-
-    //------------------------ NPE ------------------------
-    /*
-    if([zItemType isEqualToString:@"RTNpeExpose"])
-    {
-        [UIHelper DisplayCell:zTableView Field:zField TitleName:@"RealTime NPE Expose:" FieldName:@"ItemValue" SetColor:false];
-        return;
-    }
-    if([zItemType isEqualToString:@"NPAvgEdge"])
-    {
-        [UIHelper DisplayCell:zTableView Field:zField TitleName:@"NP Average Edge:" FieldName:@"ItemValue" SetColor:false];
-        return;
-    }
-    if([zItemType isEqualToString:@"NetPosition"])
-    {
-        [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"TOption Net Position:" FieldName:@"ItemValue"];
-        return;
-    }
-     */
-
     
 }
 

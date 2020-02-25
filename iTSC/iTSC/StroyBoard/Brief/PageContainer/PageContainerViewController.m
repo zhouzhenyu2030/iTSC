@@ -111,7 +111,7 @@ int  _TitleLableWidth = 53;                         //zzy
 
         case 3:
         {
-            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"TradeSums"];
+            ctrl = [[UIStoryboard storyboardWithName:@"TradeSums" bundle:nil] instantiateViewControllerWithIdentifier:@"TradeSums"];
         }
             break;
 

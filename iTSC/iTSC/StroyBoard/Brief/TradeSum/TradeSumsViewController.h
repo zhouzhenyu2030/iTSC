@@ -9,27 +9,13 @@
 #ifndef TradeSumViewController_h
 #define TradeSumViewController_h
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "BriefBaseViewController.h"
 
-@interface TradeSumsViewController: UITableViewController
-{
-    NSInteger RefreshTimerElpasedSeconds;
-    int RefreshCnt;
-    UISwitch *Switch_AutoRefresh;
-    UITableViewCell *RefreshCountCell;
-    UITableViewCell *RefreshSwitchCell;
-    UIRefreshControl *refreshControl;
-    NSTimer* myTimer;
-    bool isTimerProcessing;
-}
-
-
+@interface TradeSumsViewController: BriefBaseViewController
 
 //property
-@property (strong, nonatomic) IBOutlet UITableView *TableView;
+@property (strong, nonatomic) IBOutlet UITableView *IBOutletTableView;
 
-//action
 
 @end
 
