@@ -33,6 +33,7 @@
 		194D008921F41210008918DA /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008821F41210008918DA /* UIHelper.m */; };
 		194D008E21F44057008918DA /* AssetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008D21F44057008918DA /* AssetViewController.m */; };
 		194D009021F46CE5008918DA /* TradeSumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194D008F21F46CE5008918DA /* TradeSumsViewController.m */; };
+		195075562404DD0C00362907 /* Greeks.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 195075552404DD0C00362907 /* Greeks.storyboard */; };
 		1951F05A2401604D002D5468 /* Status.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1951F0592401604D002D5468 /* Status.storyboard */; };
 		1951F05D2401610B002D5468 /* StatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1951F05C2401610B002D5468 /* StatusViewController.m */; };
 		196B41D121EED13800105D44 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196B41D021EED13800105D44 /* ConfigViewController.m */; };
@@ -111,6 +112,7 @@
 		194D008D21F44057008918DA /* AssetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssetViewController.m; sourceTree = "<group>"; };
 		194D008F21F46CE5008918DA /* TradeSumsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TradeSumsViewController.m; sourceTree = "<group>"; };
 		194D009121F46CF1008918DA /* TradeSumsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TradeSumsViewController.h; sourceTree = "<group>"; };
+		195075552404DD0C00362907 /* Greeks.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Greeks.storyboard; sourceTree = "<group>"; };
 		1951F0592401604D002D5468 /* Status.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Status.storyboard; sourceTree = "<group>"; };
 		1951F05B240160F0002D5468 /* StatusViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusViewController.h; sourceTree = "<group>"; };
 		1951F05C2401610B002D5468 /* StatusViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatusViewController.m; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 		194FF95721EC2C1A00CAB449 /* Greeks */ = {
 			isa = PBXGroup;
 			children = (
+				195075552404DD0C00362907 /* Greeks.storyboard */,
 				194D008221F2B51A008918DA /* GreeksViewController.h */,
 				194D008321F2B52B008918DA /* GreeksViewController.m */,
 			);
@@ -602,6 +605,7 @@
 				19FFB2A821F191D700C02A53 /* Control.storyboard in Resources */,
 				1911DFAB21FF11160079304C /* Asset.storyboard in Resources */,
 				1911DFB121FF29EB0079304C /* HisAssetChart.storyboard in Resources */,
+				195075562404DD0C00362907 /* Greeks.storyboard in Resources */,
 				19FFB29221F1706900C02A53 /* Help.storyboard in Resources */,
 				1951F05A2401604D002D5468 /* Status.storyboard in Resources */,
 				190210C421E45966009ADE0B /* Assets.xcassets in Resources */,

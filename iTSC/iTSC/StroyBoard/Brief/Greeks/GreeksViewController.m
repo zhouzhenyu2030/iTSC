@@ -17,426 +17,150 @@
 
 @implementation GreeksViewController
 
+@synthesize IBOutletTableView;
 
-
-@synthesize TableView;
-
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    RefreshCnt = 0;
-    isTimerProcessing = false;
-
-    [self InitTableViewCells:true];
-   
-    RefreshTimerElpasedSeconds = 0;
-    if(myTimer==nil)
-        myTimer  =  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
-    [self StopTimer];
-
-    
-    [self setupRefresh];
-    TableView.rowHeight = 18;
-}
-
-// 设置下拉刷新
-- (void)setupRefresh
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 设置LogStr,zTableView
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-(void) SetLogStr
 {
-    refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventValueChanged];
-    refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"正在刷新"];
-    TableView.refreshControl = refreshControl;
+    zLogStr = @"GreeksViewController";
 }
-// 下拉刷新触发
-- (void)refreshClick:(UIRefreshControl *)refreshControl
+-(void) SetTableView
 {
-    [self InitTableViewCells:true];
-    RefreshCountCell.detailTextLabel.text=@"0";
-    RefreshCnt = 1;
-    [self QueryAndDisplay];
-    [self.TableView reloadData];
-    [refreshControl endRefreshing];
+    zTableView = IBOutletTableView;
 }
 
-
-
-
-//定时器处理函数
--(void)timerFired
-{
-    if([TscConfig isInBackground] == true) return;
-    if([TscConfig isGlobalAutoRefresh] == false) return;
-    
-    if(isTimerProcessing) return;
-    
-    RefreshTimerElpasedSeconds++;
-    if(RefreshTimerElpasedSeconds<TscConfig.RefreshSeconds) return;
-    
-    isTimerProcessing=true;
- 
-    
-    //Server ID
-    [UIHelper SetTabelViewCellDetailText:TableView TitleText:@"Server ID:" DetialText:DBHelper.CurrentConnectionKey];
-
-
-    //Display
-    if([DBHelper BeginQuery])
-    {
-        RefreshCnt++;
-        [self QueryAndDisplay];
-        [DBHelper EndQuery];
-    }
-    
-    isTimerProcessing=false;
-    
-    RefreshTimerElpasedSeconds=0;
-}
-
-
-//开启定时器
--(void) StartTimer
-{
-    if(myTimer != nil)
-    {
-        [myTimer setFireDate:[NSDate distantPast]];
-    }
-}
-
-//关闭定时器
--(void) StopTimer
-{
-    if(myTimer != nil)
-    {
-        [myTimer setFireDate:[NSDate distantFuture]];
-    }
-}
-
-
-//页面将要进入前台，开启定时器
--(void)viewWillAppear:(BOOL)animated
-{
-    [self StartTimer];
-}
-
-
-//页面消失，进入后台不显示该页面，关闭定时器
--(void)viewDidDisappear:(BOOL)animated
-{
-    [self StopTimer];
-}
-
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// InitTableViewCells
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 -(void) InitTableViewCells:(BOOL)vInitAll
 {
-    if(vInitAll)
-        [UIHelper ClearTabelViewCellText:TableView];
-    
+    int _iSN = 0;
     UITableViewCell *cell;
-    
     UIFont* _font = [UIFont boldSystemFontOfSize:12];
+
+    //Clear
+    if(vInitAll)
+        [UIHelper ClearTabelViewCellText:zTableView];
     
-    [UIHelper SetTabelViewCellText:TableView Section:0 Row:0 TitleText:@"RecordDate:" DetialText:@"-/-/-"];
-    [UIHelper SetTabelViewCellText:TableView Section:0 Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
+    //Record
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"RecordDate:" DetialText:@"-/-/-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
     
 
-
-    [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"Delta:" DetialText:@"-" Font:_font];
-    [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"Vega:" DetialText:@"-" Font:_font];
-    [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Theta:" DetialText:@"-" Font:_font];
-
-    
-    [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"Gamma:" DetialText:@"-" Font:_font];
-    [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Charm:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Vanna:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:2 Row:3 TitleText:@"Volga:" DetialText:@"-" Font:_font];
-    [UIHelper SetTabelViewCellText:TableView Section:2 Row:4 TitleText:@"Veta:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:2 Row:5 TitleText:@"Thema:" DetialText:@"-" Font:_font];
-    
-    [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"Color:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:3 Row:1 TitleText:@"Speed:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:3 Row:2 TitleText:@"Zomma:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:3 Row:3 TitleText:@"Ultima:" DetialText:@"-"];
-    
-    [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"SRR:" DetialText:@"-" Font:_font];
-    [UIHelper SetTabelViewCellText:TableView Section:4 Row:1 TitleText:@"SLR:" DetialText:@"-" Font:_font];
-    [UIHelper SetTabelViewCellText:TableView Section:4 Row:2 TitleText:@"PCR:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:4 Row:3 TitleText:@"CCR:" DetialText:@"-"];
-    
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"NPE:" DetialText:@"-" Font:_font];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"RealTime NPE Expose:" DetialText:@"-" Font:_font];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:2 TitleText:@"NP Average Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:5 Row:3 TitleText:@"TOption Net Position:" DetialText:@"-"];
-    
-    [UIHelper SetTabelViewCellText:TableView Section:6 Row:0 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blueColor];
-    [UIHelper SetTabelViewCellText:TableView Section:6 Row:1 TitleText:@"Trade Qty:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:6 Row:2 TitleText:@"Trade Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:6 Row:3 TitleText:@"AT Trade Qty:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:6 Row:4 TitleText:@"AH Trade Qty:" DetialText:@"-"];
-
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:0 TitleText:@"Marktet Total PNL:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:7 Row:1 TitleText:@"Theo Total PNL:" DetialText:@"-"];
-
-    [UIHelper SetTabelViewCellText:TableView Section:8 Row:0 TitleText:@"Avg Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:8 Row:1 TitleText:@"Smoothed Basis:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:8 Row:2 TitleText:@"Smoothed Vol:" DetialText:@"-" Color:UIColor.blueColor];
-    [UIHelper SetTabelViewCellText:TableView Section:8 Row:3 TitleText:@"U %:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:8 Row:4 TitleText:@"U LP:" DetialText:@"-"];
+    //Risk 1
+    _iSN++;
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Delta:" DetialText:@"-" Font:_font];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"Vega:" DetialText:@"-" Font:_font];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:2 TitleText:@"Theta:" DetialText:@"-" Font:_font];
 
     
-    [UIHelper SetTabelViewCellText:TableView Section:9 Row:0 TitleText:@"Server ID:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:9 Row:1 TitleText:@"MD Time:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:9 Row:2 TitleText:@"MD Date:" DetialText:@"-"];
-
+    //Risk 2
+    _iSN++;
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Gamma:" DetialText:@"-" Font:_font];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"Charm:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:2 TitleText:@"Vanna:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:3 TitleText:@"Volga:" DetialText:@"-" Font:_font];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:4 TitleText:@"Veta:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:5 TitleText:@"Thema:" DetialText:@"-" Font:_font];
     
+    //Risk 3
+    _iSN++;
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Color:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"Speed:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:2 TitleText:@"Zomma:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:3 TitleText:@"Ultima:" DetialText:@"-"];
+    
+    //Wing Risk
+    _iSN++;
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"SRR:" DetialText:@"-" Font:_font];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"SLR:" DetialText:@"-" Font:_font];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:2 TitleText:@"PCR:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:3 TitleText:@"CCR:" DetialText:@"-"];
+    
+    //NPE
+    /*
+    _iSN++;
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"NPE:" DetialText:@"-" Font:_font];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"RealTime NPE Expose:" DetialText:@"-" Font:_font];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:2 TitleText:@"NP Average Edge:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:3 TitleText:@"TOption Net Position:" DetialText:@"-"];
+     */
+    
+    //RefreshCount
+     _iSN++;
     if(vInitAll)
     {
-        cell = [UIHelper SetTabelViewCellText:TableView Section:10 Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
+        cell = [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
         RefreshCountCell = cell;
     }
 }
 
 
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //查询，在此获取数据
-- (void)QueryAndDisplay
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-(void) SetQureyCondition
 {
+    //zTableName
+    zTableName = @"runtimeinfo";
 
-    //RefreshCount
-    RefreshCountCell.detailTextLabel.text=[NSString stringWithFormat:@"%d", RefreshCnt];
+    //zCondStr
+    zCondStr = @"(";
+    
+    zCondStr=[zCondStr stringByAppendingString:@" ( ItemKey='MD' )"];
+    zCondStr=[zCondStr stringByAppendingString:@" or (ItemKey='Risk')"];
+    //zCondStr=[zCondStr stringByAppendingString:@" or ( ItemKey='Edge' )"];
+    //zCondStr=[zCondStr stringByAppendingString:@" or ( ItemKey='Expose' )"];
+
+    //OverAll
+    zCondStr=[zCondStr stringByAppendingString:@" ) and EntityType='A'"];
+    
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//显示
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)DisplayItem
+{
+    //------------------------ Log ------------------------
+    //NSLog(@"%@: DisplayItem: start!", zLogStr);
     
 
-    //DB Query
-    NSLog(@"GreeksViewController: start!");
-    
-    OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
-    if(_queryContext==nil)
+    //------------------------ Risk ------------------------
+    if([zItemKey isEqualToString:@"Risk"])
     {
-        NSLog(@"GreeksViewController: Init: queryContext==nil!");
+        NSString* titlename = [zItemType substringFromIndex:5]; titlename = [titlename stringByAppendingString:@":"];
+        if([titlename isEqualToString:@"Tata:"]) titlename = @"Thema:";
+        
+        [UIHelper DisplayCell:zTableView Field:zField TitleName:titlename FieldName:@"ItemValue" SetColor:true];
+        
         return;
     }
     
-    NSLog(@"GreeksViewController: SELECT: start!");
-    
-    
-    //SELECT
-    NSString* _condstr = @"(";
-    
-    _condstr=[_condstr stringByAppendingString:@" (ItemKey='Risk')"];
-    
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Position' and (ItemType='Position' or ItemType='NetPosition'))"];
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='TradeSum' and (ItemType='TradeQty' or ItemType='ATTradeQty' or ItemType='AHTradeQty' or ItemType='TradeEdge') )"];
-    
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='PNL' and (ItemType='TotalPNL_Mkt' or ItemType='TotalPNL_Theo') )"];
-    
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Edge' )"];
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='Expose' )"];
-    
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='MD' )"];
-    
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='U' and (ItemType='LP' or ItemType='ChangePercentage') )"];
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemKey='SmoothedWingPara' and (ItemType='Vol') )"];
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='SmoothedBasis' ) "];
-    
-    _condstr=[_condstr stringByAppendingString:@" ) and EntityType='A'"];
-    
-    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"runtimeinfo" condition:_condstr];
-    NSError *error = nil;
-    NSArray *tasks = [_queryContext executeQueryRequestAndFetchResult:query error:&error];
-    
-    
-    //清除原显示
-    [self InitTableViewCells:false];
-    
-    NSUInteger count = tasks.count;
-    if(count <= 0)
-        return;
-    
- 
 
-    //显示
-    NSDictionary  *_field;
-    NSString* typename;
-    float _fValue;
-    NSString* value;
-    UITableViewCell *cell;
-    
-    for( int i=0; i<count; i++)
+    //------------------------ NPE ------------------------
+    /*
+    if([zItemType isEqualToString:@"RTNpeExpose"])
     {
-        _field=[tasks objectAtIndex:i];
-        NSLog(@"%@", _field);
-        
+        [UIHelper DisplayCell:zTableView Field:zField TitleName:@"RealTime NPE Expose:" FieldName:@"ItemValue" SetColor:false];
+        return;
+    }
+    if([zItemType isEqualToString:@"NPAvgEdge"])
+    {
+        [UIHelper DisplayCell:zTableView Field:zField TitleName:@"NP Average Edge:" FieldName:@"ItemValue" SetColor:false];
+        return;
+    }
+    if([zItemType isEqualToString:@"NetPosition"])
+    {
+        [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"TOption Net Position:" FieldName:@"ItemValue"];
+        return;
+    }
+     */
 
-        typename=_field[@"ItemType"];
-        
-        if([typename isEqualToString:@"Position"])
-        {
-            value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:0];
-            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Position:" DetialText:value];
-            continue;
-        }
-        if([typename isEqualToString:@"TradeEdge"])
-        {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Trade Edge:" FieldName:@"ItemValue"  SetColor:true];
-            continue;
-        }
-        
-        if([typename isEqualToString:@"TradeQty"])
-        {
-            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"Trade Qty:" FieldName:@"ItemValue"];
-            continue;
-        }
-
-        if([typename isEqualToString:@"ATTradeQty"])
-        {
-            value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:0];
-            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"AT Trade Qty:" DetialText:value];
-            continue;
-        }
-        if([typename isEqualToString:@"AHTradeQty"])
-        {
-            value=[StringHelper sPositiveFormat:_field[@"ItemValue"] pointNumber:0];
-            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"AH Trade Qty:" DetialText:value];
-            continue;
-        }
-
-        
-        //PNL
-        if([_field[@"ItemKey"] isEqualToString:@"PNL"])
-        {
-            if([typename isEqualToString:@"TotalPNL_Mkt"])
-            {
-                [UIHelper DisplayCell:TableView Field:_field TitleName:@"Marktet Total PNL:" FieldName:@"ItemValue" SetColor:true];
-                continue;
-            }
-            if([typename isEqualToString:@"TotalPNL_Theo"])
-            {
-                [UIHelper DisplayCell:TableView Field:_field TitleName:@"Theo Total PNL:" FieldName:@"ItemValue" SetColor:true];
-                continue;
-            }
-        }
-        
-        
-        //U
-        if([_field[@"ItemKey"] isEqualToString:@"U"])
-        {
-            if([typename isEqualToString:@"LP"])
-            {
-                _fValue=[_field[@"ItemValue"] floatValue];
-                value = [StringHelper fPositiveFormat:_fValue pointNumber:4];
-                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"U LP:" DetialText:value];
-                continue;
-            }
-            if([typename isEqualToString:@"ChangePercentage"])
-            {
-                _fValue=[_field[@"ItemValue"] floatValue];
-                value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
-                cell=[UIHelper SetTabelViewCellDetailText:TableView TitleText: @"U %:" DetialText:value];
-                if(_fValue>0)
-                    cell.detailTextLabel.textColor=UIColor.purpleColor;
-                else
-                    cell.detailTextLabel.textColor=UIColor.darkGrayColor;
-                continue;
-            }
-        }
-        
-        if([typename isEqualToString:@"SmoothedBasis"])
-        {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Smoothed Basis:" FieldName:@"ItemValue" SetColor:true];
-            continue;
-        }
-        
-        if([_field[@"ItemKey"] isEqualToString:@"SmoothedWingPara"])
-        {
-            if([_field[@"ItemType"] isEqualToString:@"Vol"])
-            {
-                _fValue=[_field[@"ItemValue"] floatValue]*100;
-                value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
-                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Smoothed Vol:" DetialText:value];
-                continue;
-            }
-        }
-        
-        
-        
-        
-        //Risk Field
-        if([_field[@"ItemKey"] isEqualToString:@"Risk"])
-        {
-            NSString* titlename = [typename substringFromIndex:5]; titlename = [titlename stringByAppendingString:@":"];
-            if([titlename isEqualToString:@"Tata:"]) titlename = @"Thema:";
-            
-            [UIHelper DisplayCell:TableView Field:_field TitleName:titlename FieldName:@"ItemValue" SetColor:true];
-            
-            continue;
-        }
-        
-        //AvgEdge
-        if([typename isEqualToString:@"AvgEdge"])
-        {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Avg Edge:" FieldName:@"ItemValue" SetColor:false];
-            continue;
-        }
-        
-        //NPE
-        if([typename isEqualToString:@"RTNpeExpose"])
-        {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"RealTime NPE Expose:" FieldName:@"ItemValue" SetColor:false];
-            continue;
-        }
-        if([typename isEqualToString:@"NPAvgEdge"])
-        {
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"NP Average Edge:" FieldName:@"ItemValue" SetColor:false];
-            continue;
-        }
-        if([typename isEqualToString:@"NetPosition"])
-        {
-            [UIHelper DisplayIntCell:TableView Field:_field TitleName:@"TOption Net Position:" FieldName:@"ItemValue"];
-            continue;
-        }
-
-        
-        
-        //MD
-        if([_field[@"ItemKey"] isEqualToString:@"MD"])
-        {
-            if([_field[@"ItemType"] isEqualToString:@"Date"])
-            {
-                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"MD Date:" DetialText:_field[@"ItemValue"]];
-                continue;
-            }
-            if([_field[@"ItemType"] isEqualToString:@"Time"])
-            {
-                [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"MD Time:" DetialText:_field[@"ItemValue"]];
-                continue;
-            }
-        }
-        
-
-    } //for over
     
-    
-    
-    _field = [tasks objectAtIndex:0];
-    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RecordDate:" DetialText:_field[@"RecordDate"]];
-    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RecordTime:" DetialText:[_field[@"RecordTime"] substringToIndex:8]];
-    
-
-    NSLog(@"GreeksViewController: SELECT: over!");
-
-    [TableView reloadData];
-
-    NSLog(@"AssetViewController: RefreshCnt=%d", RefreshCnt);
-
 }
-
-
 
 
 

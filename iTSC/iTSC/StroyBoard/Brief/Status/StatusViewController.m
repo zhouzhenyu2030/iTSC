@@ -38,15 +38,15 @@
 -(void) InitTableViewCells:(BOOL)vInitAll
 {
     
+    int _iSN = 0;
+    UITableViewCell *cell;
+    UIFont* _font = [UIFont boldSystemFontOfSize:12];
+    
+    //Clear
     if(vInitAll)
         [UIHelper ClearTabelViewCellText:zTableView];
     
-    UITableViewCell *cell;
-    
-    UIFont* _font = [UIFont boldSystemFontOfSize:12];
-    
-    int _iSN = 0;
-    
+    //Record
     [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"RecordDate:" DetialText:@"-/-/-"];
     [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
     

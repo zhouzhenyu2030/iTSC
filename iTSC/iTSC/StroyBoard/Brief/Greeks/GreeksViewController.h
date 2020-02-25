@@ -9,23 +9,12 @@
 #ifndef GreeksViewController_h
 #define GreeksViewController_h
 
-#import <UIKit/UIKit.h>
+#import "BriefBaseViewController.h"
 
+@interface GreeksViewController : BriefBaseViewController
 
-@interface GreeksViewController : UITableViewController
-{
-    NSInteger RefreshTimerElpasedSeconds;
-    int RefreshCnt;
-    UISwitch *Switch_AutoRefresh;
-//    UITableViewCell *RefreshSwitchCell;
-    UITableViewCell *RefreshCountCell;
-    UIRefreshControl *refreshControl;
-    NSTimer* myTimer;
-    bool isTimerProcessing;
-}
-
-@property (strong, nonatomic) IBOutlet UITableView *TableView;
-
+//property
+@property (strong, nonatomic) IBOutlet UITableView *IBOutletTableView;
 
 @end
 

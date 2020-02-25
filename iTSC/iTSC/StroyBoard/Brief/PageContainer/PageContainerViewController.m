@@ -105,7 +105,7 @@ int  _TitleLableWidth = 53;                         //zzy
 
         case 2:
         {
-            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"Greeks"];
+            ctrl = [[UIStoryboard storyboardWithName:@"Greeks" bundle:nil] instantiateViewControllerWithIdentifier:@"Greeks"];
         }
             break;
 
