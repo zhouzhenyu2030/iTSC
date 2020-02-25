@@ -48,6 +48,8 @@
 		1980DBDA21F0083E008C9FF0 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1980DBD921F0083E008C9FF0 /* Test.storyboard */; };
 		198173FA222CFD74009415A2 /* HAMktOrTheoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198173F9222CFD74009415A2 /* HAMktOrTheoPickerViewController.m */; };
 		198426352226704600BA10F0 /* AvgEdgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198426342226704600BA10F0 /* AvgEdgeViewController.m */; };
+		19B983B62404F601000C2CAD /* PNLs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19B983B52404F601000C2CAD /* PNLs.storyboard */; };
+		19B983B82404FB69000C2CAD /* Positions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19B983B72404FB69000C2CAD /* Positions.storyboard */; };
 		19F2FE862339AE63008498D7 /* NetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2FE852339AE63008498D7 /* NetHelper.m */; };
 		19F2FE88233AF022008498D7 /* ThreadHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2FE87233AF022008498D7 /* ThreadHelper.m */; };
 		19FFB29221F1706900C02A53 /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19FFB29121F1706900C02A53 /* Help.storyboard */; };
@@ -138,6 +140,8 @@
 		198173FC222CFF0D009415A2 /* HAMktOrTheoPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HAMktOrTheoPickerViewController.h; sourceTree = "<group>"; };
 		1984263322266FD500BA10F0 /* AvgEdgeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AvgEdgeViewController.h; sourceTree = "<group>"; };
 		198426342226704600BA10F0 /* AvgEdgeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvgEdgeViewController.m; sourceTree = "<group>"; };
+		19B983B52404F601000C2CAD /* PNLs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PNLs.storyboard; sourceTree = "<group>"; };
+		19B983B72404FB69000C2CAD /* Positions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Positions.storyboard; sourceTree = "<group>"; };
 		19F2FE842339AE50008498D7 /* NetHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetHelper.h; sourceTree = "<group>"; };
 		19F2FE852339AE63008498D7 /* NetHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetHelper.m; sourceTree = "<group>"; };
 		19F2FE87233AF022008498D7 /* ThreadHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreadHelper.m; sourceTree = "<group>"; };
@@ -400,6 +404,7 @@
 		19703EB721F5A94F003D6697 /* Position */ = {
 			isa = PBXGroup;
 			children = (
+				19B983B72404FB69000C2CAD /* Positions.storyboard */,
 				19703EB821F5B528003D6697 /* PositionViewController.h */,
 				19703EB921F5B537003D6697 /* PositionViewController.m */,
 			);
@@ -409,6 +414,7 @@
 		19703EBB21F5BCCB003D6697 /* PNL */ = {
 			isa = PBXGroup;
 			children = (
+				19B983B52404F601000C2CAD /* PNLs.storyboard */,
 				19703EBE21F5BD17003D6697 /* PnlViewController.h */,
 				19703EBC21F5BD09003D6697 /* PnlViewController.m */,
 			);
@@ -605,6 +611,7 @@
 				190210DD21E49649009ADE0B /* 编程-属性 in Resources */,
 				19FFB2C721F1B5B100C02A53 /* Main.storyboard in Resources */,
 				190210E021E499DE009ADE0B /* 编程-本地数据保存 in Resources */,
+				19B983B62404F601000C2CAD /* PNLs.storyboard in Resources */,
 				19FFB2A821F191D700C02A53 /* Control.storyboard in Resources */,
 				1911DFAB21FF11160079304C /* Asset.storyboard in Resources */,
 				1911DFB121FF29EB0079304C /* HisAssetChart.storyboard in Resources */,
@@ -612,6 +619,7 @@
 				19FFB29221F1706900C02A53 /* Help.storyboard in Resources */,
 				1951F05A2401604D002D5468 /* Status.storyboard in Resources */,
 				190210C421E45966009ADE0B /* Assets.xcassets in Resources */,
+				19B983B82404FB69000C2CAD /* Positions.storyboard in Resources */,
 				190210C221E45964009ADE0B /* BriefDetail.storyboard in Resources */,
 				19FFB2AA21F194BD00C02A53 /* Brief.storyboard in Resources */,
 				19FFB2A421F18EEE00C02A53 /* Config.storyboard in Resources */,

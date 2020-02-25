@@ -117,13 +117,13 @@ int  _TitleLableWidth = 53;                         //zzy
 
         case 4:
         {
-            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"PNL"];
+            ctrl = [[UIStoryboard storyboardWithName:@"PNLs" bundle:nil] instantiateViewControllerWithIdentifier:@"PNLs"];
         }
             break;
             
         case 5:
         {
-            ctrl = [[UIStoryboard storyboardWithName:@"BriefDetail" bundle:nil] instantiateViewControllerWithIdentifier:@"Position"];
+            ctrl = [[UIStoryboard storyboardWithName:@"Positions" bundle:nil] instantiateViewControllerWithIdentifier:@"Positions"];
         }
             break;
         case 6:

@@ -9,25 +9,12 @@
 #ifndef PositionViewController_h
 #define PositionViewController_h
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "BriefBaseViewController.h"
 
-@interface PositionViewController: UITableViewController
-{
-    NSInteger RefreshTimerElpasedSeconds;
-    int RefreshCnt;
-    UISwitch *Switch_AutoRefresh;
-    UITableViewCell *RefreshCountCell;
-    UITableViewCell *RefreshSwitchCell;
-    UIRefreshControl *refreshControl;
-    NSTimer* myTimer;
-    bool isTimerProcessing;
-}
-
-
+@interface PositionViewController: BriefBaseViewController
 
 //property
-@property (strong, nonatomic) IBOutlet UITableView *TableView;
+@property (strong, nonatomic) IBOutlet UITableView *IBOutletTableView;
 
 
 @end

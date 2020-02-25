@@ -101,8 +101,7 @@
     //zCondStr
     zCondStr = @"(";
     
-    zCondStr=[zCondStr stringByAppendingString:@" ( ItemKey='MD' )"];
-    zCondStr=[zCondStr stringByAppendingString:@" or (ItemKey='Risk')"];
+    zCondStr=[zCondStr stringByAppendingString:@" ( ItemKey='Risk' )"];
   
     //OverAll
     zCondStr=[zCondStr stringByAppendingString:@" ) and EntityType='A'"];

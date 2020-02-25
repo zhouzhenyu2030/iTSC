@@ -19,261 +19,126 @@
 @implementation PnlViewController
 
 
+@synthesize IBOutletTableView;
 
-@synthesize TableView;
-
-
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    RefreshCnt = 0;
-    isTimerProcessing = false;
-    
-    [self InitTableViewCells:true];
-    
-    Switch_AutoRefresh = [self AppendSwitch];
-    Switch_AutoRefresh.on = [TscConfig isPnlAutoRefresh];
-    
-    RefreshTimerElpasedSeconds = 0;
-    if(myTimer==nil)
-        myTimer  =  [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
-    [self StopTimer];
-
-    
-    [self setupRefresh];
-    TableView.rowHeight = 18;
-}
-
-// 设置下拉刷新
-- (void)setupRefresh
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 设置LogStr,zTableView
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-(void) SetLogStr
 {
-    refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventValueChanged];
-    refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"正在刷新"];
-    TableView.refreshControl = refreshControl;
+    zLogStr = @"PNLViewController";
 }
-// 下拉刷新触发
-- (void)refreshClick:(UIRefreshControl *)refreshControl
+-(void) SetTableView
 {
-    [self InitTableViewCells:true];
-    RefreshCountCell.detailTextLabel.text=@"0";
-    RefreshCnt = 1;
-    [self QueryAndDisplay];
-    [self.TableView reloadData];
-    [refreshControl endRefreshing];
+    zTableView = IBOutletTableView;
 }
 
-
-//AppendSwitch
--(UISwitch*) AppendSwitch
-{
-    UISwitch *_switch = [[UISwitch alloc] init];
-    [_switch addTarget:self action:@selector(SwitchChanged:) forControlEvents:UIControlEventValueChanged];
-    RefreshSwitchCell.accessoryView = _switch;
-    return _switch;
-}
-
-
-//定时器处理函数
--(void)timerFired
-{
-    if([TscConfig isInBackground] == true) return;
-    if([TscConfig isGlobalAutoRefresh] == false) return;
-    if([TscConfig isPnlAutoRefresh] == false) return;
-    
-    if(isTimerProcessing) return;
-    
-    RefreshTimerElpasedSeconds++;
-    if(RefreshTimerElpasedSeconds<TscConfig.RefreshSeconds) return;
-    
-    isTimerProcessing=true;
-    //Display
-    if([DBHelper BeginQuery])
-    {
-        RefreshCnt++;
-       [self QueryAndDisplay];
-        [DBHelper EndQuery];
-    }
-    isTimerProcessing=false;
-    
-    RefreshTimerElpasedSeconds=0;
-}
-
-
-//开启定时器
--(void) StartTimer
-{
-    if(myTimer != nil)
-    {
-        [myTimer setFireDate:[NSDate distantPast]];
-    }
-}
-
-//关闭定时器
--(void) StopTimer
-{
-    if(myTimer != nil)
-    {
-        [myTimer setFireDate:[NSDate distantFuture]];
-    }
-}
-
-
-//页面将要进入前台，开启定时器
--(void)viewWillAppear:(BOOL)animated
-{
-    [self SetTimerState];
-}
-
-
-//页面消失，进入后台不显示该页面，关闭定时器
--(void)viewDidDisappear:(BOOL)animated
-{
-    [self StopTimer];
-}
-
-
-//根据switch设定Timer启停
--(void) SetTimerState
-{
-    if ([Switch_AutoRefresh isOn])
-        [self StartTimer];
-    else
-        [self StopTimer];
-}
-
-
-//switch状态改变
--(void)SwitchChanged:(id)sender
-{
-    [self SetTimerState];
-    [TscConfig setPnlAutoRefresh:([Switch_AutoRefresh isOn])];
-}
-
-
-
-////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// InitTableViewCells
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 -(void) InitTableViewCells:(BOOL)vInitAll
 {
-    if(vInitAll)
-        [UIHelper ClearTabelViewCellText:TableView];
-
+    int _iSN = 0;
     UITableViewCell *cell;
-    
-    cell = [UIHelper SetTabelViewCellText:TableView Section:0 Row:0 TitleText:@"RecordDate:" DetialText:@"-/-/-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:0 Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
-    
-    
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:0 TitleText:@"Trade PNL (Market):" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:1 TitleText:@"Yd PNL (Market):" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:1 Row:2 TitleText:@"Total PNL (Market):" DetialText:@"-"];
 
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:0 TitleText:@"Trade PNL (Theo):" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:1 TitleText:@"Yd PNL (Theo):" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:2 Row:2 TitleText:@"Total PNL (Theo):" DetialText:@"-"];
+    //Clear
+    if(vInitAll)
+        [UIHelper ClearTabelViewCellText:zTableView];
+    
+    //Record
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"RecordDate:" DetialText:@"-/-/-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
+    
+    //Market PNL
+    _iSN++;
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Trade PNL (Market):" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"Yd PNL (Market):" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:2 TitleText:@"Total PNL (Market):" DetialText:@"-"];
 
-    cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:0 TitleText:@"Excersize PNL:" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:1 TitleText:@"Close PNL (Theo):" DetialText:@"-"];
-    cell = [UIHelper SetTabelViewCellText:TableView Section:3 Row:2 TitleText:@"Close PNL (Market):" DetialText:@"-"];
+    //Theo PNL
+    _iSN++;
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Trade PNL (Theo):" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"Yd PNL (Theo):" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:2 TitleText:@"Total PNL (Theo):" DetialText:@"-"];
+
+    //Excersize PNL
+    _iSN++;
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Excersize PNL:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"Close PNL (Theo):" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:2 TitleText:@"Close PNL (Market):" DetialText:@"-"];
     
-    cell = [UIHelper SetTabelViewCellText:TableView Section:4 Row:0 TitleText:@"Market Value:" DetialText:@"-"];
+    //Market PNL
+    _iSN++;
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Market Value:" DetialText:@"-"];
     
-    
+
+    //RefreshCount
+     _iSN++;
     if(vInitAll)
     {
-        cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:0 TitleText:@"AutoRefresh:" DetialText:@""];
-        RefreshSwitchCell = cell;
-        cell = [UIHelper SetTabelViewCellText:TableView Section:5 Row:1 TitleText:@"RefreshCount:" DetialText:@"-"];
+        cell = [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"RefreshCount:" DetialText:@"-"];
         RefreshCountCell = cell;
     }
-    
 }
 
 
-
-//查询，在此获取数据
-- (void)QueryAndDisplay
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//查询条件
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-(void) SetQureyCondition
 {
- 
-    RefreshCountCell.detailTextLabel.text=[NSString stringWithFormat:@"%d", RefreshCnt];
+    //zTableName
+    zTableName = @"runtimeinfo";
 
-    //DB Query
-    NSLog(@"PnlViewController: start!");
+    //zCondStr
+    zCondStr = @"(";
     
-    OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
-    if(_queryContext==nil)
-    {
-        NSLog(@"PnlViewController: Init: queryContext==nil!");
-        return;
-    }
-    
-    NSLog(@"PnlViewController: SELECT: start!");
-    
-    
-    //SELECT
-    OHMySQLQueryRequest *query = [OHMySQLQueryRequestFactory SELECT:@"runtimeinfo" condition:@"ItemKey='PNL' and EntityType='A'"];
-    NSError *error = nil;
-    NSArray *tasks = [_queryContext executeQueryRequestAndFetchResult:query error:&error];
-    
-    //清除原显示
-    [self InitTableViewCells:false];
-    
-    NSUInteger count = tasks.count;
-    if(count <= 0)
-        return;
-    
-    
- 
+    zCondStr=[zCondStr stringByAppendingString:@" ( ItemKey='PNL' )"];
 
-    //显示
-    NSDictionary  *_field;
-    NSString* typename;
-    for( int i=0; i<count; i++)
-    {
-        _field=[tasks objectAtIndex:i];
-        NSLog(@"%@", _field);
-        
-        typename=_field[@"ItemType"];
-        
-        if([typename isEqualToString:@"YPNL_Mkt"])
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Yd PNL (Market):" FieldName:@"ItemValue" SetColor:true];
-        if([typename isEqualToString:@"TradePNL_Mkt"])
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Trade PNL (Market):" FieldName:@"ItemValue" SetColor:true];
-        if([typename isEqualToString:@"TotalPNL_Mkt"])
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total PNL (Market):" FieldName:@"ItemValue" SetColor:true];
-
-        if([typename isEqualToString:@"YPNL_Theo"])
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Yd PNL (Theo):" FieldName:@"ItemValue" SetColor:true];
-        if([typename isEqualToString:@"TradePNL_Theo"])
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Trade PNL (Theo):" FieldName:@"ItemValue" SetColor:true];
-        if([typename isEqualToString:@"TotalPNL_Theo"])
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total PNL (Theo):" FieldName:@"ItemValue" SetColor:true];
-
-        if([typename isEqualToString:@"ExecPNL"])
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Excersize PNL:" FieldName:@"ItemValue" SetColor:true];
-        if([typename isEqualToString:@"CloseTheoryPNL"])
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Close PNL (Theo):" FieldName:@"ItemValue" SetColor:true];
-        if([typename isEqualToString:@"CloseMarketPNL"])
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Close PNL (Market):" FieldName:@"ItemValue" SetColor:true];
-
-        if([typename isEqualToString:@"MarketValue_Mkt"])
-            [UIHelper DisplayCell:TableView Field:_field TitleName:@"Market Value:" FieldName:@"ItemValue" SetColor:false];
-
-    }
+    //OverAll
+    zCondStr=[zCondStr stringByAppendingString:@" ) and EntityType='A'"];
     
-    _field=[tasks objectAtIndex:0];
-    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RecordDate:" DetialText:_field[@"RecordDate"] ];
-    [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RecordTime:" DetialText:[_field[@"RecordTime"] substringToIndex:8]];
-    
-    
-    NSLog(@"PnlViewController: SELECT: over!");
-    
-    [TableView reloadData];
-    
-    
-    NSLog(@"PnlViewController: RefreshCnt=%d", RefreshCnt);
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//显示item
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)DisplayItem
+{
+    //------------------------ Log ------------------------
+    //NSLog(@"%@: DisplayItem: start!", zLogStr);
+    
+    //------------------------ Market ------------------------
+    if([zItemType isEqualToString:@"YPNL_Mkt"])
+        [UIHelper DisplayCell:zTableView Field:zField TitleName:@"Yd PNL (Market):" FieldName:@"ItemValue" SetColor:true];
+    if([zItemType isEqualToString:@"TradePNL_Mkt"])
+        [UIHelper DisplayCell:zTableView Field:zField TitleName:@"Trade PNL (Market):" FieldName:@"ItemValue" SetColor:true];
+    if([zItemType isEqualToString:@"TotalPNL_Mkt"])
+        [UIHelper DisplayCell:zTableView Field:zField TitleName:@"Total PNL (Market):" FieldName:@"ItemValue" SetColor:true];
+
+    //------------------------ Theo ------------------------
+    if([zItemType isEqualToString:@"YPNL_Theo"])
+        [UIHelper DisplayCell:zTableView Field:zField TitleName:@"Yd PNL (Theo):" FieldName:@"ItemValue" SetColor:true];
+    if([zItemKey isEqualToString:@"TradePNL_Theo"])
+        [UIHelper DisplayCell:zTableView Field:zField TitleName:@"Trade PNL (Theo):" FieldName:@"ItemValue" SetColor:true];
+    if([zItemType isEqualToString:@"TotalPNL_Theo"])
+        [UIHelper DisplayCell:zTableView Field:zField TitleName:@"Total PNL (Theo):" FieldName:@"ItemValue" SetColor:true];
+
+    //------------------------ Excersize ------------------------
+    if([zItemType isEqualToString:@"ExecPNL"])
+        [UIHelper DisplayCell:zTableView Field:zField TitleName:@"Excersize PNL:" FieldName:@"ItemValue" SetColor:true];
+    if([zItemType isEqualToString:@"CloseTheoryPNL"])
+        [UIHelper DisplayCell:zTableView Field:zField TitleName:@"Close PNL (Theo):" FieldName:@"ItemValue" SetColor:true];
+    if([zItemType isEqualToString:@"CloseMarketPNL"])
+        [UIHelper DisplayCell:zTableView Field:zField TitleName:@"Close PNL (Market):" FieldName:@"ItemValue" SetColor:true];
+
+    //------------------------ Market Value ------------------------
+    if([zItemType isEqualToString:@"MarketValue_Mkt"])
+        [UIHelper DisplayCell:zTableView Field:zField TitleName:@"Market Value:" FieldName:@"ItemValue" SetColor:false];
+    
+}
+
+
 
 
 @end
