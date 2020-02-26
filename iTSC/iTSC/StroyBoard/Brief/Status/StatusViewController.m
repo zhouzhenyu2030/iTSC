@@ -52,26 +52,27 @@
     
     //Status
     _iSN++;
-    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Basis Error Cnt:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"WingFit Error Cnt:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Basis Error Cnt:" DetialText:@"-" Color:UIColor.redColor ];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"WingFit Error Cnt:" DetialText:@"-" Color:UIColor.redColor ];
 
     //Order
     _iSN++;
-    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"OOM Cnt:" DetialText:@"-" Font:_font];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"OOM Cnt:" DetialText:@"-"  Color:UIColor.magentaColor Font:_font];
 
     
     //Trade
     _iSN++;
     [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Trade Qty:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"Open Trade Qty:" DetialText:@"-" Font:_font];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"Open Trade Qty:" DetialText:@"-" Color:UIColor.blueColor Font:_font];
     [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:2 TitleText:@"Buy Open Trade Qty:" DetialText:@"-"];
     
     
     //Posion
     _iSN++;
-    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Position:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"Long Position:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:2 TitleText:@"Short Position:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"Position (Yd):" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blueColor];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:2 TitleText:@"Long Position:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:3 TitleText:@"Short Position:" DetialText:@"-"];
 
     
     //Mds
@@ -126,6 +127,20 @@
     //------------------------ Log ------------------------
      NSLog(@"%@: DisplayItem: start!", zLogStr);
     
+    
+    //------------------------ Error ------------------------
+    if([zItemType isEqualToString:@"BasisErrorCnt"])
+    {
+        [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Basis Error Cnt:" FieldName:@"ItemValue"];
+        return;
+    }
+    if([zItemType isEqualToString:@"FitErrorCnt"])
+    {
+        [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"WingFit Error Cnt:" FieldName:@"ItemValue"];
+        return;
+    }
+
+    
     //------------------------ Order ------------------------
     if([zItemType isEqualToString:@"OOMCnt"])
     {
@@ -172,6 +187,8 @@
             [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Short Position:" FieldName:@"ItemValue"];
             return;
         }
+        if([zItemType isEqualToString:@"YdPosition"])
+            [UIHelper DisplayIntCell:zTableView Field:zField TitleName:@"Position (Yd):" FieldName:@"ItemValue"];
     }
     
     

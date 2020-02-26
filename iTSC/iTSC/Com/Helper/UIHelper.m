@@ -59,18 +59,21 @@
     
     return cell;
 }
+
 +(UITableViewCell*) SetTabelViewCellText:(UITableView*)vTableView Section:(int)vSectionIndex Row:(int)vRowIndex TitleText:(NSString*) vTitleText DetialText:(NSString*) vDetailText Color:(UIColor*) vColor Font:(UIFont*) vFont
 {
     UITableViewCell *cell = [self SetTabelViewCellText:vTableView Section:vSectionIndex Row:vRowIndex TitleText:vTitleText DetialText:vDetailText Color:vColor];
     cell.detailTextLabel.font = vFont;
     return cell;
 }
+
 +(UITableViewCell*) SetTabelViewCellText:(UITableView*)vTableView Section:(int)vSectionIndex Row:(int)vRowIndex TitleText:(NSString*) vTitleText DetialText:(NSString*) vDetailText Font:(UIFont*) vFont
 {
     UITableViewCell *cell = [self SetTabelViewCellText:vTableView Section:vSectionIndex Row:vRowIndex TitleText:vTitleText DetialText:vDetailText];
     cell.detailTextLabel.font = vFont;
     return cell;
 }
+
 +(UITableViewCell*) SetTabelViewCellText:(UITableView*)vTableView Section:(int)vSectionIndex Row:(int)vRowIndex TitleText:(NSString*) vTitleText DetialText:(NSString*) vDetailText Color:(UIColor*) vColor
 {
     UITableViewCell *cell = [self SetTabelViewCellText:vTableView Section:vSectionIndex Row:vRowIndex TitleText:vTitleText DetialText:vDetailText];
@@ -146,7 +149,11 @@
 +(UITableViewCell*) DisplayIntCell:(UITableView*) vTableView Field:(NSDictionary*)vField TitleName:(NSString*)vTitleName FieldName:(NSString*) vFieldName
 {
     NSString* value = [StringHelper sPositiveFormat:vField[vFieldName] pointNumber:0];
-    UITableViewCell* cell=[UIHelper SetTabelViewCellDetailText:vTableView TitleText: vTitleName DetialText:value];
+    if([value isEqualToString:@"0"])
+    {
+        value =@"-";
+    }
+    UITableViewCell* cell = [UIHelper SetTabelViewCellDetailText:vTableView TitleText: vTitleName DetialText:value];
     return cell;
 }
 
