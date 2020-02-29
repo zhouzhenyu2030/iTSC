@@ -49,6 +49,7 @@ static UIAlertController * alertController;
     int i;
     
     int _SectionIndex = 0;
+    int _RowIndex=0;
     cell = [UIHelper SetTabelViewCellText:TableView Section:_SectionIndex Row:0 TitleText:@"屏幕常亮:" DetialText:@""];
     Cell_Switch_ShowAllTime = cell;
     
@@ -131,31 +132,36 @@ static UIAlertController * alertController;
     
     //////////////////////////////////////// DB Config (Refresh/Reconnect/Clear) ////////////////////////////////////////
     _SectionIndex++;
-    RefreshSecondsSection=_SectionIndex; RefreshSecondsRow=0;
-    [UIHelper SetTabelViewCellText:TableView Section:(int)RefreshSecondsSection Row:(int)RefreshSecondsRow TitleText:@"Refresh Seconds:" DetialText:[NSString stringWithFormat:@"%d", (int)[TscConfig RefreshSeconds]]];
-    
-    
-    TestDBReachabilitySection=_SectionIndex; TestDBReachabilityRow=1;
-    cell=[UIHelper SetTabelViewCellText:TableView Section:(int)TestDBReachabilitySection Row:(int)TestDBReachabilityRow TitleText:@"Test DB Reachability" DetialText:@""];
-    cell.textLabel.textColor = UIColor.blueColor;
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    
-    
-    ConnectionTimeOutSecondsSection=_SectionIndex; ConnectionTimeOutSecondsRow=2;
-    [UIHelper SetTabelViewCellText:TableView Section:(int)ConnectionTimeOutSecondsSection Row:(int)ConnectionTimeOutSecondsRow TitleText:@"Connection Timeout Seconds:" DetialText:[NSString stringWithFormat:@"%d", (int)[TscConfig ConnectionTimeOutSeconds]]];
-    
-    
-    
-    ReconnectDBSection=_SectionIndex; ReconnectDBRow=3;
-    cell=[UIHelper SetTabelViewCellText:TableView Section:(int)ReconnectDBSection Row:(int)ReconnectDBRow TitleText:@"Reconnect DB" DetialText:@""];
-    cell.textLabel.textColor = UIColor.grayColor;   //UIColor.blueColor;
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    
-    
-    ClearRunTimeInfoTalbeSection=_SectionIndex; ClearRunTimeInfoTalbeRow=4;
+    _RowIndex=0;
+    ClearRunTimeInfoTalbeSection=_SectionIndex; ClearRunTimeInfoTalbeRow=_RowIndex;
     cell=[UIHelper SetTabelViewCellText:TableView Section:(int)ClearRunTimeInfoTalbeSection Row:(int)ClearRunTimeInfoTalbeRow TitleText:@"Clear RunTimeInfo Table" DetialText:@""];
     cell.textLabel.textColor = UIColor.blueColor;
     cell.accessoryType = UITableViewCellAccessoryNone;
+
+    
+    _RowIndex++;
+    RefreshSecondsSection=_SectionIndex; RefreshSecondsRow=_RowIndex;
+    [UIHelper SetTabelViewCellText:TableView Section:(int)RefreshSecondsSection Row:(int)RefreshSecondsRow TitleText:@"Refresh Seconds:" DetialText:[NSString stringWithFormat:@"%d", (int)[TscConfig RefreshSeconds]]];
+    
+    
+    _RowIndex++;
+    ConnectionTimeOutSecondsSection=_SectionIndex; ConnectionTimeOutSecondsRow=_RowIndex;
+    [UIHelper SetTabelViewCellText:TableView Section:(int)ConnectionTimeOutSecondsSection Row:(int)ConnectionTimeOutSecondsRow TitleText:@"Connection Timeout Seconds:" DetialText:[NSString stringWithFormat:@"%d", (int)[TscConfig ConnectionTimeOutSeconds]]];
+    
+    
+    _RowIndex++;
+    TestDBReachabilitySection=_SectionIndex; TestDBReachabilityRow=_RowIndex;
+    cell=[UIHelper SetTabelViewCellText:TableView Section:(int)TestDBReachabilitySection Row:(int)TestDBReachabilityRow TitleText:@"Test DB Reachability" DetialText:@""];
+    cell.textLabel.textColor = UIColor.blueColor;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+
+
+    _RowIndex++;
+    ReconnectDBSection=_SectionIndex; ReconnectDBRow=_RowIndex;
+    cell=[UIHelper SetTabelViewCellText:TableView Section:(int)ReconnectDBSection Row:(int)ReconnectDBRow TitleText:@"Reconnect DB" DetialText:@""];
+    cell.textLabel.textColor = UIColor.grayColor;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    
  
     
     //////////////////////////////////////// SetTime ////////////////////////////////////////
