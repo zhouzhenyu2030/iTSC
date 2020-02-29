@@ -156,7 +156,8 @@ UIFont* _bold_font;
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:4 TitleText:@"Available:" DetialText:@"-" Color:UIColor.brownColor];
             //From Runtimeinfo
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:5 TitleText:@"Total Margin:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:6 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blackColor Font:_bold_font];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:6 TitleText:@"Market Value (Theory):" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:7 TitleText:@"Position:" DetialText:@"-" Color:UIColor.blackColor Font:_bold_font];
 
     //Risk
     _iS++;
@@ -199,27 +200,29 @@ UIFont* _bold_font;
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:6 TitleText:@"AQ Trade Edge:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:7 TitleText:@"AQ Trade Qty:" DetialText:@"-"];
 
-    //PNL
+    //Close PNL
     _iS++;
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Excersize PNL:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"Market Close PNL:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Theo Close PNL:" DetialText:@"-"];
-    
-    //Misc
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"Asset Dif (Market-Theory):" DetialText:@"-"];
+
+    //AvgEdge
     _iS++;
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Avg Edge:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"Positive Avg Edge:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Negative Avg Edge:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"Asset Dif (Market-Theory):" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:4 TitleText:@"Curr Margin:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:5 TitleText:@"Market Value (Theory):" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:6 TitleText:@"Trade Fee:" DetialText:@"-"];
 
- 
+    //Misc
+    _iS++;
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Total Capital ( Cash + Margin ):" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"Curr Margin:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Trade Fee:" DetialText:@"-"];
+
     //date time
     _iS++;
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"MD Date:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"HisDate:" DetialText:@"-/-/-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"RecordDate:" DetialText:@"-/-/-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"RecordTime:" DetialText:@"-:-:-"];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"AccountID:" DetialText:@"-"];
  
@@ -307,6 +310,8 @@ UIFont* _bold_font;
     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"Asset Dif (Market-Theory):" DetialText:_sValue];
     
     [UIHelper DisplayCell:TableView Field:_field TitleName:@"Market Value (Theory):" FieldName:@"MarketValueTheory" SetColor:false];
+
+    [UIHelper DisplayCell:TableView Field:_field TitleName:@"Total Capital ( Cash + Margin ):" FieldName:@"TotalCapital" SetColor:false];
 
 }
 
@@ -667,6 +672,12 @@ UIFont* _bold_font;
         
         
     }
+    
+    
+    //RecordDate & RecordTime
+     _field = [tasks objectAtIndex:0];
+     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RecordDate:" DetialText:_field[@"RecordDate"]];
+     [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"RecordTime:" DetialText:[_field[@"RecordTime"] substringToIndex:8]];
 }
 
 
@@ -675,9 +686,11 @@ UIFont* _bold_font;
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 //_DisplayHisAsset
+// Obsolete
 ////////////////////////////////////////////////////////////////////////////////////////////
 -(void) _DisplayHisAsset
 {
+    
     OHMySQLQueryContext *_queryContext=[DBHelper GetContext];
     if(_queryContext==nil)
     {

@@ -12,7 +12,7 @@
 @interface StringHelper:NSObject
 
 
-    +(NSString *)fPositiveFormat:(float)vVlue pointNumber:(NSInteger) pointNumber;
+    +(NSString *)fPositiveFormat:(double)vVlue pointNumber:(NSInteger) pointNumber;
 
     +(NSString *)sPositiveFormat:(NSString*)text pointNumber:(NSInteger) pointNumber;
 

@@ -14,7 +14,7 @@
 
 
 //
-+(NSString *)fPositiveFormat:(float)vValue pointNumber:(NSInteger) pointNumber
++(NSString *)fPositiveFormat:(double)vValue pointNumber:(NSInteger) pointNumber
 {
     switch (pointNumber)
     {
@@ -31,7 +31,7 @@
             
             NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
             [numberFormatter setPositiveFormat:@",###;"];
-            return [numberFormatter stringFromNumber:[NSNumber numberWithFloat:vValue]];
+            return [numberFormatter stringFromNumber:[NSNumber numberWithDouble:vValue]];
         }
             break;
             
@@ -68,7 +68,7 @@
             }
             _sFormat=[_sFormat stringByAppendingString:@";"];
             [numberFormatter setPositiveFormat:_sFormat];   //@",###.0000;"
-            return [numberFormatter stringFromNumber:[NSNumber numberWithFloat:vValue]];
+            return [numberFormatter stringFromNumber:[NSNumber numberWithDouble:vValue]];
         }
             break;
     }
@@ -79,7 +79,7 @@
 {
     if(text==nil)
         return @"nil";
-    return [self fPositiveFormat:text.floatValue pointNumber:pointNumber];
+    return [self fPositiveFormat:text.doubleValue pointNumber:pointNumber];
 }
 
 
