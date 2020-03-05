@@ -184,7 +184,7 @@ UIFont* _bold_font;
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Trade Edge:" DetialText:@"-" Color:UIColor.blueColor Font:_bold_font];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"Trade Qty:" DetialText:@"-" Color:UIColor.blackColor Font:_bold_font];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Order Cnt:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"OOM Cnt:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"OOM Cnt:" DetialText:@"-" Color:[UIColor colorWithRed:50/255.0f green:215/255.0f blue:50/255.0f alpha:1.0f]]; ////酸橙绿(50,205,50)
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:4 TitleText:@"TPR:" DetialText:@"-" Color:UIColor.magentaColor];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:5 TitleText:@"OCR:" DetialText:@"-" Color:UIColor.orangeColor];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:6 TitleText:@"TOR(%):" DetialText:@"-" Color:UIColor.purpleColor];

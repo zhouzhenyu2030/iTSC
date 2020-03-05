@@ -57,7 +57,7 @@
 
     //Order
     _iSN++;
-    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"OOM Cnt:" DetialText:@"-"  Color:UIColor.magentaColor Font:_font];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:0 TitleText:@"OOM Cnt:" DetialText:@"-"  Color:[UIColor colorWithRed:50/255.0f green:215/255.0f blue:50/255.0f alpha:1.0f] Font:_font]; ////酸橙绿(50,205,50)
 
     
     //Trade
