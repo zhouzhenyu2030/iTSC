@@ -42,7 +42,7 @@ static NSString *_CurrentConnectionKey;
 
 
 ///////////////////////////////////// initConnections ///////////////////////////////////
-+(void) _set_con : (NSString*) vName isUsingDNS:(BOOL) visUsingDNS IP:(NSString*) vIP Port:(int) vPort
++(void) _set_con : (NSString*) vName isUsingDNS:(BOOL) visUsingDNS IP:(NSString*) vIP Port:(int) vPort PassWord:(NSString*) vPassWord
 {
     TscConnection _con;
 
@@ -50,9 +50,9 @@ static NSString *_CurrentConnectionKey;
     _con.isUsingDNS= visUsingDNS;
     _con.IP= vIP;
     _con.Port= vPort;
-    
+    _con.UserPassword = vPassWord;
+
     _con.UserName=@"root";
-    _con.UserPassword=@"z";
     _con.dbName=@"tss";
     _con.AccountID = @"AccountID=0";
 
@@ -65,13 +65,15 @@ static NSString *_CurrentConnectionKey;
     
     //[self _set_con:@"195-2" isUsingDNS:true IP:_dnsString Port:30623];
     //[self _set_con:@"195-3" isUsingDNS:true IP:_dnsString Port:30633];
-    [self _set_con:@"6-128" isUsingDNS:true IP:_dnsString Port:21283];
-    [self _set_con:@"6-168" isUsingDNS:true IP:_dnsString Port:21683];
-    [self _set_con:@"6-2" isUsingDNS:true IP:_dnsString Port:20623];
-    [self _set_con:@"6-3" isUsingDNS:true IP:_dnsString Port:20633];
-    [self _set_con:@"6-6" isUsingDNS:true IP:_dnsString Port:20663];
-    [self _set_con:@"6-8" isUsingDNS:true IP:_dnsString Port:20683];
-    [self _set_con:@"6-9" isUsingDNS:true IP:_dnsString Port:20693];
+    [self _set_con:@"6-128" isUsingDNS:true IP:_dnsString Port:21283 PassWord:@"cqg@2030z"];
+    [self _set_con:@"6-2" isUsingDNS:true IP:_dnsString Port:20623 PassWord:@"z"];
+    [self _set_con:@"6-3" isUsingDNS:true IP:_dnsString Port:20633 PassWord:@"z"];
+    [self _set_con:@"6-6" isUsingDNS:true IP:_dnsString Port:20663 PassWord:@"cqg@2030z"];
+    [self _set_con:@"6-8" isUsingDNS:true IP:_dnsString Port:20683 PassWord:@"z"];
+    [self _set_con:@"6-9" isUsingDNS:true IP:_dnsString Port:20693 PassWord:@"z"];
+    [self _set_con:@"6-10" isUsingDNS:true IP:_dnsString Port:26103 PassWord:@"cqg@2030z"];
+    [self _set_con:@"6-11" isUsingDNS:true IP:_dnsString Port:26113 PassWord:@"cqg@2030z"];
+    [self _set_con:@"6-12" isUsingDNS:true IP:_dnsString Port:26123 PassWord:@"cqg@2030z"];
 
     //
     _CurrentConnectionKey = [self SetCurrentConnection:[_con_UserDefaults stringForKey:@"CurrentConnectionKey"]];
