@@ -65,12 +65,13 @@ static NSString *_CurrentConnectionKey;
     
     //[self _set_con:@"195-2" isUsingDNS:true IP:_dnsString Port:30623];
     //[self _set_con:@"195-3" isUsingDNS:true IP:_dnsString Port:30633];
-    [self _set_con:@"6-128" isUsingDNS:true IP:_dnsString Port:21283 PassWord:@"cqg@2030z"];
-    [self _set_con:@"6-2" isUsingDNS:true IP:_dnsString Port:20623 PassWord:@"cqg@2030z"];
-    [self _set_con:@"6-5" isUsingDNS:true IP:_dnsString Port:26053 PassWord:@"cqg@2030z"];
-    [self _set_con:@"6-6" isUsingDNS:true IP:_dnsString Port:20663 PassWord:@"cqg@2030z"];
-    [self _set_con:@"6-8" isUsingDNS:true IP:_dnsString Port:20683 PassWord:@"cqg@2030z"];
-    [self _set_con:@"6-9" isUsingDNS:true IP:_dnsString Port:20693 PassWord:@"z"];
+    [self _set_con:@"m.6-128" isUsingDNS:true IP:_dnsString Port:21283 PassWord:@"cqg@2030z"];
+    [self _set_con:@"m.6-88" isUsingDNS:true IP:_dnsString Port:26883 PassWord:@"cqg@2030z"];
+    //[self _set_con:@"6- 5" isUsingDNS:true IP:_dnsString Port:26053 PassWord:@"cqg@2030z"];
+    [self _set_con:@"6- 6" isUsingDNS:true IP:_dnsString Port:26063 PassWord:@"cqg@2030z"];
+    [self _set_con:@"6- 7" isUsingDNS:true IP:_dnsString Port:26073 PassWord:@"cqg@2030z"];
+    [self _set_con:@"6- 8" isUsingDNS:true IP:_dnsString Port:26083 PassWord:@"cqg@2030z"];
+    [self _set_con:@"6- 9" isUsingDNS:true IP:_dnsString Port:20693 PassWord:@"z"];
     [self _set_con:@"6-10" isUsingDNS:true IP:_dnsString Port:26103 PassWord:@"cqg@2030z"];
     [self _set_con:@"6-11" isUsingDNS:true IP:_dnsString Port:26113 PassWord:@"cqg@2030z"];
     [self _set_con:@"6-12" isUsingDNS:true IP:_dnsString Port:26123 PassWord:@"cqg@2030z"];
@@ -115,8 +116,12 @@ static NSString *_CurrentConnectionKey;
 //getConnectionKeys
 +(NSArray*) getConnectionKeys
 {
+    
+    //return [Connections allKeys];
+    
     //将所有的key放进数组
     NSArray *allKeyArray = [Connections allKeys];
+    
     
     //序列化器对数组进行排序的block 返回值为排序后的数组
     NSArray *afterSortKeyArray = [allKeyArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id _Nonnull obj2) {
