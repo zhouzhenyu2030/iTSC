@@ -110,7 +110,7 @@ static UIAlertController * alertController;
     
   
     //隐藏多余行
-    NSIndexPath *indexPath;
+    //NSIndexPath *indexPath;
     //   NSInteger rows = [TableView numberOfRowsInSection:ConnectionConfigSection];
     //  for(int j=i; j<(int)rows; j++)
     //  {
@@ -121,13 +121,14 @@ static UIAlertController * alertController;
     //}
     
     //删除多余行
-    while([TableView numberOfRowsInSection:ConnectionConfigSection]>i+1)
+    /*
+    while([TableView numberOfRowsInSection:ConnectionConfigSection]>i)
     {
-        indexPath=[NSIndexPath indexPathForRow:i+1 inSection:ConnectionConfigSection];
+        indexPath=[NSIndexPath indexPathForRow:i inSection:ConnectionConfigSection];
         cell = [TableView cellForRowAtIndexPath:indexPath];
         [cell delete:(TableView)];
     }
-    
+    */
     
     
     //////////////////////////////////////// DB Config (Refresh/Reconnect/Clear) ////////////////////////////////////////

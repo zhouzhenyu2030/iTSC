@@ -71,10 +71,13 @@ static NSString *_CurrentConnectionKey;
     [self _set_con:@"6- 6" isUsingDNS:true IP:_dnsString Port:26063 PassWord:@"cqg@2030z"];
     [self _set_con:@"6- 7" isUsingDNS:true IP:_dnsString Port:26073 PassWord:@"cqg@2030z"];
     [self _set_con:@"6- 8" isUsingDNS:true IP:_dnsString Port:26083 PassWord:@"cqg@2030z"];
-    [self _set_con:@"6- 9" isUsingDNS:true IP:_dnsString Port:20693 PassWord:@"z"];
+    [self _set_con:@"6- 9" isUsingDNS:true IP:_dnsString Port:26093 PassWord:@"cqg@2030z"];
     [self _set_con:@"6-10" isUsingDNS:true IP:_dnsString Port:26103 PassWord:@"cqg@2030z"];
     [self _set_con:@"6-11" isUsingDNS:true IP:_dnsString Port:26113 PassWord:@"cqg@2030z"];
     [self _set_con:@"6-12" isUsingDNS:true IP:_dnsString Port:26123 PassWord:@"cqg@2030z"];
+    [self _set_con:@"6-13" isUsingDNS:true IP:_dnsString Port:26133 PassWord:@"cqg@2030z"];
+    [self _set_con:@"6-14" isUsingDNS:true IP:_dnsString Port:26143 PassWord:@"cqg@2030z"];
+    [self _set_con:@"6-15" isUsingDNS:true IP:_dnsString Port:26153 PassWord:@"cqg@2030z"];
 
     //
     _CurrentConnectionKey = [self SetCurrentConnection:[_con_UserDefaults stringForKey:@"CurrentConnectionKey"]];
