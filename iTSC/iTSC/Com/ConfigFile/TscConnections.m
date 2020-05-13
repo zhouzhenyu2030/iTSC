@@ -78,6 +78,7 @@ static NSString *_CurrentConnectionKey;
     [self _set_con:@"6-13" isUsingDNS:true IP:_dnsString Port:26133 PassWord:@"cqg@2030z"];
     [self _set_con:@"6-14" isUsingDNS:true IP:_dnsString Port:26143 PassWord:@"cqg@2030z"];
     [self _set_con:@"6-15" isUsingDNS:true IP:_dnsString Port:26153 PassWord:@"cqg@2030z"];
+    [self _set_con:@"6-16" isUsingDNS:true IP:_dnsString Port:26163 PassWord:@"cqg@2030z"];
 
     //
     _CurrentConnectionKey = [self SetCurrentConnection:[_con_UserDefaults stringForKey:@"CurrentConnectionKey"]];
