@@ -78,7 +78,11 @@
     [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:1 TitleText:@"SLR:" DetialText:@"-" Font:_font];
     [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:2 TitleText:@"PCR:" DetialText:@"-"];
     [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:3 TitleText:@"CCR:" DetialText:@"-"];
-    
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:4 TitleText:@"WDR:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:5 TitleText:@"WVR:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:6 TitleText:@"WTR:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:zTableView Section:_iSN Row:7 TitleText:@"WGR:" DetialText:@"-"];
+
 
     //RefreshCount
      _iSN++;

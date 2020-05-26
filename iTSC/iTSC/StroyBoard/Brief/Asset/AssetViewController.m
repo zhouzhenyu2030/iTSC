@@ -162,9 +162,12 @@ UIFont* _bold_font;
     //Risk
     _iS++;
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:0 TitleText:@"Delta:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"Vega:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"SRR:" DetialText:@"-"];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"SLR:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:1 TitleText:@"SRR:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:2 TitleText:@"Vega:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"WVR:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:4 TitleText:@"Theta:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:5 TitleText:@"WTR:" DetialText:@"-"];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:6 TitleText:@"SLR:" DetialText:@"-"];
 
     //Market PNL
     _iS++;
@@ -187,7 +190,7 @@ UIFont* _bold_font;
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"OOM Cnt:" DetialText:@"-" Color:[UIColor colorWithRed:50/255.0f green:215/255.0f blue:50/255.0f alpha:1.0f]]; ////酸橙绿(50,205,50)
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:4 TitleText:@"TPR:" DetialText:@"-" Color:UIColor.magentaColor];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:5 TitleText:@"OCR:" DetialText:@"-" Color:UIColor.orangeColor];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:6 TitleText:@"TOR(%):" DetialText:@"-" Color:UIColor.purpleColor];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:6 TitleText:@"AT TOR(%):" DetialText:@"-" Color:UIColor.purpleColor];
 
     //Auto
     _iS++;
@@ -486,11 +489,11 @@ UIFont* _bold_font;
         
 
         //Ratio
-        if([_typename isEqualToString:@"OrderTradeRatio"])
+        if([_typename isEqualToString:@"ATOrderTradeRatio"])
         {
             _fValue=[_field[@"ItemValue"] floatValue]*100;
             value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
-            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"TOR(%):" DetialText:value];
+            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"AT TOR(%):" DetialText:value];
             continue;
         }
         if([_typename isEqualToString:@"OCR"])
