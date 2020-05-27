@@ -190,7 +190,7 @@ UIFont* _bold_font;
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:3 TitleText:@"OOM Cnt:" DetialText:@"-" Color:[UIColor colorWithRed:50/255.0f green:215/255.0f blue:50/255.0f alpha:1.0f]]; ////酸橙绿(50,205,50)
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:4 TitleText:@"TPR:" DetialText:@"-" Color:UIColor.magentaColor];
     [UIHelper SetTabelViewCellText:TableView Section:_iS Row:5 TitleText:@"OCR:" DetialText:@"-" Color:UIColor.orangeColor];
-    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:6 TitleText:@"AT TOR(%):" DetialText:@"-" Color:UIColor.purpleColor];
+    [UIHelper SetTabelViewCellText:TableView Section:_iS Row:6 TitleText:@"ATL TOR(%):" DetialText:@"-" Color:UIColor.purpleColor];
 
     //Auto
     _iS++;
@@ -345,13 +345,15 @@ UIFont* _bold_font;
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='OrderInsertCnt' )"];
     
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradePosRatio' or ItemType='OrderTradeRatio' or ItemType='OCR' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradePosRatio' or ItemType='OCR' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradeEdge' or ItemType='TradeQty' )"];
     
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ATTradeEdge' or ItemType='ATTradeQty') "];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ALTradeEdge' or ItemType='ALTradeQty' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='AHTradeEdge' or ItemType='AHTradeQty' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='AQTradeEdge' or ItemType='AQTradeQty' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ATLOrderTradeRatio' )"];
+
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradeFee' )"];
 
     
@@ -489,11 +491,11 @@ UIFont* _bold_font;
         
 
         //Ratio
-        if([_typename isEqualToString:@"ATOrderTradeRatio"])
+        if([_typename isEqualToString:@"ATLOrderTradeRatio"])
         {
             _fValue=[_field[@"ItemValue"] floatValue]*100;
             value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
-            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"AT TOR(%):" DetialText:value];
+            [UIHelper SetTabelViewCellDetailText:TableView TitleText: @"ATL TOR(%):" DetialText:value];
             continue;
         }
         if([_typename isEqualToString:@"OCR"])
