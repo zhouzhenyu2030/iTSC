@@ -352,7 +352,7 @@ UIFont* _bold_font;
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ALTradeEdge' or ItemType='ALTradeQty' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='AHTradeEdge' or ItemType='AHTradeQty' )"];
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='AQTradeEdge' or ItemType='AQTradeQty' )"];
-    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ATLOrderTradeRatio' )"];
+    _condstr=[_condstr stringByAppendingString:@" or ( ItemType='ATLTradeOrderRatio' )"];
 
     _condstr=[_condstr stringByAppendingString:@" or ( ItemType='TradeFee' )"];
 
@@ -491,7 +491,7 @@ UIFont* _bold_font;
         
 
         //Ratio
-        if([_typename isEqualToString:@"ATLOrderTradeRatio"])
+        if([_typename isEqualToString:@"ATLTradeOrderRatio"])
         {
             _fValue=[_field[@"ItemValue"] floatValue]*100;
             value = [StringHelper fPositiveFormat:_fValue pointNumber:2]; value = [value stringByAppendingString:@"%"];
