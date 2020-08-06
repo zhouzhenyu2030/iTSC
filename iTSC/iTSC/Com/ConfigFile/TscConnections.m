@@ -68,6 +68,8 @@ static NSString *_CurrentConnectionKey;
     [self _set_con:@"m.6-88" isUsingDNS:true IP:_dnsString Port:26883 PassWord:@"cqg@2030z"];
     [self _set_con:@"m.6-99" isUsingDNS:true IP:_dnsString Port:26993 PassWord:@"cqg@2030z"];
 
+    [self _set_con:@"0-lb-114-gd" isUsingDNS:false IP:@"183.194.213.19" Port:23306 PassWord:@"cqg@2030z"];
+
     [self _set_con:@"6- 6" isUsingDNS:true IP:_dnsString Port:26063 PassWord:@"cqg@2030z"];
     [self _set_con:@"6- 7" isUsingDNS:true IP:_dnsString Port:26073 PassWord:@"cqg@2030z"];
     [self _set_con:@"6- 8" isUsingDNS:true IP:_dnsString Port:26083 PassWord:@"cqg@2030z"];
