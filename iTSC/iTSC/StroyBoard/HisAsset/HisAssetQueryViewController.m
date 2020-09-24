@@ -91,10 +91,15 @@
         [xValueArr addObject:[_field[@"HisDate"] substringFromIndex:5]];
         float _value=[_field[_displayFieldName] doubleValue];
  
-        [yValueArr addObject:[NSString stringWithFormat:(@"%.4f"), _value]];
-        
-         //_value=_value/100/100;  //zzy
-        //[yValueArr addObject:_field[@"Asset"]];
+        if(_value<10000)
+        {
+            [yValueArr addObject:[NSString stringWithFormat:(@"%.4f"), _value]];
+        }
+        else
+        {
+            _value=_value/100/100;  //zzy
+            [yValueArr addObject:[NSString stringWithFormat:(@"%.2f"), _value]];
+        }
     }
 
     

@@ -248,7 +248,7 @@
 {
     if (ABS(value) > 10000)
     {
-        return [NSString stringWithFormat:@"%.1fw", value/(double)10000];
+        return [NSString stringWithFormat:@"%.2fw", value];
     }
     return [NSString stringWithFormat:@"%0.4fw", value]; //zzy
 }

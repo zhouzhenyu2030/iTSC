@@ -51,8 +51,8 @@ NSString* myFunctionName=@"HAMktOrTheoPickerViewController";
 -(NSInteger)loadData
 {
     //需要展示的数据以数组的形式保存
-    key = @[@"M", @"T"];
-    fieldname = @[@"NVMrkt", @"NVTheo"];
+    key = @[@"A", @"M", @"T"];
+    fieldname = @[@"AssetTheo", @"NVMrkt", @"NVTheo"];
     
     //获取初始值
     NSString* _InitFieldName=[TscConfig strHisAssetDisplayFieldName];
