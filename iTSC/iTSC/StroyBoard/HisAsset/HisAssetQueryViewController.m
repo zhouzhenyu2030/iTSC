@@ -97,8 +97,7 @@
         }
         else
         {
-            _value=_value/100/100;  //zzy
-            [yValueArr addObject:[NSString stringWithFormat:(@"%.2f"), _value]];
+            [yValueArr addObject:[NSString stringWithFormat:(@"%.2f"), _value/10000]];
         }
     }
 
