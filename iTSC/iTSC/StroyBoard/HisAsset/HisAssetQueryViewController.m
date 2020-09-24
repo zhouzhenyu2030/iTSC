@@ -89,7 +89,7 @@
         NSLog(@"%@", _field);
         
         [xValueArr addObject:[_field[@"HisDate"] substringFromIndex:5]];
-        float _value=[_field[_displayFieldName] doubleValue];
+        double _value=[_field[_displayFieldName] doubleValue];
  
         if(_value<10000)
         {
